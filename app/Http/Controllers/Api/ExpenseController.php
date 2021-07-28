@@ -240,6 +240,6 @@ class ExpenseController extends Controller
     }
     public function singleExpense($id)
     {
-        return response()->json("hello");
+        return response()->json($id);
     }
 }
