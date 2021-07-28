@@ -111,7 +111,7 @@ class ExpenseController extends Controller
                     "value" => $column_data_value ? $column_data_value : null,
                 ]);
             }
-            return response()->json("hello");
+            return response()->json("hi");
         }
         // }
     }
