@@ -68,6 +68,7 @@ class UserController extends Controller
                 'user_id' => $user->id,
             ]);
         }
+       
         return response()->json($user);
     }
 
