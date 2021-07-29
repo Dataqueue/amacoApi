@@ -156,7 +156,7 @@ class ExpenseController extends Controller
 
 
 
-        return response()->json($request);
+        return response()->json($request->id);
 
 
     }
