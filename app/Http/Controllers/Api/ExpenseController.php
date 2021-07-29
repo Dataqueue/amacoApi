@@ -154,14 +154,14 @@ class ExpenseController extends Controller
         {
         $expense= Expense::where('id',$request->id)->update(['status' => $request->status]);
         }
-        if($request->status===true)
+        else
         {
             $expense= Expense::where('id',$request->id)->update(['is_paid' =>1]); 
-            return response()->json($request->id);
+            
         }
         // $expense->update($request->all());
         
-
+        return response()->json($request->id);
 
 
         
