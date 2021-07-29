@@ -150,7 +150,7 @@ class ExpenseController extends Controller
         // $request['is_paid'] = true;
         $reqdata = $request->all(); 
         // $expense = Expense::findOrfail($request->id);
-        $expense= Expense::where('id',$request->id)->update($reqdata);
+        $expense= Expense::where('id',$request->id)->update(['status' => $request->status]);
         // $expense->update($request->all());
         
 
