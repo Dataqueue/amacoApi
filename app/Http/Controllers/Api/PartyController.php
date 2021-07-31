@@ -130,7 +130,7 @@ class PartyController extends Controller
                     return $bankDetail;
                 }),
                 'contacts' => $contacts->map(function ($contact) {
-                    return $contact;
+                    return ucfirst(strtolower($contact));
                 }),
             ];
         return response()->json(array($data));
