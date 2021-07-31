@@ -40,7 +40,7 @@ class PartyController extends Controller
         // return $request;
 
         $party = Party::create([
-            'firm_name' => $request->firm_name,
+            'firm_name' => ucfirst(trans($request->firm_name)),
             'firm_name_in_ar' => (string) $request->company_name_ar,
             'registration_no' => $request->registration_no,
             // 'registration_no_in_ar'=> $request->registration_no == null ? null : GoogleTranslate::trans(
@@ -173,7 +173,7 @@ class PartyController extends Controller
         // return ("somethin went wrong");
 
         $party->update([
-            'firm_name' => $request->firm_name == null ? $party->firm_name : $request->firm_name,
+            'firm_name' => $request->firm_name == null ? $party->firm_name : ucfirst(trans($request->firm_name)),
             'firm_name_in_ar' => $request->company_name_ar == null ? $party->firm_name_in_ar : $request->company_name_ar,
             'registration_no' => $request->registration_no == null ? $party->registration_no : $request->registration_no,
             // 'registration_no_in_ar'=> $request->registration_no == null ? $party->registration_no_in_ar : GoogleTranslate::trans($request->registration_no,'ar'),
