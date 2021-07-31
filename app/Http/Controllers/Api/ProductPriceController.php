@@ -40,7 +40,7 @@ class ProductPriceController extends Controller
     {
         return response()->json([
             $productPrice,
-            ucfirst($productPrice->party),
+            $productPrice->party,
             $productPrice->product
         ]);
     }
