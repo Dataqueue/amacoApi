@@ -129,8 +129,8 @@ class PartyController extends Controller
                 "bank" => $party->bank->map(function ($bankDetail) {
                     return $bankDetail;
                 }),
-                'contacts' => $contacts->map(function ($contact) {
-                    return ucfirst(trans($contact));
+                'contacts' => ucfirst(trans($contacts))->map(function ($contact) {
+                    return $contact;
                 }),
             ];
         return response()->json(array($data));
