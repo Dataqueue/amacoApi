@@ -28,7 +28,8 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->json()->all();
+        $arr=strtoupper($request);
+        $data = $arr->json()->all();
         $contact = Contact::create($data);
         return $contact;
     }
