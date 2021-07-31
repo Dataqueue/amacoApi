@@ -52,7 +52,7 @@ class RFQController extends Controller
                                 "updated_at" => $rfq_detail->updated_at,
                                 "product_id" => $rfq_detail->product_id,
                                 "product" => array($rfq_detail->product),
-                                "description" => ucfirst(trans($rfq_detail->description)),
+                                "description" => ucwords(trans($rfq_detail->description)),
                                 "quantity" => $rfq_detail->quantity,
                             ];
                         }),
@@ -107,7 +107,7 @@ class RFQController extends Controller
             foreach ($rfq_details as $rfq_detail) {
                 RFQDetails::create([
                     'product_id' => $rfq_detail['id'],
-                    'description' => ucfirst(trans($rfq_detail['descriptionss'])),
+                    'description' => ucwords(trans($rfq_detail['descriptionss'])),
                     'quantity' => $rfq_detail['quantity'],
                     'rfq_id' => $_rfq_id,
                 ]);

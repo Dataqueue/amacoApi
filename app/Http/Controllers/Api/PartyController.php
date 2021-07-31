@@ -40,7 +40,7 @@ class PartyController extends Controller
         // return $request;
 
         $party = Party::create([
-            'firm_name' => ucfirst(trans($request->firm_name)),
+            'firm_name' => ucwords(trans($request->firm_name)),
             'firm_name_in_ar' => (string) $request->company_name_ar,
             'registration_no' => $request->registration_no,
             // 'registration_no_in_ar'=> $request->registration_no == null ? null : GoogleTranslate::trans(
@@ -49,10 +49,10 @@ class PartyController extends Controller
             // 'vat_no_in_ar'=> $request->registration_no == null ? null :   GoogleTranslate::trans(
             //     $request->vat_no,'ar'),
             'post_box_no' => $request->post_box_no,
-            'street' => ucfirst(trans($request->street)),
-            'city' => ucfirst(trans($request->city)),
-            'proviance' => ucfirst(trans($request->proviance)),
-            'country' => ucfirst(trans($request->country)),
+            'street' => ucwords(trans($request->street)),
+            'city' => ucwords(trans($request->city)),
+            'proviance' => ucwords(trans($request->proviance)),
+            'country' => ucwords(trans($request->country)),
             'zip_code' => $request->zip_code,
             'party_type' => $request->party_type,
             'contact' => $request->contact,
@@ -69,21 +69,21 @@ class PartyController extends Controller
             PartyBank::create([
                 'account_no' => $request->account_no,
                 'iban_no' => $request->iban_no,
-                'bank_name' => ucfirst(trans($request->bank_name)),
-                'bank_address' => ucfirst(trans($request->bank_address)),
+                'bank_name' => ucwords(trans($request->bank_name)),
+                'bank_address' => ucwords(trans($request->bank_address)),
                 'party_id' => $party->id,
             ]);
 
         $contact = Contact::create([
             'prefix' => $request->prefix,
             'party_id' => $party->id,
-            'fname' => ucfirst(trans($request->fname)),
-            'lname' => ucfirst(trans($request->lname)),
-            'designation' => ucfirst(trans($request->designation)),
+            'fname' => ucwords(trans($request->fname)),
+            'lname' => ucwords(trans($request->lname)),
+            'designation' => ucwords(trans($request->designation)),
             'mobno' => $request->mobno,
             'landline' => $request->landline,
             'email' => $request->email,
-            'address'=>ucfirst(trans($request->address)),
+            'address'=>ucwords(trans($request->address)),
 
         ]);
 
@@ -175,17 +175,17 @@ class PartyController extends Controller
         // return ("somethin went wrong");
 
         $party->update([
-            'firm_name' => $request->firm_name == null ? $party->firm_name : ucfirst(trans($request->firm_name)),
+            'firm_name' => $request->firm_name == null ? $party->firm_name : ucwords(trans($request->firm_name)),
             'firm_name_in_ar' => $request->company_name_ar == null ? $party->firm_name_in_ar : $request->company_name_ar,
             'registration_no' => $request->registration_no == null ? $party->registration_no : $request->registration_no,
             // 'registration_no_in_ar'=> $request->registration_no == null ? $party->registration_no_in_ar : GoogleTranslate::trans($request->registration_no,'ar'),
             'vat_no' => $request->vat_no == null ? $party->vat_no : $request->vat_no,
             // 'vat_no_in_ar'=> $request->registration_no == null ? $party->vat_no_in_ar :   GoogleTranslate::trans($request->vat_no,'ar'),
             'post_box_no' => $request->post_box_no == null ? $party->post_box_no : $request->post_box_no,
-            'street' => $request->street == null ? $party->street : ucfirst(trans($request->street)),
-            'city' => $request->city == null ? $party->city : ucfirst(trans($request->city)),
-            'proviance' => $request->proviance == null ? $party->proviance : ucfirst(trans($request->proviance)),
-            'country' => $request->country == null ? $party->country : ucfirst(trans($request->country)),
+            'street' => $request->street == null ? $party->street : ucwords(trans($request->street)),
+            'city' => $request->city == null ? $party->city : ucwords(trans($request->city)),
+            'proviance' => $request->proviance == null ? $party->proviance : ucwords(trans($request->proviance)),
+            'country' => $request->country == null ? $party->country : ucwords(trans($request->country)),
             'zip_code' => $request->zip_code == null ? $party->zip_code : $request->zip_code,
             'party_type' => $request->party_type == null ? $party->party_type : $request->party_type,
             'contact' => $request->contact == null ? $party->contact : $request->contact,
@@ -196,8 +196,8 @@ class PartyController extends Controller
             'opening_balance' => $request->opening_balance == null ? $party->opening_balance : $request->opening_balance,
             'account_no' => $request->account_no == null ? $party->account_no : $request->account_no,
             'iban_no' => $request->iban_no == null ? $party->iban_no :  $request->iban_no,
-            'bank_name' => $request->bank_name == null ? $party->bank_name :  ucfirst(trans($request->bank_name)),
-            'bank_address' => $request->bank_address == null ? $party->bank_address :  ucfirst(trans($request->bank_address)),
+            'bank_name' => $request->bank_name == null ? $party->bank_name :  ucwords(trans($request->bank_name)),
+            'bank_address' => $request->bank_address == null ? $party->bank_address :  ucwords(trans($request->bank_address)),
             'party_code' => $request->party_code == null ? $party->party_code :  $request->party_code,
             'vendor_id' => $request->vendor_id == null ? $party->vendor_id :  $request->vendor_id,
         ]);
