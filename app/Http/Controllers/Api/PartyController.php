@@ -129,7 +129,7 @@ class PartyController extends Controller
                 "bank" => $party->bank->map(function ($bankDetail) {
                     return $bankDetail;
                 }),
-                'contacts' => ucfirst(trans($contacts))->map(function ($contact) {
+                'contacts' => $contacts->map(function ($contact) {
                     return $contact;
                 }),
             ];
