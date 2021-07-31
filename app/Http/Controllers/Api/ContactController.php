@@ -28,8 +28,8 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $arr=ucfirst(trans(($request)));
-        $data = $arr->json()->all();
+        
+        $data = $request->json()->all();
         $contact = Contact::create($data);
         return $contact;
     }
