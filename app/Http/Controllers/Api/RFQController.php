@@ -264,14 +264,14 @@ class RFQController extends Controller
                 if ($rfq_update_data) {
                     $_rfq_detail = $rfq_update_data->update([
                         'product_id' => $rfq_detail['product_id'],
-                        'description' => ucfirst(trans($rfq_detail['description'])),
+                        'description' => ucwords(trans($rfq_detail['description'])),
                         'quantity' => $rfq_detail['quantity'],
                         // 'rfq_id' => $_rfq_id,
                     ]);
                 }else{
                     RFQDetails::create([
                         'product_id' => $rfq_detail['product_id'],
-                        'description' => ucfirst(trans($rfq_detail['description'])),
+                        'description' => ucwords(trans($rfq_detail['description'])),
                         'quantity' => $rfq_detail['quantity'],
                         'rfq_id' => $_rfq_id
                     ]);
