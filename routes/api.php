@@ -41,7 +41,7 @@ use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\TaxController;
 use App\Http\Controllers\Api\PartyBankController;
 use App\Http\Controllers\Api\demo;
-
+use App\Http\Controllers\Api\DivisionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -112,7 +112,7 @@ Route::apiResource('party-bank', PartyBankController::class);
 Route::apiResource('company', CompanyController::class);
 Route::apiResource('company-bank', CompanyBankController::class);
 Route::apiResource('demo', demo::class);
-
+Route::apiResource('division', DivisionController::class);
 // restful api links
 Route::post('rfq-history', [RFQController::class, 'history'])->name('rfq.history');
 Route::post('invoice-history', [InvoiceController::class, 'history'])->name('invoice.history');

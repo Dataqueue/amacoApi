@@ -16,6 +16,10 @@ class Expense extends Model
     {
         return $this->hasOne(Employee::class, 'paid_by', 'id');
     }
+    public function division()
+    {
+        return $this->hasOne(Division::class, 'div_id', 'id');
+    }
 
     public function invoice()
     {
