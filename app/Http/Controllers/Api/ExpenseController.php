@@ -63,11 +63,11 @@ class ExpenseController extends Controller
             'user_id' => null,
             ]);
             $lastInsertedId= $account->id;
-            return response()->json($request);
+           
         }
         else{
             $lastInsertedId= $request->payment_account_id;
-            return response()->json("hello");
+            
         }
             $expense = Expense::create([
                 'created_by' => $request->created_by,
