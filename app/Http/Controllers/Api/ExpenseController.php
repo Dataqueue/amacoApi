@@ -86,6 +86,10 @@ class ExpenseController extends Controller
                 "account_category_id" => $request->account_category_id,
                 "company_name" => $request->company_name ? $request->company_name : null,
                 "file_path" => $filePath,
+                "div_id" => $request->div_id,
+                "company" => $request->company,
+                "vatno" => $request->vatno,
+                "inv_no" => $request->inv_no,
     
             ]);
     
