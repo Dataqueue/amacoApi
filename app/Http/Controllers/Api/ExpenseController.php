@@ -64,8 +64,6 @@ class ExpenseController extends Controller
             ]);
             $lastInsertedId= $account->id;
         }
-        if($lastInsertedId)
-        {
             $expense = Expense::create([
                 'created_by' => $request->created_by,
                 'paid_date' => $request->paid_date,
@@ -74,12 +72,12 @@ class ExpenseController extends Controller
                 'payment_type' => $request->payment_type,
                 'check_no' => $request->check_no,
                 'transaction_id' => $request->transaction_id,
-                'payment_account_id' => $lastInsertedId,
+                'payment_account_id' =>$request->payment_account_id? $request->payment_account_id: $lastInsertedId,
                 'description' => $request->description,
                 'referrence_bill_no' => $request->referrence_bill_no,
                 'tax' => $request->tax,
                 'status' => $request->status,
-                'paid_by' =>  $lastInsertedId,
+                'paid_by' => $request->payment_account_id? $request->payment_account_id: $lastInsertedId,
                 'bank_ref_no' => $request->bank_ref_no,
                 'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
                 // 'bank_slip' =>  $path ,
@@ -118,7 +116,7 @@ class ExpenseController extends Controller
             return response()->json("hi");
         }
         // }
-    }
+    
 
     /**
      * Display the specified resource.
