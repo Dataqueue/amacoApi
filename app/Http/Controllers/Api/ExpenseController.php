@@ -63,7 +63,7 @@ class ExpenseController extends Controller
             'user_id' => null,
             ]);
             $lastInsertedId= $account->id;
-            return response()->json("hi");
+            return response()->json($request);
         }
         else{
             $lastInsertedId= $request->payment_account_id;
