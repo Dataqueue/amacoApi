@@ -19,4 +19,5 @@ class Division extends Model
     {
         return $this->hasMany('App\Models\Product');
     }
+    
 }
