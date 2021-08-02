@@ -57,7 +57,7 @@ class ExpenseController extends Controller
             $filePath = $request->file('file_path')->move("expenses/filePath",  $request->file('file_path')->getClientOriginalName());
         }
 
-        if($request->payeename!==false){
+        if($request->payment_account_id==="other"){
             $account=PaymentAccount::create([
             'name' => $request->payeename,
             'user_id' => null,
