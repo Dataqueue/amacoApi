@@ -11,11 +11,6 @@ class DivisionController extends Controller
     //
     public function show(Division $div)
     {
-        $data = [
-            'id' => $div->id,
-            'name' => $div->name,
-        ];
-
-        return response()->json($data, 200);
+        return response()->json(array($div));
     }
 }
