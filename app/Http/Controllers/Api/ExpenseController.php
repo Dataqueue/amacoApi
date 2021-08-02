@@ -69,6 +69,7 @@ class ExpenseController extends Controller
             $lastInsertedId= $request->payment_account_id;
             
         }
+
             $expense = Expense::create([
                 'created_by' => $request->created_by,
                 'paid_date' => $request->paid_date,
@@ -90,9 +91,9 @@ class ExpenseController extends Controller
                 "company_name" => $request->company_name ? $request->company_name : null,
                 "file_path" => $filePath,
                 "div_id" => $request->div_id,
-                "company" => $request->company,
-                "vatno" => $request->vatno,
-                "inv_no" => $request->inv_no,
+                "company" => $request->company?$request->company:null,
+                "vatno" => $request->vatno?$request->vatno:null,
+                "inv_no" => $request->inv_no?$request->inv_no:null,
     
             ]);
     
