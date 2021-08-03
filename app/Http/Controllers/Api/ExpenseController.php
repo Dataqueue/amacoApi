@@ -91,9 +91,9 @@ class ExpenseController extends Controller
                 "company_name" => $request->company_name ? $request->company_name : null,
                 "file_path" => $filePath,
                 "div_id" => $request->div_id,
-                "company" => $request->company?$request->company:'',
-                "vatno" => $request->vatno?$request->vatno:" ",
-                "inv_no" => $request->inv_no?$request->inv_no:" ",
+                "company" => $request->company?$request->company:null,
+                "vatno" => $request->vatno?$request->vatno:null,
+                "inv_no" => $request->inv_no?$request->inv_no:null,
                 "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:null
     
             ]);
