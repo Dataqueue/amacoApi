@@ -22,7 +22,7 @@ class DivisionController extends Controller
     {
         return response()->json(array($div));
     }
-    public function store(Division $div)
+    public function store(Request $request)
     {
        
 
