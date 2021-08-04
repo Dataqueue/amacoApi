@@ -23,7 +23,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::join('account_categories','expense.account_category_id','account_categories.id')->where('party_id', $party_id)->select(
+        $expenses = Expense::join('account_categories','expense.account_category_id','account_categories.id')->select(
             'account_categories.name',
             'expense.*'
     )->where("status", "new")->orderBy('created_at', 'DESC')->get();
