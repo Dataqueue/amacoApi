@@ -27,7 +27,7 @@ class DivisionController extends Controller
        
 
         $party = Division::create([
-            'name' => ucwords(trans($request->name)),
+            'name' => $request->name,
             'opening_bal' => (string) $request->opening_balance,
             
             
