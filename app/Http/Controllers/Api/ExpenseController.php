@@ -23,9 +23,9 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::join('account_categories','expense.account_category_id','account_categories.id')->select(
+        $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->select(
             'account_categories.name',
-            'expense.*'
+            'expenses.*'
     )->where("status", "new")->orderBy('created_at', 'DESC')->get();
         $expenses->map(function ($expense) {
             return $expense->payment_account;
