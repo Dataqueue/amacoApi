@@ -39,7 +39,13 @@ class ExpenseController extends Controller
     // to get all paid expenses
     public function paid()
     {
-        $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->select(
+        $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->join('divisions','expenses.div_id','divisions.id')->
+        join('divisions as divtable','expenses.utilize_div_id','divtable.id')->select(
+    'divisions.name as paid_from',
+    'divtable.name as paid_towards',
+    'account_categories.name',
+            'expenses.*'
+)->select(
             'account_categories.name',
             'expenses.*'
     )->where("status", 'verified')->orderBy('created_at', 'DESC')->get();
