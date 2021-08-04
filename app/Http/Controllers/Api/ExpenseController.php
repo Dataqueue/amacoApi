@@ -23,9 +23,10 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->join('divisions','expenses.div_id','divisions.id')->select(
+        $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->join('divisions','expenses.div_id','divisions.id')->
+        join('divisions as divtable','expenses.div_id','divtable.id')->select(
     'divisions.name as paid_from',
-    // 'divisions.name as paid_towards',
+    'divtable.name as paid_towards',
     'account_categories.name',
             'expenses.*'
 )->where("status", "new")->orderBy('created_at', 'DESC')->get();
