@@ -23,7 +23,10 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::where("status", "new")->orderBy('created_at', 'DESC')->get();
+        $expenses = Expense::join('account_categories','expense.account_category_id','account_categories.id')->where('party_id', $party_id)->select(
+            'account_categories.name',
+            'expense.*'
+    )->where("status", "new")->orderBy('created_at', 'DESC')->get();
         $expenses->map(function ($expense) {
             return $expense->payment_account;
         });
