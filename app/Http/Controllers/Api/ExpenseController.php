@@ -36,7 +36,10 @@ class ExpenseController extends Controller
     // to get all paid expenses
     public function paid()
     {
-        $expenses = Expense::where("status", 'verified')->orderBy('created_at', 'DESC')->get();
+        $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->select(
+            'account_categories.name',
+            'expenses.*'
+    )->where("status", 'verified')->orderBy('created_at', 'DESC')->get();
         $expenses->map(function ($expense) {
             return $expense->payment_account;
         });
