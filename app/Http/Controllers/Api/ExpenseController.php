@@ -45,10 +45,7 @@ class ExpenseController extends Controller
     'divtable.name as paid_towards',
     'account_categories.name',
             'expenses.*'
-)->select(
-            'account_categories.name',
-            'expenses.*'
-    )->where("status", 'verified')->orderBy('created_at', 'DESC')->get();
+)->where("status", 'verified')->orderBy('created_at', 'DESC')->get();
         $expenses->map(function ($expense) {
             return $expense->payment_account;
         });
