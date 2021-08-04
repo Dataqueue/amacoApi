@@ -22,4 +22,18 @@ class DivisionController extends Controller
     {
         return response()->json(array($div));
     }
+    public function store(Division $div)
+    {
+       
+
+        $party = Division::create([
+            'name' => ucwords(trans($request->name)),
+            'opening_bal' => (string) $request->opening_balance,
+            
+            
+            
+        ]);
+        return response()->json("success");
+    }
+
 }
