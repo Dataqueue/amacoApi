@@ -26,14 +26,14 @@ class DivisionController extends Controller
     {
        
 
-        $party = Division::create([
-            'name' => $request->name,
-            'opening_bal' => (string) $request->opening_balance,
+        // $party = Division::create([
+        //     'name' => $request->name,
+        //     'opening_bal' => (string) $request->opening_balance,
             
             
             
-        ]);
-        return response()->json("success");
+        // ]);
+        return response()->json([$request]);
     }
 
 }
