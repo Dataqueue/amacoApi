@@ -27,8 +27,8 @@ class DivisionController extends Controller
        
         $data = $request->json()->all();
         $party = Division::create([
-            'name' => $data->name,
-            'opening_bal' => (string) $data->opening_balance,
+            'name' => $request->name,
+            'opening_bal' => (string) $request->opening_balance,
         
             
             
