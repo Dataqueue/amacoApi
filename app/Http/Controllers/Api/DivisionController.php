@@ -25,14 +25,14 @@ class DivisionController extends Controller
     public function store(Request $request)
     {
        
-
-        // $party = Division::create([
-        //     'name' => $request->name,
-        //     'opening_bal' => (string) $request->opening_balance,
         $data = $request->json()->all();
+        $party = Division::create([
+            'name' => $data->name,
+            'opening_bal' => (string) $data->opening_balance,
+        
             
             
-        // ]);
+        ]);
         return response()->json([$data]);
     }
 
