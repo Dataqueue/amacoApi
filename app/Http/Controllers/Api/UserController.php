@@ -71,18 +71,19 @@ class UserController extends Controller
             ]);
             $division = json_decode($request['divisions'], true);
             foreach ($division as $div) {
-                if($div['check']===true)
-                {
-                UserDivision::create([
-                    'u_id' => $user->id,
-                    'div_id'=>$div['id']
-                ]);
-            }
+
+            //     if($div['check'])
+            //     {
+            //     UserDivision::create([
+            //         'u_id' => $user->id,
+            //         'div_id'=>$div['id']
+            //     ]);
+            // }
             }
 
         }
        
-        return response()->json($user);
+        return response()->json($division);
     }
 
     /**
