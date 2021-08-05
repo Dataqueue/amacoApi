@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserDivision extends Model
 {
     use HasFactory;
+    protected $guarded = [];
     public function user()
     {
         return $this->hasMany('App\Models\User');

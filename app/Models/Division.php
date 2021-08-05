@@ -9,6 +9,7 @@ class Division extends Model
 {
     protected $guarded = [];
     use HasFactory;
+    
 
     public function department()
     {
