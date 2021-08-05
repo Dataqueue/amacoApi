@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\PaymentAccount;
+use App\Models\UserDivision;
+use App\Models\Division;
 use Illuminate\Http\Request;
 use App\Models\User;
 // use App\Http\Controllers\Api\Hash;
@@ -67,6 +69,15 @@ class UserController extends Controller
                 'name' => $user->name,
                 'user_id' => $user->id,
             ]);
+            $division = json_decode($request['divisions'], true);
+            foreach ($division as $div) {
+                UserDivision::create([
+                    'u_id' => $user->id,
+                    'div_id' => $div['id'],
+                    
+                ]);
+            }
+
         }
        
         return response()->json($user);
