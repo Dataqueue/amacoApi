@@ -53,38 +53,38 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // $user = User::create([
-        //     "name"=> $request->name,
-        //     "email"=> $request->email,
-        //     "contact"=> $request->contact,
-        //     "password"=> bcrypt($request->password),
-        //     "role_id"=> $request->role_id,
-        //     'remember_token' => Str::random(10),
-        //     'designation' => $request->designation,
-        //     'prefix' => $request->prefix,
-        // ]);
+        $user = User::create([
+            "name"=> $request->name,
+            "email"=> $request->email,
+            "contact"=> $request->contact,
+            "password"=> bcrypt($request->password),
+            "role_id"=> $request->role_id,
+            'remember_token' => Str::random(10),
+            'designation' => $request->designation,
+            'prefix' => $request->prefix,
+        ]);
          $division = json_decode($request['divisions'], true);
-        // if($user){
-        //         PaymentAccount::create([
-        //         'name' => $user->name,
-        //         'user_id' => $user->id,
-        //     ]);
+        if($user){
+                PaymentAccount::create([
+                'name' => $user->name,
+                'user_id' => $user->id,
+            ]);
             
             foreach ($division as $div) {
 
                 if($div['check']==true)
                 {
-                // UserDivision::create([
-                //     'u_id' => $user->id,
-                //     'div_id'=>$div['id']
-                // ]);
+                 UserDivision::create([
+                    'u_id' => $user->id,
+                    'div_id'=>$div['id']
+                ]);
                 // return response()->json($div['check']);
                 }
+            
             }
-            // }
-        //     }
+            
 
-        // }
+        }
        
      return response()->json($division);
     }
