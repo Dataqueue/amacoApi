@@ -72,7 +72,7 @@ class UserController extends Controller
             
             foreach ($division as $div) {
 
-                if($div['check'])
+                if($div['check']==true)
                 {
                 UserDivision::create([
                     'u_id' => $user->id,
