@@ -78,7 +78,7 @@ class UserController extends Controller
                 //     'u_id' => $user->id,
                 //     'div_id'=>$div['id']
                 // ]);
-                return response()->json($div['check']);
+                // return response()->json($div['check']);
                 }
             }
             // }
@@ -86,7 +86,7 @@ class UserController extends Controller
 
         // }
        
-        // return response()->json($division);
+     return response()->json($division);
     }
 
     /**
