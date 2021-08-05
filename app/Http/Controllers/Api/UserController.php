@@ -86,7 +86,7 @@ class UserController extends Controller
 
         // }
        
-        return response()->json($div['check']);
+        return response()->json($division);
     }
 
     /**
