@@ -15,7 +15,8 @@ class CreateUserDivisionsTable extends Migration
     {
         Schema::create('user_divisions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('u_id')->nullable();
+            $table->string('div_id')->nullable();
         });
     }
 
