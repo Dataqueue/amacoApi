@@ -70,13 +70,12 @@ class UserController extends Controller
                 'user_id' => $user->id,
             ]);
             $division = json_decode($request['divisions'], true);
-            foreach ($division as $div) {
+            
                 UserDivision::create([
                     'u_id' => $user->id,
                     
-                    
                 ]);
-            }
+            
 
         }
        
