@@ -70,23 +70,23 @@ class UserController extends Controller
         //         'user_id' => $user->id,
         //     ]);
             
-            foreach ($division as $div) {
+            // foreach ($division as $div) {
 
-                if($div['check']==true)
-                {
-                // UserDivision::create([
-                //     'u_id' => $user->id,
-                //     'div_id'=>$div['id']
-                // ]);
-                return response()->json($div['check']);
-                }
-            }
+            //     if($div['check']==true)
+            //     {
+            //     // UserDivision::create([
+            //     //     'u_id' => $user->id,
+            //     //     'div_id'=>$div['id']
+            //     // ]);
+            //     return response()->json($div['check']);
+            //     }
+            // }
         //     }
         //     }
 
         // }
        
-        
+        return response()->json($div['check']);
     }
 
     /**
