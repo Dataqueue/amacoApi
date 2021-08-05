@@ -73,7 +73,7 @@ class UserController extends Controller
             foreach ($division as $div) {
                 UserDivision::create([
                     'u_id' => $user->id,
-                    'div_id' => $div['id'],
+                    
                     
                 ]);
             }
