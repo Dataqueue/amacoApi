@@ -50,7 +50,7 @@ class ReceiptController extends Controller
     //     "bank_id" => $request->bank_id,
     // ]);
 
-        return response()->json($request->file('file'), 200);
+        return response()->json($request->file, 200);
 
     }
 
