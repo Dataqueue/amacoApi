@@ -18,7 +18,7 @@ class ReceiptController extends Controller
         $allReceipt = Receipt::join('division','receipt.div_id','division.id')->select(
             'division.name as div_name',
             'receipt.*'
-        )->all();
+        )->get();
 
         $allReceipt->map(function ($receipt){
             return $receipt->party;
