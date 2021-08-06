@@ -47,12 +47,16 @@ class ReceiptController extends Controller
             "div_id" => $request->div_id,
             "bank_id" => $request->bank_id,
         ]);
+        return response()->json($request->file, 200);
            
         }
+        else
+        {
 
        
 
-        return response()->json($request->file, 200);
+        return response()->json("success");
+        }
 
     }
 
