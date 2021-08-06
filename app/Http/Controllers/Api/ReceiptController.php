@@ -101,7 +101,10 @@ class ReceiptController extends Controller
             'divisions.name as div_name',
             'receipts.*'
         )->get();
-        
+        $receiptdata=$data->map(function ($item)  {
+
+            $item['fileurl'] = url($item['file']);
+        });
         return response()->json([$receipt]);
     }
 }

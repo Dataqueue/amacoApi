@@ -271,6 +271,7 @@ class ExpenseController extends Controller
     {
         $expense = ColumnData::where('expense_id',$id)->join('expenses','ColumnData.expense_id','parties.id')->where('party_id', $party_id)->get();
         
+        
         return response()->json([$expense]);
     }
 }
