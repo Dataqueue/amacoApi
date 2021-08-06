@@ -94,4 +94,14 @@ class ReceiptController extends Controller
 
         return response()->json(['msg'=>"Permanently deleted"], 200);
     }
+
+    public function singleReceipt($id)
+    {
+        $receipt = Receipt::where('id',$id)->join('divisions','receipts.div_id','divisions.id')->select(
+            'divisions.name as div_name',
+            'receipts.*'
+        )->get();
+        
+        return response()->json([$expense]);
+    }
 }
