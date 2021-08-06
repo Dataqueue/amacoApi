@@ -33,9 +33,9 @@ class ReceiptController extends Controller
     public function store(Request $request)
     {
         $data = $request->json()->all();
-        if ($request->file('file')) {
-            $filePath = $request->file('file')->move('');
-        }
+        // if ($request->file('file')) {
+        //     $filePath = $request->file('file')->move('');
+        // }
 
         $receipt = Receipt::create(["party_id",$request->party_id,
         "payment_mode",$request->party_id,
