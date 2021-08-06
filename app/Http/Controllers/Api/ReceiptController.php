@@ -102,6 +102,6 @@ class ReceiptController extends Controller
             'receipts.*'
         )->get();
         
-        return response()->json([$expense]);
+        return response()->json([$receipt]);
     }
 }
