@@ -37,7 +37,7 @@ class ReceiptController extends Controller
     {
         $data = $request->json()->all();
        $filePath=null;
-        if ($request->file) {
+        if ($request->file('file')) {
             $filePath = $request->file('file')->move("receipts/", $request->file('file')->getClientOriginalName());
 
            
