@@ -37,16 +37,16 @@ class ReceiptController extends Controller
             $filePath = $request->file('file')->move('');
         }
 
-        $receipt = Receipt::create(["party_id",$data['party_id'],
-        "payment_mode",$data['payment_mode'],
-        "file",$data['file'],
-        "paid_amount",$data['paid_amount'],
-        "paid_date",$data['paid_date'],
-        "div_id",$data['div_id'],
-        "bank_id",$data['bank_id'],
-    ]);
+        // $receipt = Receipt::create(["party_id",$data['party_id'],
+        // "payment_mode",$data['payment_mode'],
+        // "file",$data['file'],
+        // "paid_amount",$data['paid_amount'],
+        // "paid_date",$data['paid_date'],
+        // "div_id",$data['div_id'],
+        // "bank_id",$data['bank_id'],
+    // ]);
 
-        return response()->json($receipt, 200);
+        return response()->json($data['party_id'], 200);
 
     }
 
