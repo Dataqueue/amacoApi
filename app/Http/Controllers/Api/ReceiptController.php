@@ -33,7 +33,7 @@ class ReceiptController extends Controller
     public function store(Request $request)
     {
         $data = $request->json()->all();
-        if ($request->file('file' . $index)) {
+        if ($request->file('file')) {
             $filePath = $request->file('file')->move('');
         }
 
