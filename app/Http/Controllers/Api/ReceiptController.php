@@ -101,10 +101,10 @@ class ReceiptController extends Controller
             'divisions.name as div_name',
             'receipts.*'
         )->get();
-        $receipt->map(function($accountCategory){
+        $receipt->map(function($item){
             return [
                
-                'fileurl' => url($accountCategory->file),
+                'fileurl' => $item->referrenceImg(),
                 // 'sub_categories' => $this->subCategory($accountCategory->id),
             ];
         });
