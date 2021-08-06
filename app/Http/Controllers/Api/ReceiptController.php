@@ -15,13 +15,16 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        // $allReceipt = Receipt::all();
+        $allReceipt = Receipt::all();
 
-        // $allReceipt->map(function ($receipt){
-        //     return $receipt->party;
-        // });
+        $allReceipt->map(function ($receipt){
+            return $receipt->party;
+        });
 
-        // return response()->json($allReceipt, 200);
+        return response()->json($allReceipt, 200)->join('division','receipt.div_id','division.id')->select(
+            'division.name as div_name',
+            'receipt.*'
+        )->get();
     }
 
     /**
@@ -58,10 +61,7 @@ class ReceiptController extends Controller
      */
     public function show(Receipt $receipt)
     {
-        // return Receipt::join('division','receipt.div_id','division.id')->select(
-        //     'division.name as div_name',
-        //     'receipt.*'
-        // )->get();
+        return response()->json($receipt, 200);
     }
 
     /**
