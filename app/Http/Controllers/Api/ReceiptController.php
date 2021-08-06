@@ -58,7 +58,7 @@ class ReceiptController extends Controller
      */
     public function show(Receipt $receipt)
     {
-        return response()->json($receipt, 200)->join('division','receipt.div_id','division.id')->select(
+        return Receipt::join('division','receipt.div_id','division.id')->select(
             'division.name as div_name',
             'receipt.*'
         )->get();
