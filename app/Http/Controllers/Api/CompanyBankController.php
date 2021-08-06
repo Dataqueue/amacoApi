@@ -69,4 +69,10 @@ class CompanyBankController extends Controller
 
         return response()->json(['msg'=>"Successfully Deleted"]);
     }
+    public function companybank(CompanyBank $companyBank)
+    {
+        $companyBank->delete();
+
+        return response()->json(['msg'=>"Successfully Deleted"]);
+    }
 }
