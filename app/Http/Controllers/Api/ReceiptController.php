@@ -15,13 +15,13 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $allReceipt = Receipt::all();
+        // $allReceipt = Receipt::all();
 
-        $allReceipt->map(function ($receipt){
-            return $receipt->party;
-        });
+        // $allReceipt->map(function ($receipt){
+        //     return $receipt->party;
+        // });
 
-        return response()->json($allReceipt, 200);
+        // return response()->json($allReceipt, 200);
     }
 
     /**
