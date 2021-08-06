@@ -15,8 +15,8 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $allReceipt = Receipt::join('division','receipt.div_id','division.id')->select(
-            'division.name as div_name',
+        $allReceipt = Receipt::join('divisions','receipt.div_id','divisions.id')->select(
+            'divisions.name as div_name',
             'receipt.*'
         )->get();
 
