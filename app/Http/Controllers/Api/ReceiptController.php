@@ -97,7 +97,7 @@ class ReceiptController extends Controller
 
     public function singleReceipt($id)
     {
-        $receipt = Receipt::where('id',$id)->join('divisions','receipts.div_id','divisions.id')->select(
+        $receipt = Receipt::where('receipts.id',$id)->join('divisions','receipts.div_id','divisions.id')->select(
             'divisions.name as div_name',
             'receipts.*'
         )->get();
