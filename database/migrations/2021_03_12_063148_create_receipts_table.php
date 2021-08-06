@@ -17,6 +17,8 @@ class CreateReceiptsTable extends Migration
             $table->id();
             $table->string('receipt_no')->nullable();
             $table->unsignedBigInteger('party_id')->nullable();
+            $table->unsignedBigInteger('div_id')->nullable();
+            $table->unsignedBigInteger('bank_id')->nullable();
             $table->unsignedBigInteger('invoice_no')->nullable();
             $table->string('payment_mode')->nullable();
             $table->string('credit_note_no')->nullable();
@@ -26,6 +28,7 @@ class CreateReceiptsTable extends Migration
             $table->string('paid_date')->nullable();
             $table->string('transaction_type')->nullable();
             $table->string('status')->nullable();
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

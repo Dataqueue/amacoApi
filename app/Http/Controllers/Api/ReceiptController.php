@@ -39,7 +39,7 @@ class ReceiptController extends Controller
 
         $receipt = Receipt::create(["party_id",$request->party_id,
         "payment_mode",$request->party_id,
-        "file",$filePath,
+        // "file",$filePath,
         "paid_amount",$request->paid_amount,
         "paid_date",$request->paid_date,
         "div_id",$request->div_id,
