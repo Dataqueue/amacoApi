@@ -38,7 +38,7 @@ class ReceiptController extends Controller
         $data = $request->json()->all();
         if ($request->file('file')) {
             $filePath = $request->file('file')->move('receipt/');
-            return response()->json($request->party_id, 200);
+            return response()->json($request, 200);
         }
 
     //     $receipt = Receipt::create(["party_id" => $request->party_id,
@@ -50,7 +50,7 @@ class ReceiptController extends Controller
     //     "bank_id" => $request->bank_id,
     // ]);
 
-        return response()->json($request->party_id, 200);
+        // return response()->json($request->party_id, 200);
 
     }
 
