@@ -35,5 +35,12 @@ class DivisionController extends Controller
         ]);
         return response()->json([$data]);
     }
+    public function singleDivision($id)
+    {
+       
+        
+        $division = Division::where('division.id',$id);
+        return response()->json([$division]);
+    }
 
 }
