@@ -40,7 +40,7 @@ class DivisionController extends Controller
     {
         // $div->update($request->all());
         // return $contact;
-        return response()->json([$request]);
+        return response()->json([$request->json()->all()]);
     }
     public function singleDivision($id)
     {
