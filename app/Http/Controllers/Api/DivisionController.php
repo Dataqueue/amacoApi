@@ -38,9 +38,14 @@ class DivisionController extends Controller
 
     public function update(Request $request, Division $div)
     {
-        $div->update($request->json()->all());
+        $division = Division::where('id',$request->id)->get();
+        $division->update([
+            'name' => $request->name,
+            'opening_bal' => $request->opening_bal,
+            // 'contact_id' => $request->contact_id,
+        ]);
         // return $contact;
-        return response()->json([$request->json()->all()]);
+        // return response()->json([$request->json()->all()]);
     }
     public function singleDivision($id)
     {
