@@ -38,7 +38,7 @@ class DivisionController extends Controller
 
     public function update(Request $request, Division $div)
     {
-        // $div->update($request->all());
+        $div->update($request->json()->all());
         // return $contact;
         return response()->json([$request->json()->all()]);
     }
