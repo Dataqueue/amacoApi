@@ -38,7 +38,7 @@ class DivisionController extends Controller
 
     public function update(Request $request, Division $div)
     {
-        $division = Division::where('id',$request->id)->get();
+        $division = Division::findOrFail($request->id);
         $division->update([
             'name' => $request->name,
             'opening_bal' => $request->opening_bal,
