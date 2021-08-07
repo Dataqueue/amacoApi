@@ -35,6 +35,12 @@ class DivisionController extends Controller
         ]);
         return response()->json([$data]);
     }
+
+    public function update(Request $request, Division $div)
+    {
+        $div->update($request->all());
+        // return $contact;
+    }
     public function singleDivision($id)
     {
        
