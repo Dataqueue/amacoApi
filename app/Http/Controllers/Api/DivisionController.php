@@ -40,7 +40,7 @@ class DivisionController extends Controller
        
         
         $division = Division::where('id',$id)->get();
-        return response()->json([$division]);
+        return response()->json($division);
     }
 
 }
