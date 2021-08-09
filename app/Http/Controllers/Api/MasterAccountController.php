@@ -109,7 +109,7 @@ class MasterAccountController extends Controller
         if($request->from_date){
             $invoiceCollection = Expense::join('divisions','expenses.div_id','divisions.id')->select('divisions.name as div_name','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
 
-            $divEopenbalance=Expense::where('created_at', '<=', $request->from_date. ' ' . '00:00:00')->sum(floatval(str_replace(",","",'amount')));
+            $divEopenbalance=Expense::where('created_at', '<=', $request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
         }else{
             $invoiceCollection = Expense::all();
             $divEopenbalance=Expense::where('created_at', '<=', $date)->sum('expenses.amount');
@@ -118,7 +118,7 @@ class MasterAccountController extends Controller
         $receiptCollection = new Collection();
         if($request->from_date){
             $receiptCollection = Receipt::join('divisions','receipts.div_id','divisions.id')->select('divisions.name as div_name','receipts.*')->whereBetween('receipts.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
-            $divRopenbalance=Receipt::where('created_at', '<=',$request->from_date. ' ' . '00:00:00')->sum(floatval(str_replace(",","",'paid_amount')));
+            $divRopenbalance=Receipt::where('created_at', '<=',$request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'paid_amount'));
         }else{
             $receiptCollection = Receipt::all();
             $divRopenbalance=Receipt::where('created_at', '<=', $date)->sum('receipts.paid_amount');
