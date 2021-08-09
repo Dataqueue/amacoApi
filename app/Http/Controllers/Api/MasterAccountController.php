@@ -152,7 +152,7 @@ class MasterAccountController extends Controller
                 return [$item];
             }
         }));
-        $datas['opening_balance'] = $divEopenbalance-$divRopenbalance;
+        $datas['opening_balance'] = $divEopenbalance;
         $datas['name'] = "All";
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
