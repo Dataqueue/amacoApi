@@ -112,7 +112,7 @@ class MasterAccountController extends Controller
             $divEopenbalance=Expense::where('created_at', '<=', $request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
         }else{
             $invoiceCollection = Expense::all();
-            $divEopenbalance=Expense::where('created_at', '<=', $date)->sum('expenses.amount');
+            $divEopenbalance=Expense::where('created_at', '<=', $date. ' ' . '00:00:00')->sum('expenses.amount');
         }
 
         $receiptCollection = new Collection();
@@ -121,7 +121,7 @@ class MasterAccountController extends Controller
             $divRopenbalance=Receipt::where('created_at', '<=',$request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'paid_amount'));
         }else{
             $receiptCollection = Receipt::all();
-            $divRopenbalance=Receipt::where('created_at', '<=', $date)->sum('receipts.paid_amount');
+            $divRopenbalance=Receipt::where('created_at', '<=', $date. ' ' . '00:00:00')->sum('receipts.paid_amount');
 
         }
 
