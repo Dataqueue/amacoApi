@@ -35,7 +35,7 @@ class AccountStatementController extends Controller
     }
 
 
-    public function masterStatement(Request $request)
+    public function accountStatement(Request $request)
     {
         $party = Party::where('id', intval($request['party_id']))->first();
         if (!$party) {
