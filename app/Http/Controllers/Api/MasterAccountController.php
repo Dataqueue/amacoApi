@@ -154,5 +154,4 @@ class MasterAccountController extends Controller
 
         return response()->json([$datas]);
     }
-
 }
