@@ -5,47 +5,40 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Expense;
 use App\Models\Party;
+use App\Models\Division;
 use App\Models\Receipt;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class MasterAccountController extends Controller
 {
-    public function getInvoiceData($party_id,  $to_date, $from_date = null)
+    public function getInvoiceData($div_id,  $to_date, $from_date = null)
     {
         $temp = new Collection();
-        $temp = Invoice::join('parties','invoices.party_id','parties.id')->where('party_id', $party_id)->select(
-            'parties.credit_days',
-            'invoices.*'
-    )
-            ->whereBetween('invoices.created_at', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
+        $temp = Expense::join('divisions','expenses.div_id','divisions.id')->select('divisions.name as div_name','expenses.*')->where('division.id as divid', $div_id)->whereBetween('expenses.created_at', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
         return $temp;
     }
 
-    public function getReceiptData($party_id,  $to_date, $from_date = null)
+    public function getReceiptData($div_id,  $to_date, $from_date = null)
     {
         $temp = new Collection();
-        $temp = Receipt::join('parties','receipts.party_id','parties.id')->where('party_id', $party_id)->select(
-            'parties.credit_days',
-            'receipts.*'
-    )->where('party_id', $party_id)
-            ->whereBetween('receipts.created_at', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
+        $temp = Receipt::join('divisions','receipts.div_id','divisions.id')->select('divisions.name as div_name','receipts.*')->where('division.id as divid', $div_id)->whereBetween('receipts.created_at', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
         return $temp;
     }
 
 
-    public function accountStatement(Request $request)
+    public function accountmasterStatement(Request $request)
     {
-        $party = Party::where('id', intval($request['party_id']))->first();
-        if (!$party) {
-            return response('No party exists by this id', 400);
+        $div = Division::where('id', intval($request['div_id']))->first();
+        if (!$div) {
+            return response('No division exists by this id', 400);
         }
 
         // -----------------------------------
-        $partyOpeningBalance = floatval($party->opening_balance);
+        $divOpeningBalance = floatval($div->opening_bal);
 
-        $oldInvoiceCollection = $this->getInvoiceData($party->id, $request['from_date']);
-        $oldReceiptCollection = $this->getReceiptData($party->id, $request['from_date']);
+        $oldInvoiceCollection = $this->getInvoiceData($div->id, $request['from_date']);
+        $oldReceiptCollection = $this->getReceiptData($div->id, $request['from_date']);
         $oldData = $oldInvoiceCollection->merge($oldReceiptCollection);
         if (!$oldData) {
             return response()->json(['msg' => "There are no entries between" . $request['from_date'] . " to " . $request['from_date']], 400);
@@ -54,31 +47,31 @@ class MasterAccountController extends Controller
 
         foreach ($oldData as $key => $item) {
             if ($item->total_value) {
-                $partyOpeningBalance += floatVal($item['total_value']);
+                $divOpeningBalance += floatVal($item['total_value']);
             }
 
             if ($item->paid_amount) {
-                $partyOpeningBalance -= floatVal($item['paid_amount']);
+                $divOpeningBalance -= floatVal($item['paid_amount']);
             }
         }
         // ------------------------------------
 
 
-        $invoiceCollection = $this->getInvoiceData($party->id, $request['to_date'], $request['from_date']);
+        $invoiceCollection = $this->getInvoiceData($div->id, $request['to_date'], $request['from_date']);
 
-        $receiptCollection = $this->getReceiptData($party->id, $request['to_date'], $request['from_date']);
+        $receiptCollection = $this->getReceiptData($div->id, $request['to_date'], $request['from_date']);
         $data = $invoiceCollection->merge($receiptCollection);
         $data = $data->sortBy('created_at');
 
         $data && ( $datas['data'] = $data->map(function ($item)  {
-            if ($item->total_value) {
+            if ($item->amount) {
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
-                $item['description'] = "Sale";
-                $item['debit'] = $item->total_value;
+                $item['description'] = $item->description;
+                $item['credit'] = $item->total_amount;
                 $item['po_number'] = $item->po_number;
                 $item['credit_days'] = floatval($item->credit_days);
-                $item['credit'] = null;
+                $item['debit'] = null;
                 return [ $item ];
             }
 
@@ -86,19 +79,19 @@ class MasterAccountController extends Controller
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->receipt_no;
                 $item['description'] = "Received";
-                $item['credit'] = $item->paid_amount;
+                $item['debit'] = $item->paid_amount;
                 $item['po_number'] = $item->po_number;
                 $item['credit_days'] = floatval($item->credit_days);
-                $item['debit'] = null;
+                $item['credit'] = null;
                 return [$item];
 
             }
         }));
 
         !$data && $datas['data'] = null;
-        $datas['opening_balance'] = $partyOpeningBalance;
-        $datas['firm_name'] = $party->firm_name;
-        $datas['credit_days'] = $party->credit_days;
+        $datas['opening_balance'] = $divOpeningBalance;
+        $datas['firm_name'] = $div->firm_name;
+        $datas['credit_days'] = $div->credit_days;
         $datas['from_date'] = $request['from_date'];
         $datas['to_date'] = $request['to_date'];
 
