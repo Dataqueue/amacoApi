@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Invoice;
+use App\Models\Expense;
 use App\Models\Party;
 use App\Models\Receipt;
 use Illuminate\Database\Eloquent\Collection;
@@ -109,14 +109,14 @@ class MasterAccountController extends Controller
     {
         $invoiceCollection = new Collection();
         if($request->from_date){
-            $invoiceCollection = Invoice::join('parties','invoices.party_id','parties.id')->select('parties.credit_days','invoices.*')->whereBetween('invoices.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $invoiceCollection = Expense::join('parties','expenses.party_id','parties.id')->join('divisions','expenses.div_id','divisions.id')->select('divisions.name as div_name','parties.credit_days','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
         }else{
-            $invoiceCollection = Invoice::all();
+            $invoiceCollection = Expense::join('divisions','expenses.div_id','divisions.id')->all();
         }
 
         $receiptCollection = new Collection();
         if($request->from_date){
-            $receiptCollection = Receipt::join('parties','receipts.party_id','parties.id')->select('parties.credit_days','receipts.*')->whereBetween('receipts.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
+            $receiptCollection = Receipt::join('parties','receipts.party_id','parties.id')->join('divisions','receipts.div_id','divisions.id')->select('parties.credit_days','divisions.name as div_name','receipts.*')->whereBetween('receipts.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
         }else{
             $receiptCollection = Receipt::all();
         }
@@ -126,6 +126,7 @@ class MasterAccountController extends Controller
 
         $data && ($datas['data'] = $data->map(function ($item) {
             if ($item->total_value) {
+                $item['div_name']=$item->div_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
                 $item['description'] = "Sale";
@@ -137,6 +138,7 @@ class MasterAccountController extends Controller
             }
 
             if ($item->paid_amount) {
+                $item['div_name']=$item->div_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->receipt_no;
                 $item['description'] = "Received";
