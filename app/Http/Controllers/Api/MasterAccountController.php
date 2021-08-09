@@ -134,6 +134,7 @@ class MasterAccountController extends Controller
                 $item['credit'] = floatval(str_replace(",","",$item->amount));
                 $item['po_number'] = $item->po_number;
                 $item['debit'] = null;
+                $item['sum'] = $divEopenbalance;
                 // $item['credit_days'] = floatval($item->credit_days);
                 return [$item];
             }
