@@ -103,7 +103,7 @@ class MasterAccountController extends Controller
     public function allAccountmasterStatement(Request $request)
     {
         $invoiceCollection = new Collection();
-        $date=new Date();
+        $date="2021-08-09";
         $divEopenbalance=parseFloat('0.00');
         $divRopenbalance=parseFloat('0.00');
         if($request->from_date){
