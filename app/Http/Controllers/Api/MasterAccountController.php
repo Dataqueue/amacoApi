@@ -111,7 +111,7 @@ class MasterAccountController extends Controller
             $divEopenbalance=$invoiceCollection->where('created_at', '<=', $request->from_date)->sum(['amount']);
         }else{
             $invoiceCollection = Expense::all();
-            $divEopenbalance=Expense::where('created_at', '<=', $date)->sum('expenses.amount');
+            $divEopenbalance=Expense::where('created_at', '<=', $request->from_date)->sum('expenses.amount');
         }
 
         $receiptCollection = new Collection();
@@ -152,7 +152,7 @@ class MasterAccountController extends Controller
                 return [$item];
             }
         }));
-        $datas['opening_balance'] = $divEopenbalance;
+        $datas['opening_balance'] = $divEopenbalance-$divRopenbalance;
         $datas['name'] = "All";
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
