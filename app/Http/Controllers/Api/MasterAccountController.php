@@ -104,8 +104,8 @@ class MasterAccountController extends Controller
     {
         $invoiceCollection = new Collection();
         $date="2021-08-09";
-        $divEopenbalance=parseFloat('0.00');
-        $divRopenbalance=parseFloat('0.00');
+        $divEopenbalance=Floatval('0.00');
+        $divRopenbalance=Floatval('0.00');
         if($request->from_date){
             $invoiceCollection = Expense::join('divisions','expenses.div_id','divisions.id')->select('divisions.name as div_name','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
         }else{
