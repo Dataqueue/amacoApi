@@ -121,39 +121,39 @@ class MasterAccountController extends Controller
             $receiptCollection = Receipt::all();
         }
 
-        // $data = $invoiceCollection->merge($receiptCollection);
-        // $data = $data->sortBy('created_at');
+        $data = $invoiceCollection->merge($receiptCollection);
+        $data = $data->sortBy('created_at');
 
-        // $data && ($datas['data'] = $data->map(function ($item) {
-        //     if ($item->total_value) {
-        //         $item['div_name']=$item->div_name;
-        //         $item['date'] = $item->created_at;
-        //         $item['code_no'] = $item->invoice_no;
-        //         $item['description'] = "Sale";
-        //         $item['debit'] = floatval(str_replace(",","",$item->total_value));
-        //         $item['po_number'] = $item->po_number;
-        //         $item['credit'] = null;
-        //         // $item['credit_days'] = floatval($item->credit_days);
-        //         return [$item];
-        //     }
+        $data && ($datas['data'] = $data->map(function ($item) {
+            if ($item->total_value) {
+                $item['div_name']=$item->div_name;
+                $item['date'] = $item->created_at;
+                $item['code_no'] = $item->invoice_no;
+                $item['description'] = "Sale";
+                $item['debit'] = floatval(str_replace(",","",$item->total_value));
+                $item['po_number'] = $item->po_number;
+                $item['credit'] = null;
+                // $item['credit_days'] = floatval($item->credit_days);
+                return [$item];
+            }
 
-        //     if ($item->paid_amount) {
-        //         $item['div_name']=$item->div_name;
-        //         $item['date'] = $item->created_at;
-        //         $item['code_no'] = $item->receipt_no;
-        //         $item['description'] = "Received";
-        //         $item['credit'] = floatval(str_replace(",","",$item->paid_amount));
-        //         $item['po_number'] = $item->po_number;
-        //         $item['debit'] = null;
-        //         // $item['credit_days'] = floatval($item->credit_days);
-        //         return [$item];
-        //     }
-        // }));
-        // $datas['opening_balance'] = 0;
-        // $datas['name'] = "All";
-        // $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
-        // $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
+            if ($item->paid_amount) {
+                $item['div_name']=$item->div_name;
+                $item['date'] = $item->created_at;
+                $item['code_no'] = $item->receipt_no;
+                $item['description'] = "Received";
+                $item['credit'] = floatval(str_replace(",","",$item->paid_amount));
+                $item['po_number'] = $item->po_number;
+                $item['debit'] = null;
+                // $item['credit_days'] = floatval($item->credit_days);
+                return [$item];
+            }
+        }));
+        $datas['opening_balance'] = 0;
+        $datas['name'] = "All";
+        $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
+        $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
 
-        return response()->json([$receiptCollection]);
+        return response()->json([$datas]);
     }
 }
