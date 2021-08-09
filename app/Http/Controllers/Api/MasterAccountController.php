@@ -46,8 +46,8 @@ class MasterAccountController extends Controller
         $oldData = $oldData->sortBy('created_at');
 
         foreach ($oldData as $key => $item) {
-            if ($item->total_value) {
-                $divOpeningBalance += floatVal($item['total_value']);
+            if ($item->amount) {
+                $divOpeningBalance += floatVal($item['amount']);
             }
 
             if ($item->paid_amount) {
