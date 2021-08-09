@@ -15,14 +15,14 @@ class MasterAccountController extends Controller
     public function getInvoiceData($div_id,  $to_date, $from_date = null)
     {
         $temp = new Collection();
-        $temp = Expense::join('divisions','expenses.div_id','divisions.id')->select('divisions.name as div_name','expenses.*')->where('division.id as divid', $div_id)->whereBetween('expenses.created_at', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
+        $temp = Expense::join('divisions','expenses.div_id','divisions.id')->select('divisions.name as div_name','expenses.*')->where('div_id', $div_id)->whereBetween('expenses.created_at', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
         return $temp;
     }
 
     public function getReceiptData($div_id,  $to_date, $from_date = null)
     {
         $temp = new Collection();
-        $temp = Receipt::join('divisions','receipts.div_id','divisions.id')->select('divisions.name as div_name','receipts.*')->where('division.id as divid', $div_id)->whereBetween('receipts.created_at', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
+        $temp = Receipt::join('divisions','receipts.div_id','divisions.id')->select('divisions.name as div_name','receipts.*')->where('div_id', $div_id)->whereBetween('receipts.created_at', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
         return $temp;
     }
 
