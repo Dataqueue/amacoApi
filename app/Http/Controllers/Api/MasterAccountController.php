@@ -125,7 +125,7 @@ class MasterAccountController extends Controller
         $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
-            if ($item->total_value) {
+            if ($item->amount) {
                 $item['div_name']=$item->div_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
