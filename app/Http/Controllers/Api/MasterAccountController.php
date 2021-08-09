@@ -69,7 +69,7 @@ class MasterAccountController extends Controller
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
                 $item['description'] = $item->description;
-                $item['credit'] = floatval(str_replace(",","",$item->amount));
+                 $item['credit'] = floatval(str_replace(",","",$item->amount));
                 $item['po_number'] = $item->po_number;
                 $item['credit_days'] = floatval($item->credit_days);
                 $item['debit'] = null;
@@ -104,17 +104,22 @@ class MasterAccountController extends Controller
     {
         $invoiceCollection = new Collection();
         $date=new Date();
+        $divEopenbalance=parseFloat('0.00');
+        $divRopenbalance=parseFloat('0.00');
         if($request->from_date){
             $invoiceCollection = Expense::join('divisions','expenses.div_id','divisions.id')->select('divisions.name as div_name','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
         }else{
-            $invoiceCollection = Expense::whereDate('created_at', '<=', $date)->all();
+            $invoiceCollection = Expense::all();
+            $divEopenbalance=Expense::whereDate('created_at', '<=', $date)->sum('amount');
         }
 
         $receiptCollection = new Collection();
         if($request->from_date){
             $receiptCollection = Receipt::join('divisions','receipts.div_id','divisions.id')->select('divisions.name as div_name','receipts.*')->whereBetween('receipts.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
         }else{
-            $receiptCollection = Receipt::whereDate('created_at', '<=', $date)->all();
+            $receiptCollection = Receipt::all();
+            $divRopenbalance=Receipt::whereDate('created_at', '<=', $date)->sum('paid_amount');
+
         }
 
         $data = $invoiceCollection->merge($receiptCollection);
@@ -145,7 +150,7 @@ class MasterAccountController extends Controller
                 return [$item];
             }
         }));
-        $datas['opening_balance'] = 0;
+        $datas['opening_balance'] = $divEopenbalance-$divRopenbalance;
         $datas['name'] = "All";
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
