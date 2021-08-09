@@ -103,17 +103,18 @@ class MasterAccountController extends Controller
     public function allAccountmasterStatement(Request $request)
     {
         $invoiceCollection = new Collection();
+        $date=new Date();
         if($request->from_date){
             $invoiceCollection = Expense::join('divisions','expenses.div_id','divisions.id')->select('divisions.name as div_name','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
         }else{
-            $invoiceCollection = Expense::all();
+            $invoiceCollection = Expense::whereDate('created_at', '<=', $date)->all();
         }
 
         $receiptCollection = new Collection();
         if($request->from_date){
             $receiptCollection = Receipt::join('divisions','receipts.div_id','divisions.id')->select('divisions.name as div_name','receipts.*')->whereBetween('receipts.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
         }else{
-            $receiptCollection = Receipt::all();
+            $receiptCollection = Receipt::whereDate('created_at', '<=', $date)->all();
         }
 
         $data = $invoiceCollection->merge($receiptCollection);
