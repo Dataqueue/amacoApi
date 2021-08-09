@@ -155,5 +155,6 @@ Route::post('expenseUpdate',[ExpenseController::class, 'expenseUpdate']);
 Route::get('singleExpenses/{id}', [ExpenseController::class, 'singleExpense']);
 Route::get('singleDivision/{id}', [DivisionController::class, 'singleDivision']);
 Route::get('singleReceipt/{id}', [ReceiptController::class, 'singleReceipt']);
+Route::post('all-account-masterstatement', [MasterAccountController::class, 'allAccountmasterStatement']);
 
 
