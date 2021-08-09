@@ -69,7 +69,7 @@ class MasterAccountController extends Controller
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
                 $item['description'] = $item->description;
-                $item['credit'] = $item->total_amount;
+                $item['credit'] = floatval(str_replace(",","",$item->amount));
                 $item['po_number'] = $item->po_number;
                 $item['credit_days'] = floatval($item->credit_days);
                 $item['debit'] = null;
@@ -81,7 +81,7 @@ class MasterAccountController extends Controller
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->receipt_no;
                 $item['description'] = "Received";
-                $item['debit'] = $item->paid_amount;
+                $item['debit'] = floatval(str_replace(",","",$item->paid_amount));
                 $item['po_number'] = $item->po_number;
                 $item['credit_days'] = floatval($item->credit_days);
                 $item['credit'] = null;
