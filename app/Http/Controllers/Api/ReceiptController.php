@@ -76,26 +76,27 @@ class ReceiptController extends Controller
      */
     public function update(Request $request, Receipt $receipt)
     {
-        $data = $request->json()->all();
-        $receipt = Receipt::findOrFail($data->id);
-        $filePath=null;
-        if ($data->file('file')) {
-            $filePath = $data->file('file')->move("receipts/", $data->file('file')->getClientOriginalName());
+        
+        // $receipt = Receipt::findOrFail($request->id);
+        // $filePath=null;
+        // if ($request->file('file')) {
+        //     $filePath = $request->file('file')->move("receipts/", $request->file('file')->getClientOriginalName());
 
            
-        }
-        $receipt->update([
-            'party_id' => $data->party_id,
-            'paid_amount' => $data->paid_amount,
-            'div_id' => $data->div_id,
-            'narration' => $data->narration,
-            'check_no' => $data->check_no,
-            'bank_id' => $data->bank_id,
-            // 'file' => $filePath,
+        // }
+        // $receipt->update([
+        //     'party_id' => $request->party_id,
+        //     'paid_amount' => $request->paid_amount,
+        //     'div_id' => $request->div_id,
+        //     'narration' => $request->narration,
+        //     'check_no' => $request->check_no,
+        //     'bank_id' => $request->bank_id,
+        //     // 'file' => $filePath,
         
             
-            // 'contact_id' => $data->contact_id,
-        ]);
+        //     // 'contact_id' => $request->contact_id,
+        // ]);
+        return response()->json($request);
     }
 
     /**
