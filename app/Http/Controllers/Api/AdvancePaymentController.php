@@ -50,7 +50,7 @@ class AdvancePaymentController extends Controller
      */
     public function show(AdvancePayment $advancePayment)
     {
-        return response()->json($advancePayment, 200);
+        return response()->json([$advancePayment], 200);
     }
 
     /**
