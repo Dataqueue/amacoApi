@@ -66,6 +66,7 @@ class MasterAccountController extends Controller
         $data && ( $datas['data'] = $data->map(function ($item)  {
             if ($item->amount) {
                 $item['div_name']=$item->div_name;
+                $item['user_name']=$item->user_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
                 $item['description'] = $item->description;
@@ -131,6 +132,7 @@ class MasterAccountController extends Controller
         $data && ($datas['data'] = $data->map(function ($item) {
             if ($item->amount) {
                 $item['div_name']=$item->div_name;
+                $item['user_name']=$item->user_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
                 $item['description'] = $item->description;
