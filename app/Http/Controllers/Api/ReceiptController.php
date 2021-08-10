@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Receipt;
-use App\Models\Receipts;
+
 use Illuminate\Http\Request;
 
 class ReceiptController extends Controller
@@ -78,7 +78,7 @@ class ReceiptController extends Controller
     public function update(Request $request, Receipt $receipt)
     {
         // $data = $request->json()->all();
-        $receipts = Receipts::findOrFail($request->id);
+        $receipts = Receipt::findOrFail($request->id);
         // $filePath=null;
         // if ($request->file('file')) {
         //     $filePath = $request->file('file')->move("receipts/", $request->file('file')->getClientOriginalName());
