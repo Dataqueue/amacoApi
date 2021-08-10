@@ -90,7 +90,7 @@ class ReceiptController extends Controller
             'narration' => $request->narration,
             'check_no' => $request->check_no,
             'bank_id' => $request->bank_id,
-            'file' => $filePath,
+            // 'file' => $filePath,
         
             
             // 'contact_id' => $request->contact_id,
