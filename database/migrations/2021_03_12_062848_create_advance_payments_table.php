@@ -17,6 +17,8 @@ class CreateAdvancePaymentsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('payment_account_id')->nullable();
             $table->string('amount')->nullable();
+            $table->string('payment_mode')->nullable();
+            $table->string('bank_id')->nullable();
             $table->string('received_date')->nullable();
             $table->string('narration')->nullable();
             $table->timestamps();
