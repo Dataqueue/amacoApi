@@ -104,7 +104,7 @@ class AdvancePaymentController extends Controller
             
             // 'contact_id' => $request->contact_id,
         ]);
-        return response()->json([$receipt]);
+        return response()->json([$advancePayment]);
     }
 
 }
