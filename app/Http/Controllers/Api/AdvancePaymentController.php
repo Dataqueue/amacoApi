@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AdvancePayment;
 use App\Models\Party;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 
 class AdvancePaymentController extends Controller
@@ -62,6 +63,7 @@ class AdvancePaymentController extends Controller
     public function update(Request $request, AdvancePayment $advancePayment)
     {
         $advancePayment = AdvancePayment::findOrFail($request->id);
+        
         $advancePayment->update([
             'party_id' => $request->party_id,
             'paid_amount' => $request->paid_amount,
@@ -72,6 +74,7 @@ class AdvancePaymentController extends Controller
             
             // 'contact_id' => $request->contact_id,
         ]);
+        return response()->json(['referrenceImgUrl' => $expense->referrenceImg()])
     }
 
     /**
