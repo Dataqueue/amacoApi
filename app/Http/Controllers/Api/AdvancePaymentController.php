@@ -89,4 +89,22 @@ class AdvancePaymentController extends Controller
 
         return response()->json(['msg'=>"Successfully destroyed"], 200);
     }
+    public function updateAdvancepay(Request $request)
+    {
+        $advancePayment = AdvancePayment::findOrFail($request->id);
+        
+        $advancePayment->update([
+            'payment_account_id' => $request->payment_account_id,
+            'amount' => $request->amount,
+            'narration' => $request->narration,
+            'payment_mode' => $request->payment_mode,
+            'bank_id' => $request->bank_id,
+            
+        
+            
+            // 'contact_id' => $request->contact_id,
+        ]);
+        return response()->json([$receipt]);
+    }
+
 }
