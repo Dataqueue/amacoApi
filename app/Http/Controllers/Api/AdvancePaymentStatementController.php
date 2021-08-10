@@ -127,10 +127,14 @@ class AdvancePaymentStatementController extends Controller
     }
 
     public function allAdvancePaymentStatement(Request $request)
+    
     {
+        $advanceEopenbalance=Floatval('0.00');
+        $advanceAopenbalance=Floatval('0.00');
         $expenseCollection = new Collection();
         if ($request->from_date) {
             $expenseCollection = Expense::where('is_paid',1)->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $advanceEopenbalance=Expense::where('created_at', '<=', $request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
         } else {
             $expenseCollection = Expense::all();
         }
@@ -138,6 +142,7 @@ class AdvancePaymentStatementController extends Controller
         $advancePaymentCollection = new Collection();
         if ($request->from_date) {
             $advancePaymentCollection = AdvancePayment::whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $advanceAopenbalance=AdvancePayment::where('created_at', '<=',$request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
             
         } else {
             $advancePaymentCollection = AdvancePayment::all();
@@ -165,7 +170,7 @@ class AdvancePaymentStatementController extends Controller
                 return [$item];
             }
         }));
-        $datas['opening_balance'] = 0;
+        $datas['opening_balance'] = $advanceEopenbalance-$advanceAopenbalance;
         $datas['name'] = "All";
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(),0, 10);
