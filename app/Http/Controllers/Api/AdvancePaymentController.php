@@ -74,7 +74,7 @@ class AdvancePaymentController extends Controller
             
             // 'contact_id' => $request->contact_id,
         ]);
-        return response()->json(['referrenceImgUrl' => $expense->referrenceImg()])
+        return response()->json(['referrenceImgUrl' => $expense->referrenceImg()]);
     }
 
     /**

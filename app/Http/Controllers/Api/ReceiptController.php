@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Receipt;
+use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Request;
 
@@ -158,5 +159,6 @@ class ReceiptController extends Controller
             
             // 'contact_id' => $request->contact_id,
         ]);
+        return response()->json(['referrenceImgUrl' => $expense->referrenceImg()]);
     }
 }
