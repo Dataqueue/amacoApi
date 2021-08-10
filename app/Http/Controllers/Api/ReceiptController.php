@@ -76,10 +76,25 @@ class ReceiptController extends Controller
      */
     public function update(Request $request, Receipt $receipt)
     {
-        $receipt->update($request->all());
+        $receipt = Receipt::findOrFail($request->id);
+        $filePath=null;
+        if ($request->file('file')) {
+            $filePath = $request->file('file')->move("receipts/", $request->file('file')->getClientOriginalName());
 
-        return response()->json($receipt, 200);
-
+           
+        }
+        $receipt->update([
+            'party_id' => $request->party_id,
+            'paid_amount' => $request->paid_amount,
+            'div_id' => $request->div_id,
+            'narration' => $request->narration,
+            'check_no' => $request->check_no,
+            'bank_id' => $request->bank_id,
+            'file' => $filePath,
+        
+            
+            // 'contact_id' => $request->contact_id,
+        ]);
     }
 
     /**

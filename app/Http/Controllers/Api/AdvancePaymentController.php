@@ -61,9 +61,17 @@ class AdvancePaymentController extends Controller
      */
     public function update(Request $request, AdvancePayment $advancePayment)
     {
-        $advancePayment->update($request->all());
-
-        return response()->json($advancePayment);
+        $advancePayment = AdvancePayment::findOrFail($request->id);
+        $advancePayment->update([
+            'party_id' => $request->party_id,
+            'paid_amount' => $request->paid_amount,
+            'div_id' => $request->div_id,
+            'narration' => $request->narration,
+            'check_no' => $request->check_no,
+            'bank_id' => $request->bank_id,
+            
+            // 'contact_id' => $request->contact_id,
+        ]);
     }
 
     /**
