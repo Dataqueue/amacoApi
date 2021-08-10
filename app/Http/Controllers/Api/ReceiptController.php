@@ -66,7 +66,7 @@ class ReceiptController extends Controller
      */
     public function show(Receipt $receipt)
     {
-        return response()->json($receipt, 200);
+        return response()->json([$receipt,'referrenceImgUrl' => $receipt->referrenceImg()],200);
     }
 
     /**
