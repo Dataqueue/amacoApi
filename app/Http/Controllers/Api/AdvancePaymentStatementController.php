@@ -16,7 +16,7 @@ class AdvancePaymentStatementController extends Controller
     {
 
         $temp = new Collection();
-        $temp = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->where('payment_account_id', $payment_account_id)->where('is_paid',1)->whereBetween('paid_date', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
+        $temp = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->where('payment_account_id', $payment_account_id)->where('is_paid',1)->whereBetween('paid_date', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->select('payment_accounts.name as user_name','expenses.*')->get();
         return $temp;
     }
     public function getExpenseDataSingle($payment_account_id, $from,$to)
@@ -94,7 +94,7 @@ class AdvancePaymentStatementController extends Controller
 
         $data && ($datas['data'] = $data->map(function ($item) {
             if ($item->paid_date) {
-                $item['name']  =$item->name;
+                $item['name']  =$item->user_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->transaction_id;
                 $item['description'] = $item->description;
@@ -134,7 +134,7 @@ class AdvancePaymentStatementController extends Controller
         $advanceAopenbalance=Floatval('0.00');
         $expenseCollection = new Collection();
         if ($request->from_date) {
-            $expenseCollection = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->where('is_paid',1)->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $expenseCollection = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->where('is_paid',1)->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->select('payment_accounts.name as user_name','expenses.*')->get();
             $advanceEopenbalance=Expense::where('created_at', '<=', $request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
         } else {
             $expenseCollection = Expense::all();
@@ -154,7 +154,7 @@ class AdvancePaymentStatementController extends Controller
 
         $data && ($datas['data'] = $data->map(function ($item) {
             if ($item->paid_date) {
-                $item['name']  =$item->name;
+                $item['name']  =$item->user_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->transaction_id;
                 $item['description'] = $item->description;
