@@ -736,6 +736,7 @@ class QuotationController extends Controller
                                 "product_id" => $quotation_detail->product_id,
                                 "product" => array($quotation_detail->product),
                                 "description" => $quotation_detail->description,
+                                "amaco_description" => $quotation_detail->descriptions,
                                 "quantity" => $quotation_detail->quantity,
                                 "total_amount" => $quotation_detail->total_amount,
                                 "analyse_id" => $quotation_detail->analyse_id,

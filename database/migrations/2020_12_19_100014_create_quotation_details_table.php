@@ -25,6 +25,7 @@ class CreateQuotationDetailsTable extends Migration
             $table->string('margin')->nullable();
             $table->string('sell_price')->nullable();
             $table->string('remark')->nullable();
+            $table->string('amaco_descr')->nullable();
             $table->string('file_img_url')->nullable();
             $table->timestamps();
         });
