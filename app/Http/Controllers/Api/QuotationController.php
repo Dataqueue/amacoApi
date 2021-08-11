@@ -370,7 +370,7 @@ class QuotationController extends Controller
                     "analyse_id" => $quotation_detail->analyse_id,
                     "product_id" => $quotation_detail->product_id,
                     "descriptionss" => $quotation_detail->product->description,
-                    "amaco_descriptions" => $quotation_detail->descriptionss,
+                    "amaco_descriptions" => $quotation_detail->amaco_descriptions,
                     "product" => $quotation_detail->product,
                     "product_price_list" => $quotation_detail->product->productPrice->map(function ($productP) {
                         return [
