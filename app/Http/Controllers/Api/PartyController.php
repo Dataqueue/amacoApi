@@ -69,21 +69,21 @@ class PartyController extends Controller
             PartyBank::create([
                 'account_no' => $request->account_no,
                 'iban_no' => $request->iban_no,
-                'bank_name' => ucwords(trans($request->bank_name)),
-                'bank_address' => ucwords(trans($request->bank_address)),
+                'bank_name' => $request->bank_name?ucwords(trans($request->bank_name)):" ",
+                'bank_address' => $request->bank_address?ucwords(trans($request->bank_address)):" ",
                 'party_id' => $party->id,
             ]);
 
         $contact = Contact::create([
             'prefix' => $request->prefix,
             'party_id' => $party->id,
-            'fname' => ucwords(trans($request->fname)),
-            'lname' => ucwords(trans($request->lname)),
-            'designation' => ucwords(trans($request->designation)),
+            'fname' => $request->fname?ucwords(trans($request->fname)):" ",
+            'lname' => $request->lname?ucwords(trans($request->lname)):" ",
+            'designation' =>$request->designation?ucwords(trans($request->designation)):" ",
             'mobno' => $request->mobno,
             'landline' => $request->landline,
             'email' => $request->email,
-            'address'=>ucwords(trans($request->address)),
+            'address'=>$request->address?ucwords(trans($request->address)):" ",
 
         ]);
 
