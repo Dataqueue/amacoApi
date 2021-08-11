@@ -306,6 +306,7 @@ class QuotationController extends Controller
                         'margin' => $quotation_detail['margin'],
                         'sell_price' => $quotation_detail['sell_price'],
                         'remark' => $quotation_detail['remark'],
+                        "amaco_description" => $quotation_detail['descriptionss'],
                         'file_img_url' => $filePath,
                     ]);
                     $index++;
