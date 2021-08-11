@@ -40,7 +40,7 @@ class PartyController extends Controller
         // return $request;
 
         $party = Party::create([
-            'firm_name' => ucwords(trans($request->firm_name)),
+            'firm_name' => $request->firm_name?ucwords(trans($request->firm_name)):'',
             'firm_name_in_ar' => (string) $request->company_name_ar,
             'registration_no' => $request->registration_no,
             // 'registration_no_in_ar'=> $request->registration_no == null ? null : GoogleTranslate::trans(
@@ -49,10 +49,10 @@ class PartyController extends Controller
             // 'vat_no_in_ar'=> $request->registration_no == null ? null :   GoogleTranslate::trans(
             //     $request->vat_no,'ar'),
             'post_box_no' => $request->post_box_no,
-            'street' => ucwords(trans($request->street)),
-            'city' => ucwords(trans($request->city)),
-            'proviance' => ucwords(trans($request->proviance)),
-            'country' => ucwords(trans($request->country)),
+            'street' => $request->street?ucwords(trans($request->street)):" ",
+            'city' => $request->city?ucwords(trans($request->city)):" ",
+            'proviance' => $request->proviance?ucwords(trans($request->proviance)):" ",
+            'country' =>$request->country?ucwords(trans($request->country)):"",
             'zip_code' => $request->zip_code,
             'party_type' => $request->party_type,
             'contact' => $request->contact,
