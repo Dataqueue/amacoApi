@@ -198,6 +198,7 @@ class QuotationController extends Controller
                                 "total_amount" => $quotation_detail->total_amount,
                                 "analyse_id" => $quotation_detail->analyse_id,
                                 "purchase_price" => $quotation_detail->purchase_price,
+                                "amaco_description" => $quotation_detail->descriptionss,
                                 "margin" => $quotation_detail->margin,
                                 "sell_price" => $quotation_detail->sell_price,
                                 "remark" => $quotation_detail->remark,
