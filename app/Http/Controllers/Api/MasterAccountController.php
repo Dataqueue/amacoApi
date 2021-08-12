@@ -109,7 +109,7 @@ class MasterAccountController extends Controller
         if($request->from_date){
             $invoiceCollection = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->join('divisions','expenses.div_id','divisions.id')->where('is_paid',1)->select('divisions.name as div_name','payment_accounts.name as nick_name','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
 
-            $divEopenbalance=Expense::where('is_paid',1)->whereDate('created_at','<=' ,$request->from_date . ' ' . '23:59:59')->sum('amount');
+            $divEopenbalance=Expense::where('is_paid',1)->whereDate('created_at','<=' ,strtotime($request->from_date))->sum('amount');
         }else{
             $invoiceCollection = Expense::all();
            
