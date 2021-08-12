@@ -37,8 +37,8 @@ class MasterAccountController extends Controller
 
         // -----------------------------------
         $divOpeningBalance = floatval($div->opening_bal);
-        $divEopenbalance=Expense::where('is_paid',1)->where('div_id',$div->id)->whereDate('created_at','<=' ,'2021-01-01 07:53:12')->sum('amount');
-        $divRopenbalance=Receipt::where('div_id',$div->id)->whereDate('created_at','<=' ,'2021-01-01 07:53:12')->sum('paid_amount');
+        $divEopenbalance=Expense::where('is_paid',1)->where('div_id',$div->id)->whereDate('created_at','<=' ,date('Y-m-d H:i:s', strtotime($request->from_date)))->sum('amount');
+        $divRopenbalance=Receipt::where('div_id',$div->id)->whereDate('created_at','<=' ,date('Y-m-d H:i:s', strtotime($request->from_date)))->sum('paid_amount');
 
         $oldInvoiceCollection = $this->getInvoiceData($div->id, $request['from_date']);
         $oldReceiptCollection = $this->getReceiptData($div->id, $request['from_date']);
