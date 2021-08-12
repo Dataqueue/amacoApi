@@ -67,7 +67,7 @@ class UserController extends Controller
          $division = json_decode($request['divisions'], true);
         if($user){
                 PaymentAccount::create([
-                'name' => $user->name,
+                'name' => $user->nick_name,
                 'user_id' => $user->id,
             ]);
             
@@ -130,7 +130,7 @@ class UserController extends Controller
                 return response()->json(["msg" => "There is no payment account by the given user name for update"], 201);
             }
             $payment_account->update([
-                'name'=>$request->name,
+                'name'=>$request->nick_name,
             ]);
         }
         $user->update($request->all());
