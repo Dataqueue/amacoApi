@@ -30,6 +30,7 @@ class MasterAccountController extends Controller
     public function masterStatement(Request $request)
     {
         $div = Division::where('id', intval($request['div_id']))->first();
+        $total_div=Division::where('id',$div->id)->sum('opening_bal');
         if (!$div) {
             return response('No division exists by this id', 400);
         }
@@ -92,7 +93,7 @@ class MasterAccountController extends Controller
         }));
 
         !$data && $datas['data'] = null;
-        $datas['opening_balance'] = $divOpeningBalance;
+        $datas['opening_balance'] = $total_div;
         $datas['firm_name'] = $div->firm_name;
         $datas['credit_days'] = $div->credit_days;
         $datas['from_date'] = $request['from_date'];
