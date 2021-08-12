@@ -108,7 +108,7 @@ class MasterAccountController extends Controller
         if($request->from_date){
             $invoiceCollection = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->join('divisions','expenses.div_id','divisions.id')->where('is_paid',1)->select('divisions.name as div_name','payment_accounts.name as nick_name','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
 
-            $divEopenbalance=Expense::whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->sum('amount');
+            $divEopenbalance=Expense::whereBetween('created_at','created_at','<=',$request->from_date)->sum('amount');
         }else{
             $invoiceCollection = Expense::all();
            
@@ -117,7 +117,7 @@ class MasterAccountController extends Controller
         $receiptCollection = new Collection();
         if($request->from_date){
             $receiptCollection = Receipt::join('divisions','receipts.div_id','divisions.id')->select('divisions.name as div_name','receipts.*')->whereBetween('receipts.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
-            $divRopenbalance=Receipt::whereBetween('created_at',[$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->sum('paid_amount');
+            $divRopenbalance=Receipt::whereBetween('created_at','<=',$request->from_date)->sum('paid_amount');
         }else{
             $receiptCollection = Receipt::all();
            
@@ -153,7 +153,7 @@ class MasterAccountController extends Controller
                 return [$item];
             }
         }));
-        $datas['opening_balance'] = $divRopenbalance-$divEopenbalance;
+        $datas['opening_balance'] = $divRopenbalance;
         $datas['name'] = "All";
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
