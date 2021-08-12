@@ -118,7 +118,7 @@ class MasterAccountController extends Controller
         $receiptCollection = new Collection();
         if($request->from_date){
             $receiptCollection = Receipt::join('divisions','receipts.div_id','divisions.id')->select('divisions.name as div_name','receipts.*')->whereBetween('receipts.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
-            $divRopenbalance=Receipt::whereBetween('created_at',[$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->sum('paid_amount');
+            $divRopenbalance=Receipt::whereDate('created_at','<=' ,strtotime($request->from_date))->sum('paid_amount');
         }else{
             $receiptCollection = Receipt::all();
            
@@ -154,7 +154,7 @@ class MasterAccountController extends Controller
                 return [$item];
             }
         }));
-        $datas['opening_balance'] = $divEopenbalance;
+        $datas['opening_balance'] = $divRopenbalance-$divEopenbalance+$total_div;
         $datas['name'] = "All";
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
