@@ -15,7 +15,7 @@ class MasterAccountController extends Controller
     public function getInvoiceData($div_id,  $to_date, $from_date = null)
     {
         $temp = new Collection();
-        $temp = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->join('divisions','expenses.div_id','divisions.id')->where('is_paid',1)->select('divisions.name as div_name','payment_accounts.name as user_name','expenses.*')->where('div_id', $div_id)->whereBetween('expenses.created_at', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
+        $temp = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->join('divisions','expenses.div_id','divisions.id')->where('is_paid',1)->select('divisions.name as div_name','payment_accounts.name as nick_name','expenses.*')->where('div_id', $div_id)->whereBetween('expenses.created_at', [$from_date . ' ' . '00:00:00', $to_date . ' ' . '23:59:59'])->get();
         return $temp;
     }
 
@@ -66,7 +66,7 @@ class MasterAccountController extends Controller
         $data && ( $datas['data'] = $data->map(function ($item)  {
             if ($item->amount) {
                 $item['div_name']=$item->div_name;
-                $item['user_name']=$item->user_name;
+                $item['user_name']=$item->nick_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
                 $item['description'] = $item->description;
@@ -108,7 +108,7 @@ class MasterAccountController extends Controller
         $divEopenbalance=Floatval('0.00');
         $divRopenbalance=Floatval('0.00');
         if($request->from_date){
-            $invoiceCollection = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->join('divisions','expenses.div_id','divisions.id')->where('is_paid',1)->select('divisions.name as div_name','payment_accounts.name as user_name','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $invoiceCollection = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->join('divisions','expenses.div_id','divisions.id')->where('is_paid',1)->select('divisions.name as div_name','payment_accounts.name as nick_name','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
 
             $divEopenbalance=Expense::where('created_at', '<=', $request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
         }else{
@@ -132,7 +132,7 @@ class MasterAccountController extends Controller
         $data && ($datas['data'] = $data->map(function ($item) {
             if ($item->amount) {
                 $item['div_name']=$item->div_name;
-                $item['user_name']=$item->user_name;
+                $item['user_name']=$item->nick_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
                 $item['description'] = $item->description;
