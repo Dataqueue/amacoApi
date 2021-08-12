@@ -370,7 +370,7 @@ class QuotationController extends Controller
                     "analyse_id" => $quotation_detail->analyse_id,
                     "product_id" => $quotation_detail->product_id,
                     "descriptionss" => $quotation_detail->product->description,
-                    "amaco_descriptions" => $quotation_detail->amaco_description,
+                    "amaco_description" => $quotation_detail->amaco_description,
                     "product" => $quotation_detail->product,
                     "product_price_list" => $quotation_detail->product->productPrice->map(function ($productP) {
                         return [
@@ -466,7 +466,7 @@ class QuotationController extends Controller
                     'quantity' => $quotation_detail['quantity'],
                     'margin' => $quotation_detail['margin'],
                     'sell_price' => $quotation_detail['sell_price'],
-                    "amaco_description" => $quotation_detail['descriptionss'],
+                    "amaco_description" => $quotation_detail['amaco_description'],
                     'remark' => $quotation_detail['remark'],
                     'file_img_url' => $filePath,
 
