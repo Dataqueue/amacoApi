@@ -903,10 +903,10 @@ class QuotationController extends Controller
                 return response()->json(['msg' => 'P.O.Number is exsits']);
             }
 
-            $data['sales_order_number'] = $this->getSalesOrderNumber();
+            $sales_order_number = $this->getSalesOrderNumber();
             $quotation->update([
                 'status' => $request->status,
-                'sales_order_number' => $request->sales_order_number,
+                'sales_order_number' => $sales_order_number,
                 'po_number' => $request->po_number,
                 'file' => $filePath,
                 
