@@ -426,6 +426,7 @@ class QuotationController extends Controller
             'transaction_type' => $request->transaction_type,
             'discount_in_p' => $request->discount_in_p,
             'ps_date' => $request->ps_date,
+            'sign' => $request->sign,
             // 'sales_order_number' => $data['sales_order_number'],
         ]);
         $index = 0;
