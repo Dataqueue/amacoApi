@@ -920,5 +920,6 @@ class QuotationController extends Controller
 
 
         return response()->json($quotation);
+    }
 
 }
