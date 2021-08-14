@@ -575,13 +575,13 @@ class QuotationController extends Controller
             //     'file' => $filePath,
                 
             // ]);
-            return response()->$data;
+            return response()->json($data);
         } else {
             // $quotation->update([
             //     'status' => $request->status,
             //     'file' => $filePath,
             // ]);
-            return response()->$data;
+            return response()->json($data);
         }
 
 
