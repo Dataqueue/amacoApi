@@ -895,7 +895,7 @@ class QuotationController extends Controller
         $quotation = Quotation::where("id", $request->id)->firstOrFail();
         $filePath = null;
         if ($request->file('file')) {
-            $filePath = $request->file('file')->move("quotation/filePath",  $request->file('file')->getClientOriginalName());
+            $filePath = $request->file('file')->move("quotate/filePath",  $request->file('file')->getClientOriginalName());
         }
         if ($request->po_number) {
 
