@@ -156,6 +156,7 @@ Route::get('singleExpenses/{id}', [ExpenseController::class, 'singleExpense']);
 Route::get('singleDivision/{id}', [DivisionController::class, 'singleDivision']);
 Route::get('singleReceipt/{id}', [ReceiptController::class, 'singleReceipt']);
 Route::post('updateReceipt', [ReceiptController::class, 'updateReceipt']);
+Route::post('updateQuotestatus', [QuotationController::class, 'updateQuotestatus']);
 Route::post('updateAdvancePay', [AdvancePaymentController::class, 'updateAdvancepay']);
 Route::post('masterstatement', [MasterAccountController::class, 'masterStatement']);
 Route::post('all-account-masterstatement', [MasterAccountController::class, 'allAccountmasterStatement']);

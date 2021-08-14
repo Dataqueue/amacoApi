@@ -888,4 +888,37 @@ class QuotationController extends Controller
         }
         return response()->json(['msg'=>"There is no report between the given date"],500);
     }
+    public function updateQuotestatus(Request $request)
+    {
+        $unique_po_no = Quotation::where('po_number', $request->po_number)->first();
+        $data = $request->all();
+        $quotation = Quotation::where("id", $id)->firstOrFail();
+        $filePath = null;
+        if ($request->file('file')) {
+            $filePath = $request->file('file')->move("quotation/filePath",  $request->file('file')->getClientOriginalName());
+        }
+        if ($request->po_number) {
+
+            if (isset($unique_po_no)) {
+                return response()->json(['msg' => 'P.O.Number is exsits']);
+            }
+
+            $data['sales_order_number'] = $this->getSalesOrderNumber();
+            $quotation->update([
+                'status' => $request->status,
+                'sales_order_number' => $request->sales_order_number,
+                'po_number' => $request->po_number,
+                'file' => $filePath,
+                
+            ]);
+        } else {
+            $quotation->update([
+                'status' => $request->status,
+            ]);
+        }
+
+
+
+        return response()->json($quotation);
+
 }
