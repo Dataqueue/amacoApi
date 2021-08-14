@@ -140,7 +140,7 @@ class AccountStatementController extends Controller
             if ($item->paid_amount) {
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->receipt_no;
-                $item['description'] = "Received";
+                $item['description'] = "Payment Incoming";
                 $item['credit'] = floatval(str_replace(",","",$item->paid_amount));
                 $item['po_number'] = $item->po_number;
                 $item['debit'] = null;
