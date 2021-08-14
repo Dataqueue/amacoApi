@@ -577,10 +577,11 @@ class QuotationController extends Controller
             // ]);
             return response()->$data;
         } else {
-            $quotation->update([
-                'status' => $request->status,
-                'file' => $filePath,
-            ]);
+            // $quotation->update([
+            //     'status' => $request->status,
+            //     'file' => $filePath,
+            // ]);
+            return response()->$data;
         }
 
 
