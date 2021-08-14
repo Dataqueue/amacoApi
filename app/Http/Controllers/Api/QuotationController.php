@@ -892,7 +892,7 @@ class QuotationController extends Controller
     {
         $unique_po_no = Quotation::where('po_number', $request->po_number)->first();
         $data = $request->all();
-        $quotation = Quotation::where("id", $id)->firstOrFail();
+        $quotation = Quotation::where("id", $request->id)->firstOrFail();
         $filePath = null;
         if ($request->file('file')) {
             $filePath = $request->file('file')->move("quotation/filePath",  $request->file('file')->getClientOriginalName());
