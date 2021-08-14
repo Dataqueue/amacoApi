@@ -569,9 +569,9 @@ class QuotationController extends Controller
 
             $data['sales_order_number'] = $this->getSalesOrderNumber();
             $quotation->update([
-                'status' => $data['status'],
+                'status' => $request->status,
                 'sales_order_number' => $data['sales_order_number'],
-                'po_number' => $data['po_number'],
+                'po_number' => $request->po_number,
                 'file' => $filePath,
                 
             ]);
