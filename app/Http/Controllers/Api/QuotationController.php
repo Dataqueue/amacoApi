@@ -555,7 +555,7 @@ class QuotationController extends Controller
         // new validation logic for po_number
 
         $unique_po_no = Quotation::where('po_number', $request->po_number)->first();
-        $data = $request->all();
+        $data = $request->json()->all();
         $quotation = Quotation::where("id", $id)->firstOrFail();
         $filePath = null;
         if ($request->file('file')) {
@@ -569,9 +569,9 @@ class QuotationController extends Controller
 
             $data['sales_order_number'] = $this->getSalesOrderNumber();
             $quotation->update([
-                'status' => $request->status,
+                'status' => $data->status,
                 'sales_order_number' => $data['sales_order_number'],
-                'po_number' => $request->po_number,
+                'po_number' => $data->po_number,
                 'file' => $filePath,
                 
             ]);
