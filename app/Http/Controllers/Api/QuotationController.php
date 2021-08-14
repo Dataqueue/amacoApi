@@ -252,6 +252,8 @@ class QuotationController extends Controller
                 'contact_id' => $request['contact_id'],
                 'transaction_type' => $request['transaction_type'],
                 'ps_date' => $request['ps_date'],  // ? $request['ps_date'] : Carbon::now()
+                'sign' => $request['sign'],  // ? $request['ps_date'] : Carbon::now()
+                
             ];
 
             if ($request->transaction_type === 'sale') {
