@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Controllers\Api\PurchaseInvoice;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class Quotation extends Model
 {
@@ -44,5 +45,14 @@ class Quotation extends Model
     public function deliveryNote()
     {
         return $this->belongsTo(DeliveryNote::class);
+    }
+    public function Img()
+    {
+        $path = $this->file;
+        if (File::exists(public_path($this->file))) {
+            return url($path);
+        }
+        return "No file Uploaded";
+
     }
 }

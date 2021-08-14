@@ -36,6 +36,7 @@ class CreateQuotationsTable extends Migration
             $table->string('sales_order_number')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->boolean('is_revised')->default(0)->nullable();
+            $table->boolean('file')->nullable();
             $table->timestamps();
         });
     }
