@@ -557,6 +557,7 @@ class QuotationController extends Controller
         $unique_po_no = Quotation::where('po_number', $request->po_number)->first();
         $data = $request->all();
         $quotation = Quotation::where("id", $id)->firstOrFail();
+        $filePath = null;
         if ($request->file('file')) {
             $filePath = $request->file('file')->move("quotation/filePath",  $request->file('file')->getClientOriginalName());
         }
@@ -571,6 +572,8 @@ class QuotationController extends Controller
                 'status' => $data['status'],
                 'sales_order_number' => $data['sales_order_number'],
                 'po_number' => $data['po_number'],
+                'file' => $filePath,
+                
             ]);
         } else {
             $quotation->update([
