@@ -577,7 +577,8 @@ class QuotationController extends Controller
             ]);
         } else {
             $quotation->update([
-                'status' => $data['status'],
+                'status' => $request->status,
+                'file' => $filePath,
             ]);
         }
 
