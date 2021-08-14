@@ -568,13 +568,14 @@ class QuotationController extends Controller
             }
 
             $data['sales_order_number'] = $this->getSalesOrderNumber();
-            $quotation->update([
-                'status' => $data->status,
-                'sales_order_number' => $data['sales_order_number'],
-                'po_number' => $data->po_number,
-                'file' => $filePath,
+            // $quotation->update([
+            //     'status' => $data->status,
+            //     'sales_order_number' => $data['sales_order_number'],
+            //     'po_number' => $data->po_number,
+            //     'file' => $filePath,
                 
-            ]);
+            // ]);
+            return response()->$data;
         } else {
             $quotation->update([
                 'status' => $request->status,
