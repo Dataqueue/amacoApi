@@ -100,13 +100,13 @@ class ExpenseController extends Controller
                 'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
                 // 'bank_slip' =>  $path ,
                 "account_category_id" => $request->account_category_id,
-                "company_name" => $request->company_name ? $request->company_name : null,
+                "company_name" => $request->company_name ? $request->company_name : " ",
                 "file_path" => $filePath,
                 "div_id" => $request->div_id,
-                "company" => $request->company?$request->company:null,
-                "vatno" => $request->vatno?$request->vatno:null,
-                "inv_no" => $request->inv_no?$request->inv_no:null,
-                "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:null
+                "company" => $request->company?$request->company:" ",
+                "vatno" => $request->vatno?$request->vatno:" ",
+                "inv_no" => $request->inv_no?$request->inv_no:" ",
+                "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" "
     
             ]);
     
@@ -236,11 +236,11 @@ class ExpenseController extends Controller
             'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
             // 'bank_slip' =>  $path ,
             "account_category_id" => $request->account_category_id,
-            "company_name" => $request->company_name ? $request->company_name : null,
-            "company" => $request->company?$request->company:null,
-                "vatno" => $request->vatno?$request->vatno:null,
-                "inv_no" => $request->inv_no?$request->inv_no:null,
-                "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:null,
+            "company_name" => $request->company_name ? $request->company_name : " ",
+            "company" => $request->company?$request->company:" ",
+                "vatno" => $request->vatno?$request->vatno:" ",
+                "inv_no" => $request->inv_no?$request->inv_no:" ",
+                "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" ",
                 "div_id" => $request->div_id,
             //  "file_path" => $filePath ? $filePath : null,
 
