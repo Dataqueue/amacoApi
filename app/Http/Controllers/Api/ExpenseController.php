@@ -264,7 +264,7 @@ class ExpenseController extends Controller
 
             ColumnData::create([
                 "expense_id" => $request->id,
-                "column_id" => $column_data['id'],
+                "column_id" => $column_data['column_id'],
                 "value" => $column_data_value ? $column_data_value : null,
             ]);
             
