@@ -85,6 +85,9 @@ class ExpenseController extends Controller
                 // 'bank_slip' =>  $path ,
                 "account_category_id" => $request->account_category_id,
                 "company_name" => $request->company_name ? $request->company_name : null,
+                "company" => $request->company ? $request->company : null,
+                "vatno" => $request->vatno ? $request->vatno : null,
+                "inv_no" => $request->inv_no ? $request->inv_no : null,
                 "file_path" => $filePath,
     
             ]);
@@ -208,6 +211,10 @@ class ExpenseController extends Controller
             // 'bank_slip' =>  $path ,
             "account_category_id" => $request->account_category_id,
             "company_name" => $request->company_name ? $request->company_name : null,
+            "company_name" => $request->company_name ? $request->company_name : null,
+            "company" => $request->company ? $request->company : null,
+            "vatno" => $request->vatno ? $request->vatno : null,
+            "inv_no" => $request->inv_no ? $request->inv_no : null
             //  "file_path" => $filePath ? $filePath : null,
 
         ]);
