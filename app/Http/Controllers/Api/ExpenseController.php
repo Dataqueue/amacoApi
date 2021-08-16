@@ -245,8 +245,8 @@ class ExpenseController extends Controller
             //  "file_path" => $filePath ? $filePath : null,
 
         ]);
-        // $res=ColumnData::where('expense_id',$request->id)->delete();
-        // $tempArray = (array) json_decode($request->data, true);
+        $res=ColumnData::where('expense_id',$request->id)->delete();
+        $tempArray = (array) json_decode($request->data, true);
         //     foreach ($tempArray as $column_data_) {
         //     $column_data = $column_data_;
 
@@ -269,7 +269,7 @@ class ExpenseController extends Controller
            
         
         // }
-        
+        return response()->json([$expense]);
         
     }
     public function singleExpense($id)
