@@ -247,30 +247,30 @@ class ExpenseController extends Controller
         ]);
         
         
-        // $res=ColumnData::where('expense_id',$request->id)->delete();
+        $res=ColumnData::where('expense_id',$request->id)->delete();
         $tempArray = (array) json_decode($request->data, true);
-        //  foreach ($tempArray as $column_data_) {
-        // $column_data = $column_data_;
+         foreach ($tempArray as $column_data_) {
+        $column_data = $column_data_;
 
-        // $column_type = $column_data['type'];
-        //     if ($column_type != 'file') {
-        //         $column_data_value = $column_data[$column_type];
-        //     }
-        //     $tempFile = "file" . $column_data['id'];
-        //     if ($request->file($tempFile)) {
-        //         $column_data_value = $request->file($tempFile)->move('expenses/files', $request->file($tempFile)->getClientOriginalName());
-        //     }
+        $column_type = $column_data['type'];
+            if ($column_type != 'file') {
+                $column_data_value = $column_data[$column_type];
+            }
+            $tempFile = "file" . $column_data['id'];
+            if ($request->file($tempFile)) {
+                $column_data_value = $request->file($tempFile)->move('expenses/files', $request->file($tempFile)->getClientOriginalName());
+            }
             
 
-        //     ColumnData::create([
-        //         "expense_id" => $request->id,
-        //         "column_id" => $column_data['id'],
-        //         "value" => $column_data_value ? $column_data_value : null,
-        //     ]);
+            ColumnData::create([
+                "expense_id" => $request->id,
+                "column_id" => $column_data['id'],
+                "value" => $column_data_value ? $column_data_value : null,
+            ]);
             
            
         
-        // }
+        }
         return response()->json($tempArray);
        
         
