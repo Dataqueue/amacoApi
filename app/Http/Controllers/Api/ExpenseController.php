@@ -228,7 +228,7 @@ class ExpenseController extends Controller
             'transaction_id' => $request->transaction_id,
             'payment_account_id' => $request->payment_account_id?$request->payment_account_id:null,
             'description' => $request->description,
-            'referrence_bill_no' => $request->referrence_bill_no,
+            // 'referrence_bill_no' => $request->referrence_bill_no,
             'tax' => $request->tax,
             'status' => $request->status,
             'paid_by' => $request->payment_account_id?$request->payment_account_id:null,
@@ -237,6 +237,10 @@ class ExpenseController extends Controller
             // 'bank_slip' =>  $path ,
             "account_category_id" => $request->account_category_id,
             "company_name" => $request->company_name ? $request->company_name : null,
+            "company" => $request->company?$request->company:null,
+                "vatno" => $request->vatno?$request->vatno:null,
+                "inv_no" => $request->inv_no?$request->inv_no:null,
+                "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:null
             //  "file_path" => $filePath ? $filePath : null,
 
         ]);
