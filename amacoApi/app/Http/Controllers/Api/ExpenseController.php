@@ -202,7 +202,7 @@ class ExpenseController extends Controller
             'transaction_id' => $request->transaction_id,
             'payment_account_id' => $request->payment_account_id?$request->payment_account_id:null,
             'description' => $request->description,
-            'referrence_bill_no' => $request->referrence_bill_no,
+            // 'referrence_bill_no' => $request->referrence_bill_no,
             'tax' => $request->tax,
             'status' => $request->status,
             'paid_by' => $request->payment_account_id?$request->payment_account_id:null,
