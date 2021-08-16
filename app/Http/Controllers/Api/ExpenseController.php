@@ -245,10 +245,10 @@ class ExpenseController extends Controller
             //  "file_path" => $filePath ? $filePath : null,
 
         ]);
-        $res=ColumnData::where('expense_id',$request->id)->delete();
+        // $res=ColumnData::where('expense_id',$request->id)->delete();
         $tempArray = (array) json_decode($request->data, true);
          foreach ($tempArray as $column_data_) {
-        //     $column_data = $column_data_;
+        $column_data = $column_data_;
 
         return $column_type = $column_data['type'];
         //     if ($column_type != 'file') {
