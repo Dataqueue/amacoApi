@@ -247,10 +247,10 @@ class ExpenseController extends Controller
         ]);
         $res=ColumnData::where('expense_id',$request->id)->delete();
         $tempArray = (array) json_decode($request->data, true);
-        //     foreach ($tempArray as $column_data_) {
+         foreach ($tempArray as $column_data_) {
         //     $column_data = $column_data_;
 
-        //     $column_type = $column_data['type'];
+        return $column_type = $column_data['type'];
         //     if ($column_type != 'file') {
         //         $column_data_value = $column_data[$column_type];
         //     }
@@ -268,8 +268,8 @@ class ExpenseController extends Controller
             
            
         
-        // }
-        return response()->json([$expense]);
+        }
+       
         
     }
     public function singleExpense($id)
