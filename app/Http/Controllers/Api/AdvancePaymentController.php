@@ -98,7 +98,7 @@ class AdvancePaymentController extends Controller
             'amount' => $request->amount,
             'narration' => $request->narration,
             'payment_mode' => $request->payment_mode,
-            'bank_id' => $request->bank_id,
+            'bank_id' => $request->bank_id?$request->bank_id:'',
             
         
             
