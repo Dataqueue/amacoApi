@@ -242,7 +242,7 @@ class ExpenseController extends Controller
                 "inv_no" => $request->inv_no?$request->inv_no:" ",
                 "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" ",
                 "div_id" => $request->div_id,
-            //  "file_path" => $filePath ? $filePath : null,
+         "file_path" => $filePath ? $filePath : null,
 
         ]);
         
