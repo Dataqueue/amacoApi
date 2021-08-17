@@ -70,7 +70,7 @@ class AdvancePaymentController extends Controller
             'div_id' => $request->div_id,
             'narration' => $request->narration,
             'check_no' => $request->check_no,
-            'bank_id' => $request->bank_id,
+            'bank_id' => $request->bank_id?$request->bank_id:'',
             
             // 'contact_id' => $request->contact_id,
         ]);
