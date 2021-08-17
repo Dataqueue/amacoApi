@@ -101,7 +101,7 @@ class ExpenseController extends Controller
                 // 'bank_slip' =>  $path ,
                 "account_category_id" => $request->account_category_id,
                 "company_name" => $request->company_name ? $request->company_name : " ",
-                "file_path" => $filePath,
+                "file_path" => $filePath?$filePath:null,
                 "div_id" => $request->div_id,
                 "company" => $request->company?$request->company:" ",
                 "vatno" => $request->vatno?$request->vatno:" ",
