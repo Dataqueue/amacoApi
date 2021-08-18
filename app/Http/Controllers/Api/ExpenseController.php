@@ -85,7 +85,7 @@ class ExpenseController extends Controller
             $expense = Expense::create([
                 'created_by' => $request->created_by,
                 'paid_date' => $request->paid_date,
-                // 'paid_to' => $request->paid_to,
+                'paid_to' => $request->paid_to,
                 'amount' => $request->amount,
                 'payment_type' => $request->payment_type,
                 'check_no' => $request->check_no,
