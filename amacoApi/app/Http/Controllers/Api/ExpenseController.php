@@ -72,7 +72,7 @@ class ExpenseController extends Controller
                 'paid_to' => $request->paid_to,
                 'amount' => $request->amount,
                 'payment_type' => $request->payment_type,
-                'check_no' => $request->check_no,
+                'check_no' => $request->che_no,
                 'transaction_id' => $request->transaction_id,
                 'payment_account_id' => $lastInsertedId,
                 'description' => $request->description,
@@ -88,7 +88,7 @@ class ExpenseController extends Controller
                 "company" => $request->company ? $request->company : null,
                 "vatno" => $request->vatno ? $request->vatno : null,
                 "inv_no" => $request->inv_no ? $request->inv_no : null,
-                "file_path" => $filePath,
+                "file_path" => $request->file('file_path')?$filePath:null,
     
             ]);
     
