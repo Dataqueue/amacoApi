@@ -97,7 +97,7 @@ class ExpenseController extends Controller
                 'status' => $request->status,
                 'paid_by' => $lastInsertedId,
                 'bank_ref_no' => $request->bank_ref_no,
-                'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
+                // 'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
                 // 'bank_slip' =>  $path ,
                 "account_category_id" => $request->account_category_id,
                 "company_name" => $request->company_name ? $request->company_name : " ",
