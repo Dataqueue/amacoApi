@@ -34,6 +34,7 @@ class CreateExpensesTable extends Migration
             $table->string('utilize_div_id')->nullable();
             $table->string('inv_no')->nullable();
             $table->string('vatno')->nullable();
+            // $table->string('bank_id')->nullable();
             $table->boolean('company_name')->default(false);
             $table->timestamps();
         });
