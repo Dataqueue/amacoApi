@@ -140,7 +140,7 @@ Route::put('update-quotation/{id}', [QuotationController::class, 'updateQuotatio
 Route::post('old-password', [UserController::class, 'oldPassword']);
 Route::post('account-statement', [AccountStatementController::class, 'accountStatement']);
 Route::post('all-account-statement', [AccountStatementController::class, 'allAccountStatement']);
-// Route::post('all-account-masterstatement', [MasterAccountController::class, 'allAccountmasterStatement']);
+Route::post('all-account-masterstatement', [MasterAccountController::class, 'allAccountmasterStatement']);
 Route::post('advance-payment-statement',[AdvancePaymentStatementController::class,'statement']);
 Route::post('all-advance-payment-statement',[AdvancePaymentStatementController::class, 'allAdvancePaymentStatement']);
 Route::post('rfq-update',[RFQController::class, 'update']);
