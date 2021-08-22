@@ -85,7 +85,7 @@ class ExpenseController extends Controller
             $expense = Expense::create([
                 'created_by' => $request->created_by,
                 'paid_date' => $request->paid_date,
-                'paid_to' => $request->paid_to,
+                'paid_to' => $request->paid_to?$request->paid_to:null,
                 'amount' => $request->amount,
                 'payment_type' => $request->payment_type,
                 'check_no' => $request->check_no,
@@ -97,6 +97,7 @@ class ExpenseController extends Controller
                 'status' => $request->status,
                 'paid_by' => $lastInsertedId,
                 'bank_ref_no' => $request->bank_ref_no,
+                'bank_id' => $request->bank_id?$request->bank_id:null,
                 'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
                 // 'bank_slip' =>  $path ,
                 "account_category_id" => $request->account_category_id,
