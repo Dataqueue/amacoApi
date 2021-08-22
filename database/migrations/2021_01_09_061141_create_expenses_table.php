@@ -18,13 +18,13 @@ class CreateExpensesTable extends Migration
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('referrence_bill_no')->nullable();
             $table->string('paid_date')->nullable();
-            $table->string('paid_to')->nullable();
+            $table->string('paid_to');
             $table->string('amount')->nullable();
             $table->string('payment_type')->nullable();
             $table->string('check_no')->nullable();
             $table->string('transaction_id')->nullable();
             $table->unsignedBigInteger('payment_account_id')->nullable();
-            $table->string('description')->nullable();
+            $table->string('description');
             $table->string('is_paid')->default(false);
             $table->string('tax')->default('0');
             $table->string('status')->default('new');
