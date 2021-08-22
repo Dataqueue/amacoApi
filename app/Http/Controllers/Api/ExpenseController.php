@@ -210,6 +210,9 @@ class ExpenseController extends Controller
         if ($request->file('file_path')) {
             $filePath = $request->file('file_path')->move("expenses/filePath",  $request->file('file_path')->getClientOriginalName());
         }
+        if ($request->file('bank_slip')) {
+            $bank_slip_path = $request->file('bank_slip')->move("expenses/bankSlip", $request->file('bank_slip')->getClientOriginalName());
+        }
           $expenseId = Expense::findOrfail($request->id);
           if($request->payeename){
             $account=PaymentAccount::create([
