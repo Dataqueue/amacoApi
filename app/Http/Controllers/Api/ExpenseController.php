@@ -225,7 +225,7 @@ class ExpenseController extends Controller
             'paid_to' => $request->paid_to,
             'amount' => $request->amount,
             'payment_type' => $request->payment_type,
-            'check_no' => $request->check_no,
+            'check_no' => $request->cheque_no,
             'transaction_id' => $request->transaction_id,
             'payment_account_id' => $request->payment_account_id?$request->payment_account_id:null,
             'description' => $request->description,
@@ -244,6 +244,7 @@ class ExpenseController extends Controller
                 "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" ",
                 "div_id" => $request->div_id,
          "file_path" => $request->file('file_path') ? $filePath : null,
+         'bank_id' => $request->bank_id?$request->bank_id:null,
 
         ]);
         
