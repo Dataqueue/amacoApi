@@ -88,7 +88,7 @@ class ExpenseController extends Controller
                 'paid_to' => $request->paid_to?$request->paid_to:null,
                 'amount' => $request->amount,
                 'payment_type' => $request->payment_type,
-                'check_no' => $request->check_no,
+                'check_no' => $request->cheque_no,
                 'transaction_id' => $request->transaction_id,
                 'payment_account_id' =>$lastInsertedId,
                 'description' => $request->description,
