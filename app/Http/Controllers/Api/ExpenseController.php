@@ -231,7 +231,7 @@ class ExpenseController extends Controller
             'check_no' => $request->cheque_no,
             'transaction_id' => $request->transaction_id,
             'payment_account_id' => $request->payment_account_id?$request->payment_account_id:null,
-            'description' => $request->description?$request->description:' ',
+            'description' => $request->description?$request->description:" ",
             // 'referrence_bill_no' => $request->referrence_bill_no,
             'tax' => $request->tax,
             'status' => $request->status,
