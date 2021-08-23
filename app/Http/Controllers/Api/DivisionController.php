@@ -69,7 +69,7 @@ class DivisionController extends Controller
                 $divRopenbalance=Receipt::where('div_id',$item['id'])->sum('paid_amount');
                 $item['div_name']=$item->div_name;
                 $item['id']=$item->id;
-                $item['balance'] = $divEopenbalance-$divRopenbalance;
+                $item['balance'] = $divRopenbalance-$divEopenbalance+floatval($item->opening_bal);
                 return [$item];
             }
         
