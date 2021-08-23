@@ -160,6 +160,7 @@ Route::post('updateQuotestatus', [QuotationController::class, 'updateQuotestatus
 Route::post('updateAdvancePay', [AdvancePaymentController::class, 'updateAdvancepay']);
 Route::post('masterstatement', [MasterAccountController::class, 'masterStatement']);
 Route::post('all-account-masterstatement', [MasterAccountController::class, 'allAccountmasterStatement']);
+Route::get('paidDivision', [DivisionController::class, 'paidDivision']);
 // Route::post('all-account-masterstatementvbbbbbbb', [MasterAccountController::class, 'allAccountmasterStatement']);
 
 
