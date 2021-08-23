@@ -209,11 +209,18 @@ class ExpenseController extends Controller
     {     
         if ($request->file('file_path')) {
             $filePath = $request->file('file_path')->move("expenses/filePath",  $request->file('file_path')->getClientOriginalName());
+            $expenseF=Expense::where('id',$request->id)->update([
+                "file_path" => $request->file('file_path') ? $filePath : null,
+            ]);
         }
         if ($request->file('bank_slip')) {
             $bank_slip_path = $request->file('bank_slip')->move("expenses/bankSlip", $request->file('bank_slip')->getClientOriginalName());
+            $expenseB=Expense::where('id',$request->id)->update([
+                "bank_slip" => $request->file('bank_slip') ? $filePath : null,
+            ]);
         }
           $expenseId = Expense::findOrfail($request->id);
+         
           if($request->payeename){
             $account=PaymentAccount::create([
             'name' => $user->name,
@@ -237,7 +244,7 @@ class ExpenseController extends Controller
             'status' => $request->status,
             'paid_by' => $request->payment_account_id?$request->payment_account_id:null,
             'bank_ref_no' => $request->bank_ref_no,
-            'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
+            // 'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
             // 'bank_slip' =>  $path ,
             "account_category_id" => $request->account_category_id,
             "company_name" => $request->company_name ? $request->company_name : " ",
@@ -246,8 +253,8 @@ class ExpenseController extends Controller
                 "inv_no" => $request->inv_no?$request->inv_no:" ",
                 "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" ",
                 "div_id" => $request->div_id,
-         "file_path" => $request->file('file_path') ? $filePath : null,
-         'bank_id' => $request->bank_id?$request->bank_id:null,
+         
+            'bank_id' => $request->bank_id?$request->bank_id:null,
 
         ]);
         
