@@ -157,6 +157,7 @@ class ReceiptController extends Controller
         }
         $receipt->update([
             'party_id' => $request->party_id,
+            "payment_mode" => $request->payment_mode,
             'paid_amount' => $request->paid_amount,
             'div_id' => $request->div_id,
             'narration' => $request->narration,
