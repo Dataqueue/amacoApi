@@ -62,7 +62,7 @@ class DivisionController extends Controller
         $divEopenbalance=Expense::where('is_paid',1)->sum('amount');
         $divRopenbalance=Receipt::sum('paid_amount');
         $division = Division::get();
-        $datas['data']=$division->map(function ($item) {
+        $datas=$division->map(function ($item) {
             if($item['id'])
             {
                 $divEopenbalance=Expense::where('is_paid',1)->where('div_id',$item['id'])->sum('amount'); 
@@ -74,6 +74,6 @@ class DivisionController extends Controller
             }
         
     });
-    return response()->json([$datas]);
+    return response()->json($datas);
     }
 }
