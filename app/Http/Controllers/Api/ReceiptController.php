@@ -52,6 +52,8 @@ class ReceiptController extends Controller
         "paid_date" => $request->paid_date,
         "div_id" => $request->div_id,
         "bank_id" => $request->bank_id,
+        "sender" => $request->sender,
+        "receiver" => $request->receiver,
     ]);
 
         return response()->json($request->file, 200);
@@ -145,7 +147,12 @@ class ReceiptController extends Controller
         $filePath=null;
         if ($request->file('file')) {
             $filePath = $request->file('file')->move("receipts/", $request->file('file')->getClientOriginalName());
-
+            $receipt->update([
+                'file' => $filePath,
+            
+                
+                // 'contact_id' => $request->contact_id,
+            ]);
            
         }
         $receipt->update([
@@ -155,7 +162,9 @@ class ReceiptController extends Controller
             'narration' => $request->narration,
             'check_no' => $request->check_no,
             'bank_id' => $request->bank_id,
-            'file' => $filePath,
+            "sender" => $request->sender,
+            "receiver" => $request->receiver,
+            // 'file' => $filePath,
         
             
             // 'contact_id' => $request->contact_id,
