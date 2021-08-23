@@ -216,7 +216,7 @@ class ExpenseController extends Controller
         if ($request->file('bank_slip')) {
             $bank_slip_path = $request->file('bank_slip')->move("expenses/bankSlip", $request->file('bank_slip')->getClientOriginalName());
             $expenseB=Expense::where('id',$request->id)->update([
-                "bank_slip" => $request->file('bank_slip') ? $filePath : null,
+                "bank_slip" => $request->file('bank_slip') ? $bank_slip_path : null,
             ]);
         }
           $expenseId = Expense::findOrfail($request->id);
