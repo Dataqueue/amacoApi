@@ -33,6 +33,7 @@ class CompanyBankController extends Controller
         PaymentAccount::create([
             'bank_id'=> $bank->id,
             'name'=>$bank->name,
+            'balance'=>$reques->balance,
             'type'=>'bank',
 
 
