@@ -81,7 +81,14 @@ class DivisionController extends Controller
                 $item['balance'] = $item->balance;
                 return $item;
             }
-           
+           else
+           {
+            $item['name']=$item->name;
+            $item['id']=$item->id;
+            $item['balance'] = 0.00;
+            return $item;
+
+           }
         
     });
     return response()->json($datas);
