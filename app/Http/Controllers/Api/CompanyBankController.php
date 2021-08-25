@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\CompanyBank;
+use App\Models\PaymentAccount;
 use Illuminate\Http\Request;
 
 class CompanyBankController extends Controller
@@ -16,7 +17,7 @@ class CompanyBankController extends Controller
     public function index()
     {
         $bank = CompanyBank::all();
-
+       
         return response()->json($bank);
     }
 
@@ -29,6 +30,13 @@ class CompanyBankController extends Controller
     public function store(Request $request)
     {
         $bank = CompanyBank::create($request->all());
+        $paymentAccount=PaymentAccount::create([
+            'bank_id'=> $bank->id,
+            'name'=>$bank->name,
+            'type'=>'bank',
+
+
+        ]);
         return response()->json($bank);
     }
 
