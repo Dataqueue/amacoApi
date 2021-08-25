@@ -36,6 +36,15 @@ class DivisionController extends Controller
             
             
         ]);
+        PaymentAccount::create([
+            'div_id'=> $party->id,
+            'name'=>$party->name,
+            'balance'=>$party->opening_bal,
+            'type'=>'division',
+
+
+        ]);
+
         return response()->json([$data]);
     }
 
