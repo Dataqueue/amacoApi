@@ -27,6 +27,8 @@ class CreateReceiptsTable extends Migration
             $table->string('paid_amount')->nullable();
             $table->string('paid_date')->nullable();
             $table->string('transaction_type')->nullable();
+            $table->string('sender')->nullable();
+            $table->string('receiver')->nullable();
             $table->string('status')->nullable();
             $table->string('file')->nullable();
             $table->timestamps();
