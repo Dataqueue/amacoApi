@@ -30,7 +30,7 @@ class CompanyBankController extends Controller
     public function store(Request $request)
     {
         $bank = CompanyBank::create($request->all());
-        $paymentAccount=PaymentAccount::create([
+        PaymentAccount::create([
             'bank_id'=> $bank->id,
             'name'=>$bank->name,
             'type'=>'bank',
