@@ -220,7 +220,7 @@ class PartyController extends Controller
     // Api fo vendor list
     public function vendor()
     {
-        $vendors = Party::where('party_type', '=', 'vendor')
+        $vendors = Party::where('party_type', '=', 'vendor')->where('party_type', '=', 'both')
             ->select('id', 'firm_name', 'contact')
             ->get()
             ->toArray();
@@ -230,7 +230,7 @@ class PartyController extends Controller
     // Api for customer list
     public function customer()
     {
-        $vendors = Party::where('party_type', '=', 'customer')
+        $vendors = Party::where('party_type', '=', 'customer')->where('party_type', '=', 'both')
             ->select('id', 'firm_name', 'contact')
             ->get()
             ->toArray();
