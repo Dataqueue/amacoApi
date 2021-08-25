@@ -29,7 +29,14 @@ class CompanyBankController extends Controller
      */
     public function store(Request $request)
     {
-        $bank = CompanyBank::create($request->all());
+        $bank = CompanyBank::create([
+            'name'=> $request->name, 
+            'iban_no'=> $request->iban_no, 
+            'ac_no'=> $request->ac_no, 
+            'bank_address'=> $request->bank_address, 
+            
+            
+        ]);
         PaymentAccount::create([
             'bank_id'=> $bank->id,
             'name'=>$bank->name,
