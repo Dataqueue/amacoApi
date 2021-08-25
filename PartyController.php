@@ -220,11 +220,11 @@ class PartyController extends Controller
     // Api fo vendor list
     public function vendor()
     {
-        $vendors = Party::where('party_type', '=', 'both')
-            ->select('id', 'firm_name', 'contact')
-            ->get()
-            ->toArray();
-        return $vendors;
+        // $vendors = Party::where('party_type', '=', 'both')
+        //     ->select('id', 'firm_name', 'contact')
+        //     ->get()
+        //     ->toArray();
+        // return $vendors;
     }
 
     // Api for customer list
