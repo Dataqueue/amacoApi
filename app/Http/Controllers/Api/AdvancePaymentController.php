@@ -99,6 +99,7 @@ class AdvancePaymentController extends Controller
             'narration' => $request->narration,
             'payment_mode' => $request->payment_mode,
             'bank_id' => $request->bank_id?$request->bank_id:'',
+            'received_by' => $request->received_by?$request->received_by:'',
             
         
             
