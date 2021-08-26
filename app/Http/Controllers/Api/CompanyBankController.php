@@ -37,14 +37,14 @@ class CompanyBankController extends Controller
             
             
         ]);
-        PaymentAccount::create([
-            'bank_id'=> $bank->id,
-            'name'=>$bank->name,
-            'balance'=>$request->balance,
-            'type'=>'bank',
+        // PaymentAccount::create([
+        //     'bank_id'=> $bank->id,
+        //     'name'=>$bank->name,
+        //     'balance'=>$request->balance,
+        //     'type'=>'bank',
 
 
-        ]);
+        // ]);
         return response()->json($bank);
     }
 
