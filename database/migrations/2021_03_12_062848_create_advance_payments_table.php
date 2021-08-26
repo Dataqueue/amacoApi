@@ -16,6 +16,7 @@ class CreateAdvancePaymentsTable extends Migration
         Schema::create('advance_payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('payment_account_id')->nullable();
+            $table->unsignedBigInteger('received_id')->nullable();
             $table->string('amount')->nullable();
             $table->string('payment_mode')->nullable();
             $table->string('bank_id')->nullable();
