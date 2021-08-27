@@ -94,11 +94,11 @@ return response()->json($expenses);
             $lastInsertedId= $request->payment_account_ids;
             
         }
-        $newArray = [];
-        for($i = 0; $i < count($request->payment_account_ids); $i++){
-  // Match the two arrays together. Get the same index from the 2nd array.
-        $newArray[] = $request->payment_account_ids[$i];
-        }
+//         $newArray = [];
+//         for($i = 0; $i < count($request->payment_account_ids); $i++){
+//   // Match the two arrays together. Get the same index from the 2nd array.
+//         $newArray[] = $request->payment_account_ids[$i];
+//         }
 // Sort the list by value
         
             // $expense = Expense::create([
@@ -152,7 +152,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($newArray);
+            return response()->json($request->payment_account_ids);
         }
         // }
     
