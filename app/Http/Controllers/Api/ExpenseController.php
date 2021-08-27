@@ -95,9 +95,9 @@ return response()->json($expenses);
             
         }
         $newArray = [];
-        for($i = 0; $i < sizeof($payment_account_ids); $i++){
+        for($i = 0; $i < sizeof($request->payment_account_ids); $i++){
   // Match the two arrays together. Get the same index from the 2nd array.
-        $newArray[] = $payment_account_ids[$i];
+        $newArray[] = $request->payment_account_ids[$i];
         }
 // Sort the list by value
         
