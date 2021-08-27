@@ -91,7 +91,7 @@ return response()->json($expenses);
            
         }
         else{
-            $lastInsertedId= $request->payment_account_id;
+            $lastInsertedId= $request->payment_account_ids;
             
         }
         $newArray = [];
