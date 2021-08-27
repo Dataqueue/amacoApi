@@ -94,7 +94,13 @@ return response()->json($expenses);
             $lastInsertedId= $request->payment_account_id;
             
         }
-
+        $newArray = [];
+        for($i = 0; $i < sizeof($payment_account_id); $i++){
+  // Match the two arrays together. Get the same index from the 2nd array.
+        $newArray[] = $payment_account_id[$i];
+        }
+// Sort the list by value
+        
             // $expense = Expense::create([
             //     'created_by' => $request->created_by,
             //     'paid_date' => $request->paid_date,
