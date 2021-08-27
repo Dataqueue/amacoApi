@@ -23,7 +23,7 @@ class CreateExpensesTable extends Migration
             $table->string('payment_type')->nullable();
             $table->string('check_no')->nullable();
             $table->string('transaction_id')->nullable();
-            $table->json('payment_account_id')->nullable();
+            $table->string('payment_account_id')->nullable();
             $table->string('description');
             $table->string('is_paid')->default(false);
             $table->string('tax')->default('0');
