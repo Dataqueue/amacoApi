@@ -95,7 +95,7 @@ return response()->json($expenses);
             
         }
         $newArray = [];
-        for($i = 0; $i < sizeof($request->payment_account_ids); $i++){
+        for($i = 0; $i < count($request->payment_account_ids); $i++){
   // Match the two arrays together. Get the same index from the 2nd array.
         $newArray[] = $request->payment_account_ids[$i];
         }
