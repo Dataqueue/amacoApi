@@ -190,7 +190,7 @@ return response()->json($expenses);
                 }
                 return $item->column;
             }),
-            floatval($expense->payment_account_id),
+            explode(",",$expense->payment_account_id),
             // $expense->payment_account_id->map(
             //     function($items) use($expense) {
             //         $data=payment_accounts::where('id',$expense->id)->select('payment_accounts*');
