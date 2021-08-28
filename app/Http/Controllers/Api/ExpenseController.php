@@ -94,7 +94,7 @@ return response()->json($expenses);
             $lastInsertedId= $request->payment_account_ids;
             
         }
-        $arr=collect($request->payment_account_ids);
+        $arr=json_encode($request->payment_account_ids);
         $data = [];  
         $map = $arr->map(
             function($items){
@@ -159,7 +159,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($data);
+            return response()->json($arr);
         }
         // }
     
