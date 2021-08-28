@@ -118,8 +118,8 @@ return response()->json($expenses);
 // Sort the list by value
             // $demo=implode(',',$map);
            
-            
-            
+            $collection = collect($map);
+            $demo=implode(',',$collection);
             $expense = Expense::create([
                 'created_by' => $request->created_by,
                 'paid_date' => $request->paid_date,
@@ -171,7 +171,7 @@ return response()->json($expenses);
                     "value" => $column_data_value ? $column_data_value : null,
                 ]);
             }
-            return response()->implode(',', array($map));
+            return response()->json($demo);
         }
         // }
     
