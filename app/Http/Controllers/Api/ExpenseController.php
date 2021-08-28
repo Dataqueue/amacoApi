@@ -116,9 +116,10 @@ return response()->json($expenses);
             );
 // Sort the list by value
             $demo=implode(',',array($map));
-            $collection = collect(
-                ['product' => $map]
-            );
+            $collection = collect([
+                'product' => $map,
+                
+            ]);
             
             
             $expense = Expense::create([
