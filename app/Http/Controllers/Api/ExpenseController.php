@@ -184,23 +184,23 @@ return response()->json($expenses);
         $resultArray = collect($expense->payment_account_id);
         $map=$resultArray->map(
             function($items) use($expense) {
-                $arr=PaymentAccount::where('id',$items[0])->get();
-                return $arr;
+                // $arr=PaymentAccount::where('id',$items[0])->get();
+                return $items;
             }
         );
-        return response()->json([
-            $expense,
-            $expense->payment_account,
-            $expense->column_data->map(function ($item) {
-                if (File::exists(public_path($item->value))) {
-                    $item['file'] = url($item->value);
-                }
-                return $item->column;
-            }),
-           'mapdata'=>$map,
-            'img' => $expense->img(),
-            'referrenceImgUrl' => $expense->referrenceImg(),
-        ]);
+        // return response()->json([
+        //     $expense,
+        //     $expense->payment_account,
+        //     $expense->column_data->map(function ($item) {
+        //         if (File::exists(public_path($item->value))) {
+        //             $item['file'] = url($item->value);
+        //         }
+        //         return $item->column;
+        //     }),
+        //    'mapdata'=>$map,
+        //     'img' => $expense->img(),
+        //     'referrenceImgUrl' => $expense->referrenceImg(),
+        // ]);
     }
 
     /**
