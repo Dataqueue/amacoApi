@@ -111,8 +111,8 @@ return response()->json($expenses);
                         "payment_mode" => $request->payment_type,
                     ]); 
                   }
-                  $data['items']=$data['id'];
-                  return $data;
+                  
+                  return $data['id'];
                 }
             );
 // Sort the list by value
