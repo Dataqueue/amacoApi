@@ -10,7 +10,7 @@ class Expense extends Model
 {
     use HasFactory;
 
-    protected $guarded = ['payment_account_id' => 'array'];
+    protected $guarded = [];
 
     public function employee()
     {
