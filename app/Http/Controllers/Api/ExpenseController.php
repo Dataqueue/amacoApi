@@ -112,11 +112,11 @@ return response()->json($expenses);
                     ]); 
                   }
                   
-                  return $items[0];
+                  return $items;
                 }
             );
 // Sort the list by value
-            $demo=implode(',',$map);
+            // $demo=implode(',',$map);
            
             $collection = [1,2,3,4,5];
             $demo=implode(' ',$collection);
