@@ -112,11 +112,11 @@ return response()->json($expenses);
                     ]); 
                   }
                   
-                  return $data['id'];
+                  return $items[0];
                 }
             );
 // Sort the list by value
-            // $demo=implode(' ',array($map));
+            $demo=implode(',',$map);
            
             $collection = [1,2,3,4,5];
             $demo=implode(' ',$collection);
@@ -171,7 +171,7 @@ return response()->json($expenses);
                     "value" => $column_data_value ? $column_data_value : null,
                 ]);
             }
-            return response()->json_decode($map);
+            return response()->json($map);
         }
         // }
     
