@@ -116,7 +116,7 @@ return response()->json($expenses);
                 }
             );
 // Sort the list by value
-            // $demo=implode(',',$map);
+            $demo=implode(',',$map);
            
             $collection = [1,2,3,4,5];
             // $demo=implode(',',$collection);
