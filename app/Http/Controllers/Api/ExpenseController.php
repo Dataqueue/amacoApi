@@ -7,6 +7,7 @@ use App\Models\ColumnData;
 use App\Models\Expense;
 use App\Models\payment_account;
 use App\Models\PaymentAccount;
+use App\Models\AdvancePayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
@@ -104,7 +105,7 @@ return response()->json($expenses);
                   $data['id'] = floatval($pieces[0]);
                   if(floatval($request->utilize_div_id)!==$data['id'])
                   {
-                    PaymentAccount::create([
+                    AdvancePayment::create([
                         "payment_account_id" => $data['id'],
                         "received_by" => $request->utilize_div_id,
                         "amount" => floatval($pieces[2]),
