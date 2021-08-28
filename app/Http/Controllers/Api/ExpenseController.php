@@ -112,7 +112,7 @@ return response()->json($expenses);
                     ]); 
                   }
                   
-                  return array($data['id']);
+                  return $data['id'];
                 }
             );
 // Sort the list by value
