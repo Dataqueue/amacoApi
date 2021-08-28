@@ -116,10 +116,10 @@ return response()->json($expenses);
                 }
             );
 // Sort the list by value
-            $demo=implode(' ',array($map));
+            // $demo=implode(' ',array($map));
            
-            // $collection = [1,2,3,4,5];
-            // $demo=implode(',',$collection);
+            $collection = [1,2,3,4,5];
+            $demo=implode(' ',array($collection));
             $expense = Expense::create([
                 'created_by' => $request->created_by,
                 'paid_date' => $request->paid_date,
