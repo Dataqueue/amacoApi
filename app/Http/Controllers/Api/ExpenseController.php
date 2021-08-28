@@ -130,7 +130,7 @@ return response()->json($expenses);
                 'payment_type' => $request->payment_type,
                 'check_no' => $request->cheque_no,
                 'transaction_id' => $request->transaction_id,
-                'payment_account_id' =>$collection->implode('product', ', ');,
+                'payment_account_id' =>$collection->implode('product', ', '),
                 'description' => $request->description?$request->description:' ',
                 'referrence_bill_no' => $request->referrence_bill_no,
                 'tax' => $request->tax,
