@@ -94,8 +94,9 @@ return response()->json($expenses);
             $lastInsertedId= $request->payment_account_ids;
             
         }
+        $arr=collect($request->payment_account_ids);
         $data = [];  
-        $map = $request->payment_account_ids->map(
+        $map = $arr->map(
             function($items){
                   $data['user_firstName'] = $items[0];
                   $data['user_lastName'] = $items[0];
