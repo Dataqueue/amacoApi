@@ -103,7 +103,7 @@ return response()->json($expenses);
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
                  
-                  return $datas['utilize_div_id'];
+                  return $data;
                 }
             );
 // Sort the list by value
@@ -159,7 +159,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($map);
+            return response()->json($datas);
         }
         // }
     
