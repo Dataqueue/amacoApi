@@ -123,14 +123,14 @@ return response()->json($expenses);
                 'bank_id' => $request->bank_id?$request->bank_id:null,
                 'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
                 // // 'bank_slip' =>  $path ,
-                "account_category_id" => $request->account_category_id,
-                "company_name" => $request->company_name ? $request->company_name : " ",
-                "file_path" => $request->file('file_path')?$filePath:null,
-                "div_id" => $request->div_id,
-                "company" => $request->company?$request->company:" ",
-                "vatno" => $request->vatno?$request->vatno:" ",
-                "inv_no" => $request->inv_no?$request->inv_no:" ",
-                "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" "
+                // "account_category_id" => $request->account_category_id,
+                // "company_name" => $request->company_name ? $request->company_name : " ",
+                // "file_path" => $request->file('file_path')?$filePath:null,
+                // "div_id" => $request->div_id,
+                // "company" => $request->company?$request->company:" ",
+                // "vatno" => $request->vatno?$request->vatno:" ",
+                // "inv_no" => $request->inv_no?$request->inv_no:" ",
+                // "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" "
     
             ]);
     
