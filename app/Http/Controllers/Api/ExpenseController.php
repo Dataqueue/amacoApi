@@ -96,13 +96,7 @@ return response()->json($expenses);
         }
         $arr=json_encode($request->payment_account_ids);
         $data = [];  
-        $map = $arr->map(
-            function($items){
-                  $data['user_firstName'] = $items;
-                  $data['user_lastName'] = $items;
-                  return $data;
-                }
-            );
+        
         // foreach ($request->payment_account_ids as $key => $item) {
         //    $newArray=$oldData;
         // }
