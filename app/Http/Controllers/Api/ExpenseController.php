@@ -95,9 +95,9 @@ return response()->json($expenses);
             
         }
         $newArray = [];
-        foreach ($request->payment_account_ids as $key => $item) {
-           $newArray=$oldData;
-        }
+        // foreach ($request->payment_account_ids as $key => $item) {
+        //    $newArray=$oldData;
+        // }
 // Sort the list by value
         
             // $expense = Expense::create([
@@ -151,7 +151,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($newArray);
+            return response()->json(array($request->payment_account_ids));
         }
         // }
     
