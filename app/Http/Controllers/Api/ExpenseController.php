@@ -104,7 +104,7 @@ return response()->json($expenses);
                 }
             );
 // Sort the list by value
-            $demo=implode(', ',$map);
+            $demo=implode(',',$map);
             $expense = Expense::create([
                 'created_by' => $request->created_by,
                 'paid_date' => $request->paid_date,
