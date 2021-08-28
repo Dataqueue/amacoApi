@@ -36,7 +36,7 @@ class ExpenseController extends Controller
 //         });
 //         return response()->json($expenses);
 
-$expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->select(
+$expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->join('payment_accounts','expenses.utilize_div_id','payment_accounts.id')->select(
 'payment_accounts.name as paid_from',
 'payment_accounts.name as paid_towards',
 'account_categories.name',
