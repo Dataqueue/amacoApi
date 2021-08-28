@@ -108,7 +108,7 @@ return response()->json($expenses);
                 //         "value" => $column_data_value ? $column_data_value : null,
                 //     ]); 
                 //   }
-                  return $data['user_firstName'];
+                  return $data['id'];
                 }
             );
 // Sort the list by value
