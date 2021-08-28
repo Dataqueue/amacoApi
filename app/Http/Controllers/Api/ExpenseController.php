@@ -95,7 +95,8 @@ return response()->json($expenses);
             
         }
         $data=[];
-        $map = $request->payment_account_ids->map(
+        $arr=collect($request->payment_account_ids);
+        $map = $arr->map(
             function($items){
                   $data['user_firstName'] = $items;
                   return $data;
