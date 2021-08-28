@@ -94,7 +94,14 @@ return response()->json($expenses);
             $lastInsertedId= $request->payment_account_ids;
             
         }
-        $newArray = [];
+        $data = [];  
+        $map = $request->payment_account_ids->map(
+            function($items){
+                  $data['user_firstName'] = $items[0];
+                  $data['user_lastName'] = $items[0];
+                  return $data;
+                }
+            );
         // foreach ($request->payment_account_ids as $key => $item) {
         //    $newArray=$oldData;
         // }
@@ -151,7 +158,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json(array($request->payment_account_ids));
+            return response()->json($data);
         }
         // }
     
