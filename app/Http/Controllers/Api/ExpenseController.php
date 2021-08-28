@@ -98,7 +98,8 @@ return response()->json($expenses);
         $arr=collect($request->payment_account_ids);
         $map = $arr->map(
             function($items){
-                  $data['user_firstName'] = $items;
+                $pieces = explode(",", $items);
+                  $data['user_firstName'] = $pieces[0];
                   return $data;
                 }
             );
