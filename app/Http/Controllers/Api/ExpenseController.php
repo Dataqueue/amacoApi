@@ -113,7 +113,7 @@ return response()->json($expenses);
                 'payment_type' => $request->payment_type,
                 'check_no' => $request->cheque_no,
                 'transaction_id' => $request->transaction_id,
-                'payment_account_id' =>1,
+                // 'payment_account_id' =>1,
                 'description' => $request->description?$request->description:' ',
                 // 'referrence_bill_no' => $request->referrence_bill_no,
                 'tax' => $request->tax,
@@ -134,28 +134,28 @@ return response()->json($expenses);
     
             ]);
     
-            $tempArray = (array) json_decode($request->data, true);
-            foreach ($tempArray as $column_data_) {
-                $column_data = $column_data_;
+            // $tempArray = (array) json_decode($request->data, true);
+            // foreach ($tempArray as $column_data_) {
+            //     $column_data = $column_data_;
     
-                $column_type = $column_data['type'];
-                if ($column_type != 'file') {
-                    $column_data_value = $column_data[$column_type];
-                }
-                $tempFile = "file" . $column_data['id'];
-                if ($request->file($tempFile)) {
-                    $column_data_value = $request->file($tempFile)->move('expenses/files', $request->file($tempFile)->getClientOriginalName());
-                }
-    
-    
+            //     $column_type = $column_data['type'];
+            //     if ($column_type != 'file') {
+            //         $column_data_value = $column_data[$column_type];
+            //     }
+            //     $tempFile = "file" . $column_data['id'];
+            //     if ($request->file($tempFile)) {
+            //         $column_data_value = $request->file($tempFile)->move('expenses/files', $request->file($tempFile)->getClientOriginalName());
+            //     }
     
     
-                ColumnData::create([
-                    "expense_id" => $expense->id,
-                    "column_id" => $column_data['id'],
-                    "value" => $column_data_value ? $column_data_value : null,
-                ]);
-            }
+    
+    
+            //     ColumnData::create([
+            //         "expense_id" => $expense->id,
+            //         "column_id" => $column_data['id'],
+            //         "value" => $column_data_value ? $column_data_value : null,
+            //     ]);
+            // }
             return response()->json($demo);
         }
         // }
