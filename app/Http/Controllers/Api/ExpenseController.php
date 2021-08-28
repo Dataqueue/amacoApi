@@ -100,14 +100,14 @@ return response()->json($expenses);
             function($items){
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
-                  if($request->utilize_div_id!==$data['id'])
-                  {
-                    PaymentAccount::create([
-                        "expense_id" => $expense->id,
-                        "column_id" => $column_data['id'],
-                        "value" => $column_data_value ? $column_data_value : null,
-                    ]); 
-                  }
+                //   if($request->utilize_div_id!==$data['id'])
+                //   {
+                //     PaymentAccount::create([
+                //         "expense_id" => $expense->id,
+                //         "column_id" => $column_data['id'],
+                //         "value" => $column_data_value ? $column_data_value : null,
+                //     ]); 
+                //   }
                   return $data['user_firstName'];
                 }
             );
