@@ -104,7 +104,7 @@ return response()->json($expenses);
                 }
             );
 // Sort the list by value
-        
+            $demo=implode(', ',$map);
             $expense = Expense::create([
                 'created_by' => $request->created_by,
                 'paid_date' => $request->paid_date,
@@ -113,7 +113,7 @@ return response()->json($expenses);
                 'payment_type' => $request->payment_type,
                 'check_no' => $request->cheque_no,
                 'transaction_id' => $request->transaction_id,
-                'payment_account_id' =>implode(', ',$map),
+                'payment_account_id' =>$demo,
                 'description' => $request->description?$request->description:' ',
                 // 'referrence_bill_no' => $request->referrence_bill_no,
                 'tax' => $request->tax,
@@ -156,7 +156,7 @@ return response()->json($expenses);
                     "value" => $column_data_value ? $column_data_value : null,
                 ]);
             }
-            return response()->json($map);
+            return response()->json($demo);
         }
         // }
     
