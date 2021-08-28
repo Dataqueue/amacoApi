@@ -99,14 +99,14 @@ return response()->json($expenses);
         $div_id= $request->utilize_div_id;
         $arr=collect($request->payment_account_ids);
         $map = $arr->map(
-            function($items) use($div_id) {
+            function($items) use($request) {
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
-                  if(floatval($div_id)!==$data['id'])
+                  if(floatval($request->utilize_div_id)!==$data['id'])
                   {
                     PaymentAccount::create([
                         "payment_account_id" => $data['id'],
-                        "received_by" => $div_id,
+                        "received_by" => $request->utilize_div_id,
                         "amount" => floatval($pieces[2]),
                         "payment_mode" => $request->payment_type,
                     ]); 
