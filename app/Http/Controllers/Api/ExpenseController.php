@@ -116,6 +116,12 @@ return response()->json($expenses);
             );
 // Sort the list by value
             $demo=implode(',',array($map));
+            $collection = collect([
+                ['account_id' => 1, 'product' => 'Desk'],
+                ['account_id' => 2, 'product' => 'Chair'],
+            ]);
+            
+            
             $expense = Expense::create([
                 'created_by' => $request->created_by,
                 'paid_date' => $request->paid_date,
@@ -124,7 +130,7 @@ return response()->json($expenses);
                 'payment_type' => $request->payment_type,
                 'check_no' => $request->cheque_no,
                 'transaction_id' => $request->transaction_id,
-                'payment_account_id' =>$map,
+                'payment_account_id' =>$collection->implode('product', ', ');,
                 'description' => $request->description?$request->description:' ',
                 'referrence_bill_no' => $request->referrence_bill_no,
                 'tax' => $request->tax,
