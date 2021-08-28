@@ -180,6 +180,7 @@ return response()->json($expenses);
      */
     public function show(Expense $expense)
     {
+        
         return response()->json([
             $expense,
             $expense->payment_account,
@@ -189,6 +190,13 @@ return response()->json($expenses);
                 }
                 return $item->column;
             }),
+            $expense->payment_account_id->map(
+                function($items) use($expense) {
+                    $data=payment_accounts::where('id',$expense->id)->select('payment_accounts*');
+
+                    return $data;   
+                }
+                ),
             'img' => $expense->img(),
             'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
