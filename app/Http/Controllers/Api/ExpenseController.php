@@ -119,7 +119,7 @@ return response()->json($expenses);
             // $demo=implode(',',$map);
            
             $collection = collect($map);
-            $demo=implode(',',$collection);
+            $demo=implode(',',array($collection));
             $expense = Expense::create([
                 'created_by' => $request->created_by,
                 'paid_date' => $request->paid_date,
