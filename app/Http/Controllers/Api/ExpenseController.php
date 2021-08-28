@@ -102,7 +102,7 @@ return response()->json($expenses);
             function($items){
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
-                  if(floatval($div_id)!==$data['id'])
+                  if(floatval($request->utilize_div_id)!==$data['id'])
                   {
                     PaymentAccount::create([
                         "payment_account_id" => $data['id'],
