@@ -134,28 +134,28 @@ return response()->json($expenses);
     
             ]);
     
-            // $tempArray = (array) json_decode($request->data, true);
-            // foreach ($tempArray as $column_data_) {
-            //     $column_data = $column_data_;
+            $tempArray = (array) json_decode($request->data, true);
+            foreach ($tempArray as $column_data_) {
+                $column_data = $column_data_;
     
-            //     $column_type = $column_data['type'];
-            //     if ($column_type != 'file') {
-            //         $column_data_value = $column_data[$column_type];
-            //     }
-            //     $tempFile = "file" . $column_data['id'];
-            //     if ($request->file($tempFile)) {
-            //         $column_data_value = $request->file($tempFile)->move('expenses/files', $request->file($tempFile)->getClientOriginalName());
-            //     }
-    
-    
+                $column_type = $column_data['type'];
+                if ($column_type != 'file') {
+                    $column_data_value = $column_data[$column_type];
+                }
+                $tempFile = "file" . $column_data['id'];
+                if ($request->file($tempFile)) {
+                    $column_data_value = $request->file($tempFile)->move('expenses/files', $request->file($tempFile)->getClientOriginalName());
+                }
     
     
-            //     ColumnData::create([
-            //         "expense_id" => $expense->id,
-            //         "column_id" => $column_data['id'],
-            //         "value" => $column_data_value ? $column_data_value : null,
-            //     ]);
-            // }
+    
+    
+                ColumnData::create([
+                    "expense_id" => $expense->id,
+                    "column_id" => $column_data['id'],
+                    "value" => $column_data_value ? $column_data_value : null,
+                ]);
+            }
             return response()->json($demo);
         }
         // }
