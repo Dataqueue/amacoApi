@@ -191,13 +191,11 @@ return response()->json($expenses);
                 return $item->column;
             }),
             $resultArray = collect($expense->payment_account_id),
-            // explode(",",$expense->payment_account_id)->map(
-            //     function($items) use($expense) {
-            //         $data=payment_accounts::where('id',$expense->id)->select('payment_accounts*');
-
-            //         return $data;   
-            //     }
-            //     ),
+            $resultArray->map(
+                function($items) use($expense) {
+                    return $items;
+                }
+                ),
             'img' => $expense->img(),
             'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
