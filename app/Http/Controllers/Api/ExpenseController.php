@@ -102,7 +102,7 @@ return response()->json($expenses);
             function($items){
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
-                 
+                 if(floatval($datas)==floatval($pieces[0]))
                   return $data;
                 }
             );
