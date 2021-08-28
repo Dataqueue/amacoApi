@@ -94,7 +94,7 @@ return response()->json($expenses);
             $lastInsertedId= $request->payment_account_ids;
             
         }
-        $arr=json_encode($request->payment_account_ids);
+        $arr=dd($request->payment_account_ids);
         $data = [];  
         
         // foreach ($request->payment_account_ids as $key => $item) {
