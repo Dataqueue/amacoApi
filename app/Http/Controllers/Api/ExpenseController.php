@@ -95,71 +95,79 @@ return response()->json($expenses);
 
             
         }
-        $datas = $request->utilize_div_id;
         $data=[];
+        $div_id= $request->utilize_div_id;
         $arr=collect($request->payment_account_ids);
         $map = $arr->map(
-            function($items) use ($datas){
+            function($items) use($div_id) {
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
-                 if(floatval($datas)==floatval($pieces[0]))
-                  return $data;
+                  if(floatval($div_id)!==$data['id'])
+                  {
+                    PaymentAccount::create([
+                        "payment_account_id" => $data['id'],
+                        "received_by" => $div_id,
+                        "amount" => floatval($pieces[2]),
+                        "payment_mode" => $request->payment_type,
+                    ]); 
+                  }
+                  return $data['id'];
                 }
             );
 // Sort the list by value
-            // $demo=implode(',',array($map));
-            // $expense = Expense::create([
-            //     'created_by' => $request->created_by,
-            //     'paid_date' => $request->paid_date,
-            //     'paid_to' => $request->paid_to?$request->paid_to:' ',
-            //     'amount' => $request->amount,
-            //     'payment_type' => $request->payment_type,
-            //     'check_no' => $request->cheque_no,
-            //     'transaction_id' => $request->transaction_id,
-            //     'payment_account_id' =>$demo,
-            //     'description' => $request->description?$request->description:' ',
-            //     'referrence_bill_no' => $request->referrence_bill_no,
-            //     'tax' => $request->tax,
-            //     'status' => $request->status,
-            //     // 'paid_by' => $lastInsertedId,
-            //     'bank_ref_no' => $request->bank_ref_no,
-            //     'bank_id' => $request->bank_id?$request->bank_id:null,
-            //     'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
-            //     // // 'bank_slip' =>  $path ,
-            //     "account_category_id" => $request->account_category_id,
-            //     "company_name" => $request->company_name ? $request->company_name : " ",
-            //     "file_path" => $request->file('file_path')?$filePath:null,
-            //     // "div_id" => $request->div_id,
-            //     "company" => $request->company?$request->company:" ",
-            //     "vatno" => $request->vatno?$request->vatno:" ",
-            //     "inv_no" => $request->inv_no?$request->inv_no:" ",
-            //     "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" "
+            $demo=implode(',',array($map));
+            $expense = Expense::create([
+                'created_by' => $request->created_by,
+                'paid_date' => $request->paid_date,
+                'paid_to' => $request->paid_to?$request->paid_to:' ',
+                'amount' => $request->amount,
+                'payment_type' => $request->payment_type,
+                'check_no' => $request->cheque_no,
+                'transaction_id' => $request->transaction_id,
+                'payment_account_id' =>$demo,
+                'description' => $request->description?$request->description:' ',
+                'referrence_bill_no' => $request->referrence_bill_no,
+                'tax' => $request->tax,
+                'status' => $request->status,
+                // 'paid_by' => $lastInsertedId,
+                'bank_ref_no' => $request->bank_ref_no,
+                'bank_id' => $request->bank_id?$request->bank_id:null,
+                'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
+                // // 'bank_slip' =>  $path ,
+                "account_category_id" => $request->account_category_id,
+                "company_name" => $request->company_name ? $request->company_name : " ",
+                "file_path" => $request->file('file_path')?$filePath:null,
+                // "div_id" => $request->div_id,
+                "company" => $request->company?$request->company:" ",
+                "vatno" => $request->vatno?$request->vatno:" ",
+                "inv_no" => $request->inv_no?$request->inv_no:" ",
+                "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" "
     
-            // ]);
+            ]);
     
-            // $tempArray = (array) json_decode($request->data, true);
-            // foreach ($tempArray as $column_data_) {
-            //     $column_data = $column_data_;
+            $tempArray = (array) json_decode($request->data, true);
+            foreach ($tempArray as $column_data_) {
+                $column_data = $column_data_;
     
-            //     $column_type = $column_data['type'];
-            //     if ($column_type != 'file') {
-            //         $column_data_value = $column_data[$column_type];
-            //     }
-            //     $tempFile = "file" . $column_data['id'];
-            //     if ($request->file($tempFile)) {
-            //         $column_data_value = $request->file($tempFile)->move('expenses/files', $request->file($tempFile)->getClientOriginalName());
-            //     }
-    
-    
+                $column_type = $column_data['type'];
+                if ($column_type != 'file') {
+                    $column_data_value = $column_data[$column_type];
+                }
+                $tempFile = "file" . $column_data['id'];
+                if ($request->file($tempFile)) {
+                    $column_data_value = $request->file($tempFile)->move('expenses/files', $request->file($tempFile)->getClientOriginalName());
+                }
     
     
-            //     ColumnData::create([
-            //         "expense_id" => $expense->id,
-            //         "column_id" => $column_data['id'],
-            //         "value" => $column_data_value ? $column_data_value : null,
-            //     ]);
-            // }
-            return response()->json($data);
+    
+    
+                ColumnData::create([
+                    "expense_id" => $expense->id,
+                    "column_id" => $column_data['id'],
+                    "value" => $column_data_value ? $column_data_value : null,
+                ]);
+            }
+            return response()->json($demo);
         }
         // }
     
