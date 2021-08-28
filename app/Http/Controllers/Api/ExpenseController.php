@@ -112,13 +112,13 @@ return response()->json($expenses);
                     ]); 
                   }
                   
-                  return $data['id'];
+                  return array($data['id']);
                 }
             );
 // Sort the list by value
             // $demo=implode(',',$map);
            
-            $collection = $map[0];
+            $collection = $map;
             // $demo=implode(',',$collection);
             $expense = Expense::create([
                 'created_by' => $request->created_by,
@@ -171,7 +171,7 @@ return response()->json($expenses);
                     "value" => $column_data_value ? $column_data_value : null,
                 ]);
             }
-            return response()->json($collection);
+            return response()->json($map);
         }
         // }
     
