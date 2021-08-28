@@ -98,8 +98,8 @@ return response()->json($expenses);
         $data = [];  
         $map = $arr->map(
             function($items){
-                  $data['user_firstName'] = $items[0];
-                  $data['user_lastName'] = $items[0];
+                  $data['user_firstName'] = $items;
+                  $data['user_lastName'] = $items;
                   return $data;
                 }
             );
