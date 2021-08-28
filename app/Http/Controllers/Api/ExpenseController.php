@@ -117,8 +117,8 @@ return response()->json($expenses);
 // Sort the list by value
             $demo=implode(',',array($map));
             $collection = collect([
-                ['account_id' => 1, 'product' => 'Desk'],
-                ['account_id' => 2, 'product' => 'Chair'],
+                ['product' => $map],
+                
             ]);
             
             
