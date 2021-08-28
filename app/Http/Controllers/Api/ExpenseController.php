@@ -188,19 +188,19 @@ return response()->json($expenses);
                 return $items;
             }
         );
-        // return response()->json([
-        //     $expense,
-        //     $expense->payment_account,
-        //     $expense->column_data->map(function ($item) {
-        //         if (File::exists(public_path($item->value))) {
-        //             $item['file'] = url($item->value);
-        //         }
-        //         return $item->column;
-        //     }),
-        //    'mapdata'=>$map,
-        //     'img' => $expense->img(),
-        //     'referrenceImgUrl' => $expense->referrenceImg(),
-        // ]);
+        return response()->json([
+            // $expense,
+            // $expense->payment_account,
+            // $expense->column_data->map(function ($item) {
+            //     if (File::exists(public_path($item->value))) {
+            //         $item['file'] = url($item->value);
+            //     }
+            //     return $item->column;
+            // }),
+           'mapdata'=>$map,
+            // 'img' => $expense->img(),
+            // 'referrenceImgUrl' => $expense->referrenceImg(),
+        ]);
     }
 
     /**
