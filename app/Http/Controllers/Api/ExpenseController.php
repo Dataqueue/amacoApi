@@ -94,11 +94,13 @@ return response()->json($expenses);
             $lastInsertedId= $request->payment_account_ids;
             
         }
-        
-        
-        // foreach ($request->payment_account_ids as $key => $item) {
-        //    $newArray=$oldData;
-        // }
+        $data=[];
+        $map = $request->payment_account_ids->map(
+            function($items){
+                  $data['user_firstName'] = $items;
+                  return $data;
+                }
+            );
 // Sort the list by value
         
             // $expense = Expense::create([
@@ -152,7 +154,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($request->payment_account_ids);
+            return response()->json($map);
         }
         // }
     
