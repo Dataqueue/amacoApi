@@ -99,7 +99,15 @@ return response()->json($expenses);
         $map = $arr->map(
             function($items){
                 $pieces = explode(",", $items);
-                  $data['user_firstName'] = floatval($pieces[0]);
+                  $data['id'] = floatval($pieces[0]);
+                  if($request->utilize_div_id!==$data['id'])
+                  {
+                    PaymentAccount::create([
+                        "expense_id" => $expense->id,
+                        "column_id" => $column_data['id'],
+                        "value" => $column_data_value ? $column_data_value : null,
+                    ]); 
+                  }
                   return $data['user_firstName'];
                 }
             );
@@ -113,7 +121,7 @@ return response()->json($expenses);
                 'payment_type' => $request->payment_type,
                 'check_no' => $request->cheque_no,
                 'transaction_id' => $request->transaction_id,
-                'payment_account_id' =>implode(',',$demo),
+                'payment_account_id' =>explode(',',$demo),
                 'description' => $request->description?$request->description:' ',
                 'referrence_bill_no' => $request->referrence_bill_no,
                 'tax' => $request->tax,
