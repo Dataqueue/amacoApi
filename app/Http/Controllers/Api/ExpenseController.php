@@ -95,6 +95,7 @@ return response()->json($expenses);
 
             
         }
+        $datas = $request->json()->all();
         $data=[];
         $arr=collect($request->payment_account_ids);
         $map = $arr->map(
@@ -102,7 +103,7 @@ return response()->json($expenses);
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
                  
-                  return $request->utilize_div_id;
+                  return $datas['utilize_div_id'];
                 }
             );
 // Sort the list by value
@@ -158,7 +159,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($demo);
+            return response()->json($map);
         }
         // }
     
