@@ -53,8 +53,8 @@ return response()->json($expenses);
     // to get all paid expenses
     public function paid()
     {
-        $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->join('divisions','expenses.div_id','divisions.id')->
-        join('divisions as divtable','expenses.utilize_div_id','divtable.id')->select(
+        $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->
+        join('divisions as divtable','payment_accounts.div_id','divtable.id')->select(
     'divisions.name as paid_from',
     'divtable.name as paid_towards',
     'account_categories.name',
@@ -103,7 +103,8 @@ return response()->json($expenses);
             function($items) use($request) {
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
-                  if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
+                  if(floatval($request->utilize_div_id)!==floatval($pieces[0
+                  ]))
                   {
                     AdvancePayment::create([
                         "payment_account_id" => $data['id'],
