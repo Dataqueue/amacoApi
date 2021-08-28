@@ -99,7 +99,7 @@ return response()->json($expenses);
         $data=[];
         $arr=collect($request->payment_account_ids);
         $map = $arr->map(
-            function($items){
+            function($items) use ($datas){
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
                  if(floatval($datas)==floatval($pieces[0]))
