@@ -100,7 +100,7 @@ return response()->json($expenses);
             function($items){
                 $pieces = explode(",", $items);
                   $data['user_firstName'] = $pieces[0];
-                  return $data;
+                  return $data['user_firstName'];
                 }
             );
 // Sort the list by value
@@ -156,7 +156,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($map);
+            return response()->$map;
         }
         // }
     
