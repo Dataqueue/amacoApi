@@ -106,13 +106,13 @@ return response()->json($expenses);
 // Sort the list by value
             $demo=implode(',',array($map));
             $expense = Expense::create([
-                // 'created_by' => $request->created_by,
-                // 'paid_date' => $request->paid_date,
-                // 'paid_to' => $request->paid_to?$request->paid_to:' ',
-                // 'amount' => $request->amount,
-                // 'payment_type' => $request->payment_type,
-                // 'check_no' => $request->cheque_no,
-                // 'transaction_id' => $request->transaction_id,
+                'created_by' => $request->created_by,
+                'paid_date' => $request->paid_date,
+                'paid_to' => $request->paid_to?$request->paid_to:' ',
+                'amount' => $request->amount,
+                'payment_type' => $request->payment_type,
+                'check_no' => $request->cheque_no,
+                'transaction_id' => $request->transaction_id,
                 // 'payment_account_id' =>1,
                 'description' => $request->description?$request->description:' ',
                 // 'referrence_bill_no' => $request->referrence_bill_no,
