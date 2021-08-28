@@ -98,7 +98,7 @@ return response()->json($expenses);
         $data=[];
         $div_id= $request->utilize_div_id;
         $arr=collect($request->payment_account_ids);
-        $map['data'] = $arr->map(
+        $map[] = $arr->map(
             function($items) use($request) {
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
@@ -171,7 +171,7 @@ return response()->json($expenses);
                     "value" => $column_data_value ? $column_data_value : null,
                 ]);
             }
-            return response()->json($collection);
+            return response()->json($map);
         }
         // }
     
