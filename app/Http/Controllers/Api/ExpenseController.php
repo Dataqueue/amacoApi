@@ -190,13 +190,13 @@ return response()->json($expenses);
                 }
                 return $item->column;
             }),
-            $expense->payment_account_id->map(
-                function($items) use($expense) {
-                    $data=payment_accounts::where('id',$expense->id)->select('payment_accounts*');
+            // $expense->payment_account_id->map(
+            //     function($items) use($expense) {
+            //         $data=payment_accounts::where('id',$expense->id)->select('payment_accounts*');
 
-                    return $data;   
-                }
-                ),
+            //         return $data;   
+            //     }
+            //     ),
             'img' => $expense->img(),
             'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
