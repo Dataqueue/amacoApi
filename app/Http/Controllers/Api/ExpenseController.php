@@ -95,7 +95,7 @@ return response()->json($expenses);
 
             
         }
-        $datas = $request->json()->all();
+        $datas = $request;
         $data=[];
         $arr=collect($request->payment_account_ids);
         $map = $arr->map(
