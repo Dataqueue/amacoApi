@@ -95,7 +95,7 @@ return response()->json($expenses);
             
         }
         $newArray = [];
-        foreach ($oldData as $key => $request->payment_account_ids) {
+        foreach ($request->payment_account_ids as $key => $item) {
            $newArray=$oldData;
         }
 // Sort the list by value
