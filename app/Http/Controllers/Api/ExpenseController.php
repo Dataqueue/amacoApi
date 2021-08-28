@@ -92,15 +92,17 @@ return response()->json($expenses);
         }
         else{
             $lastInsertedId= $request->payment_account_ids;
+
             
         }
         $data=[];
+        $div_id=$request->utilize_div_id;
         $arr=collect($request->payment_account_ids);
         $map = $arr->map(
             function($items){
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
-                  if($request->utilize_div_id!==$data['id'])
+                  if($div_id!==$data['id'])
                   {
                     PaymentAccount::create([
                         "payment_account_id" => $data['id'],
