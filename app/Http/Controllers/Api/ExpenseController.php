@@ -95,7 +95,7 @@ return response()->json($expenses);
 
             
         }
-        $data=[];
+        $data;
         $div_id= $request->utilize_div_id;
         $arr=array($request->payment_account_ids);
         $map = $arr->map(
@@ -116,7 +116,7 @@ return response()->json($expenses);
                 }
             );
 // Sort the list by value
-            $demo=implode(',',array($map));
+            $demo=implode(',',$map);
            
             // $collection = [1,2,3,4,5];
             // $demo=implode(' ',$collection);
@@ -171,7 +171,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($map);
+            return response()->json($demo);
         }
         // }
     
