@@ -98,12 +98,16 @@ return response()->json($expenses);
         $data=[];
         $div_id= $request->utilize_div_id;
         $arr=$request->payment_account_ids;
-        $baseMap = collect($arr)->sortKeys();
+      
 
-        $result = $items->map(function ($item) use ($baseMap) {
+        $result = collect($arr)->map(function ($address) use ($input) {
+
+            $address['id']    = $input[0];
+          
         
-                    return $baseMap;
-                });
+            return $address;
+        
+        });;
 
 
 
