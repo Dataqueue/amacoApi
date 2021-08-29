@@ -106,7 +106,7 @@ return response()->json($expenses);
 
 
         $map = $arr->map(
-            function($items) use($data) {
+            function($items) use($request) {
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
                   if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
