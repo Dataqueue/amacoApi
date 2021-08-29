@@ -197,7 +197,7 @@ return response()->json($expenses);
         $map=$result->map(
             function($items) use($expense) {
                 
-                return $items;
+                return $items[0];
             }
         );
         return response()->json([
