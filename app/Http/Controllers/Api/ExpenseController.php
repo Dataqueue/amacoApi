@@ -192,8 +192,8 @@ return response()->json($expenses);
     public function show(Expense $expense)
     {
         $data=[];
-        $resultArray = explode(',',$expense->payment_account_id);
-        $memebrsInfo = collect([explode(',',$expense->payment_account_id)]);
+        // $resultArray = explode(',',$expense->payment_account_id);
+        $memebrsInfo = $expense->payment_account_id;
         // $map=$memebrsInfo->map(
         //     function($items,$key) use($data) {
                
@@ -204,11 +204,11 @@ return response()->json($expenses);
         //         return $result;
         //     }
         // );
-        // $collection = $resultArray->toArray();
+        $collection = $resultArray->toArray();
 
-        $multiplied = $collection->map(function ($item, $key) {
-            return floatval($item) * 2;
-        });
+        // $multiplied = $collection->map(function ($item, $key) {
+        //     return floatval($item) * 2;
+        // });
         return response()->json([
             // $expense,
             // $expense->payment_account,
@@ -218,7 +218,7 @@ return response()->json($expenses);
             //     }
             //     return $item->column;
             // }),
-           'mapdata'=>$resultArray,
+           'mapdata'=>$collection,
             // 'img' => $expense->img(),
             // 'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
