@@ -204,7 +204,7 @@ return response()->json($expenses);
         //         return $result;
         //     }
         // );
-        $collection = $resultArray->toArray();
+        $collection =  $memebrsInfo->toArray();
 
         // $multiplied = $collection->map(function ($item, $key) {
         //     return floatval($item) * 2;
