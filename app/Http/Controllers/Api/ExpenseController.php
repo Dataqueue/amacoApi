@@ -218,7 +218,7 @@ return response()->json($expenses);
                 }
                 return $item->column;
             }),
-           'mapdata'=>$map->name,
+           'mapdata'=>$map,
             'img' => $expense->img(),
             'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
