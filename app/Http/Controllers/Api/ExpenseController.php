@@ -201,7 +201,7 @@ return response()->json($expenses);
                 $result=PaymentAccount::where('id',floatval($items[$key]))->get(); 
                 
                 
-                return floatval($items[0]);
+                return floatval($items);
             }
         );
         // $collection =  collect([explode('.',$memebrsInfo)]);
