@@ -204,9 +204,9 @@ return response()->json($expenses);
         //         return $result;
         //     }
         // );
-        $collection = collect([1, 2, 3, 4, 5]);
+        $collection = $resultArray->toArray();
 
-        $multiplied = array($resultArray)->map(function ($item, $key) {
+        $multiplied = $collection->map(function ($item, $key) {
             return floatval($item) * 2;
         });
         return response()->json([
