@@ -194,16 +194,21 @@ return response()->json($expenses);
         $data=[];
         $resultArray = explode(',',$expense->payment_account_id);
         $memebrsInfo = collect(array(explode(',',$expense->payment_account_id)));
-        $map=$memebrsInfo->map(
-            function($items,$key) use($data) {
+        // $map=$memebrsInfo->map(
+        //     function($items,$key) use($data) {
                
                 
-                $result=$account=PaymentAccount::where('id',floatval($items[$key])); 
+        //         $result=$account=PaymentAccount::where('id',floatval($items[$key])); 
                 
                 
-                return $result;
-            }
-        );
+        //         return $result;
+        //     }
+        // );
+        $collection = collect([1, 2, 3, 4, 5]);
+
+        $multiplied = $collection->map(function ($item, $key) {
+            return $item * 2;
+        });
         return response()->json([
             // $expense,
             // $expense->payment_account,
@@ -213,7 +218,7 @@ return response()->json($expenses);
             //     }
             //     return $item->column;
             // }),
-           'mapdata'=>$map,
+           'mapdata'=>$multiplied,
             // 'img' => $expense->img(),
             // 'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
