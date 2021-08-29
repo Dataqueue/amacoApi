@@ -192,7 +192,7 @@ return response()->json($expenses);
     public function show(Expense $expense)
     {
         $data=[];
-        $resultArray = explode(',',$expense->payment_account_id);
+        $resultArray = array(explode(',',$expense->payment_account_id));
         $map=$resultArray->map(
             function($items) use($expense) {
                 // $arr=PaymentAccount::where('id',$items[0])->get();
