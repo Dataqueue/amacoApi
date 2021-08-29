@@ -191,13 +191,18 @@ return response()->json($expenses);
      */
     public function show(Expense $expense)
     {
-        $data=[];
+        
         $resultArray = explode(',',$expense->payment_account_id);
         $memebrsInfo = collect(array(explode(',',$expense->payment_account_id)));
         $map=$memebrsInfo->map(
             function($items) use($expense) {
+                $data = []; 
+                foreach ($data as $key => $items) { 
+                     $data[$key] = $items[$key];
+                    //  $result=$account=PaymentAccount::where('id',floatval()); 
+                }
                 
-                return $items[1];
+                return $data;
             }
         );
         return response()->json([
