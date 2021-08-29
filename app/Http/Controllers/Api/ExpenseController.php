@@ -206,8 +206,8 @@ return response()->json($expenses);
         // );
         $collection = collect([1, 2, 3, 4, 5]);
 
-        $multiplied = $collection->map(function ($item, $key) {
-            return $item * 2;
+        $multiplied = $memebrsInfo->map(function ($item, $key) {
+            return floatval($item) * 2;
         });
         return response()->json([
             // $expense,
