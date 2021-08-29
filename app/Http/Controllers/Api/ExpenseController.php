@@ -99,9 +99,9 @@ return response()->json($expenses);
         $div_id= $request->utilize_div_id;
         $arr=$request->payment_account_ids;
       
-        $collection = new Collection([
+        $collection = [
             'jhon', 'tom', 'mike', 'stuart'
-        ]);
+        ];
         
         // Change all items to uppercase and create a new collection of them
         $names = $collection->map(function($item, $key) {
