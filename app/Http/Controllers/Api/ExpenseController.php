@@ -197,7 +197,7 @@ return response()->json($expenses);
         $map=$memebrsInfo->map(
             function($items) use($expense) {
                 
-                return $items[0];
+                return $items[1];
             }
         );
         return response()->json([
