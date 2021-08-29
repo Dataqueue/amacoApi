@@ -193,7 +193,7 @@ return response()->json($expenses);
     {
         $data=[];
         $resultArray = explode(',',$expense->payment_account_id);
-        $memebrsInfo = array($expense->payment_account_id);
+        $memebrsInfo = array(explode(',',$expense->payment_account_id));
         // $map=$result->map(
         //     function($items) use($expense) {
                 
