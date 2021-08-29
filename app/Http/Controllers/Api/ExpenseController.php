@@ -198,7 +198,7 @@ return response()->json($expenses);
             function($items,$key) use($data) {
                
                 
-                $result=PaymentAccount::where('id',floatval($items[$key])); 
+                $result=PaymentAccount::where('id',floatval($items)); 
                 
                 
                 return $result;
