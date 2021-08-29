@@ -100,8 +100,8 @@ return response()->json($expenses);
         $arr=collect([$request->payment_account_ids]);
         $map = $arr->map(
             function($items) use($request) {
-                $pieces = explode(",", $items);
-                  $data['id'] = floatval($pieces[0]);
+                // $pieces = explode(",", $items);
+                  $data['id'] = floatval($items[0]);
                   if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
                   {
                     // AdvancePayment::create([
