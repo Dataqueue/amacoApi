@@ -195,14 +195,13 @@ return response()->json($expenses);
         $resultArray = explode(',',$expense->payment_account_id);
         $memebrsInfo = collect(array(explode(',',$expense->payment_account_id)));
         $map=$memebrsInfo->map(
-            function($items) use($data) {
+            function($items,$key) use($data) {
                
-                foreach ($data as $key => $items) { 
-                     $data['values'] = $items[$key];
-                    //  $result=$account=PaymentAccount::where('id',floatval()); 
-                }
                 
-                return $data;
+                $result=$account=PaymentAccount::where('id',floatval($items[$key])); 
+                
+                
+                return $result;
             }
         );
         return response()->json([
