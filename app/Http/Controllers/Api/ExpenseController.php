@@ -95,11 +95,11 @@ return response()->json($expenses);
 
             
         }
-        $data;
+        $data=[];
         $div_id= $request->utilize_div_id;
         $arr=collect($request->payment_account_ids);
         $map = $arr->map(
-            function($items) use($request) {
+            function($items) use($data) {
                 // $pieces = explode(",", $items);
                   $data['id'] = floatval($items[0]);
                 //   if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
