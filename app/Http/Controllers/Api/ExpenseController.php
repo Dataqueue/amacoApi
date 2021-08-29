@@ -99,7 +99,7 @@ return response()->json($expenses);
         $div_id= $request->utilize_div_id;
         $arr=$request->payment_account_ids;
       
-        $input;
+        $input=[];
         $result = collect($arr)->map(function ($address) use ($input) {
 
             $address['id']    = $input;
