@@ -102,15 +102,15 @@ return response()->json($expenses);
             function($items) use($request) {
                 // $pieces = explode(",", $items);
                   $data['id'] = floatval($items[0]);
-                  if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
-                  {
+                //   if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
+                //   {
                     // AdvancePayment::create([
                     //     "payment_account_id" => $data['id'],
                     //     "received_by" => $request->utilize_div_id,
                     //     "amount" => floatval($pieces[2]),
                     //     "payment_mode" => $request->payment_type,
                     // ]); 
-                  }
+                //   }
                   
                   return $data['id'];
                 }
