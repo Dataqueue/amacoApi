@@ -195,8 +195,8 @@ return response()->json($expenses);
         $resultArray = collect([explode(',',$expense->payment_account_id)]);
         $map=$resultArray->map(
             function($items) use($expense) {
-                // $arr=PaymentAccount::where('id',$items[0])->get();
-                return $items[0];
+                $arr=PaymentAccount::where('id',$items)->get();
+                return $arr;
             }
         );
         return response()->json([
