@@ -97,7 +97,7 @@ return response()->json($expenses);
         }
         $data=[];
         $div_id= $request->utilize_div_id;
-        $arr=collect([$request->payment_account_ids]);
+        $arr=array($request->payment_account_ids);
         $map = $arr->map(
             function($items) use($request) {
                 // $pieces = explode(",", $items);
