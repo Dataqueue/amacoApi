@@ -98,6 +98,17 @@ return response()->json($expenses);
         $data=[];
         $div_id= $request->utilize_div_id;
         $arr=$request->payment_account_ids;
+        $baseMap = collect($arr)->sortKeys();
+
+        $result = $items->map(function ($item) use ($baseMap) {
+        
+                    return $baseMap;
+                });
+
+
+
+
+
         // $map = $arr->map(
         //     function($items) use($data) {
         //         $pieces = explode(",", $items);
@@ -115,8 +126,7 @@ return response()->json($expenses);
         //           return $data['id'];
         //         }
         //     );
-// Sort the list by value
-            // $demo=implode(',',$map);
+
            
             // $collection = [1,2,3,4,5];
             // $demo=implode(' ',$collection);
@@ -171,7 +181,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($arr);
+            return response()->json($result);
         }
         // }
     
