@@ -126,6 +126,7 @@ return response()->json($expenses);
            
             // $collection = [1,2,3,4,5];
              $demo=$map->toArray();
+             $test=implode(',',$demo);
             // $expense = Expense::create([
             //     'created_by' => $request->created_by,
             //     'paid_date' => $request->paid_date,
@@ -177,7 +178,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($demo);
+            return response()->json($test);
         }
         // }
     
