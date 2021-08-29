@@ -99,15 +99,14 @@ return response()->json($expenses);
         $div_id= $request->utilize_div_id;
         $arr=$request->payment_account_ids;
       
-        $input=[];
-        $result = collect($arr)->map(function ($address) use ($input) {
-
-            $address['id']    = $input;
-          
+        $collection = new Collection([
+            'jhon', 'tom', 'mike', 'stuart'
+        ]);
         
-            return $address;
-        
-        });;
+        // Change all items to uppercase and create a new collection of them
+        $names = $collection->map(function($item, $key) {
+           return strtoupper($item);
+        });
 
 
 
@@ -185,7 +184,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($result);
+            return response()->json($names);
         }
         // }
     
