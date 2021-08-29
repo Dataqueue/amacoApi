@@ -95,28 +95,41 @@ return response()->json($expenses);
 
             
         }
-        $data=[];
-        $div_id= $request->utilize_div_id;
+        // $data=[];
+        // $div_id= $request->utilize_div_id;
         $arr=$request->payment_account_ids;
-        $map[] = $arr->map(
-            function($items) use($data) {
-                // $pieces = explode(",", $items);
-                  $data['id'] = floatval($items[0]);
-                //   if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
-                //   {
-                    // AdvancePayment::create([
-                    //     "payment_account_id" => $data['id'],
-                    //     "received_by" => $request->utilize_div_id,
-                    //     "amount" => floatval($pieces[2]),
-                    //     "payment_mode" => $request->payment_type,
-                    // ]); 
-                //   }
+        // $map[] = $arr->map(
+        //     function($items) use($data) {
+        //         // $pieces = explode(",", $items);
+        //           $data['id'] = floatval($items[0]);
+        //         //   if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
+        //         //   {
+        //             // AdvancePayment::create([
+        //             //     "payment_account_id" => $data['id'],
+        //             //     "received_by" => $request->utilize_div_id,
+        //             //     "amount" => floatval($pieces[2]),
+        //             //     "payment_mode" => $request->payment_type,
+        //             // ]); 
+        //         //   }
                   
-                  return $data['id'];
-                }
-            );
+        //           return $data['id'];
+        //         }
+        //     );
+        $result = $arr->map(function($item) use ($baseMap) {
+            $array = [];
+        
+            foreach($baseMap as $oldKey => $newKey){
+               
+                    $array[$newKey] = $item[$oldKey];
+               
+            }
+        
+            return $array;
+        });
+        
+        $result = $result->toArray();
 // Sort the list by value
-            $demo=implode(',',$map);
+            // $demo=implode(',',$map);
            
             // $collection = [1,2,3,4,5];
             // $demo=implode(' ',$collection);
@@ -171,7 +184,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($demo);
+            return response()->json($result);
         }
         // }
     
