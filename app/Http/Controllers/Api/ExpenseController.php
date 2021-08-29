@@ -196,8 +196,8 @@ return response()->json($expenses);
         $result=collect($resultArray);
         $map=$result->map(
             function($items) use($expense) {
-                $pieces = explode(",", $items);
-                return $pieces[1];
+                
+                return $items;
             }
         );
         return response()->json([
