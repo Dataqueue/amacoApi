@@ -192,8 +192,9 @@ return response()->json($expenses);
     public function show(Expense $expense)
     {
         $data=[];
-        $resultArray[] = explode(',',$expense->payment_account_id);
-        $map=$resultArray->map(
+        $resultArray = explode(',',$expense->payment_account_id);
+        $result=collect($resultArray);
+        $map=$result->map(
             function($items) use($expense) {
                 $pieces = explode(",", $items);
                 return $pieces[1];
