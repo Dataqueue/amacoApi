@@ -97,8 +97,8 @@ return response()->json($expenses);
         }
         $data=[];
         $div_id= $request->utilize_div_id;
-        $arr=collect($request->payment_account_ids);
-        $map = $arr->map(
+        $arr=$request->payment_account_ids;
+        $map[] = $arr->map(
             function($items) use($data) {
                 // $pieces = explode(",", $items);
                   $data['id'] = floatval($items[0]);
@@ -116,7 +116,7 @@ return response()->json($expenses);
                 }
             );
 // Sort the list by value
-            $demo=implode(',',array($map));
+            $demo=implode(',',$map);
            
             // $collection = [1,2,3,4,5];
             // $demo=implode(' ',$collection);
