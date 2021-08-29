@@ -204,7 +204,7 @@ return response()->json($expenses);
         //         return $result;
         //     }
         // );
-        $collection = $resultArray->toArray();
+        // $collection = $resultArray->toArray();
 
         $multiplied = $collection->map(function ($item, $key) {
             return floatval($item) * 2;
@@ -218,7 +218,7 @@ return response()->json($expenses);
             //     }
             //     return $item->column;
             // }),
-           'mapdata'=>$multiplied,
+           'mapdata'=>$resultArray,
             // 'img' => $expense->img(),
             // 'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
