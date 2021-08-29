@@ -52,12 +52,11 @@ return response()->json($expenses);
     // to get all paid expenses
     public function paid()
     {
-        $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->join('divisions','expenses.div_id','divisions.id')->
-        join('divisions as divtable','expenses.utilize_div_id','divtable.id')->select(
-    'divisions.name as paid_from',
-    'divtable.name as paid_towards',
-    'account_categories.name',
-            'expenses.*'
+        $expenses = $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->join('payment_accounts','expenses.utilize_div_id','payment_accounts.id')->select(
+            'payment_accounts.name as paid_from',
+            'payment_accounts.name as paid_towards',
+            'account_categories.name',
+                'expenses.*'
 )->where("status", 'verified')->orderBy('created_at', 'DESC')->get();
         $expenses->map(function ($expense) {
             return $expense->payment_account;
