@@ -210,17 +210,17 @@ return response()->json($expenses);
         //     return floatval($item) * 2;
         // });
         return response()->json([
-            // $expense,
-            // $expense->payment_account,
-            // $expense->column_data->map(function ($item) {
-            //     if (File::exists(public_path($item->value))) {
-            //         $item['file'] = url($item->value);
-            //     }
-            //     return $item->column;
-            // }),
-           'mapdata'=>$map,
-            // 'img' => $expense->img(),
-            // 'referrenceImgUrl' => $expense->referrenceImg(),
+            $expense,
+            $expense->payment_account,
+            $expense->column_data->map(function ($item) {
+                if (File::exists(public_path($item->value))) {
+                    $item['file'] = url($item->value);
+                }
+                return $item->column;
+            }),
+           'mapdata'=>$map->name,
+            'img' => $expense->img(),
+            'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
     }
 
