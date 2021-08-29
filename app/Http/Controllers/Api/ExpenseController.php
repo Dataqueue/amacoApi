@@ -193,12 +193,12 @@ return response()->json($expenses);
     {
         $data=[];
         $resultArray = explode(',',$expense->payment_account_id);
-        // $map=$resultArray->map(
-        //     function($items) use($expense) {
-        //         // $arr=PaymentAccount::where('id',$items[0])->get();
-        //         return $items[0];
-        //     }
-        // );
+        $map=$resultArray->map(
+            function($items) use($expense) {
+                // $arr=PaymentAccount::where('id',$items[0])->get();
+                return $items[0];
+            }
+        );
         return response()->json([
             // $expense,
             // $expense->payment_account,
@@ -208,7 +208,7 @@ return response()->json($expenses);
             //     }
             //     return $item->column;
             // }),
-           'mapdata'=>$resultArray,
+           'mapdata'=>$map,
             // 'img' => $expense->img(),
             // 'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
