@@ -97,7 +97,7 @@ return response()->json($expenses);
         }
         $data=[];
         $div_id= $request->utilize_div_id;
-        $arr=$request->payment_account_ids;
+        $arr=collect($request->payment_account_ids);
       
         
 
