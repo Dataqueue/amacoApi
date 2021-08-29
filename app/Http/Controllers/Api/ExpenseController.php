@@ -194,16 +194,16 @@ return response()->json($expenses);
         $data=[];
         $resultArray = explode(',',$expense->payment_account_id);
         $memebrsInfo = $expense->payment_account_id;
-        // $map=$memebrsInfo->map(
-        //     function($items,$key) use($data) {
+        $map=$resultArray->map(
+            function($items,$key) use($data) {
                
                 
-        //         $result=$account=PaymentAccount::where('id',floatval($items[$key])); 
+                // $result=$account=PaymentAccount::where('id',floatval($items[$key])); 
                 
                 
-        //         return $result;
-        //     }
-        // );
+                return $items;
+            }
+        );
         // $collection =  collect([explode('.',$memebrsInfo)]);
 
         // $multiplied = $collection->map(function ($item, $key) {
