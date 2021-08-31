@@ -7,6 +7,7 @@ use App\Models\Division;
 use App\Models\Expense;
 use App\Models\Receipt;
 use App\Models\PaymentAccount;
+use App\Models\AdvancePayment;
 use Illuminate\Http\Request;
 
 class DivisionController extends Controller
@@ -71,6 +72,7 @@ class DivisionController extends Controller
        
         $divEopenbalance=Expense::where('is_paid',1)->sum('amount');
         $divRopenbalance=Receipt::sum('paid_amount');
+        $divAopenbalance=AdvancePayment::sum('amount');
         $division = PaymentAccount::get();
         $datas=$division->map(function ($item) {
             if($item['div_id'])
@@ -94,7 +96,7 @@ class DivisionController extends Controller
            {
             $item['name']=$item->name;
             $item['id']=$item->id;
-            $item['balance'] = 0.00;
+            $item['balance'] =$divAopenbalance-$divEopenbalance+floatval($item->balance);;
             return $item;
 
            }
