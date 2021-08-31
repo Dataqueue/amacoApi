@@ -64,8 +64,8 @@ class ReceiptController extends Controller
             'received_by' =>$request->received_by,
             'payment_mode' => $request->payment_mode,
             'paid_amount' => $request->paid_amount,
-        ])
-    };
+        ]);
+    }
 
         return response()->json($request, 200);
 
