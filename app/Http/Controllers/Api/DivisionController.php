@@ -97,7 +97,7 @@ class DivisionController extends Controller
             
             $item['name']=$item->name;
             $item['id']=$item->id;
-            $item['balance'] =$divAopenbalance-$divEopenbalance+floatval($item->balance);;
+            $item['balance'] =0.00;
             return $item;
 
            }
