@@ -64,7 +64,7 @@ class ReceiptController extends Controller
             'payment_account_id' => $request->div_id,
             'received_by' =>$request->received_by,
             'payment_mode' => $request->payment_mode,
-            'paid_amount' => $request->paid_amount,
+            'amount' => $request->paid_amount,
         ]);
     }
 
