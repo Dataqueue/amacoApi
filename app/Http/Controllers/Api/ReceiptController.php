@@ -62,7 +62,7 @@ class ReceiptController extends Controller
     {
         $res=AdvancePayment::create([
             'payment_account_id' => $request->div_id,
-            'received_by' =>$request->received_by,
+            'received_by' =>$request->receiver,
             'payment_mode' => $request->payment_mode,
             'amount' => $request->paid_amount,
         ]);
