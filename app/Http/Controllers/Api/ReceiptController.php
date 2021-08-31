@@ -45,7 +45,7 @@ class ReceiptController extends Controller
 
            
         }
-        $recieved_id=paymentAccount::where('div_id',$request->div_id)->select('id')->get();
+        $recieved_id=paymentAccount::where('div_id',$request->div_id)->select('id')->get()->first();
         $id=$recieved_id['id'];
     //     $receipt = Receipt::create(["party_id" => $request->party_id,
     //     "payment_mode" => $request->payment_mode,
