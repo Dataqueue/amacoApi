@@ -72,7 +72,7 @@ class DivisionController extends Controller
        
         $divEopenbalance=Expense::where('is_paid',1)->sum('amount');
         $divRopenbalance=Receipt::sum('paid_amount');
-        $divAopenbalance=AdvancePayment::sum('amount');
+        
         $division = PaymentAccount::get();
         $datas=$division->map(function ($item) {
             if($item['div_id'])
@@ -94,6 +94,8 @@ class DivisionController extends Controller
             }
            else
            {
+            $divEopenbalance=Expense::where('is_paid',1)->where('div_id',$item['div_id'])->sum('amount'); 
+            $divAopenbalance=AdvancePayment::where('user_id',$item['user_id'])->sum('amount');
             $item['name']=$item->name;
             $item['id']=$item->id;
             $item['balance'] =$divAopenbalance-$divEopenbalance+floatval($item->balance);;
