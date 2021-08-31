@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Receipt;
 use App\Models\PaymentAccount;
+use App\Models\AdvancePayment;
 use Illuminate\Support\Facades\File;
 
 use Illuminate\Http\Request;
