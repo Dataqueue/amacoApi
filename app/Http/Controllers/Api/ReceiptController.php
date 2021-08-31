@@ -58,7 +58,7 @@ class ReceiptController extends Controller
         "receiver" => $request->receiver,
     ]);
 
-        return response()->json($id, 200);
+        return response()->json($request, 200);
 
     }
 
