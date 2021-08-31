@@ -45,7 +45,7 @@ class ReceiptController extends Controller
 
            
         }
-        $recieved_id=paymentAccount::where('div_id')->select('id');
+        $recieved_id=paymentAccount::where('div_id',$request->div_id)->get();
         $receipt = Receipt::create(["party_id" => $request->party_id,
         "payment_mode" => $request->payment_mode,
         "narration" => $request->narration,
@@ -55,7 +55,7 @@ class ReceiptController extends Controller
         "div_id" => $request->div_id,
         "bank_id" => $request->bank_id,
         "sender" => $request->sender,
-        "receiver" => $request->receiver?$request->receiver:$recieved_id,
+        "receiver" => $request->receiver?$request->receiver:$recieved_id['div_id'],
     ]);
 
         return response()->json($request->file, 200);
