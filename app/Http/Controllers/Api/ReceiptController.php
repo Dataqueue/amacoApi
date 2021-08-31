@@ -58,7 +58,7 @@ class ReceiptController extends Controller
     //     "receiver" => $request->receiver?$request->receiver:$recieved_id['div_id'],
     // ]);
 
-        return response()->json($recieved_id->div_id, 200);
+        return response()->json($recieved_id->id, 200);
 
     }
 
