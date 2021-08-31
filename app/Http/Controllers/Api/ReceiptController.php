@@ -60,7 +60,7 @@ class ReceiptController extends Controller
     ]);
     if($request->payment_mode=="cash")
     {
-        $res=AdvancePayement::create([
+        $res=AdvancePayment::create([
             'payment_account_id' => $request->div_id,
             'received_by' =>$request->received_by,
             'payment_mode' => $request->payment_mode,
