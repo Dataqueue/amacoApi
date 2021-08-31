@@ -57,6 +57,15 @@ class ReceiptController extends Controller
         "sender" => $request->sender,
         "receiver" => $request->receiver,
     ]);
+    if($request->payment_mode=="cash")
+    {
+        $res=AdvancePayement::create([
+            'payment_account_id' => $request->div_id,
+            'received_by' =>$request->received_by,
+            'payment_mode' => $request->payment_mode,
+            'paid_amount' => $request->paid_amount,
+        ])
+    };
 
         return response()->json($request, 200);
 

@@ -84,14 +84,7 @@ class DivisionController extends Controller
                 $item['balance'] = $divRopenbalance-$divEopenbalance+floatval($item->balance);
                 return $item;
             }
-            if($item['bank_id'])
-            {
-               
-                $item['name']=$item->name;
-                $item['id']=$item->id;
-                $item['balance'] = $item->balance;
-                return $item;
-            }
+            
            else
            {
             
