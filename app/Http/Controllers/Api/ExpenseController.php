@@ -102,31 +102,41 @@ return response()->json($expenses);
 
 
 
-        $sumVal=0;
+        $sumVal=floatval(0);
         $status=false;
 
         $map = $arr->map(
             function($items) use($request,$sumVal,$status) {
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
-                    $sumVal=floatval($sumVal)+floatval($pieces[2]);
-                   if(floatval($sumVal)<=floatval($request->amount))
-                   {
+                   
+                  $sumVal=$sumVal + floatval($pieces[0]);
+
                     if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
                     {
-                   
+                   if($sumVal <= floatval($request->amount))
+                   {
                     AdvancePayment::create([
                         "payment_account_id" => $data['id'],
                         "received_by" => $request->utilize_div_id,
-                        "amount" => floatval($pieces[2]),
+                        "amount" => $sumVal,
                         "payment_mode" => $request->payment_type,
                     ]); 
                     
                    
 
                    
-                  }
-                }
+                    }
+                    else{
+                        AdvancePayment::create([
+                            "payment_account_id" => $data['id'],
+                            "received_by" => $request->utilize_div_id,
+                            "amount" => floatval($pieces[0]),
+                            "payment_mode" => $request->payment_type,
+                        ]);
+                    }
+
+                
                
                 
                  
