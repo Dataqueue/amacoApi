@@ -69,7 +69,7 @@ class DivisionController extends Controller
     {
        
         
-        $division = PaymentAccount::where('id',$id)->get();
+        $division = Division::where('id',$id)->get();
         return response()->json($division);
     }
     public function paidDivision()
