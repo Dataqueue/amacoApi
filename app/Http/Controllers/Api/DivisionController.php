@@ -58,7 +58,7 @@ class DivisionController extends Controller
             // 'contact_id' => $request->contact_id,
         ]);
         $res=PaymentAccount::where('div_id',$request->id)->get();
-        $finalres=PaymentAccount::findOrFail($res['id']);
+        $finalres=PaymentAccount::findOrFail($res->id);
         $finalres->update([
             'name'=>$request->name,
             'balance'=>$request->opening_bal,
