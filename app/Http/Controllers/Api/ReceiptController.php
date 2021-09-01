@@ -136,19 +136,19 @@ class ReceiptController extends Controller
             'receipts.*'
         )->get();
         
-            // return [
+            return [
 
-            //     $receipt->map(function($accountCategory){
-            //     if (File::exists(public_path($accountCategory->file))) {
-            //         $accountCategory['file'] = url($accountCategory->file);
-            //     }
-            //     }),
+                $receipt->map(function($accountCategory){
+                if (File::exists(public_path($accountCategory->file))) {
+                    $accountCategory['file'] = url($accountCategory->file);
+                }
+                }),
                
-            //     'img' => $accountCategory->img(),
-            //     'referrenceImgUrl' => $accountCategory->referrenceImg(),
+                'img' => $accountCategory->img(),
+                'referrenceImgUrl' => $accountCategory->referrenceImg(),
            
-            //     // 'sub_categories' => $this->subCategory($accountCategory->id),
-            // ];
+                // 'sub_categories' => $this->subCategory($accountCategory->id),
+            ];
      
         
         return response()->json([$receipt]);
