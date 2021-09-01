@@ -97,7 +97,7 @@ return response()->json($expenses);
         $data=[];
         $div_id= $request->utilize_div_id;
         $arr=collect($request->payment_account_ids);
-        $sumVal=0;
+        $bal=0;
         
 
 
@@ -105,13 +105,14 @@ return response()->json($expenses);
 
 
         $map = $arr->map(
-            function($items) use($request,$sumVal) {
+            function($items) use($request,$bal) {
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
-                  $sumVal=$sumVal+floatval($pieces[2]);
+
                   if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
                   {
-                      if($sumVal < $request->amount)
+                      $bal=$bal-floatval($pieces[0]);
+                      if($bal>floatval($pieces[0]))
                       {
                     AdvancePayment::create([
                         "payment_account_id" => $data['id'],
@@ -119,16 +120,22 @@ return response()->json($expenses);
                         "amount" => floatval($pieces[2]),
                         "payment_mode" => $request->payment_type,
                     ]); 
-                     }
-                     else
-                     {
+                    }
+                    else
+                    {
                         AdvancePayment::create([
                             "payment_account_id" => $data['id'],
                             "received_by" => $request->utilize_div_id,
-                            "amount" => $sumVal-floatval($pieces[2]),
+                            "amount" => $bal,
                             "payment_mode" => $request->payment_type,
                         ]); 
-                     }
+                    }
+                  }
+                  else{
+                      if(floatval($request->amount)>floatval($pieces[2]))
+                      {
+                            $bal=floatval($request->amount)-floatval($pieces[2]);
+                      }
                   }
                   
                   return $data['id'];
