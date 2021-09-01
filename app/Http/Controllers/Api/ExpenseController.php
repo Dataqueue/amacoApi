@@ -111,7 +111,7 @@ return response()->json($expenses);
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
                    
-                  $sumVal=$sumVal + floatval($pieces[0]);
+                  $sumVal=$sumVal + floatval($pieces[2]);
 
                     if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
                     {
