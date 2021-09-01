@@ -97,7 +97,7 @@ return response()->json($expenses);
         $data=[];
         $div_id= $request->utilize_div_id;
         $arr=collect($request->payment_account_ids);
-      
+        $sum=0;
         
 
 
@@ -105,7 +105,7 @@ return response()->json($expenses);
 
 
         $map = $arr->map(
-            function($items) use($request) {
+            function($items) use($request,$sum) {
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
                   $sum=$sum+floatval($pieces[2]);
