@@ -119,7 +119,7 @@ return response()->json($expenses);
                     AdvancePayment::create([
                         "payment_account_id" => $data['id'],
                         "received_by" => $request->utilize_div_id,
-                        "amount" => $sumVal,
+                        "amount" => floatval($pieces[0]),
                         "payment_mode" => $request->payment_type,
                     ]); 
                     
