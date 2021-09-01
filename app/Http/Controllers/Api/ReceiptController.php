@@ -65,6 +65,7 @@ class ReceiptController extends Controller
             'received_by' =>$request->receiver,
             'payment_mode' => $request->payment_mode,
             'amount' => $request->paid_amount,
+            "received_date" => $request->paid_date,
         ]);
     }
 
