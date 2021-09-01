@@ -97,26 +97,24 @@ return response()->json($expenses);
         $data=[];
         $div_id= $request->utilize_div_id;
         $arr=collect($request->payment_account_ids);
-        $bal=0;
-        $sumVal=0;
+      
         
 
 
 
-
+        $sumVal=0;
+        $status=false;
 
         $map = $arr->map(
-            function($items) use($request,$bal,$sumVal) {
+            function($items) use($request,$sumVal) {
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
                     $sumVal=$sumVal+floatval($pieces[2]);
+                   
                   if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
                   {
-                      if($sumVal<=$request->amount)
-                      {
-                      $bal=floatval($pieces[2])-$bal;
-                      if($bal>floatval($pieces[2]))
-                      {
+                    if($request->amount >= $sumVal)
+                    {
                     AdvancePayment::create([
                         "payment_account_id" => $data['id'],
                         "received_by" => $request->utilize_div_id,
@@ -124,23 +122,21 @@ return response()->json($expenses);
                         "payment_mode" => $request->payment_type,
                     ]); 
                     }
-                    else
+                    if($request->amount < $sumVal && $status==false)
                     {
-                        AdvancePayment::create([
-                            "payment_account_id" => $data['id'],
-                            "received_by" => $request->utilize_div_id,
-                            "amount" => $bal,
-                            "payment_mode" => $request->payment_type,
-                        ]); 
+                    AdvancePayment::create([
+                        "payment_account_id" => $data['id'],
+                        "received_by" => $request->utilize_div_id,
+                        "amount" => $sumVal-$request->amount,
+                        "payment_mode" => $request->payment_type,
+                    ]); 
+                    $status=true;
                     }
-                    }
+
+                   
                   }
-                  else{
-                      if(floatval($request->amount)>floatval($pieces[2]))
-                      {
-                            $bal=floatval($request->amount)-floatval($pieces[2]);
-                      }
-                  }
+                
+                 
                   
                   return $data['id'];
                 }
