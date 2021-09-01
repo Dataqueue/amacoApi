@@ -31,7 +31,7 @@ class CreateExpensesTable extends Migration
             $table->string('bank_ref_no')->nullable();
             $table->string('bank_slip')->nullable();
             $table->string('div_id')->nullable();
-            $table->string('utilize_div_id')->nullable();
+            $table->unsignedBigInteger('utilize_div_id')->nullable();
             $table->string('inv_no')->nullable();
             $table->string('vatno')->nullable();
             $table->string('bank_id')->nullable();

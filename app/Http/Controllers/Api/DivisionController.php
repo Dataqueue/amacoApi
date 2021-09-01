@@ -77,11 +77,13 @@ class DivisionController extends Controller
         $datas=$division->map(function ($item) {
             if($item['div_id'])
             {
-                $divEopenbalance=Expense::where('is_paid',1)->where('div_id',$item['div_id'])->sum('amount'); 
-                $divRopenbalance=Receipt::where('div_id',$item['div_id'])->sum('paid_amount');
+                $divEopenbalance=Expense::where('is_paid',1)->where('utilize_div_id',$item['id'])->sum('amount'); 
+                $accountSum=PaymentAccount::where('id',$item['id'])->sum('balance');
+                $recievedby=AdvancePayment::where('')
+                $divRopenbalance=Receipt::where('div_id',$item['id'])->sum('paid_amount');
                 $item['name']=$item->name;
                 $item['id']=$item->id;
-                $item['balance'] = $divRopenbalance-$divEopenbalance+floatval($item->balance);
+                $item['balance'] = 0.00;
                 return $item;
             }
             
