@@ -57,6 +57,11 @@ class DivisionController extends Controller
             'opening_bal' => $request->opening_bal,
             // 'contact_id' => $request->contact_id,
         ]);
+        PaymentAccount::update([
+            'name'=>$request->name,
+            'balance'=>$request->opening_bal,
+
+        ]);
         // return $contact;
         // return response()->json([$request->json()->all()]);
     }
