@@ -90,10 +90,12 @@ class DivisionController extends Controller
             
            else
            {
-            
+            $accountSum=PaymentAccount::where('id',$item['id'])->sum('balance');
+            $recievedby=AdvancePayment::where('received_by',$item['id'])->sum('amount');
+                $paidby=AdvancePayment::where('payment_account_id',$item['id'])->sum('amount');
             $item['name']=$item->name;
             $item['id']=$item->id;
-            $item['balance'] =0.00;
+            $item['balance'] =$accountSum+$recievedby-$paidby;
             return $item;
 
            }
