@@ -63,7 +63,7 @@ class DivisionController extends Controller
 
         ]);
         // return $contact;
-        // return response()->json([$request->json()->all()]);
+    return response()->json([$request->json()->all()]);
     }
     public function singleDivision($id)
     {
