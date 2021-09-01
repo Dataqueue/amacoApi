@@ -114,7 +114,7 @@ return response()->json($expenses);
                   {
                       if($sumVal<=$request->amount)
                       {
-                      $bal=$bal-floatval($pieces[2]);
+                      $bal=floatval($pieces[2])-$bal;
                       if($bal>floatval($pieces[2]))
                       {
                     AdvancePayment::create([
