@@ -73,7 +73,7 @@ class DivisionController extends Controller
         $divEopenbalance=Expense::where('is_paid',1)->sum('amount');
         $divRopenbalance=Receipt::sum('paid_amount');
         
-        $division = PaymentAccount::get();
+        $division = PaymentAccount::orderBy('type','division','ASC')->get();
         $datas=$division->map(function ($item) {
             if($item['div_id'])
             {
