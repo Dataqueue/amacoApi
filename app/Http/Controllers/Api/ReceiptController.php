@@ -19,7 +19,7 @@ class ReceiptController extends Controller
      */
     public function index()
     {
-        $allReceipt = Receipt::join('payment_accounts','receipts.div_id','payment_accounts.div_id')->select(
+        $allReceipt = Receipt::join('payment_accounts','receipts.div_id','payment_accounts.id')->select(
             'payment_accounts.name as div_name',
             'receipts.*'
         )->get();
