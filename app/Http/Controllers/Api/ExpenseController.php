@@ -114,7 +114,7 @@ return response()->json($expenses);
 
                     if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
                     {
-                   if($sumVal <= floatval($request->amount))
+                   if(floatval($sumVal) <= floatval($request->amount))
                    {
                     AdvancePayment::create([
                         "payment_account_id" => $data['id'],
