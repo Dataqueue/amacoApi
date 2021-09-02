@@ -111,6 +111,7 @@ return response()->json($expenses);
         });
         $status=false;
         $amountVal=$request->amount;
+        $sum = $sumVal->sum();
 
        
 
@@ -203,7 +204,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($sumVal);
+            return response()->json($sum);
         }
         // }
     
