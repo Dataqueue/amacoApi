@@ -196,7 +196,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($arr);
+            return response()->json($map);
         }
         // }
     
