@@ -102,36 +102,36 @@ return response()->json($expenses);
 
 
 
-     $sumVal=$arr->map(
-        function($items)  {
-            $pieces = explode(",", $items);
-              $data['id'] = floatval($pieces[0]);
-              $data['sum'] = floatval($pieces[2]);
-              return $data['sum'];
-        });
+    //  $sumVal=$arr->map(
+    //     function($items)  {
+    //         $pieces = explode(",", $items);
+    //           $data['id'] = floatval($pieces[0]);
+    //           $data['sum'] = floatval($pieces[2]);
+    //           return $data['sum'];
+    //     });
         $status=false;
         $amountVal=$request->amount;
-        $sum = $sumVal->sum();
+        $sum = 0;
 
        
 
-        // $map = $arr->map(
-        //     function($items) use($request,$sumVal,$status,$amountVal) {
-        //         $pieces = explode(",", $items);
-        //           $data['id'] = floatval($pieces[0]);
+        $map = $arr->map(
+            function($items) use($request,$sum,$status,$amountVal) {
+                $pieces = explode(",", $items);
+                  $data['id'] = floatval($pieces[0]);
                  
-        //           $sumVal=floatval($pieces[2])->sum();
+                  $sum=collect(floatval($pieces[2]));
                  
 
-        //             if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
-        //             {
+                    // if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
+                    // {
                 
-        //             AdvancePayment::create([
-        //                 "payment_account_id" => $data['id'],
-        //                 "received_by" => $request->utilize_div_id,
-        //                 "amount" => floatval($pieces[2]),
-        //                 "payment_mode" => $request->payment_type,
-        //             ]); 
+                    // AdvancePayment::create([
+                    //     "payment_account_id" => $data['id'],
+                    //     "received_by" => $request->utilize_div_id,
+                    //     "amount" => floatval($pieces[2]),
+                    //     "payment_mode" => $request->payment_type,
+                    // ]); 
                     
                    
 
@@ -139,15 +139,15 @@ return response()->json($expenses);
                     
                    
 
-        //             }
+                    // }
                
                 
                  
                   
                
-        //         return $data['id'];
-        //         }
-        //     );
+                return $sum->sum();
+                }
+            );
             
            
            
@@ -204,7 +204,7 @@ return response()->json($expenses);
             //         "value" => $column_data_value ? $column_data_value : null,
             //     ]);
             // }
-            return response()->json($sum);
+            return response()->json($map);
         }
         // }
     
