@@ -119,7 +119,7 @@ return response()->json($expenses);
             function($items) use($request,$sum,$status,$amountVal) {
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
-                 
+                 $sum=$sum+4;
                 
                  
 
@@ -145,7 +145,7 @@ return response()->json($expenses);
                  
                   
                
-                return array_sum([floatval($pieces[2])]);
+                return $sum;
                 }
             );
             
