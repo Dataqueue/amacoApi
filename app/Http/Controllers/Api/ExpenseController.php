@@ -103,7 +103,7 @@ return response()->json($expenses);
 
 
      $sumVal=$arr->map(
-        function($items) use($request,$sumVal,$status,$amountVal) {
+        function($items)  {
             $pieces = explode(",", $items);
               $data['id'] = floatval($pieces[0]);
               $data['sum'] = floatval($pieces[0]);
