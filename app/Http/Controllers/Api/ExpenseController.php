@@ -136,7 +136,7 @@ return response()->json($expenses);
                 
                  
                   
-                  return $result;
+                  return $sumVal;
                 //   return $data['id'];
                 }
             );
