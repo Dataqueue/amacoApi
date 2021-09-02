@@ -120,7 +120,7 @@ return response()->json($expenses);
                 $pieces = explode(",", $items);
                   $data['id'] = floatval($pieces[0]);
                  
-                  array_sum([23,14,45]);
+                  array_sum(floatval($pieces[2]));
                  
 
                     // if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
@@ -145,7 +145,7 @@ return response()->json($expenses);
                  
                   
                
-                return array_sum([23,14,45]);
+                return array_sum(floatval($pieces[2]));
                 }
             );
             
