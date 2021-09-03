@@ -89,7 +89,7 @@ class UserController extends Controller
 
         }
        
-     return response()->json($division);
+     return response()->json($user);
     }
 
     /**
