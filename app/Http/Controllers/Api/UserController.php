@@ -70,6 +70,7 @@ class UserController extends Controller
                 'name' => $user->nick_name,
                 'type' => 'personal',
                 'user_id' => $user->id,
+                'balance' => 0,
             ]);
             
             foreach ($division as $div) {
