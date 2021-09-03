@@ -65,29 +65,29 @@ class UserController extends Controller
             'prefix' => $request->prefix,
         ]);
          $division = json_decode($request['divisions'], true);
-        if($user){
-                PaymentAccount::create([
-                'name' => $user->nick_name,
-                'type' => 'personal',
-                'user_id' => $user->id,
-                'balance' => 0,
-            ]);
+        // if($user){
+        //         PaymentAccount::create([
+        //         'name' => $user->nick_name,
+        //         'type' => 'personal',
+        //         'user_id' => $user->id,
+        //         'balance' => 0,
+        //     ]);
             
-            foreach ($division as $div) {
+        //     foreach ($division as $div) {
 
-                if($div['check']==true)
-                {
-                 UserDivision::create([
-                    'u_id' => $user->id,
-                    'div_id'=>$div['id']
-                ]);
-                // return response()->json($div['check']);
-                }
+        //         if($div['check']==true)
+        //         {
+        //          UserDivision::create([
+        //             'u_id' => $user->id,
+        //             'div_id'=>$div['id']
+        //         ]);
+        //         // return response()->json($div['check']);
+        //         }
             
-            }
+        //     }
             
 
-        }
+        // }
        
      return response()->json($user);
     }
