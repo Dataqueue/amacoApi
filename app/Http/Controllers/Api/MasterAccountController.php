@@ -136,7 +136,9 @@ class MasterAccountController extends Controller
                 $item['user_name']=$item->nick_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
-                $item['description'] = $item->cat_name;
+                $item['description'] = $item->description;
+                $item['paid_to'] = $item->paid_to;
+                $item['cat_name'] = $item->cat_name;
                 $item['credit'] = floatval(str_replace(",","",$item->amount));
                 $item['po_number'] = $item->po_number;
                 $item['debit'] = null;
