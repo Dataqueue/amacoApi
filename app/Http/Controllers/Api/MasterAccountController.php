@@ -134,7 +134,7 @@ class MasterAccountController extends Controller
             if ($item->amount) {
                 $item['div_name']=$item->div_name;
                 $item['user_name']=$item->nick_name;
-                $item['div_id']=$item->utilized_div_id;
+                $item['div_id']=56;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
                 $item['description'] = $item->description;
