@@ -68,6 +68,7 @@ class UserController extends Controller
         if($user){
                 PaymentAccount::create([
                 'name' => $user->nick_name,
+                'type' => 'personal',
                 'user_id' => $user->id,
             ]);
             
