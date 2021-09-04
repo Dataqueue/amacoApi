@@ -33,8 +33,8 @@ class UserController extends Controller
             }
         });
         return (
-            // $users;
-            $users->division
+            $users
+            // $users->division
         );
     }
 
