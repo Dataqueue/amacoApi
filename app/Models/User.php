@@ -42,6 +42,11 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(Role::class);
     }
+    public function divisions()
+    {
+        return $this->belongsTo(UserDivision::class);
+    }
+
 
     public function getJWTIdentifier()
     {
