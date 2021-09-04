@@ -71,6 +71,8 @@ class AdvancePaymentController extends Controller
             'narration' => $request->narration,
             'check_no' => $request->check_no,
             'bank_id' => $request->bank_id?$request->bank_id:null,
+            'received_date' => $request->paid_date,
+            
             
             // 'contact_id' => $request->contact_id,
         ]);
