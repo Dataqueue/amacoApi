@@ -119,7 +119,7 @@ class MasterAccountController extends Controller
 
         $receiptCollection = new Collection();
         if($request->from_date){
-            $receiptCollection = Receipt::join('payment_accounts','receipts.div_id','payment_accounts.id')->select('payment_accounts.name as div_name','receipts.*')->whereBetween('receipts.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
+            $receiptCollection = Receipt::join('payment_accounts','receipts.div_id','payment_accounts.id')->join('parties','parties.id','receipts.party_id')->select('payment_accounts.name as div_name','receipts.*','parties.firm_name as paid_to')->whereBetween('receipts.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
             $divRopenbalance=Receipt::whereDate('created_at','<=' ,date('Y-m-d H:i:s', strtotime($request->from_date)))->sum('paid_amount');
         }else{
             $receiptCollection = Receipt::all();
