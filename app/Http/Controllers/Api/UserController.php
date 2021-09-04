@@ -102,8 +102,10 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(User $user)
-    {
+    {   
+        $division=$user->join('user_divisions','user_divisions.u_id',$user->id);
         $user['role_name'] = $user->role->name;
+        $user['division']=$division;
 
         return response()->json($user);
     }
