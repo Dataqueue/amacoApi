@@ -103,7 +103,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {   
-        $division=$user->join('user_divisions','user_divisions.u_id',$user->id);
+        $division=$user->join('user_divisions','user_divisions.u_id',$user->id)->get();
         $user['role_name'] = $user->role->name;
         $user['division']=$division;
 
