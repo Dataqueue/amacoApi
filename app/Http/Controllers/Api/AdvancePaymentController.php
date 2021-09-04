@@ -102,6 +102,8 @@ class AdvancePaymentController extends Controller
             'payment_mode' => $request->payment_mode,
             'bank_id' => $request->bank_id?$request->bank_id:'',
             'received_by' => $request->received_by?$request->received_by:'',
+            'received_date' => $request->received_date,
+            
             
         
             
