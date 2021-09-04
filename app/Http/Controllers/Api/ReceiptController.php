@@ -102,18 +102,18 @@ class ReceiptController extends Controller
 
            
         // }
-        // $receipt->update([
-        //     'party_id' => $request->party_id,
-        //     'paid_amount' => $request->paid_amount,
-        //     'div_id' => $request->div_id,
-        //     'narration' => $request->narration,
-        //     'check_no' => $request->check_no,
-        //     'bank_id' => $request->bank_id,
-        //     // 'file' => $filePath,
+        $receipt->update([
+            'party_id' => $request->party_id,
+            'paid_amount' => $request->paid_amount,
+            'div_id' => $request->div_id,
+            'narration' => $request->narration,
+            'check_no' => $request->check_no,
+            'bank_id' => $request->bank_id,
+            // 'file' => $filePath,
         
             
-        //     // 'contact_id' => $request->contact_id,
-        // ]);
+            // 'contact_id' => $request->contact_id,
+        ]);
         return response()->json($receipt);
     }
 
@@ -179,6 +179,7 @@ class ReceiptController extends Controller
             'bank_id' => $request->bank_id,
             "sender" => $request->sender,
             "receiver" => $request->receiver,
+            "paid_date" => $request->paid_date,
             // 'file' => $filePath,
         
             
