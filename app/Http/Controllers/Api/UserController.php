@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::join('user_divisions','user_division.user_id','user.id')->get();
+        $users = User::all();
         $users->map(function($user){
             if ($user->role){
                 $user['role_name'] = $user->role->name;

@@ -14,6 +14,7 @@ class UserDivision extends Model
     {
         return $this->hasMany('App\Models\User');
     }
+    
 
     public function division()
     {

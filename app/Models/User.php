@@ -42,9 +42,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->belongsTo(Role::class);
     }
-    public function divisions()
+    
+    public function division()
     {
-        return $this->belongsTo(UserDivision::class);
+        return $this->hasMany('App\Models\division');
     }
 
 
