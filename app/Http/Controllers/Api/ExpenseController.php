@@ -181,7 +181,7 @@ return response()->json($expenses);
                 ]);
             }
             $maps = $arr->map(
-                function($items) use($request,$sumVal,$status,$amountVal) {
+                function($items) use($expense,$request,$sumVal,$status,$amountVal) {
                     $pieces = explode(",", $items);
                       $data['id'] = floatval($pieces[0]);
                       
