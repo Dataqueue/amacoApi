@@ -226,6 +226,7 @@ return response()->json($expenses);
         // });
         return response()->json([
             $expense,
+            $map,
             $expense->payment_account,
             $expense->column_data->map(function ($item) {
                 if (File::exists(public_path($item->value))) {
