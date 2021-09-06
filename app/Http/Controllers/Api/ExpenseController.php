@@ -196,7 +196,7 @@ return response()->json($expenses);
                             "amount" => floatval($pieces[2]),
                             "payment_mode" => $request->payment_type,
                             "expense_id" => $expense->id,
-                            "paid_date" => $request->paid_date,
+                            'received_date' => $request->paid_date,
                         ]); 
                         
                        
