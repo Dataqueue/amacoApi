@@ -213,10 +213,10 @@ return response()->json($expenses);
             function($items,$key) use($data) {
                
                 
-                $result=PaymentAccount::where('id',floatval($items))->get(); 
                 
                 
-                return $result;
+                
+                return $items;
             }
         );
         // $collection =  collect([explode('.',$memebrsInfo)]);
@@ -233,7 +233,7 @@ return response()->json($expenses);
                 }
                 return $item->column;
             }),
-        //    'mapdata'=>$map,
+            'mapdata'=>$map,
             'img' => $expense->img(),
             'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
