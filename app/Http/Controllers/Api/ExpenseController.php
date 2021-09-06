@@ -226,7 +226,6 @@ return response()->json($expenses);
         // });
         return response()->json([
             $expense,
-            $map,
             $expense->payment_account,
             $expense->column_data->map(function ($item) {
                 if (File::exists(public_path($item->value))) {
@@ -308,6 +307,54 @@ return response()->json($expenses);
             ]);
             return $lastInsertedId= $account->id;
         }
+        $data=[];
+        $div_id= $request->utilize_div_id;
+        $arr=collect($request->payment_account_ids);
+      
+        
+
+
+
+        $sumVal=floatval(0);
+        $status=false;
+        $amountVal=$request->amount;
+
+        $map = $arr->map(
+            function($items) use($request,$sumVal,$status,$amountVal) {
+                $pieces = explode(",", $items);
+                  $data['id'] = floatval($pieces[0]);
+                  
+                 
+
+                    if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
+                    {
+                  
+                    AdvancePayment::create([
+                        "payment_account_id" => $data['id'],
+                        "received_by" => $request->utilize_div_id,
+                        "amount" => floatval($pieces[2]),
+                        "payment_mode" => $request->payment_type,
+                    ]); 
+                    
+                   
+
+                   
+                    }
+                   
+
+                   
+               
+                
+                 
+                  
+                  return $data['id'];
+                }
+            );
+            
+           
+            // $collection = [1,2,3,4,5];
+             $demo=$map->toArray();
+             $test=implode(',',$demo);
           
           $expense= Expense::where('id',$request->id)->update([
             'created_by' => $request->created_by,
@@ -317,7 +364,7 @@ return response()->json($expenses);
             'payment_type' => $request->payment_type,
             'check_no' => $request->cheque_no,
             'transaction_id' => $request->transaction_id,
-            'payment_account_id' => $request->payment_account_id?$request->payment_account_id:null,
+            'payment_account_id' => $test,
             'description' => $request->description?$request->description:" ",
             // 'referrence_bill_no' => $request->referrence_bill_no,
             'tax' => $request->tax,
