@@ -193,6 +193,33 @@ return response()->json($expenses);
                     "value" => $column_data_value ? $column_data_value : null,
                 ]);
             }
+
+            $maparr = $arr->map(
+                function($items) use($expense,$request,$sumVal,$status,$amountVal) {
+                    $pieces = explode(",", $items);
+                      $data['id'] = floatval($pieces[0]);
+                      
+                     
+    
+                        if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
+                        {
+                      
+                        AdvancePayment::create([
+                            "payment_account_id" => $data['id'],
+                            "received_by" => $request->utilize_div_id,
+                            "amount" => floatval($pieces[2]),
+                            "payment_mode" => $request->payment_type,
+                            "expense_id" => $expense->id,
+                        ]); 
+                        
+                       
+    
+                       
+                        } 
+                      
+                      return $data['id'];
+                    }
+                );
             return response()->json($test);
         }
         // }
