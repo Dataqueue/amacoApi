@@ -213,7 +213,7 @@ return response()->json($expenses);
             function($items,$key) use($data) {
                
                 
-                $result=PaymentAccount::where('id',floatval($items['id']))->get(); 
+                // $result=PaymentAccount::where('id',$items['id'])->get(); 
                 
                 
                 return $result;
