@@ -213,10 +213,10 @@ return response()->json($expenses);
             function($items,$key) use($data) {
                
                 
+                $result=Paymentaccount::where('id',floatval($items))->get();
                 
                 
-                
-                return floatval($items);
+                return $result;
             }
         );
         // $collection =  collect([explode('.',$memebrsInfo)]);
