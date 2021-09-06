@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Expense;
 use App\Models\Party;
 use App\Models\Division;
+use App\Models\PaymentAccount;
 use App\Models\Receipt;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
