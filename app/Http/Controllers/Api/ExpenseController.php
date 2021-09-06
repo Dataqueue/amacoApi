@@ -216,7 +216,7 @@ return response()->json($expenses);
                 
                 
                 
-                return int($items[0]);
+                return floatval($items[0]);
             }
         );
         // $collection =  collect([explode('.',$memebrsInfo)]);
