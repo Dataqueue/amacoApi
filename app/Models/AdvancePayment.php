@@ -18,7 +18,7 @@ class AdvancePayment extends Model
     // }
     public function receivedBy()
     {
-        return $this->hasOne(PaymentAccount::class, 'id','received_by');
+        return $this->hasOne(PaymentAccount::class, 'id','payment_account_id');
     }
    
     public function referrenceImg()
