@@ -339,7 +339,7 @@ return response()->json($expenses);
         $sumVal=floatval(0);
         $status=false;
         $amountVal=$request->amount;
-        // $res=AdvancePayment::where('expense_id',$request->id)->delete();
+        $res=AdvancePayment::where('expense_id',$request->id)->delete();
 
         $map = $arr->map(
             function($items) use($request,$sumVal,$status,$amountVal) {
