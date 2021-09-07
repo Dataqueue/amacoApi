@@ -328,7 +328,6 @@ return response()->json($expenses);
             ]);
             return $lastInsertedId= $account->id;
         }
-        $res=AdvancePayment::where('expense_id',$request->id)->delete();
         $data=[];
         $div_id= $request->utilize_div_id;
         $arr=collect($request->payment_account_ids);
@@ -351,7 +350,7 @@ return response()->json($expenses);
 
                     if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
                     {
-                  
+                    $res=AdvancePayment::where('expense_id',$request->id)->delete();
                     AdvancePayment::create([
                         "payment_account_id" => $data['id'],
                         "received_by" => $request->utilize_div_id,
