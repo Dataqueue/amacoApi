@@ -12,10 +12,10 @@ class AdvancePayment extends Model
 
     protected $guarded = [];
 
-    // public function paymentAccount()
-    // {
-    //     return $this->hasOne(PaymentAccount::class, 'id','payment_account_id');
-    // }
+    public function receivedBy()
+    {
+        return $this->hasOne(PaymentAccount::class, 'id','received_by');
+    }
     public function paymentAccount()
     {
         return $this->hasOne(PaymentAccount::class, 'id','payment_account_id');
