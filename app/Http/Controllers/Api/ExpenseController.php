@@ -347,29 +347,6 @@ return response()->json($expenses);
                   $data['id'] = floatval($pieces[0]);
                   
                  
-
-                    if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
-                    {
-                  
-                    AdvancePayment::create([
-                        "payment_account_id" => $data['id'],
-                        "received_by" => $request->utilize_div_id,
-                        "amount" => floatval($pieces[2]),
-                        "payment_mode" => $request->payment_type,
-                        "paid_date" => $request->paid_date,
-                        "expense_id" => $request->id,
-                    ]); 
-                    
-                   
-
-                   
-                    }
-                   
-
-                   
-               
-                
-                 
                   
                   return $data['id'];
                 }
@@ -380,61 +357,88 @@ return response()->json($expenses);
              $demo=$map->toArray();
              $test=implode(',',$demo);
           
-          $expense= Expense::where('id',$request->id)->update([
-            'created_by' => $request->created_by,
-            'paid_date' => $request->paid_date,
-            'paid_to' => $request->paid_to?$request->paid_to:" ",
-            'amount' => $request->amount,
-            'payment_type' => $request->payment_type,
-            'check_no' => $request->cheque_no,
-            'transaction_id' => $request->transaction_id,
-            'payment_account_id' => $test,
-            'description' => $request->description?$request->description:" ",
-            // 'referrence_bill_no' => $request->referrence_bill_no,
-            'tax' => $request->tax,
-            'status' => $request->status,
-            // 'paid_by' => $request->payment_account_id?$request->payment_account_id:null,
-            'bank_ref_no' => $request->bank_ref_no,
-            // 'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
-            // 'bank_slip' =>  $path ,
-            "account_category_id" => $request->account_category_id,
-            "company_name" => $request->company_name ? $request->company_name : " ",
-            "company" => $request->company?$request->company:" ",
-                "vatno" => $request->vatno?$request->vatno:" ",
-                "inv_no" => $request->inv_no?$request->inv_no:" ",
-                "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" ",
-                "div_id" => $request->div_id,
+        //   $expense= Expense::where('id',$request->id)->update([
+        //     'created_by' => $request->created_by,
+        //     'paid_date' => $request->paid_date,
+        //     'paid_to' => $request->paid_to?$request->paid_to:" ",
+        //     'amount' => $request->amount,
+        //     'payment_type' => $request->payment_type,
+        //     'check_no' => $request->cheque_no,
+        //     'transaction_id' => $request->transaction_id,
+        //     'payment_account_id' => $test,
+        //     'description' => $request->description?$request->description:" ",
+        //     // 'referrence_bill_no' => $request->referrence_bill_no,
+        //     'tax' => $request->tax,
+        //     'status' => $request->status,
+        //     // 'paid_by' => $request->payment_account_id?$request->payment_account_id:null,
+        //     'bank_ref_no' => $request->bank_ref_no,
+        //     // 'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
+        //     // 'bank_slip' =>  $path ,
+        //     "account_category_id" => $request->account_category_id,
+        //     "company_name" => $request->company_name ? $request->company_name : " ",
+        //     "company" => $request->company?$request->company:" ",
+        //         "vatno" => $request->vatno?$request->vatno:" ",
+        //         "inv_no" => $request->inv_no?$request->inv_no:" ",
+        //         "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" ",
+        //         "div_id" => $request->div_id,
          
-            'bank_id' => $request->bank_id?$request->bank_id:null,
+        //     'bank_id' => $request->bank_id?$request->bank_id:null,
 
-        ]);
+        // ]);
         
         
-        $res=ColumnData::where('expense_id',$request->id)->delete();
-        $tempArray = (array) json_decode($request->data, true);
-         foreach ($tempArray as $column_data_) {
-        $column_data = $column_data_;
+        // $res=ColumnData::where('expense_id',$request->id)->delete();
+        // $tempArray = (array) json_decode($request->data, true);
+        //  foreach ($tempArray as $column_data_) {
+        // $column_data = $column_data_;
 
-        $column_type = $column_data['type'];
-            if ($column_type != 'file') {
-                $column_data_value = $column_data[$column_type];
-            }
-            $tempFile = "file" . $column_data['id'];
-            if ($request->file($tempFile)) {
-                $column_data_value = $request->file($tempFile)->move('expenses/files', $request->file($tempFile)->getClientOriginalName());
-            }
+        // $column_type = $column_data['type'];
+        //     if ($column_type != 'file') {
+        //         $column_data_value = $column_data[$column_type];
+        //     }
+        //     $tempFile = "file" . $column_data['id'];
+        //     if ($request->file($tempFile)) {
+        //         $column_data_value = $request->file($tempFile)->move('expenses/files', $request->file($tempFile)->getClientOriginalName());
+        //     }
             
 
-            ColumnData::create([
-                "expense_id" => $request->id,
-                "column_id" => $column_data['column_id'],
-                "value" => $column_data_value ? $column_data_value : null,
-            ]);
+        //     ColumnData::create([
+        //         "expense_id" => $request->id,
+        //         "column_id" => $column_data['column_id'],
+        //         "value" => $column_data_value ? $column_data_value : null,
+        //     ]);
             
            
         
-        }
-        return response()->json($tempArray);
+        // }
+        // $maps = $arr->map(
+        //     function($items) use($expense,$request,$sumVal,$status,$amountVal) {
+        //         $pieces = explode(",", $items);
+        //           $data['id'] = floatval($pieces[0]);
+                  
+                 
+
+        //             if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
+        //             {
+                  
+        //             AdvancePayment::create([
+        //                 "payment_account_id" => $data['id'],
+        //                 "received_by" => $request->utilize_div_id,
+        //                 "amount" => floatval($pieces[2]),
+        //                 "payment_mode" => $request->payment_type,
+        //                 "expense_id" => $expense->id,
+        //                 'received_date' => $request->paid_date,
+        //             ]); 
+                    
+                   
+
+                   
+        //             }
+                  
+        //           return $data['id'];
+        //         }
+        //     );
+        return response()->json($test);
        
         
     }
