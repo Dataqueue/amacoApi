@@ -16,7 +16,7 @@ class AdvancePayment extends Model
     // {
     //     return $this->hasOne(PaymentAccount::class, 'id','payment_account_id');
     // }
-    public function receivedBy()
+    public function paymentAccount()
     {
         return $this->hasOne(PaymentAccount::class, 'id','payment_account_id');
     }
