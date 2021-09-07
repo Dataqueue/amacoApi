@@ -319,6 +319,7 @@ return response()->json($expenses);
                 "bank_slip" => $request->file('bank_slip') ? $bank_slip_path : null,
             ]);
         }
+        $res=AdvancePayment::where('expense_id',$request->id)->delete();
           $expenseId = Expense::findOrfail($request->id);
          
           if($request->payeename){
@@ -339,7 +340,7 @@ return response()->json($expenses);
         $sumVal=floatval(0);
         $status=false;
         $amountVal=$request->amount;
-        $res=AdvancePayment::where('expense_id',$request->id)->delete();
+        
 
         $map = $arr->map(
             function($items) use($request,$sumVal,$status,$amountVal) {
