@@ -320,7 +320,7 @@ return response()->json($expenses);
             ]);
         }
           $expenseId = Expense::findOrfail($request->id);
-          $res=AdvancePayment::where('expense_id',$request->id)->delete();
+         
           if($request->payeename){
             $account=PaymentAccount::create([
             'name' => $user->name,
@@ -328,6 +328,7 @@ return response()->json($expenses);
             ]);
             return $lastInsertedId= $account->id;
         }
+        $res=AdvancePayment::where('expense_id',$request->id)->delete();
         $data=[];
         $div_id= $request->utilize_div_id;
         $arr=collect($request->payment_account_ids);
