@@ -17,7 +17,10 @@ class PaymentAccount extends Model
     {
         return $this->belongsTo(Expense::class);
     }
-
+    public function receivedBy()
+    {
+        return $this->hasOne(PaymentAccount::class, 'id','received_by');
+    }
     public function advanceAccount()
     {
         return $this->belongsTo(AdvancePayment::class);
