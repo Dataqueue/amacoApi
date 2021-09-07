@@ -14,7 +14,7 @@ class AdvancePayment extends Model
 
     public function paymentAccount()
     {
-        return $this->hasOne(PaymentAccount::class, 'id','payment_account_id');
+        return $this->hasMany(PaymentAccount::class, 'id','payment_account_id');
     }
    
     public function referrenceImg()
