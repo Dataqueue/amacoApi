@@ -435,7 +435,7 @@ return response()->json($expenses);
            
         
         }
-        return response()->json($tempArray);
+        return response()->json($request->payment_account_ids);
        
         
     }
