@@ -347,6 +347,29 @@ return response()->json($expenses);
                   $data['id'] = floatval($pieces[0]);
                   
                  
+
+                    if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
+                    {
+                  
+                    AdvancePayment::create([
+                        "payment_account_id" => $data['id'],
+                        "received_by" => $request->utilize_div_id,
+                        "amount" => floatval($pieces[2]),
+                        "payment_mode" => $request->payment_type,
+                        "paid_date" => $request->paid_date,
+                        "expense_id" => $request->id,
+                    ]); 
+                    
+                   
+
+                   
+                    }
+                   
+
+                   
+               
+                
+                 
                   
                   return $data['id'];
                 }
@@ -411,34 +434,7 @@ return response()->json($expenses);
            
         
         }
-        $maps = $arr->map(
-            function($items) use($expense,$request,$sumVal,$status,$amountVal) {
-                $pieces = explode(",", $items);
-                  $data['id'] = floatval($pieces[0]);
-                  
-                 
-
-                    if(floatval($request->utilize_div_id)!==floatval($pieces[0]))
-                    {
-                  
-                    AdvancePayment::create([
-                        "payment_account_id" => $data['id'],
-                        "received_by" => $request->utilize_div_id,
-                        "amount" => floatval($pieces[2]),
-                        "payment_mode" => $request->payment_type,
-                        "expense_id" => $expense->id,
-                        'received_date' => $request->paid_date,
-                    ]); 
-                    
-                   
-
-                   
-                    }
-                  
-                  return $data['id'];
-                }
-            );
-        return response()->json($test);
+        return response()->json($tempArray);
        
         
     }
