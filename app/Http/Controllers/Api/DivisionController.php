@@ -91,7 +91,7 @@ class DivisionController extends Controller
                 $item['name']=$item->name;
                 $item['id']=$item->id;
                 $item['balance'] = ($accountSum+$divRopenbalance+$recievedby)-($paidby+$divEopenbalance);
-                dd( $item['balance']);
+                
                 return $item;
             }
             
