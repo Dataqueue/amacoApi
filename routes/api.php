@@ -161,7 +161,7 @@ Route::post('updateAdvancePay', [AdvancePaymentController::class, 'updateAdvance
 Route::post('masterstatement', [MasterAccountController::class, 'masterStatement']);
 Route::post('all-account-masterstatement', [MasterAccountController::class, 'allAccountmasterStatement']);
 Route::get('paidDivision', [DivisionController::class, 'paidDivision']);
-// Route::post('all-account-masterstatementvbbbbbbb', [MasterAccountController::class, 'allAccountmasterStatement']);
+ Route::post('all-account-masterstatementvbbbbbbb', [MasterAccountController::class, 'allAccountmasterStatement']);
 
 
 
