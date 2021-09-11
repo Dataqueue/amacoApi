@@ -47,7 +47,10 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->hasMany('App\Models\division');
     }
-
+    public function userdivision()
+    {
+        return $this->belongsTo(user_divisions::class);
+    }
 
     public function getJWTIdentifier()
     {

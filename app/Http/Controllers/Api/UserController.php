@@ -103,9 +103,10 @@ class UserController extends Controller
      */
     public function show(User $user)
     {   
-        $division=User::join('user_divisions','user_divisions.u_id','users.id')->where('users.id',$user->id)->get();
+        // $division=User::join('user_divisions','user_divisions.u_id','users.id')->where('users.id',$user->id)->get();
         $user['role_name'] = $user->role->name;
-        $user['division']=$division;
+        $user['division']=$user->userdivision;
+        
 
         return response()->json($user);
     }
