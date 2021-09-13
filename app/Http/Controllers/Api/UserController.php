@@ -108,8 +108,8 @@ class UserController extends Controller
     {   
         // $division=User::join('user_divisions','user_divisions.u_id','users.id')->where('users.id',$user->id)->get();
         $user['role_name'] = $user->role->name;
-        
-        // $user['division']=$user->userdivision;
+       
+        $user['division']=$user->userdivision;
         
 
         return response()->json($user);
