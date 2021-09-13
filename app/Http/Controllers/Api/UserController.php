@@ -26,6 +26,7 @@ class UserController extends Controller
         $users->map(function($user){
             if ($user->role){
                 $user['role_name'] = $user->role->name;
+                $user['division']=$users->userdivision;
                 
                 
             }else{
@@ -34,6 +35,7 @@ class UserController extends Controller
         });
         return (
             $users
+           
             // $users->division
         );
     }
@@ -105,6 +107,7 @@ class UserController extends Controller
     {   
         // $division=User::join('user_divisions','user_divisions.u_id','users.id')->where('users.id',$user->id)->get();
         $user['role_name'] = $user->role->name;
+        
         // $user['division']=$user->userdivision;
         
 
