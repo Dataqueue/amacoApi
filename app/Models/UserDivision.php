@@ -14,11 +14,11 @@ class UserDivision extends Model
     {
         return $this->hasMany('App\Models\User');
     }
-    public function users()
+    
+    public function userdivision()
     {
-        return $this->belongsTo(UserDivision::class);
+        return $this->hasMany(UserDivision::class,'id','u_id');
     }
-
     
 
     public function division()
