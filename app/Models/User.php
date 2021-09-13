@@ -49,7 +49,7 @@ class User extends Authenticatable implements JWTSubject
     }
     public function userdivision()
     {
-        return $this->belongsToMany(UserDivision::class, 'id','u_id');
+        return $this->belongsToMany(UserDivision::class);
     }
 
     public function getJWTIdentifier()
