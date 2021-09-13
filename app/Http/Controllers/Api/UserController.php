@@ -112,7 +112,7 @@ class UserController extends Controller
         // $user['division']=$user->userdivision;
         
 
-        return response()->json($user,$user->userdivision);
+        return response()->json($user);
     }
 
     /**
