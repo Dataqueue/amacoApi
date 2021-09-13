@@ -26,7 +26,7 @@ class UserController extends Controller
         $users->map(function($user){
             if ($user->role){
                 $user['role_name'] = $user->role->name;
-                $user['division']=$user->userdivision;
+                // $user['division']=$user->userdivision;
                 $user['divisions']=$user->users;
                 
                 
@@ -112,7 +112,7 @@ class UserController extends Controller
         // $user['division']=$user->userdivision;
         
 
-        return response()->json($user);
+        return response()->json($user,$user->userdivision);
     }
 
     /**
