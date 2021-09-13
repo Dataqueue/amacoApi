@@ -23,11 +23,12 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
+        // $div=$users->UserDivision;
         $users->map(function($user){
             if ($user->role){
                 $user['role_name'] = $user->role->name;
                 // $user['division']=$user->userdivision;
-                $user['divisions']=$user->users;
+                $user['divisions']=$users->UserDivision;
                 
                 
             }else{
