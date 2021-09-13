@@ -161,7 +161,7 @@ class UserController extends Controller
             
             }
         }
-            User::update([
+            $user->update([
             "name"=> $request->name,
             "nick_name"=> $request->nick_name,
             "email"=> $request->email,
