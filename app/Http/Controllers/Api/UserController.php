@@ -144,7 +144,22 @@ class UserController extends Controller
             }
             $payment_account->update([
                 'name'=>$request->nick_name,
+
             ]);
+            $res=UserDivision::where('u_id',$request->id)->delete();
+            $division = json_decode($request['divisions'], true);
+            foreach ($division as $div) {
+
+                if($div['check']==true)
+                {
+                 UserDivision::create([
+                    'u_id' => $user->id,
+                    'div_id'=>$div['id']
+                ]);
+                // return response()->json($div['check']);
+                }
+            
+            }
         }
         $user->update($request->all());
 
