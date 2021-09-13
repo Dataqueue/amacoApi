@@ -28,7 +28,7 @@ class UserController extends Controller
             if ($user->role){
                 $user['role_name'] = $user->role->name;
                 // $user['division']=$user->userdivision;
-                $user['divisions']=Division::all();
+                $user['divisions']=UserDivision::where('id',$user->id)->get();
                 
                 
             }else{
