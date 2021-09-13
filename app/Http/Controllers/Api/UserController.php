@@ -137,6 +137,7 @@ class UserController extends Controller
         }else{
             $request['password'] = $user->password;
         }
+        $res=UserDivision::where('u_id',$request->id)->delete();
         if($request->name){
             $payment_account = PaymentAccount::where('user_id',$user->id)->first();
             if(!$payment_account){
@@ -146,7 +147,7 @@ class UserController extends Controller
                 'name'=>$request->nick_name,
 
             ]);
-            $res=UserDivision::where('u_id',$request->id)->delete();
+           
             $division = json_decode($request['divisions'], true);
             foreach ($division as $div) {
 
