@@ -26,7 +26,7 @@ class UserController extends Controller
         $users->map(function($user){
             if ($user->role){
                 $user['role_name'] = $user->role->name;
-                $user['division']=$users->userdivision;
+                $user['division']=$user->userdivision;
                 
                 
             }else{
