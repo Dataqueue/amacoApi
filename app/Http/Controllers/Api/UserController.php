@@ -137,7 +137,7 @@ class UserController extends Controller
         }else{
             $request['password'] = $user->password;
         }
-        $res=UserDivision::where('u_id',$request->id)->delete();
+        $res=UserDivision::where('u_id',$user->id)->delete();
         if($request->name){
             $payment_account = PaymentAccount::where('user_id',$user->id)->first();
             if(!$payment_account){
