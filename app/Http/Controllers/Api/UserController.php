@@ -161,7 +161,17 @@ class UserController extends Controller
             
             }
         }
-        $user->update($request->all());
+        $user = User::update([
+            "name"=> $request->name,
+            "nick_name"=> $request->nick_name,
+            "email"=> $request->email,
+            "contact"=> $request->contact,
+            "password"=> bcrypt($request->password),
+            "role_id"=> $request->role_id,
+            'remember_token' => Str::random(10),
+            'designation' => $request->designation,
+            'prefix' => $request->prefix,
+        ]);
 
 
         return response()->json($user);
