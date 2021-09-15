@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->string('designation')->nullable();
             $table->string('prefix')->nullable();
             $table->rememberToken()->nullable();
+            $table->string('status');
             $table->timestamps();
         });
     }
