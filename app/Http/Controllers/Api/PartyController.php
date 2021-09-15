@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Party;
 use App\Models\Product;
+use App\Models\party_division;
 use App\Models\Contact;
 use App\Models\PartyBank;
 use App\Models\ProductPrice;
@@ -89,6 +90,15 @@ class PartyController extends Controller
 
         if ($party->party_code == null) {
             $party->update(['party_code' => 'AMCT-PC-' . sprintf('%05d', $party->id)]);
+        }
+        foreach ($party->division as $div) {
+
+            $contact = party_division::create([
+                'party_id' => $party->id,
+                'div_id' => $div['id']
+                
+    
+            ]); 
         }
 
         return response()->json([$party, $contact], 200);
