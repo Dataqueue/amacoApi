@@ -217,7 +217,7 @@ class UserController extends Controller
     {
         $user = User::where('id',$id)->first();
         $user->update([
-            "status"=> false,
+            "status"=> "false",
             
         ]);
         return response()->json([$user]);
