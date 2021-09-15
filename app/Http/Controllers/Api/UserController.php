@@ -213,5 +213,14 @@ class UserController extends Controller
         }
         return response()->json(['msg'=>false]);
     }
+    public function Userstatus($id)
+    {
+        $user = User::where('id',$request->id)->first();
+
+        return response()->json([$user]);
+
+
+    }
+
 
 }
