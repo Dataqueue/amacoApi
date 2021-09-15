@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class party_division extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    
 }
