@@ -91,7 +91,7 @@ class PartyController extends Controller
         if ($party->party_code == null) {
             $party->update(['party_code' => 'AMCT-PC-' . sprintf('%05d', $party->id)]);
         }
-        foreach ($party->division as $div) {
+        foreach ($request->division as $div) {
 
             $contact = party_division::create([
                 'party_id' => $party->id,
