@@ -7,6 +7,8 @@ use App\Models\ColumnData;
 use App\Models\Expense;
 use App\Models\payment_account;
 use App\Models\PaymentAccount;
+use App\Models\AccountCategory;
+
 use App\Models\AdvancePayment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -242,6 +244,7 @@ return response()->json($expenses);
                 return $result;
             }
         );
+        $res=AccountCategory::where('id',$expense->account_category_id)->get();
         // $collection =  collect([explode('.',$memebrsInfo)]);
 
         // $multiplied = $collection->map(function ($item, $key) {
@@ -257,6 +260,7 @@ return response()->json($expenses);
                 return $item->column;
             }),
             'mapdata'=>$map,
+            $res,
             'img' => $expense->img(),
             'referrenceImgUrl' => $expense->referrenceImg(),
         ]);
