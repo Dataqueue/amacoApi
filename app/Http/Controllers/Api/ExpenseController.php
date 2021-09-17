@@ -213,6 +213,9 @@ return response()->json($expenses);
                       return $data['id'];
                     }
                 );
+        if ($expense->id) {
+                    $expense->update(['voucher_no' => 'AMCTV-' . sprintf('%05d', $expense->id)]);
+        }
             return response()->json($test);
         }
         // }
