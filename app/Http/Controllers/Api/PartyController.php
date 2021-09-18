@@ -252,9 +252,9 @@ class PartyController extends Controller
     {
         $vendors = Party::where('party_type', '=', 'customer')->orWhere('party_type', '=', 'both')
             ->select('id', 'firm_name', 'contact')
-            ->get()
-            ->toArray();
-        // $vendors->partyDivision
+            ->get();
+            // ->toArray();
+       
         $vendors->map(function($payment){
             return $payment->partyDivision;
         });
