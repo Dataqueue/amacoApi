@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\party_division;
 use App\Models\Contact;
 use App\Models\PartyBank;
+use App\Models\Division;
 use App\Models\ProductPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -94,10 +95,12 @@ class PartyController extends Controller
         if($request->division)
         {
         foreach ($request->division as $div) {
-
+           
             $contact = party_division::create([
                 'party_id' => $party->id,
-                'div_id' => $div['id']
+                'div_id' => $div['id'],
+               
+                'vendor_code' => $div['vendor_code'].sprintf('%05d', $party->id)
                 
     
             ]); 
