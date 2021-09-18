@@ -22,10 +22,14 @@ class Party extends Model
     {
         return $this->belongsTo(Quotation::class);
     }
-
+    
     public function invoice()
     {
         return $this->belongsTo(Invoice::class);
+    }
+    public function partyDivision()
+    {
+        return $this->belongsTo(party_division::class);
     }
 
     public function contacts()
