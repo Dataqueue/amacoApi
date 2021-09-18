@@ -25,7 +25,7 @@ class PartyController extends Controller
     public function index()
     {
         $parties = Party::all();
-        return response()->json($parties,$parties->partyDivision, 200);
+        return response()->json($parties, 200);
     }
 
     /**
@@ -254,8 +254,9 @@ class PartyController extends Controller
             ->select('id', 'firm_name', 'contact')
             ->get()
             ->toArray();
+        // $vendors->partyDivision
         
-        return $vendors;
+        return  $vendors->partyDivision;
     }
 
     // public function allVendorExcept($product)
