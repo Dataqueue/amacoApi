@@ -48,6 +48,7 @@ class AuthController extends Controller
     {
         $data = [
             'user' => Auth::user(),
+            'division' => 8,
             'role' => Auth::user()->role->name,
         ];
         return response()->json($data);
