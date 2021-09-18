@@ -24,10 +24,11 @@ class UserController extends Controller
     {
         $users = User::all();
         // $div=$users->UserDivision;
+        $user['division']=8;
         $users->map(function($user){
             if ($user->role){
                 $user['role_name'] = $user->role->name;
-                $user['division']=8;
+                
                
                 
                 
