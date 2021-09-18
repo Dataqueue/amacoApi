@@ -29,7 +29,8 @@ class Party extends Model
     }
     public function partyDivision()
     {
-        return $this->belongsTo(party_division::class);
+        return $this->hasMany(party_division::class, 'id','party_id');
+
     }
 
     public function contacts()

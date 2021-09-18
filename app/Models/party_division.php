@@ -10,4 +10,5 @@ class party_division extends Model
     use HasFactory;
     protected $guarded = [];
     
+    
 }
