@@ -254,7 +254,7 @@ class PartyController extends Controller
             ->select('id', 'firm_name', 'contact')
             ->get()
             ->toArray();
-        $vendors->paidDivision;
+        $vendors->partyDivision;
             // foreach ($vendors as $div) {
            
             //     $contact = party_division::where('id',$div['id'])->get(); 
