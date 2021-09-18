@@ -219,6 +219,22 @@ class PartyController extends Controller
             'party_code' => $request->party_code == null ? $party->party_code :  $request->party_code,
             'vendor_id' => $request->vendor_id == null ? $party->vendor_id :  $request->vendor_id,
         ]);
+       
+        if($request->division)
+        {
+        $res=party_division::where('party_id',$party->id)->delete();
+        foreach ($request->division as $div) {
+           
+            $contact = party_division::create([
+                'party_id' => $party->id,
+                'div_id' => $div['id'],
+               
+                'vendor_code' => $div['vendor_code'].'-'.sprintf('%05d', $party->id)
+                
+    
+            ]); 
+            }
+        }
 
         return response()->json($party, 200);
     }
