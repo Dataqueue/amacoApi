@@ -100,7 +100,7 @@ class PartyController extends Controller
                 'party_id' => $party->id,
                 'div_id' => $div['id'],
                
-                'vendor_code' => $div['vendor_code'].sprintf('%05d', $party->id)
+                'vendor_code' => $div['vendor_code'].'-'.sprintf('%05d', $party->id)
                 
     
             ]); 
