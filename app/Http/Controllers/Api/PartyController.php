@@ -258,10 +258,10 @@ class PartyController extends Controller
         $vendors->map(function($payment){
             return $payment->partyDivision;
         });
-    return $vendors;
-});
+   
+
         
-        return  $vendors->partyDivision;
+        return  $vendors;
     }
 
     // public function allVendorExcept($product)
