@@ -119,7 +119,7 @@ class PartyController extends Controller
     public function show(Party $party)
     {
         $contacts = Contact::where('party_id', '=', $party->id)->get();
-        $divisions=UserDivision::where('party_id',$party->id)->get();
+        $divisions=party_division::where('party_id',$party->id)->get();
         $data =
             [
                 'firm_name' => $party->firm_name,
