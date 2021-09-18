@@ -255,6 +255,11 @@ class PartyController extends Controller
             ->get()
             ->toArray();
         // $vendors->partyDivision
+        $vendors->map(function($payment){
+            return $payment->partyDivision;
+        });
+    return $vendors;
+});
         
         return  $vendors->partyDivision;
     }

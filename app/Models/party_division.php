@@ -9,6 +9,10 @@ class party_division extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function party()
+    {   
+        return $this->belongsTo(party::class, 'paty_id');
+    }
     
     
 }
