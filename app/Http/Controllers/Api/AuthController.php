@@ -34,6 +34,7 @@ class AuthController extends Controller
             "accessToken" => $token,
             "user" => Auth::user(),
             "role" => Auth::user()->role->name,
+            'division' => 8,
         ];
         // return $this->respondWithToken($token);
         return response()->json($data);
@@ -50,7 +51,7 @@ class AuthController extends Controller
             'user' => Auth::user(),
             
             'role' => Auth::user()->role->name,
-            'division' => 8,
+            
         ];
         return response()->json($data);
     }
