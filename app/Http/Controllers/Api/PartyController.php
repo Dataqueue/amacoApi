@@ -149,7 +149,7 @@ class PartyController extends Controller
                 'contacts' => $contacts->map(function ($contact) {
                     return $contact;
                 }),
-                'partyDivision'=>$divisions
+                'partyDivision'=>$party->partyDivision
             ];
         return response()->json(array($data));
     }
