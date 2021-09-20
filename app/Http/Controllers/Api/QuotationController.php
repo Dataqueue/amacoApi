@@ -376,17 +376,17 @@ class QuotationController extends Controller
                     "descriptionss" => $quotation_detail->product->description,
                     "amaco_description" => $quotation_detail->amaco_description,
                     "product" => $quotation_detail->product,
-                    "partyDivision" => $quotation_detail->partyDivision,
+                    // "partyDivision" => $quotation_detail->partyDivision,
                     "product_price_list" => $quotation_detail->product->productPrice->map(function ($productP) {
                         return [
                             'price' => $productP->price,
                             'firm_name' => $productP->party->firm_name
                         ];
                     }),
-                    // "partyDivision" => $quotation_detail->party->partyDivision->map(function ($productP) {
-                    //     return $productP;
+                    "partyDivision" => $quotation_detail->party->partyDivision->map(function ($productP) {
+                        return $productP;
                         
-                    // }),
+                    }),
                     // "product_price_list" => $quotation_detail->product->productPrice->party,
                     "purchase_price" => $quotation_detail->purchase_price,
                     "description" => $quotation_detail->description,
