@@ -180,7 +180,7 @@ class QuotationController extends Controller
                         "contact_id" => $quotation->contact_id,
                         "contact" => $quotation->contact,
                         "party" => $quotation->party,
-                        "partyDivision"=>$quotation->partyDivision,
+                        // "partyDivision"=>$quotation->partyDivision,
                         "vat_in_value" => $quotation->vat_in_value,
                         "net_amount" => $quotation->net_amount,
                         "transaction_type" => $quotation->transaction_type,
@@ -381,6 +381,10 @@ class QuotationController extends Controller
                             'price' => $productP->price,
                             'firm_name' => $productP->party->firm_name
                         ];
+                    }),
+                    "partyDivision" => $quotation_detail->party->partyDivision->map(function ($productP) {
+                        return $productP;
+                        
                     }),
                     // "product_price_list" => $quotation_detail->product->productPrice->party,
                     "purchase_price" => $quotation_detail->purchase_price,
