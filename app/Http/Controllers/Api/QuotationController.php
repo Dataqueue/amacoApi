@@ -362,6 +362,7 @@ class QuotationController extends Controller
             "sales_order_number" => $quotation->sales_order_number,
             "contact" => $quotation->contact,
             "party" => $quotation->party,
+            "partyDivision" => $quotation->party,
             "rfq" => $quotation->rfq,
             "is_revised" => $quotation->is_revised,
             "sign" => $quotation->sign,
@@ -383,7 +384,7 @@ class QuotationController extends Controller
                             'firm_name' => $productP->party->firm_name
                         ];
                     }),
-                    "partyDivision" => $quotation_detail->party,
+                    
                     // "product_price_list" => $quotation_detail->product->productPrice->party,
                     "purchase_price" => $quotation_detail->purchase_price,
                     "description" => $quotation_detail->description,
