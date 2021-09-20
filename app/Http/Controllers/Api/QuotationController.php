@@ -362,7 +362,7 @@ class QuotationController extends Controller
             "sales_order_number" => $quotation->sales_order_number,
             "contact" => $quotation->contact,
             "party" => $quotation->party,
-            "partyDivision" => $quotation->party->map(function($payment){
+            "partyDivision" => $quotation->party->partyDivision->map(function($payment){
                 return $payment->partyDivision;
             }),
             "rfq" => $quotation->rfq,
