@@ -180,6 +180,7 @@ class QuotationController extends Controller
                         "contact_id" => $quotation->contact_id,
                         "contact" => $quotation->contact,
                         "party" => $quotation->party,
+                        "partyDivision"=>$quotation->partyDivision,
                         "vat_in_value" => $quotation->vat_in_value,
                         "net_amount" => $quotation->net_amount,
                         "transaction_type" => $quotation->transaction_type,

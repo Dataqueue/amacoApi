@@ -19,6 +19,11 @@ class QuotationDetail extends Model
     {
         return $this->hasOne(Party::class, 'id', 'party_id');
     }
+    public function partyDivision()
+    {
+        return $this->hasMany(party_division::class, 'party_id','id');
+
+    }
 
     public function product()
     {
