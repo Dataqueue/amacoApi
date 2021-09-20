@@ -383,10 +383,7 @@ class QuotationController extends Controller
                             'firm_name' => $productP->party->firm_name
                         ];
                     }),
-                    "partyDivision" => $quotation_detail->party->party_division->map(function ($productP) {
-                        return $productP;
-                        
-                    }),
+                    "partyDivision" => $quotation_detail->party,
                     // "product_price_list" => $quotation_detail->product->productPrice->party,
                     "purchase_price" => $quotation_detail->purchase_price,
                     "description" => $quotation_detail->description,
