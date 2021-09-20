@@ -382,7 +382,7 @@ class QuotationController extends Controller
                             'firm_name' => $productP->party->firm_name
                         ];
                     }),
-                    "partyDivision" => $quotation_detail->partyDivision->map(function ($productP) {
+                    "partyDivision" => $quotation_detail->party->partyDivision->map(function ($productP) {
                         return $productP;
                         
                     }),
