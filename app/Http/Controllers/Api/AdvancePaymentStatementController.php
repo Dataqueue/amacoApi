@@ -143,16 +143,7 @@ class AdvancePaymentStatementController extends Controller
         $advancePaymentCollection = new Collection();
         if ($request->from_date) {
             $advancePaymentCollection = AdvancePayment::where('payment_account_id',$request['payment_account_id'])->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
-            $datas['data'] = $advancePaymentCollection->map(function ($item) {
-               
-                    $item['name']  =$item->user_name;
-                    $item['date'] = $item->created_at;
-                    $item['code_no'] = $item->transaction_id;
-                    $item['description'] = $item->description;
-                    $item['debit'] = nullfloatval(str_replace(",","",$item->amount));;
-                    $item['credit'] = null;
-                    return [$item];
-            });
+            
 
 
             $advanceAopenbalance=AdvancePayment::where('created_at', '<=',$request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
@@ -164,6 +155,16 @@ class AdvancePaymentStatementController extends Controller
         // $data = $expenseCollection->concat($advancePaymentCollection);
         $data = $advancePaymentCollection;
         $data = $data->sortBy('created_at');
+        $datas['data'] = $advancePaymentCollection->map(function ($item) {
+               
+            $item['name']  =$item->user_name;
+            $item['date'] = $item->created_at;
+            $item['code_no'] = $item->transaction_id;
+            $item['description'] = $item->description;
+            $item['debit'] = nullfloatval(str_replace(",","",$item->amount));;
+            $item['credit'] = null;
+            return [$item];
+    });
 
         // $data && ($datas['data'] = $data->map(function ($item) {
         //     if ($item->paid_date) {
@@ -185,6 +186,7 @@ class AdvancePaymentStatementController extends Controller
         //         return [$item];
         //     }
         // }));
+        
         $datas['opening_balance'] = $advanceEopenbalance-$advanceAopenbalance;
         $datas['name'] = "All";
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
