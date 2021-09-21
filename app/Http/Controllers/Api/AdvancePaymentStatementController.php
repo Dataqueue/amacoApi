@@ -158,7 +158,8 @@ class AdvancePaymentStatementController extends Controller
         $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
-            if ($item->paid_date) {
+            // if ($item->paid_date) {
+            if ($item->received_by) {
                 $item['name']  =$item->user_name;
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->transaction_id;
@@ -167,8 +168,8 @@ class AdvancePaymentStatementController extends Controller
                 $item['credit'] = floatval(str_replace(",","",$item->amount));
                 return [$item];
             }
-
-            if ($item->received_date) {
+            // if ($item->received_date) {
+            if ($item->payment_account_id) {
                 $item['date'] = $item->created_at;
                 $item['code_no'] = null;
                 $item['description'] = $item->narration;
