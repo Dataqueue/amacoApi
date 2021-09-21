@@ -142,14 +142,15 @@ class AdvancePaymentStatementController extends Controller
 
         $advancePaymentCollection = new Collection();
         if ($request->from_date) {
-            $advancePaymentCollection = AdvancePayment::whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $advancePaymentCollection = AdvancePayment::where('payment_account_id',$request['payment_account_id'])->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
             $advanceAopenbalance=AdvancePayment::where('created_at', '<=',$request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
             
         } else {
             $advancePaymentCollection = AdvancePayment::all();
         }
 
-        $data = $expenseCollection->concat($advancePaymentCollection);
+        // $data = $expenseCollection->concat($advancePaymentCollection);
+        $data = $advancePaymentCollection;
         $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
