@@ -156,7 +156,7 @@ class AdvancePaymentStatementController extends Controller
         // $data = $expenseCollection->concat($advancePaymentCollection);
         $data = $advancePaymentCollection;
         $data = $data->sortBy('created_at');
-        $datas['data'] = $advancePaymentCollection1->map(function ($item) {
+        $paidby = $advancePaymentCollection1->map(function ($item) {
                
             $item['name']  =$item->user_name;
             $item['date'] = $item->created_at;
@@ -166,7 +166,7 @@ class AdvancePaymentStatementController extends Controller
             $item['credit'] = null;
             return [$item];
     });
-    $datas['data'] = $advancePaymentCollection2->map(function ($item) {
+    $receivedby = $advancePaymentCollection2->map(function ($item) {
                
         $item['name']  =$item->user_name;
         $item['date'] = $item->created_at;
@@ -176,6 +176,7 @@ class AdvancePaymentStatementController extends Controller
         $item['debit'] = null;
         return [$item];
 });
+    $datas['data'] = $paidby->concat($receivedby);
 
         // $data && ($datas['data'] = $data->map(function ($item) {
         //     if ($item->paid_date) {
