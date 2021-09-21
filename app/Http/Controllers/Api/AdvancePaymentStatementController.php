@@ -132,6 +132,7 @@ class AdvancePaymentStatementController extends Controller
     {
         $advanceEopenbalance=Floatval('0.00');
         $advanceAopenbalance=Floatval('0.00');
+        $paymentAccount = PaymentAccount::where('id', intval($request['payment_account_id']))->first();
         $expenseCollection = new Collection();
         if ($request->from_date) {
             $expenseCollection = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->where('expenses.status','verified')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->select('payment_accounts.name as user_name','expenses.*')->get();
@@ -200,7 +201,7 @@ class AdvancePaymentStatementController extends Controller
         // }));
         
         $datas['opening_balance'] = $advanceEopenbalance-$advanceAopenbalance;
-        $datas['name'] = "All";
+        $datas['name'] = $paymentAccount->name;
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(),0, 10);
         $datas['balance'] = 0.00;
