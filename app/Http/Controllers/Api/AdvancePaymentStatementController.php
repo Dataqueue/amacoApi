@@ -134,15 +134,20 @@ class AdvancePaymentStatementController extends Controller
         $advanceAopenbalance=Floatval('0.00');
         $expenseCollection = new Collection();
         if ($request->from_date) {
-            $expenseCollection = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->where('expenses.status','verified')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->select('payment_accounts.name as user_name','expenses.*')->get();
+            // $expenseCollection = Expense::join('payment_accounts','expenses.payment_account_id','payment_accounts.id')->where('expenses.status','verified')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->select('payment_accounts.name as user_name','expenses.*')->get();
+            // $advanceEopenbalance=Expense::where('created_at', '<=', $request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
+             $expenseCollection = AdvancePayment::where('payment_accounts','payment_accounts.id','advance_payments.payment_account_id')->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
             $advanceEopenbalance=Expense::where('created_at', '<=', $request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
+
+
+
         } else {
             $expenseCollection = Expense::all();
         }
 
         $advancePaymentCollection = new Collection();
         if ($request->from_date) {
-            $advancePaymentCollection = AdvancePayment::whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $advancePaymentCollection = AdvancePayment::where('payment_accounts','payment_accounts.id','advance_payments.received_by')->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
             $advanceAopenbalance=AdvancePayment::where('created_at', '<=',$request->from_date. ' ' . '00:00:00')->sum(str_replace(",","",'amount'));
             
         } else {
