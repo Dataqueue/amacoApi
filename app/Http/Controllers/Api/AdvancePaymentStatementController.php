@@ -142,7 +142,8 @@ class AdvancePaymentStatementController extends Controller
 
         $advancePaymentCollection = new Collection();
         if ($request->from_date) {
-            $advancePaymentCollection = AdvancePayment::where('payment_account_id',$request['payment_account_id'])->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $advancePaymentCollection1 = AdvancePayment::where('payment_account_id',$request['payment_account_id'])->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $advancePaymentCollection2 = AdvancePayment::where('received_by',$request['payment_account_id'])->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
             
 
 
@@ -155,7 +156,7 @@ class AdvancePaymentStatementController extends Controller
         // $data = $expenseCollection->concat($advancePaymentCollection);
         $data = $advancePaymentCollection;
         $data = $data->sortBy('created_at');
-        $datas['data'] = $advancePaymentCollection->map(function ($item) {
+        $datas['data'] = $advancePaymentCollection1->map(function ($item) {
                
             $item['name']  =$item->user_name;
             $item['date'] = $item->created_at;
@@ -165,6 +166,16 @@ class AdvancePaymentStatementController extends Controller
             $item['credit'] = null;
             return [$item];
     });
+    $datas['data'] = $advancePaymentCollection2->map(function ($item) {
+               
+        $item['name']  =$item->user_name;
+        $item['date'] = $item->created_at;
+        $item['code_no'] = $item->transaction_id;
+        $item['description'] = $item->description;
+        $item['credit'] = floatval(str_replace(",","",$item->amount));
+        $item['debit'] = null;
+        return [$item];
+});
 
         // $data && ($datas['data'] = $data->map(function ($item) {
         //     if ($item->paid_date) {
