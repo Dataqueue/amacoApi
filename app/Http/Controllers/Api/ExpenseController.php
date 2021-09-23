@@ -458,6 +458,6 @@ return response()->json($expenses);
         // $expense = ColumnData::where('expense_id',$id)->join('expenses','ColumnData.expense_id','parties.id')->where('party_id', $party_id)->get();
         
         
-        return response()->json([$expense]);
+        return response()->json([$request]);
     }
 }
