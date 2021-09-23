@@ -459,7 +459,7 @@ return response()->json($expenses);
         
         $tempArray = (array) json_decode($request->data, true);
             foreach ($tempArray as $column_data_) {
-                $res=Expense::where('id',$column_data->id)->delete();       
+                $res=Expense::where('id',$column_data['id'])->delete();       
             }
 
         return response()->json($res);
