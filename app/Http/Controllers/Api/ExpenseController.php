@@ -307,8 +307,8 @@ return response()->json($expenses);
      */
         public function destroy(Expense $expense)
     {
-        // $expense->delete();
-        // $res=AdvancePayment::where('expense_id',$expense->id)->delete();
+        $expense->delete();
+        $res=AdvancePayment::where('expense_id',$expense->id)->delete();
         return response()->json(['msg' => 'Expense ' . $expense . ' has been deleted.']);
     }
 
@@ -449,6 +449,13 @@ return response()->json($expenses);
     public function singleExpense($id)
     {
         $expense = ColumnData::where('expense_id',$id)->join('expenses','ColumnData.expense_id','parties.id')->where('party_id', $party_id)->get();
+        
+        
+        return response()->json([$expense]);
+    }
+    public function deleteExpense($request)
+    {
+        // $expense = ColumnData::where('expense_id',$id)->join('expenses','ColumnData.expense_id','parties.id')->where('party_id', $party_id)->get();
         
         
         return response()->json([$expense]);

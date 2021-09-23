@@ -163,6 +163,7 @@ Route::post('all-account-masterstatement', [MasterAccountController::class, 'all
 Route::get('paidDivision', [DivisionController::class, 'paidDivision']);
 //  Route::post('all-account-masterstatementvbbbbbbb', [MasterAccountController::class, 'allAccountmasterStatement']);
 Route::get('Userstatus/{id}', [UserController::class, 'Userstatus']);
+Route::get('deleteExpense', [ExpenseController::class, 'deleteExpense']);
 
 
 
