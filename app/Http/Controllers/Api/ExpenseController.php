@@ -307,8 +307,8 @@ return response()->json($expenses);
      */
         public function destroy(Expense $expense)
     {
-        $expense->delete();
-        $res=AdvancePayment::where('expense_id',$expense->id)->delete();
+        // $expense->delete();
+        // $res=AdvancePayment::where('expense_id',$expense->id)->delete();
         return response()->json(['msg' => 'Expense ' . $expense . ' has been deleted.']);
     }
 
