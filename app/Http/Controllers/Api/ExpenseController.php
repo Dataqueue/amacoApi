@@ -457,7 +457,7 @@ return response()->json($expenses);
     {
         // $expense = ColumnData::where('expense_id',$id)->join('expenses','ColumnData.expense_id','parties.id')->where('party_id', $party_id)->get();
         
-        $tempArray = (array) json_decode($request, true);
+        $tempArray = (array) json_decode($request->data, true);
             foreach ($tempArray as $column_data_) {
                 $res=Expense::where('id',$column_data->id)->delete();       
             }
