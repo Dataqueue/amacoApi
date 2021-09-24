@@ -164,6 +164,7 @@ Route::get('paidDivision', [DivisionController::class, 'paidDivision']);
 //  Route::post('all-account-masterstatementvbbbbbbb', [MasterAccountController::class, 'allAccountmasterStatement']);
 Route::get('Userstatus/{id}', [UserController::class, 'Userstatus']);
 Route::post('Expense_delete_verify', [ExpenseController::class, 'Expense_delete_verify']);
+Route::post('partyDelete_all', [PartyController::class, 'partyDelete_all']);
 
 
 

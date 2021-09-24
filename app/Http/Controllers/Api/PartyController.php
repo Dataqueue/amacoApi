@@ -316,4 +316,19 @@ class PartyController extends Controller
 
         return response()->json($results);
     }
+    public function partyDelete_all(Request $request)
+    {
+        // $expense = ColumnData::where('expense_id',$id)->join('expenses','ColumnData.expense_id','parties.id')->where('party_id', $party_id)->get();
+        if($request->status=="delete")
+        {
+        $tempArray = (array) json_decode($request->data, true);
+            foreach ($tempArray as $column_data_) {
+                
+                $res=Contact::where('id',$column_data_['id'])->delete(); 
+                      
+            }
+        }
+        
+        
+    }
 }
