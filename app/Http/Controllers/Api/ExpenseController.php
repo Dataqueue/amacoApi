@@ -471,8 +471,9 @@ return response()->json($expenses);
         $tempArray = (array) json_decode($request->data, true);
             foreach ($tempArray as $column_data_) {
                 
-                $res=Expense::where('id',$column_data_['id'])->get(); 
-                $res->update(['status' => 'verified']);
+                // $res=Expense::where('id',$column_data_['id'])->get(); 
+                $ExpenseRes = Expense::findOrFail($column_data_['id']);
+                $ExpenseRes->update(['status' => 'verified']);
                 return response($column_data_['id']);      
             }
         }
