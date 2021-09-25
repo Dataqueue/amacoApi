@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PaymentAccount;
 use App\Models\UserDivision;
 use App\Models\Division;
+use App\Models\Investment;
 use Illuminate\Http\Request;
 use App\Models\User;
 // use App\Http\Controllers\Api\Hash;
@@ -80,7 +81,18 @@ class UserController extends Controller
                 'user_id' => $user->id,
                 'balance' => 0,
             ]);
-            
+            if($request->checked)
+            {
+                Investment::create([
+                'status' => 1,
+                'opening_balance' => $request->opening_balance,
+                'profit_per' => $request->profit_per,
+                'status' => 1,
+
+                
+            ]);
+        }
+
             
             foreach ($division as $div) {
 
