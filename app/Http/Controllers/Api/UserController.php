@@ -74,12 +74,13 @@ class UserController extends Controller
         ]);
          $division = json_decode($request['divisions'], true);
         if($user){
-                PaymentAccount::create([
+            $paymentaccount=PaymentAccount::create([
                 'name' => $user->nick_name,
                 'type' => 'personal',
                 'user_id' => $user->id,
                 'balance' => 0,
             ]);
+            
             
             foreach ($division as $div) {
 
