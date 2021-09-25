@@ -13,8 +13,12 @@ class CreateInvestmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('investments', function (Blueprint $table) {
+        Schema::create('investment', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('payment_account_id')->nullable();
+            $table->string('opening_balance')->nullable();
+            $table->string('profit_per')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
