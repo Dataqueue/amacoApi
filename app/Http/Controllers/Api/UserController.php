@@ -212,7 +212,7 @@ class UserController extends Controller
                     'opening_balance' => $request->opening_bal,
                     'profit_per' => $request->profit_per,
                     'payment_account_id'=>$payment_account->id,
-                    'user_id' => $user->id,
+                    // 'user_id' => $user->id,
                     
     
                     
