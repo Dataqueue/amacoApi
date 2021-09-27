@@ -147,7 +147,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user,Investment $investment)
+    public function update(Request $request, User $user)
     {
         if($request->password){
             $request['password'] = bcrypt($request->password);
@@ -189,8 +189,9 @@ class UserController extends Controller
             'designation' => $request->designation,
             'prefix' => $request->prefix,
         ]);
-        // if($request->checked)
-        // {
+        if($request->checked)
+        {
+            $investment = Investment::where('user_id',$user->id)->first();
             $investment->update([
             'status' => 1,
             'opening_balance' => $request->opening_bal,
@@ -201,7 +202,7 @@ class UserController extends Controller
 
             
         ]);
-    // }
+    }
 
 
         return response()->json($user);
