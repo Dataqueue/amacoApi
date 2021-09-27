@@ -233,7 +233,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        $payment_account = PaymentAccount::where('user_id',$user->id)->first();
+        $payment_account = PaymentAccount::where('user_id',$user->id)->delete();
 
         return response()->json(['msg' => "User is successfully deleted."]);
     }
