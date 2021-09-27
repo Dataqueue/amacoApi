@@ -51,6 +51,10 @@ protected $guarded = [];
     {
         return $this->belongsTo(UserDivision::class);
     }
+    public function investment()
+    {
+        return $this->hasOne(Investment::class);
+    }
 
     public function getJWTIdentifier()
     {
