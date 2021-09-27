@@ -85,7 +85,7 @@ class UserController extends Controller
             {
                 Investment::create([
                 'status' => 1,
-                'opening_balance' => $request->opening_balance,
+                'opening_balance' => $request->opening_bal,
                 'profit_per' => $request->profit_per,
                'payment_account_id'=>$paymentaccount->id,
                'user_id' => $user->id,
@@ -188,6 +188,18 @@ class UserController extends Controller
             'remember_token' => Str::random(10),
             'designation' => $request->designation,
             'prefix' => $request->prefix,
+        ]);
+        if($request->checked)
+        {
+            Investment::update([
+            'status' => 1,
+            'opening_balance' => $request->opening_bal,
+            'profit_per' => $request->profit_per,
+            'payment_account_id'=>$paymentaccount->id,
+            'user_id' => $user->id,
+            'status' => 1,
+
+            
         ]);
 
 
