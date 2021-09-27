@@ -189,19 +189,19 @@ class UserController extends Controller
             'designation' => $request->designation,
             'prefix' => $request->prefix,
         ]);
-        if($request->checked)
-        {
+        // if($request->checked)
+        // {
             $investment->update([
             'status' => 1,
             'opening_balance' => $request->opening_bal,
             'profit_per' => $request->profit_per,
             // 'payment_account_id'=>$paymentaccount->id,
             // 'user_id' => $user->id,
-            'status' => 1,
+            // 'status' => 1,
 
             
         ]);
-    }
+    // }
 
 
         return response()->json($user);
