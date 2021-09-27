@@ -211,7 +211,7 @@ class UserController extends Controller
                     'status' => 1,
                     'opening_balance' => $request->opening_bal,
                     'profit_per' => $request->profit_per,
-                //    'payment_account_id'=>$paymentaccount->id,
+                    'payment_account_id'=>$payment_account->id,
                     'user_id' => $user->id,
                     
     
