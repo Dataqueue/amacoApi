@@ -162,7 +162,7 @@ class AdvancePaymentStatementController extends Controller
             $item['name']  =$item->user_name;
             $item['date'] = $item->created_at;
             $item['code_no'] = $item->transaction_id;
-            $item['description'] = $item->name;
+            $item['description'] = $item;
             $item['debit'] = floatval(str_replace(",","",$item->amount));
             $item['credit'] = null;
             return [$item];
@@ -172,7 +172,7 @@ class AdvancePaymentStatementController extends Controller
         $item['name']  =$item->user_name;
         $item['date'] = $item->created_at;
         $item['code_no'] = $item->transaction_id;
-        $item['description'] = $item->name;
+        $item['description'] = $item;
         $item['credit'] = floatval(str_replace(",","",$item->amount));
         $item['debit'] = null;
         return [$item];
