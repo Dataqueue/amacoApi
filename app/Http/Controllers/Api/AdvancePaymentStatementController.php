@@ -219,8 +219,8 @@ class AdvancePaymentStatementController extends Controller
         $data = PaymentAccount::get();
         $advancePaymentCollection1 = $data->sortBy('created_at');
         $paidby = $advancePaymentCollection1->map(function ($item) {
-            $credit=AdvancePayment::where('received_by',$item->id)->where('payment_account_id',(int)$request['id'])->sum('amount'); 
-            $debit=AdvancePayment::where('payment_account_id',$item->id)->where('received_by',(int)$request['id'])->sum('amount'); 
+            $credit=AdvancePayment::where('received_by',$item->id)->sum('amount'); 
+            $debit=AdvancePayment::where('payment_account_id',$item->id)->sum('amount'); 
             $item['name']  =$item->name;
             $item['balance'] = $credit-$debit;
             $item['credit'] = $credit;
@@ -233,7 +233,7 @@ class AdvancePaymentStatementController extends Controller
         
         
         // $datas['opening_balance'] = $advanceEopenbalance-$advanceAopenbalance;
-        // $datas['name'] = $paymentAccount->name;
+        $datas['id'] = (int)$requset['id'];
         // $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         // $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(),0, 10);
         // $datas['balance'] = 0.00;
