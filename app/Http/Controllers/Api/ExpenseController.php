@@ -468,7 +468,7 @@ return response()->json($expenses);
                 $ress=AdvancePayment::where('expense_id',$column_data_['id'])->delete();
                 // return response($column_data_['id']);      
             }
-            return response($column_data_['id']);
+            // return response($column_data_['id']);
         }
         if($request->status=="verify")
         {
