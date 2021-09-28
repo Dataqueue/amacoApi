@@ -216,20 +216,20 @@ class AdvancePaymentStatementController extends Controller
         
 
         // $data = $expenseCollection->concat($advancePaymentCollection);
-        $data = PaymentAccount::get();
+        $data = PaymentAccount::join('advance_payments','advance_payments.payment_account_id','payment_account.id')->gropBy('advance_payments.payment_account_id')->get();
         $ids=(int)$request['id'];
         $advancePaymentCollection1 = $data->sortBy('created_at');
-        $paidby = $advancePaymentCollection1->map(function ($item) use($ids) {
-            $credit=AdvancePayment::where([['received_by',$item->id]])->get(); 
-            $debit=AdvancePayment::where([['payment_account_id',$item->id]])->get(); 
-            $item['name']  =$item->name;
-            // $item['balance'] = $credit-$debit;
-            $item['credit'] = $credit;
-            $item['debit'] = $debit;
-            return [$item];
-    });
+    //     $paidby = $advancePaymentCollection1->map(function ($item) use($ids) {
+    //         $credit=AdvancePayment::where([['received_by',$item->id]])->sum('amount'); 
+    //         $debit=AdvancePayment::where([['payment_account_id',$item->id]])->sum('amount'); 
+    //         $item['name']  =$item->name;
+    //         $item['balance'] = $credit-$debit;
+    //         $item['credit'] = $credit;
+    //         $item['debit'] = $debit;
+    //         return [$item];
+    // });
    
-            $datas['data'] = $paidby;
+            $datas['data'] = $data;
 
         
         
