@@ -233,10 +233,10 @@ class AdvancePaymentStatementController extends Controller
         
         
         // $datas['opening_balance'] = $advanceEopenbalance-$advanceAopenbalance;
-        $datas['name'] = $paymentAccount->name;
-        $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
-        $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(),0, 10);
-        $datas['balance'] = 0.00;
+        // $datas['name'] = $paymentAccount->name;
+        // $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
+        // $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(),0, 10);
+        // $datas['balance'] = 0.00;
 
         return response()->json([$datas]);
     }
