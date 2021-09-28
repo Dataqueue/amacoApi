@@ -221,7 +221,7 @@ class AdvancePaymentStatementController extends Controller
         $advancePaymentCollection1 = $data->sortBy('created_at');
         $paidby = $advancePaymentCollection1->map(function ($item) use($ids) {
             $credit=AdvancePayment::where([['received_by',$item->id]])->get(); 
-            $debit=AdvancePayment::where([['payment_account_id',$item->id]])->sum(); 
+            $debit=AdvancePayment::where([['payment_account_id',$item->id]])->get(); 
             $item['name']  =$item->name;
             // $item['balance'] = $credit-$debit;
             $item['credit'] = $credit;
