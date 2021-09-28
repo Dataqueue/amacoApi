@@ -469,7 +469,9 @@ return response()->json($expenses);
                 $ress=AdvancePayment::where('expense_id',$column_data_['id'])->each->delete();
                 // return response($column_data_['id']);      
             }
-            $res->destroy();
+            $res->each(function ($file, $key) {
+                Expense::delete();
+            });
             // return response($column_data_['id']);
         }
         if($request->status=="verify")
