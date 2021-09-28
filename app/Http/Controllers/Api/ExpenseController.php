@@ -466,7 +466,7 @@ return response()->json($expenses);
                 
                 $res=Expense::where('id',$column_data_['id'])->each->destroy(); 
                
-                $ress=AdvancePayment::where('expense_id',$column_data_['id'])->each->delete();
+                $ress=AdvancePayment::where('expense_id',$column_data_['id'])->each->destroy();
                 // return response($column_data_['id']);      
             }
             // return response($column_data_['id']);
