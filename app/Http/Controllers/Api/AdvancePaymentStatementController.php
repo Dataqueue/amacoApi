@@ -216,7 +216,7 @@ class AdvancePaymentStatementController extends Controller
         
 
         // $data = $expenseCollection->concat($advancePaymentCollection);
-        $data = PaymentAccount::join('adavnce_payment','advance.payment.paymentaccount_id','payment_account.id')->get();
+        $data = PaymentAccount::join('adavnce_payments','advance.payments.paymentaccount_id','payment_account.id')->get();
         $ids=(int)$request['id'];
         $advancePaymentCollection1 = $data->sortBy('created_at');
     //     $paidby = $advancePaymentCollection1->map(function ($item) use($ids) {
