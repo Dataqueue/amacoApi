@@ -143,8 +143,8 @@ class AdvancePaymentStatementController extends Controller
 
         $advancePaymentCollection = new Collection();
         if ($request->from_date) {
-            $advancePaymentCollection1 = AdvancePayment::where('payment_account_id',$request['payment_account_id'])->join('payment_accounts','advance_payments.received_by','payment_accounts.id')->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
-            $advancePaymentCollection2 = AdvancePayment::where('received_by',$request['payment_account_id'])->join('payment_accounts','advance_payments.payment_account_id','payment_accounts.id')->whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $advancePaymentCollection1 = AdvancePayment::where('payment_account_id',$request['payment_account_id'])->join('payment_accounts','advance_payments.received_by','payment_accounts.id')->whereBetween('advance_payments.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $advancePaymentCollection2 = AdvancePayment::where('received_by',$request['payment_account_id'])->join('payment_accounts','advance_payments.payment_account_id','payment_accounts.id')->whereBetween('advance_payments.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
             
 
 
