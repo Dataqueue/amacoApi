@@ -223,7 +223,7 @@ class AdvancePaymentStatementController extends Controller
             $credit=AdvancePayment::where([['received_by',$item->id]])->get(); 
             $debit=AdvancePayment::where([['payment_account_id',$item->id]])->sum(); 
             $item['name']  =$item->name;
-            $item['balance'] = $credit-$debit;
+            // $item['balance'] = $credit-$debit;
             $item['credit'] = $credit;
             $item['debit'] = $debit;
             return [$item];
