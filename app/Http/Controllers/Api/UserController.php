@@ -189,37 +189,8 @@ class UserController extends Controller
             'designation' => $request->designation,
             'prefix' => $request->prefix,
         ]);
-        $investment = Investment::where('user_id',$user->id)->first();
-        if($request->checked)
-        {
-            if($investment)
-            {
-            $investment->update([
-            'status' => 1,
-            'opening_balance' => $request->opening_bal,
-            'profit_per' => $request->profit_per,
-            // 'payment_account_id'=>$paymentaccount->id,
-            // 'user_id' => $user->id,
-            // 'status' => 1,
-            
-
-            
-            ]);
-            }
-            else{
-                Investment::create([
-                    'status' => 1,
-                    'opening_balance' => $request->opening_bal,
-                    'profit_per' => $request->profit_per,
-                    'payment_account_id'=>$payment_account->id,
-                    // 'user_id' => $user->id,
-                    
-    
-                    
-                ]);
-            }
-    }
-
+       
+ 
 
         return response()->json($user);
     }
