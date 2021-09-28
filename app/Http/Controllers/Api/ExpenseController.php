@@ -465,13 +465,11 @@ return response()->json($expenses);
             foreach ($tempArray as $column_data_) {
                 
                 // $res=Expense::where('id',$column_data_['id'])->destroy(); 
-               $res=Expense::where('id',$column_data_['id'])->get();
-                $ress=AdvancePayment::where('expense_id',$column_data_['id'])->each->delete();
+               Expense::where('id',$column_data_['id'])->get();
+                AdvancePayment::where('expense_id',$column_data_['id'])->each->delete();
                 // return response($column_data_['id']);      
             }
-            $res->each(function ($file, $key) {
-                Expense::destroy();
-            });
+           
             // return response($column_data_['id']);
         }
         if($request->status=="verify")
