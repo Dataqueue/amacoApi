@@ -208,4 +208,36 @@ class AdvancePaymentStatementController extends Controller
 
         return response()->json([$datas]);
     }
+    public function accountSummary(Request $request)
+    
+    {
+        
+
+        
+
+        // $data = $expenseCollection->concat($advancePaymentCollection);
+        $data = PaymentAccount::get();
+        $advancePaymentCollection1 = $data->sortBy('created_at');
+        $paidby = $advancePaymentCollection1->map(function ($item) {
+            $credit=AdvancePayment::where('received_by',$item->id)->sum('amount'); 
+            $debit=AdvancePayment::where('payment_account_id',$item->id)->sum('amount'); 
+            $item['name']  =$item->name;
+            $item['balance'] = $credit-$debit;
+            $item['credit'] = $credit;
+            $item['debit'] = $debit;
+            return [$item];
+    });
+   
+            $datas['data'] = $paidby;
+
+        
+        
+        $datas['opening_balance'] = $advanceEopenbalance-$advanceAopenbalance;
+        $datas['name'] = $paymentAccount->name;
+        $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
+        $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(),0, 10);
+        $datas['balance'] = 0.00;
+
+        return response()->json([$datas]);
+    }
 }
