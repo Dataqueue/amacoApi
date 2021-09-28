@@ -403,7 +403,7 @@ return response()->json($expenses);
             'description' => $request->description?$request->description:" ",
             // 'referrence_bill_no' => $request->referrence_bill_no,
             'tax' => $request->tax,
-            'status' => $request->status,
+            // 'status' => $request->status,
             // 'paid_by' => $request->payment_account_id?$request->payment_account_id:null,
             'bank_ref_no' => $request->bank_ref_no,
             // 'bank_slip' => $request->file('bank_slip') ? $bank_slip_path : null,
