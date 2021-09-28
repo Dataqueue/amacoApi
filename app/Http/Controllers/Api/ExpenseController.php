@@ -466,8 +466,9 @@ return response()->json($expenses);
                 
                 $res=Expense::where('id',$column_data_['id'])->delete(); 
                 $ress=AdvancePayment::where('expense_id',$column_data_['id'])->delete();
-                return response($column_data_['id']);      
+                // return response($column_data_['id']);      
             }
+            return response($column_data_['id']);
         }
         if($request->status=="verify")
         {
@@ -477,7 +478,7 @@ return response()->json($expenses);
                 // $res=Expense::where('id',$column_data_['id'])->get(); 
                 $ExpenseRes = Expense::findOrFail($column_data_['id']);
                 $ExpenseRes->update(['status' => 'verified']);
-                return response($column_data_['id']);      
+                // return response($column_data_['id']);      
             }
         }
         
