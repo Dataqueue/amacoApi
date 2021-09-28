@@ -470,7 +470,7 @@ return response()->json($expenses);
                 // return response($column_data_['id']);      
             }
             $res->each(function ($file, $key) {
-                Expense::delete();
+                Expense::destroy();
             });
             // return response($column_data_['id']);
         }
