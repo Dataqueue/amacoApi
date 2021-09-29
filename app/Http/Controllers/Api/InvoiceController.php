@@ -101,8 +101,8 @@ class InvoiceController extends Controller
 
         global $_invoice_id;
         $_invoice_id = $invoice['id'];
-
-        foreach($data['invoice_details'] as $invoice_detail) {
+            $invoice_details=$request['invoice_details'];
+        foreach($invoice_details as $invoice_detail) {
             $_invoice_detail = InvoiceDetail::create([
                 'quotation_detail_id' => $invoice_detail['id'],
                 'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:null,
@@ -116,7 +116,7 @@ class InvoiceController extends Controller
             ]);
         }
         // return 'success';
-        return response()->json($data['invoice_details']." "."asdfghjkkkkkk");
+        return response()->json($data['invoice_details']);
     }
 
     /**
