@@ -116,7 +116,7 @@ class InvoiceController extends Controller
             ]);
         }
         // return 'success';
-        return response()->json($data['invoice_details']);
+        return response()->json($data['invoice_details']." "."asdfghjkkkkkk");
     }
 
     /**
