@@ -111,7 +111,7 @@ class InvoiceController extends Controller
                 'total_amount' => $invoice_detail['total_amount'],
                 'unit_of_measure' => $invoice_detail['unit_of_measure'],
                 'description' => $invoice_detail['description'],
-                // 'arabic_description' => $invoice_detail['arabic_description'],
+                'arabic_description' => $invoice_detail['arabic_description'],
                 'invoice_id' => $_invoice_id,
             ]);
         }
