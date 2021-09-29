@@ -105,7 +105,7 @@ class InvoiceController extends Controller
         foreach($data['invoice_details'] as $invoice_detail) {
             $_invoice_detail = InvoiceDetail::create([
                 'quotation_detail_id' => $invoice_detail['id'],
-                'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:null,
+                'product_id' => $invoice_detail['product']?$invoice_detail['product_id']:null,
                 'sell_price' => $invoice_detail['sell_price'],
                 'quantity' => $invoice_detail['quantity'],
                 'total_amount' => $invoice_detail['total_amount'],
