@@ -463,11 +463,13 @@ return response()->json($expenses);
 
         if($request->status=="delete")
         {
+         $data=[];
         $tempArray = (array) json_decode($request->data, true);
         $arr=collect($tempArray);
         // (array) json_decode($request->data, true);
         $arr2 = $arr->map(function($person)  {
-            return $person['id'];
+            $data['id']=$person['id'];
+            return $data['id'];
         });
         $demo=$arr2->toArray();
         $test=implode(',',$demo);
