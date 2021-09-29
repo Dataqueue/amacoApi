@@ -463,7 +463,8 @@ return response()->json($expenses);
 
         if($request->status=="delete")
         {
-        $tempArray = (array) json_decode($request->data, true);
+        $tempArray = $request->data;
+        // (array) json_decode($request->data, true);
         $arr2 = $tempArray->map(function($person) {
             return $person['id'];
         }, $arr1);
