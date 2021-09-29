@@ -379,22 +379,24 @@ class QuotationController extends Controller
                     "id" => $quotation_detail->id,
                     "total_amount" => $quotation_detail->total_amount,
                     "analyse_id" => $quotation_detail->analyse_id,
-                    "product_id" => $quotation_detail->product_id,
-                    "descriptionss" => $quotation_detail->product->description,
+                    // "product_id" => $quotation_detail->product_id,
+                    // "descriptionss" => $quotation_detail->product->description,
+                    "descriptionss" => $quotation_detail->product_description,
                     "amaco_description" => $quotation_detail->amaco_description,
                     "product" => $quotation_detail->product,
                     // "partyDivision" => $quotation_detail->partyDivision,
-                    "product_price_list" => $quotation_detail->product->productPrice->map(function ($productP) {
-                        return [
-                            'price' => $productP->price,
-                            'firm_name' => $productP->party->firm_name
-                        ];
-                    }),
+                    // "product_price_list" => $quotation_detail->product->productPrice->map(function ($productP) {
+                    //     return [
+                    //         'price' => $productP->price,
+                    //         'firm_name' => $productP->party->firm_name
+                    //     ];
+                    // }),
                     
                     // "product_price_list" => $quotation_detail->product->productPrice->party,
                     "purchase_price" => $quotation_detail->purchase_price,
                     "description" => $quotation_detail->description,
                     "quantity" => $quotation_detail->quantity,
+                    'unit_of_measure' => $quotation_detail->$unit_of_measure,
                     // "delivered_quantity"=> $quotation_detail->quantity,
                     "delivered_quantity" => $quotation_detail->getDeliveredQuantity($quotation_detail),
                     "balance" => (int)$quotation_detail->quantity - (int)$quotation_detail->getDeliveredQuantity($quotation_detail),
