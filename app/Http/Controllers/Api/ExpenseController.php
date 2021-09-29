@@ -459,18 +459,25 @@ return response()->json($expenses);
     public function Expense_delete_verify(Request $request, Expense $expense)
     {
         // $expense = ColumnData::where('expense_id',$id)->join('expenses','ColumnData.expense_id','parties.id')->where('party_id', $party_id)->get();
+        
+
         if($request->status=="delete")
         {
         $tempArray = (array) json_decode($request->data, true);
-            foreach ($tempArray as $column_data_) {
+        $arr2 = array();
+
+        foreach ($arr1 as $person) {
+            $arr2[] = $person['id'];
+        }
+            // foreach ($tempArray as $column_data_) {
                 
-                // $res=Expense::where('id',$column_data_['id'])->destroy(); 
-               Expense::where('id',$column_data_['id'])->get();
-                AdvancePayment::where('expense_id',$column_data_['id'])->each->delete();
-                // return response($column_data_['id']);      
-            }
+            //     // $res=Expense::where('id',$column_data_['id'])->destroy(); 
+            //    Expense::where('id',$column_data_['id'])->get();
+            //     AdvancePayment::where('expense_id',$column_data_['id'])->each->delete();
+            //     // return response($column_data_['id']);      
+            // }
            
-            // return response($column_data_['id']);
+        return response($arr2);
         }
         if($request->status=="verify")
         {
