@@ -464,11 +464,9 @@ return response()->json($expenses);
         if($request->status=="delete")
         {
         $tempArray = (array) json_decode($request->data, true);
-        $arr2 = array();
-
-        foreach ($arr1 as $person) {
-            $arr2[] = $person['id'];
-        }
+        $arr2 = $tempArray->map(function($person) {
+            return $person['id'];
+        }, $arr1);
             // foreach ($tempArray as $column_data_) {
                 
             //     // $res=Expense::where('id',$column_data_['id'])->destroy(); 
