@@ -469,6 +469,7 @@ return response()->json($expenses);
         $arr2 = $arr->map(function($person)  {
             return $person['id'];
         });
+        $demo=$arr2->toArray();
             // foreach ($tempArray as $column_data_) {
                 
             //     // $res=Expense::where('id',$column_data_['id'])->destroy(); 
@@ -477,7 +478,7 @@ return response()->json($expenses);
             //     // return response($column_data_['id']);      
             // }
            
-        return response($arr2);
+        return response($demo);
         }
         if($request->status=="verify")
         {
