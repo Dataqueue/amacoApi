@@ -464,10 +464,10 @@ return response()->json($expenses);
         if($request->status=="delete")
         {
          $data=[];
-        $tempArray = (array) json_decode($request->data, true);
+        $tempArray = $request->data;
         $arr=collect($tempArray);
         // (array) json_decode($request->data, true);
-        $arr2 = $arr->map(function($person)  {
+        $arr2 = $arr->map(function($person) use($data) {
             $data['id']=$person['id'];
             return $data['id'];
         });
