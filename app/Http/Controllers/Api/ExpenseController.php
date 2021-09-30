@@ -471,8 +471,8 @@ return response()->json($expenses);
         //     $data['id']=$person['id'];
         //     return $data['id'];
         // });
-        $demo=$arr->toArray();
-        $test=implode(',',$demo);
+        $arr=collect($request->data);
+        $test=implode(',',$arr);
             // foreach ($tempArray as $column_data_) {
                 
             //     // $res=Expense::where('id',$column_data_['id'])->destroy(); 
