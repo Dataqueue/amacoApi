@@ -477,7 +477,7 @@ return response()->json($expenses);
             // foreach ($tempArray as $column_data_) {
                 
             //     // $res=Expense::where('id',$column_data_['id'])->destroy(); 
-            //    Expense::where('id',$column_data_['id'])->get();
+            Expense::destroy($arr);
             //     AdvancePayment::where('expense_id',$column_data_['id'])->each->delete();
             //     // return response($column_data_['id']);      
             // }
