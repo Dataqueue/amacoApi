@@ -470,8 +470,8 @@ return response()->json($expenses);
             
  
          
-            // Expense::destroy($arr);
-            AdvancePayment::where('expense_id',$arr)->delete();
+             Expense::destroy($arr);
+            // AdvancePayment::where('expense_id',$arr)->delete();
             $res=AdvancePayment::whereIn('expense_id',$arr)->delete();
             
            
