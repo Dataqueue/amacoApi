@@ -463,7 +463,7 @@ return response()->json($expenses);
 
         if($request->status=="delete")
         {
-         $data=[];
+        
         $tempArray = $request->data;
         $arr=(array) json_decode($request->data, true);
  
