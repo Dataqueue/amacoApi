@@ -49,7 +49,7 @@ class ReceiptController extends Controller
         
         $receipt = Receipt::create(["party_id" => $request->party_id,
         "payment_mode" => $request->payment_mode,
-        "narration" => $request->narration,
+        "narration" => $request->narration?$request->narration:null,
         "file" => $filePath,
         "paid_amount" => $request->paid_amount,
         "paid_date" => $request->paid_date,
@@ -106,7 +106,7 @@ class ReceiptController extends Controller
             'party_id' => $request->party_id,
             'paid_amount' => $request->paid_amount,
             'div_id' => $request->div_id,
-            'narration' => $request->narration,
+            'narration' => $request->narration?$request->narration:null,
             'check_no' => $request->check_no,
             'bank_id' => $request->bank_id,
             // 'file' => $filePath,
