@@ -481,7 +481,7 @@ return response()->json($expenses);
             //     // return response($column_data_['id']);      
             // }
            
-            return response()->json($arr);
+            return response()->json($request);
         }
         if($request->status=="verify")
         {
