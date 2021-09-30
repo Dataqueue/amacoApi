@@ -465,8 +465,8 @@ return response()->json($expenses);
         {
          $data=[];
         $tempArray = $request->data;
-        // $arr=collect($tempArray);
-        // // (array) json_decode($request->data, true);
+        $arr=(array) json_decode($request->data, true);
+ 
         // $arr2 = $arr->map(function($person) use($data) {
         //     $data['id']=$person['id'];
         //     return $data['id'];
@@ -481,7 +481,7 @@ return response()->json($expenses);
             //     // return response($column_data_['id']);      
             // }
            
-            return response()->json($tempArray);
+            return response()->json($arr);
         }
         if($request->status=="verify")
         {
