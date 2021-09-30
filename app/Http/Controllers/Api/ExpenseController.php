@@ -466,13 +466,14 @@ return response()->json($expenses);
         
         $tempArray = $request->data;
         $arr=(array) json_decode($request->data, true);
+        
+            
  
         // $arr2 = $arr->map(function($person) use($data) {
         //     $data['id']=$person['id'];
         //     return $data['id'];
         // });
-        $demo=collect($request->data);
-        $test=implode(',',$demo);
+        
             // foreach ($tempArray as $column_data_) {
                 
             //     // $res=Expense::where('id',$column_data_['id'])->destroy(); 
@@ -481,7 +482,7 @@ return response()->json($expenses);
             //     // return response($column_data_['id']);      
             // }
            
-            return response()->json($test);
+            return response()->json($arr);
         }
         if($request->status=="verify")
         {
