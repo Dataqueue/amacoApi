@@ -471,7 +471,7 @@ return response()->json($expenses);
         //     $data['id']=$person['id'];
         //     return $data['id'];
         // });
-        $demo=$arr2->toArray();
+        $demo=$arr->toArray();
         $test=implode(',',$demo);
             // foreach ($tempArray as $column_data_) {
                 
