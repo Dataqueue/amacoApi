@@ -469,20 +469,13 @@ return response()->json($expenses);
         
             
  
-        // $arr2 = $arr->map(function($person) use($data) {
-        //     $data['id']=$person['id'];
-        //     return $data['id'];
-        // });
-        
-            // foreach ($tempArray as $column_data_) {
-                
-            //     // $res=Expense::where('id',$column_data_['id'])->destroy(); 
-            Expense::destroy($arr);
-            AdvancePayment::where('expense_id',$arr)->delete();
-            //     // return response($column_data_['id']);      
-            // }
+         
+            // Expense::destroy($arr);
+            // AdvancePayment::where('expense_id',$arr)->delete();
+            $res=AdvancePayment::whereIn('expense_id',$arr)->get();
+            
            
-            return response()->json($arr);
+            return response()->json($res);
         }
         if($request->status=="verify")
         {
