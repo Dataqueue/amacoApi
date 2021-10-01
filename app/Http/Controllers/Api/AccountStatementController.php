@@ -130,7 +130,7 @@ class AccountStatementController extends Controller
                 $item['date'] = $item->created_at;
                 $item['code_no'] = $item->invoice_no;
                 $item['description'] = "Sale"."/".$item->name;
-                $item['name'] = "Sale"."/".$item->name;
+                $item['name'] = $item->name;
                 $item['debit'] = floatval(str_replace(",","",$item->total_value));
                 $item['po_number'] = $item->po_number;
                 $item['credit'] = null;
