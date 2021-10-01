@@ -17,7 +17,10 @@ class PaymentAccount extends Model
     {
         return $this->belongsTo(Expense::class);
     }
-    
+    public function receipt()
+    {
+        return $this->belongsTo(Receipt::class);
+    }
     public function advanceAccount()
     {
         return $this->belongsTo(AdvancePayment::class);

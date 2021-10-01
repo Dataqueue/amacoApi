@@ -16,6 +16,11 @@ class Receipt extends Model
     {
         return $this->hasOne(Party::class, 'id','party_id');
     }
+    public function paymentaccount()
+    {
+        return $this->hasOne(PaymentAccount::class, 'id','receiver');
+    }
+    
     public function division()
     {
         return $this->hasOne(Receipts::class, 'id','party_id');
