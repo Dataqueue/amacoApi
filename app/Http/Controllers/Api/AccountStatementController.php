@@ -110,7 +110,7 @@ class AccountStatementController extends Controller
     {
         $invoiceCollection = new Collection();
         if($request->from_date){
-            $invoiceCollection = Invoice::join('parties','invoices.party_id','parties.id')->select('parties.credit_days','invoices.*','parties.firm_name')->whereBetween('invoices.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $invoiceCollection = Invoice::join('parties','invoices.party_id','parties.id')->select('invoices.*','parties.firm_name')->whereBetween('invoices.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
         }else{
             $invoiceCollection = Invoice::all();
         }
