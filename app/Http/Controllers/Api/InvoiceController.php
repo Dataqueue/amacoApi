@@ -77,7 +77,7 @@ class InvoiceController extends Controller
         // dd($request->vat_in_value);
         // dd($request->vat_in_value);
         $data['invoice_no'] = $this->getInvoiceNo();
-        $data['issue_date'] = now();
+        $data['issue_date'] = $request['ps_date'];
         $data['status'] = "New";
         $data['quotation_id'] = $request['quotation_id'];
         $data['po_number'] = $request['po_number'];
