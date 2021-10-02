@@ -244,7 +244,7 @@ class UserController extends Controller
 
 
     }
-    public function Usersprofile($request)
+    public function Usersprofile(Request $request)
     {
         // $user = User::where('id',$id)->first();
  
