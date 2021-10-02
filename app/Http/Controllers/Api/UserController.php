@@ -126,7 +126,8 @@ class UserController extends Controller
         // $division=User::join('user_divisions','user_divisions.u_id','users.id')->where('users.id',$user->id)->get();
         $user['role_name'] = $user->role->name;
         $user['division']=1;
-        // $user['investment']=$user->investment;
+
+        $user['img']=$user->userProfile();
         $user['divisions']=UserDivision::where('u_id',$user->id)->get();
         
 

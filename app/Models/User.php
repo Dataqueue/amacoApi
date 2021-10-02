@@ -60,6 +60,15 @@ protected $guarded = [];
     {
         return $this->getKey();
     }
+    public function userProfile()
+    {
+        $path = $this->profile;
+        if (File::exists(public_path($this->profile))) {
+            return url($path);
+        }
+        return "No file Uploaded";
+
+    }
 
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
