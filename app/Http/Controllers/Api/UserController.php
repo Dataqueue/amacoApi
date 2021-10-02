@@ -253,6 +253,7 @@ class UserController extends Controller
             
         // ]);
         if ($request->file('profile')) {
+            $user = User::where('id',$request->id)->first();
             // $name = $request['myFile' . $index]->getClientOriginalName();
             $path = $request->file('profile')->move('profile/' . $request->id);
             User::create([
