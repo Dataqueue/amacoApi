@@ -244,6 +244,18 @@ class UserController extends Controller
 
 
     }
+    public function Usersprofile($request)
+    {
+        $user = User::where('id',$id)->first();
+ 
+        $user->update([
+            "status"=> "false",
+            
+        ]);
+        return response()->json([$user]);
+
+
+    }
 
 
 }
