@@ -246,12 +246,20 @@ class UserController extends Controller
     }
     public function Usersprofile($request)
     {
-        $user = User::where('id',$id)->first();
+        // $user = User::where('id',$id)->first();
  
-        $user->update([
-            "status"=> "false",
+        // $user->update([
+        //     "status"=> "false",
             
-        ]);
+        // ]);
+        if ($request->file('profile')) {
+            // $name = $request['myFile' . $index]->getClientOriginalName();
+            $path = $request->file('profile')->move('profile/' . $request->id);
+            User::create([
+                
+                'profile' => $path
+            ]);
+        }
         return response()->json([$user]);
 
 
