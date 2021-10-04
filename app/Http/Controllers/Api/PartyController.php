@@ -13,6 +13,7 @@ use App\Models\ProductPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
+use Config;
 // use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class PartyController extends Controller
@@ -40,7 +41,7 @@ class PartyController extends Controller
     public function store(Request $request)
     {
         // return $request;
-        $val = config('Apikey');
+        $val = config('example.url');
         $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$val.'s&q=%22hello%22&target=ar'));
         // $translated_text = $json->responseData->translatedText;
 
