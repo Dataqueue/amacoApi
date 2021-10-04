@@ -40,6 +40,8 @@ class PartyController extends Controller
     public function store(Request $request)
     {
         // return $request;
+        $json = json_decode(file_get_contents('https://ajax.googleapis.com/ajax/services/language/translate?v=AIzaSyD7P8GLA-mfgOZkhg-BPAuM_iQ7UVEwVcs&q=' . urlencode("welcome") . '&langpair=' . 'en' . '|' . 'ar'));
+        $translated_text = $json->responseData->translatedText;
 
         $party = Party::create([
             'firm_name' => $request->firm_name?ucwords(trans($request->firm_name)):'',
