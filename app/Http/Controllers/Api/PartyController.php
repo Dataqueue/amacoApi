@@ -115,7 +115,7 @@ class PartyController extends Controller
             }
         }
 
-        return response()->json([$cityar->data->translations[0]], 200);
+        return response()->json([$cityar->data->translations[0]['translatedText']], 200);
     }
 
     /**
