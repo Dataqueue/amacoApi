@@ -18,11 +18,13 @@ use Config;
 
 class PartyController extends Controller
 {
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         $parties = Party::all();
@@ -41,7 +43,9 @@ class PartyController extends Controller
     public function store(Request $request)
     {
         // return $request;
-        $val = Config::get('app.url');
+        $path = storage_path() . "/json/jsondata.json";
+
+        $json = json_decode(file_get_contents($path), true);
         // $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$val.'s&q=%22hello%22&target=ar'));
         // $translated_text = $json->responseData->translatedText;
 
@@ -157,7 +161,7 @@ class PartyController extends Controller
                     return $contact;
                 }),
                 'partyDivision'=>$party->partyDivision,
-                'jsonData' => $json
+                'jsonData' => $json->apikey
             ];
         return response()->json(array($data));
     }
