@@ -13,7 +13,7 @@ use App\Models\ProductPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
-use Config;
+use config;
 // use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class PartyController extends Controller
@@ -42,7 +42,7 @@ class PartyController extends Controller
     {
         // return $request;
         $val = config('example.url');
-        $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$val.'s&q=%22hello%22&target=ar'));
+        // $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$val.'s&q=%22hello%22&target=ar'));
         // $translated_text = $json->responseData->translatedText;
 
         $party = Party::create([
@@ -111,7 +111,7 @@ class PartyController extends Controller
             }
         }
 
-        return response()->json([$json], 200);
+        return response()->json([config('example.url')], 200);
     }
 
     /**
