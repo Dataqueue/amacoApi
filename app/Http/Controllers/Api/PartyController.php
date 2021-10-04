@@ -110,7 +110,7 @@ class PartyController extends Controller
             }
         }
 
-        return response()->json([$party, $contact,$json], 200);
+        return response()->json([$party, $contact], 200);
     }
 
     /**
