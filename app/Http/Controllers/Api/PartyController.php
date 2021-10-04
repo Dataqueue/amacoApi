@@ -114,8 +114,8 @@ class PartyController extends Controller
             ]); 
             }
         }
-
-        return response()->json([$cityar->data->translations[0]['translatedText']], 200);
+        $res=json_decode($cityar->data->translations);
+        return response()->json([$res], 200);
     }
 
     /**
