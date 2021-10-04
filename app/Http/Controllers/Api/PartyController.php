@@ -40,7 +40,8 @@ class PartyController extends Controller
     public function store(Request $request)
     {
         // return $request;
-        $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.env(Apikey).'s&q=%22hello%22&target=ar'));
+        $val = config('Apikey');
+        $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$val.'s&q=%22hello%22&target=ar'));
         // $translated_text = $json->responseData->translatedText;
 
         $party = Party::create([
