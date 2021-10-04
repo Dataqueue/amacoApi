@@ -50,12 +50,13 @@ class PartyController extends Controller
         $streetar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->street.'&target=ar'));
         $countryar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->country.'&target=ar'));
         $proviancear = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->proviance.'&target=ar'));
+        $firm_name_in_ar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->firm_name.'&target=ar'));
         
        
 
         $party = Party::create([
             'firm_name' => $request->firm_name?ucwords(trans($request->firm_name)):'',
-            'firm_name_in_ar' => (string) $request->company_name_ar,
+            'firm_name_in_ar' => $firm_name_in_ar->data->translations[0]->translatedText,
             'registration_no' => $request->registration_no,
             // 'registration_no_in_ar'=> $request->registration_no == null ? null : GoogleTranslate::trans(
             //     $request->registration_no,'ar'),
@@ -80,6 +81,7 @@ class PartyController extends Controller
             'city_ar' => $cityar->data->translations[0]->translatedText,
             'country_ar' => $cityar->data->translations[0]->translatedText,
             'proviance_ar' => $proviancear->data->translations[0]->translatedText,
+            'zip_code_ar' => $request->zip_code_ar,
             
         ]);
         $request->account_no &&
