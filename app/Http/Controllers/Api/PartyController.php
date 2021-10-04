@@ -47,7 +47,7 @@ class PartyController extends Controller
 
         $json = json_decode(file_get_contents($path), true);
         $cityar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q=hello&target=ar'));
-        $city_ar = $cityar->responseData->translatedText;
+       
 
         $party = Party::create([
             'firm_name' => $request->firm_name?ucwords(trans($request->firm_name)):'',
@@ -115,7 +115,7 @@ class PartyController extends Controller
             }
         }
 
-        return response()->json([$city_ar], 200);
+        return response()->json([$cityar], 200);
     }
 
     /**
