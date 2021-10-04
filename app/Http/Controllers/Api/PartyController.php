@@ -161,7 +161,7 @@ class PartyController extends Controller
                     return $contact;
                 }),
                 'partyDivision'=>$party->partyDivision,
-                $json->apikey
+                $json['apikey']
             ];
         return response()->json(array($data));
     }
