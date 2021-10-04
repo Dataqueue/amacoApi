@@ -41,7 +41,7 @@ class PartyController extends Controller
     public function store(Request $request)
     {
         // return $request;
-        $val = config('example.url');
+        $value = \Config::get('example');
         // $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$val.'s&q=%22hello%22&target=ar'));
         // $translated_text = $json->responseData->translatedText;
 
@@ -111,7 +111,7 @@ class PartyController extends Controller
             }
         }
 
-        return response()->json([config('example.url')], 200);
+        return response()->json([$value], 200);
     }
 
     /**
