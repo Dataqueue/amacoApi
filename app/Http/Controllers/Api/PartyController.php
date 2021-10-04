@@ -46,7 +46,7 @@ class PartyController extends Controller
         $path = storage_path() . "/json/jsondata.json";
 
         $json = json_decode(file_get_contents($path), true);
-        $cityar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->city.'&target=ar'));
+        $cityar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q=hello&target=ar'));
         $city_ar = $cityar->responseData->translatedText;
 
         $party = Party::create([
