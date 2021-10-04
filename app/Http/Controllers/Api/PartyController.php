@@ -42,7 +42,7 @@ class PartyController extends Controller
     {
         // return $request;
         $val = config('example.url');
-        // $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$val.'s&q=%22hello%22&target=ar'));
+        $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$val.'s&q=%22hello%22&target=ar'));
         // $translated_text = $json->responseData->translatedText;
 
         $party = Party::create([
@@ -111,7 +111,7 @@ class PartyController extends Controller
             }
         }
 
-        return response()->json([$val], 200);
+        return response()->json([$json], 200);
     }
 
     /**
