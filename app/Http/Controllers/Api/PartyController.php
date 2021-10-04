@@ -41,7 +41,7 @@ class PartyController extends Controller
     {
         // return $request;
         $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key=AIzaSyD7P8GLA-mfgOZkhg-BPAuM_iQ7UVEwVcs&q=%22hello%22&target=ar'));
-        $translated_text = $json->responseData->translatedText;
+        // $translated_text = $json->responseData->translatedText;
 
         $party = Party::create([
             'firm_name' => $request->firm_name?ucwords(trans($request->firm_name)):'',
