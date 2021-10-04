@@ -46,8 +46,8 @@ class PartyController extends Controller
         $path = storage_path() . "/json/jsondata.json";
 
         $json = json_decode(file_get_contents($path), true);
-        // $json = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$val.'s&q=%22hello%22&target=ar'));
-        // $translated_text = $json->responseData->translatedText;
+        $cityar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json->apikey.'&q='.$request->city.'&target=ar'));
+        $city_ar = $cityar->responseData->translatedText;
 
         $party = Party::create([
             'firm_name' => $request->firm_name?ucwords(trans($request->firm_name)):'',
@@ -115,7 +115,7 @@ class PartyController extends Controller
             }
         }
 
-        return response()->json([$val], 200);
+        return response()->json([$city_ar], 200);
     }
 
     /**
@@ -161,7 +161,7 @@ class PartyController extends Controller
                     return $contact;
                 }),
                 'partyDivision'=>$party->partyDivision,
-                'jsonData' => $json->apikey
+                // 'jsonData' => $json->apikey
             ];
         return response()->json(array($data));
     }
