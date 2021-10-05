@@ -29,7 +29,7 @@ class Party extends Model
     }
     public function partyDivision()
     {
-        return $this->hasOne(party_division::class, 'party_id','id');
+        return $this->hasMany(party_division::class, 'party_id','id');
 
     }
 
