@@ -287,7 +287,10 @@ class PartyController extends Controller
     // Api for customer list
     public function customer()
     {
-        $vendors = Party::where('party_type', '=', 'customer')->orWhere('party_type', '=', 'both')
+        // $vendors = Party::where('party_type', '=', 'customer')->orWhere('party_type', '=', 'both')
+        //     ->select('id', 'firm_name', 'contact','opening_balance','credit_days')
+        //     ->get();
+            $vendors = Party::where('party_type', '=', 'customer')->orWhere('party_type', '=', 'both')
             ->select('id', 'firm_name', 'contact','opening_balance','credit_days')
             ->get();
             // ->toArray();
