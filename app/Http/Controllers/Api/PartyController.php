@@ -137,9 +137,10 @@ class PartyController extends Controller
      */
     public function show(Party $party)
     {
-        $path = storage_path() . "/json/jsondata.json"; // ie: /var/www/laravel/app/storage/json/filename.json
+        // $path = storage_path() . "/json/jsondata.json"; // ie: /var/www/laravel/app/storage/json/filename.json
 
-        $json = json_decode(file_get_contents($path), true);
+        // $json = json_decode(file_get_contents($path), true);
+        $json = env('example.key');
         $contacts = Contact::where('party_id', '=', $party->id)->get();
         $divisions=party_division::where('party_id',$party->id)->join('payment_accounts','payment_accounts.id','party_divisions.div_id')->get();
         $data =
@@ -172,7 +173,7 @@ class PartyController extends Controller
                     return $contact;
                 }),
                 'partyDivision'=>$party->partyDivision,
-                $json['apikey']
+                $json,
             ];
         return response()->json(array($data));
     }
