@@ -52,6 +52,7 @@ class PartyController extends Controller
         $proviancear = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->proviance.'&target=ar'));
         $firm_name_in_ar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->firm_name.'&target=ar'));
         
+        
        
 
         $party = Party::create([
@@ -82,6 +83,7 @@ class PartyController extends Controller
             'country_ar' => $cityar->data->translations[0]->translatedText,
             'proviance_ar' => $proviancear->data->translations[0]->translatedText,
             'zip_code_ar' => $request->zip_code_ar,
+            'vat_no_in_ar' => $request->vat_no_in_ar,
             
         ]);
         $request->account_no &&
@@ -239,6 +241,8 @@ class PartyController extends Controller
             'bank_address' => $request->bank_address == null ? $party->bank_address :  ucwords(trans($request->bank_address)),
             'party_code' => $request->party_code == null ? $party->party_code :  $request->party_code,
             'vendor_id' => $request->vendor_id == null ? $party->vendor_id :  $request->vendor_id,
+            'zip_code_ar' => $request->zip_code_ar,
+            'vat_no_in_ar' => $request->vat_no_in_ar,
         ]);
        
         if($request->division)
