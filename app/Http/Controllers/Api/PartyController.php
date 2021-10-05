@@ -43,14 +43,14 @@ class PartyController extends Controller
     public function store(Request $request)
     {
         // return $request;
-        $path = storage_path() . "/json/jsondata.json";
-
-        $json = json_decode(file_get_contents($path), true);
-        $cityar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->city.'&target=ar'));
-        $streetar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->street.'&target=ar'));
-        $countryar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->country.'&target=ar'));
-        $proviancear = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->proviance.'&target=ar'));
-        $firm_name_in_ar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->firm_name.'&target=ar'));
+        // $path = storage_path() . "/json/jsondata.json";
+        $apikey=  \Config::get('example.key');
+        // $json = json_decode(file_get_contents($path), true);
+        $cityar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.$request->city.'&target=ar'));
+        $streetar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.$request->street.'&target=ar'));
+        $countryar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.$request->country.'&target=ar'));
+        $proviancear = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.$request->proviance.'&target=ar'));
+        $firm_name_in_ar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($request->firm_name).'&target=ar'));
         
         
        
@@ -215,13 +215,14 @@ class PartyController extends Controller
 
         // if($validator->fails()){
         // return ("somethin went wrong");
-        $path = storage_path() . "/json/jsondata.json";
+        // $path = storage_path() . "/json/jsondata.json";
 
-        $json = json_decode(file_get_contents($path), true);
-        $cityar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->city.'&target=ar'));
-        $streetar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->street.'&target=ar'));
-        $countryar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->country.'&target=ar'));
-        $proviancear = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$json['apikey'].'&q='.$request->proviance.'&target=ar'));
+        // $json = json_decode(file_get_contents($path), true);
+        $apikey=  \Config::get('example.key');
+        $cityar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.$request->city.'&target=ar'));
+        $streetar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.$request->street.'&target=ar'));
+        $countryar = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.$request->country.'&target=ar'));
+        $proviancear = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.$request->proviance.'&target=ar'));
 
         $party->update([
             'firm_name' => $request->firm_name == null ? $party->firm_name : ucwords(trans($request->firm_name)),
