@@ -494,6 +494,6 @@ return response()->json($expenses);
     {
         $aResult=AccountCategory::where('parent_id',' ')->get();
         $eResult=Expense::get();
-        return response($aResult->merge($eResult));
+        return response($aResult);
     }
 }
