@@ -493,8 +493,8 @@ return response()->json($expenses);
     public function expense_chart()
     {
         $aResult=AccountCategory::where('parent_id',null)->get();
-        $eResult=Expense::where('parent_id',' ')->get();
+        $eResult=Expense::get();
     
-        return response($eResult);
+        return response($aResult);
     }
 }
