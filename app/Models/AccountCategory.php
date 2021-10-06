@@ -15,4 +15,8 @@ class AccountCategory extends Model
     {
         return $this->hasMany(Column::class, 'account_category_id', 'id');
     }
+    public function accout_category()
+    {
+        return $this->belongsTo(Expense::class, 'account_category_id', 'id');
+    }
 }

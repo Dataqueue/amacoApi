@@ -55,5 +55,9 @@ class Expense extends Model
         return "No file Uploaded";
 
     }
+    public function expense()
+    {
+        return $this->hasMany(AccountCategory::class);
+    }
 }
 
