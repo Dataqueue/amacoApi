@@ -59,5 +59,9 @@ class Expense extends Model
     {
         return $this->hasMany(AccountCategory::class);
     }
+    public function accountcategory()
+    {
+        return $this->hasOne(AccountCategory::class, 'account_category_id','id');
+    }
 }
 

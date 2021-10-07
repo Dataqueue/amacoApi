@@ -497,6 +497,6 @@ return response()->json($expenses);
         $eResult=Expense::join('account_categories','account_categories.id','expenses.account_category_id')->get();
        
     
-        return response($eResult);
+        return response([$eResult,$eResult->accountcategory]);
     }
 }
