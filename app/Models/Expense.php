@@ -61,7 +61,7 @@ class Expense extends Model
     }
     public function accountcategory()
     {
-        return $this->hasOne(AccountCategory::class, 'account_category_id','id');
+        return $this->hasOne(AccountCategory::class, 'id','account_category_id');
     }
 }
 
