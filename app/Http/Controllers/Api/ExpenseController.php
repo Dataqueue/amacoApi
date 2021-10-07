@@ -502,6 +502,6 @@ return response()->json($expenses);
 
         });
     
-        return response($eResult);
+        return response($arr);
     }
 }
