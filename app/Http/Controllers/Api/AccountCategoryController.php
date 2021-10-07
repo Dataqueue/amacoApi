@@ -130,7 +130,7 @@ class AccountCategoryController extends Controller
     public function accountCategory()
     {
         // $name = strtolower($name);
-        $category = AccountCategory::get();
+        $category = AccountCategory::where('parent_id',null)->get();
         return response()->json($category);
     }
 }
