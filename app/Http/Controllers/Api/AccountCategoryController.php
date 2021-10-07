@@ -127,7 +127,7 @@ class AccountCategoryController extends Controller
             ->get();
         return response()->json($category);
     }
-    public function accountCategory($name)
+    public function accountCategory()
     {
         // $name = strtolower($name);
         $category = AccountCategory::get();
