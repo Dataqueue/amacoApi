@@ -61,6 +61,7 @@ return response()->json($expenses);
                 'expenses.*'
 )->where("status", 'verified')->orderBy('created_at', 'DESC')->get();
         $expenses->map(function ($expense) {
+               
             return $expense->payment_account;
         });
         return response()->json($expenses);

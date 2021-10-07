@@ -19,4 +19,5 @@ class AccountCategory extends Model
     {
         return $this->belongsTo(Expense::class, 'account_category_id', 'id');
     }
+    
 }
