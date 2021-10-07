@@ -495,12 +495,8 @@ return response()->json($expenses);
         $aResult=AccountCategory::where('parent_id',null)->get();
         $eResult=Expense::get();
         $arr['data']= $eResult->map(function ($item) {
-            $item['id']=null;
-            $item['parent_id']=null;
-            $item['name']=null;
-            $item['description']=null;
-            $item['created_at']=null;
-            $item['updated_at']=null;
+            $item['id']=$item->id;
+           
         
             
 
