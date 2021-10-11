@@ -215,8 +215,7 @@ class InvoiceController extends Controller
     }
     public function salesTax(Invoice $invoice)
     {
-        $invoices = $invoice->where('status','!=','Delivered')
-        ->orderBy('created_at','DESC')->get();
+        $invoices = Invoice::get();
         // $result=$invoices->party;
         return [
             $invoices,
