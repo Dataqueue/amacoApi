@@ -62,7 +62,7 @@ class InvoiceController extends Controller
         $invoices = Invoice::where('status','!=','Delivered')
         ->orderBy('created_at','DESC')->get();
         // $result=$invoices->party;
-        return $invoices->party;
+        return $invoices;
     }
 
     /**
