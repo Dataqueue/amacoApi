@@ -219,8 +219,8 @@ class InvoiceController extends Controller
         ->orderBy('created_at','DESC')->get();
         // $result=$invoices->party;
         return [
-            $invoice,
-            $invoice->party,
+            $invoices,
+            $invoices->party,
             // $invoice->quotation,
             //$invoice->quotation->quotationDetail,
         ];
