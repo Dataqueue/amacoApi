@@ -62,7 +62,7 @@ class InvoiceController extends Controller
         $invoices = Invoice::where('status','!=','Delivered')
         ->orderBy('created_at','DESC')->get();
         // $result=$invoices->party;
-        return $invoices->party;
+        return $invoices;
     }
 
     /**
@@ -212,5 +212,17 @@ class InvoiceController extends Controller
         $invoices = Invoice::where('status', '=', 'Delivered')
         ->orderBy('created_at', 'DESC')->get();
         return response()->json($invoices);
+    }
+    public function salesTax(Invoice $invoice)
+    {
+        $invoices = $invoice->where('status','!=','Delivered')
+        ->orderBy('created_at','DESC')->get();
+        // $result=$invoices->party;
+        return [
+            $invoice,
+            $invoice->party,
+            // $invoice->quotation,
+            //$invoice->quotation->quotationDetail,
+        ];
     }
 }

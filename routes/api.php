@@ -169,6 +169,7 @@ Route::post('Expense_delete_verify', [ExpenseController::class, 'Expense_delete_
 Route::post('partyDelete_all', [PartyController::class, 'partyDelete_all']);
 Route::get('expense_chart', [ExpenseController::class, 'expense_chart']);
 Route::get('accountCategory', [AccountCategoryController::class, 'accountCategory']);
+Route::get('salesTax', [InvoiceController::class, 'salesTax']);
 
 
 
