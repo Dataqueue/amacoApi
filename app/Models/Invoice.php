@@ -18,11 +18,7 @@ class Invoice extends Model
 
     public function party()
     {
-        return $this->hasOne(Party::class, 'party_id','id');
-    }
-    public function parties()
-    {
-        return $this->hasMany(Party::class, 'party_id','id');
+        return $this->hasOne(Party::class, 'id','party_id');
     }
 
     public function quotation()
