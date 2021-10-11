@@ -219,7 +219,7 @@ class InvoiceController extends Controller
         // $result=$invoices->party;
         return [
             $invoices,
-            $invoices->party,
+            // $invoices->party,
             // $invoice->quotation,
             //$invoice->quotation->quotationDetail,
         ];
