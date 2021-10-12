@@ -501,7 +501,7 @@ return response()->json($expenses);
     }
     public function purchaseTax(Expense $expense)
     {
-        $expenses = Expense::where('company_name','=','true')->get();
+        $expenses = Expense::where('company_name','=','true')->where('company_name','=','true')->get();
         // $result=$invoices->party;
         return $expenses;
     }
