@@ -468,6 +468,7 @@ class QuotationController extends Controller
                     'margin' => $quotation_detail['margin'],
                     'sell_price' => $quotation_detail['sell_price'],
                     'unit_of_measure' => $quotation_detail['unit_of_measure'],
+                    'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:"",
                     'remark' => $quotation_detail['remark'],
                     'file_img_url' => $filePath,
 
@@ -483,7 +484,7 @@ class QuotationController extends Controller
                     'quantity' => $quotation_detail['quantity'],
                     'margin' => $quotation_detail['margin'],
                     'sell_price' => $quotation_detail['sell_price'],
-                    "product_description" => $quotation_detail['amaco_description'],
+                    'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:"",
                     'unit_of_measure' => $quotation_detail['unit_of_measure'],
                     'remark' => $quotation_detail['remark'],
                     'file_img_url' => $filePath,
@@ -525,6 +526,7 @@ class QuotationController extends Controller
                         'margin' => $quotation_detail['margin'],
                         'sell_price' => $quotation_detail['sell_price'],
                         'remark' => $quotation_detail['remark'],
+                        'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:"",
                         'unit_of_measure' => $quotation_detail['unit_of_measure'],
     
                     ]);
@@ -540,6 +542,7 @@ class QuotationController extends Controller
                         'margin' => $quotation_detail['margin'],
                         'sell_price' => $quotation_detail['sell_price'],
                         'unit_of_measure' => $quotation_detail['unit_of_measure'],
+                        'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:"",
                         'remark' => $quotation_detail['remark'],
     
                     ]);
