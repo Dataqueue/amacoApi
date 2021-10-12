@@ -499,4 +499,10 @@ return response()->json($expenses);
     
         return response([$eResult]);
     }
+    public function purchaseTax(Expense $expense)
+    {
+        $expenses = Expense::where('company_name',true)->get();
+        // $result=$invoices->party;
+        return $expenses;
+    }
 }
