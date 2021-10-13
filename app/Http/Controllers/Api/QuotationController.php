@@ -272,6 +272,17 @@ class QuotationController extends Controller
             }
 
             $quotation = Quotation::create($datas);
+            foreach ($request['notes'] as $div) {
+                   
+                $contact = notes::create([
+                    'quotation_id' => $quotation->id,
+                    'note' => $div['notes'],
+                   
+                    
+                    
+        
+                ]); 
+            }
 
 
             global $quotation_id;
@@ -321,17 +332,7 @@ class QuotationController extends Controller
                     $index++;
                 }
                
-                foreach ($request['notes'] as $div) {
-                   
-                    $contact = notes::create([
-                        'quotation_id' => $quotation_id,
-                        'note' => $div['notes'],
-                       
-                        
-                        
-            
-                    ]); 
-                    }
+                
             
             }
 
@@ -342,7 +343,7 @@ class QuotationController extends Controller
                 }
             }
 
-            return response()->json('hi');
+            return response()->json($request);
         } catch (Exception $e) {
             return response()->json($e, 201);
         }
