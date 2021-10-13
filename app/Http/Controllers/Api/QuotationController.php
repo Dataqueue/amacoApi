@@ -274,11 +274,9 @@ class QuotationController extends Controller
             $quotation = Quotation::create($datas);
             foreach ($request->notes as $div) {
                    
-                $contact = notes::create([
-                    'quotation_id' => $quotation->id,
-                    'note' => $div['notes'],
-                   
-                    
+                notes::create([
+                    'quotation_id' => 12,
+                    'note' => "hello", 
                     
         
                 ]); 
