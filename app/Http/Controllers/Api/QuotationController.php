@@ -272,7 +272,7 @@ class QuotationController extends Controller
             }
 
             $quotation = Quotation::create($datas);
-            foreach ($request['notes'] as $div) {
+            foreach ((array) json_decode($request['notes']) as $div) {
                    
                 $contact = notes::create([
                     'quotation_id' => $quotation->id,
