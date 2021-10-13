@@ -46,6 +46,10 @@ class Quotation extends Model
     {
         return $this->hasOne(PurchaseInvoice::class, 'quotation_id', 'id');
     }
+    public function notes()
+    {
+        return $this->hasOne(notes::class, 'quotation_id', 'id');
+    }
 
     public function deliveryNote()
     {
