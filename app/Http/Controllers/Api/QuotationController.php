@@ -320,9 +320,8 @@ class QuotationController extends Controller
                     ]);
                     $index++;
                 }
-                if($request->notes)
-                {
-                foreach ($request->notes as $div) {
+               
+                foreach ($request['notes'] as $div) {
                    
                     $contact = notes::create([
                         'quotation_id' => $quotation_id,
@@ -333,7 +332,7 @@ class QuotationController extends Controller
             
                     ]); 
                     }
-                }
+            
             }
 
             if ($request['parent_id']) {
@@ -343,7 +342,7 @@ class QuotationController extends Controller
                 }
             }
 
-            return response()->json([$request->notes]);
+            return response()->json([$request['notes']]);
         } catch (Exception $e) {
             return response()->json($e, 201);
         }
