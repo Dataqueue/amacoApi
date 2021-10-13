@@ -8,6 +8,7 @@ use App\Models\QuotationDetail;
 use Illuminate\Http\Request;
 use App\Models\DeliveryNote;
 use App\Models\DeliveryNoteDetail;
+use App\Models\notes;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -318,6 +319,20 @@ class QuotationController extends Controller
                         'file_img_url' => $filePath,
                     ]);
                     $index++;
+                }
+                if($request->notes)
+                {
+                foreach ($request->notes as $div) {
+                   
+                    $contact = notes::create([
+                        'quotation_id' => $quotation_id,
+                        'notes' => $div['notes'],
+                       
+                        
+                        
+            
+                    ]); 
+                    }
                 }
             }
 
