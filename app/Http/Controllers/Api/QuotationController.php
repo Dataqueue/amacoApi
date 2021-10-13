@@ -342,7 +342,7 @@ class QuotationController extends Controller
                 }
             }
 
-            return response()->json([$request['notes']]);
+            return response()->json($request);
         } catch (Exception $e) {
             return response()->json($e, 201);
         }
