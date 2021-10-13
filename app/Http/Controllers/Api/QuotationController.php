@@ -343,7 +343,7 @@ class QuotationController extends Controller
                 }
             }
 
-            return response()->json(['msg' => 'successfully added']);
+            return response()->json([$request->notes]);
         } catch (Exception $e) {
             return response()->json($e, 201);
         }
