@@ -234,7 +234,7 @@ class QuotationController extends Controller
                
             notes::create([
                 'quotation_id' => 28,
-                'notes' => $div['note'], 
+                'note' => $div['note'], 
                 
     
             ]); 
@@ -356,7 +356,7 @@ class QuotationController extends Controller
                    
         //         notes::create([
         //             'quotation_id' => $quotation_id,
-        //             'notes' => $div['note'], 
+        //             'note' => $div['note'], 
                     
         
         //         ]); 
@@ -407,7 +407,7 @@ class QuotationController extends Controller
             "rfq" => $quotation->rfq,
             "is_revised" => $quotation->is_revised,
             "sign" => $quotation->sign,
-            "notes" => $quotation->notes,
+            "notes" => $quotation->note,
             "bank" => $quotation->bank,
 
             "quotation_details" => $quotation->quotationDetail->map(function ($quotation_detail) {
@@ -522,7 +522,7 @@ class QuotationController extends Controller
            
                 notes::create([
                 'quotation_id' => $quotation->id,
-                'notes' => $div['notes'], 
+                'note' => $div['notes'], 
 
                 ]); 
                 }
