@@ -530,7 +530,7 @@ class QuotationController extends Controller
             }
             $index++;
         }
-        return response()->json("hi");
+        return response()->json($request);
         }
         else
         {
@@ -590,7 +590,7 @@ class QuotationController extends Controller
                 $index++;
                 
         
-                return response()->json($request);
+                return response()->json("hi");
         }
         
        
