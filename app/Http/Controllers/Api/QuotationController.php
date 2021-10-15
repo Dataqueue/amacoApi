@@ -227,135 +227,146 @@ class QuotationController extends Controller
 
     public function store(Request $request)
     {
-        
-        
-        $rfqId = null;
-        $rfqId = $request->rfq_id && $request->rfq_id;
-        $parentId = null;
-        if($request['parent_id']){
-            $parentId = $request['parent_id'];
-
-        }
-
-
-
-        try {
-            $datas = [
-                'party_id' => $request['party_id'],
-                'rfq_id' => $rfqId,
-                'status' => 'New',
-                'parent_id' => $parentId,
-                'total_value' => $request['total_value'],
-                'net_amount' => $request['net_amount'],
-                'vat_in_value' => $request['vat_in_value'],
-                'discount_in_p' => $request['discount_in_p'],
-                'validity' => $request['validity'],
-                'payment_terms' => $request['payment_terms'],
-                'warranty' => $request['warranty'],
-                'delivery_time' => $request['delivery_time'],
-                'inco_terms' => $request['inco_terms'],
-                'contact_id' => $request['contact_id'],
-                'transaction_type' => $request['transaction_type'],
-                'ps_date' => $request['ps_date'],  // ? $request['ps_date'] : Carbon::now()
-                'sign' => $request['sign'],  // ? $request['ps_date'] : Carbon::now()
-                'bank_id' => $request['bank_id'],  // ? $request['ps_date'] : Carbon::now()
+        $res=notes::where('quotation_id',$quotation_id)->delete();
+           
+        $note_detail = json_decode($request->notes, true);
+            foreach ($note_detail as $div) {
+               
+            notes::create([
+                'quotation_id' => 28,
+                'notes' => $div['note'], 
                 
-            ];
+    
+            ]); 
+        }
+        
+        // $rfqId = null;
+        // $rfqId = $request->rfq_id && $request->rfq_id;
+        // $parentId = null;
+        // if($request['parent_id']){
+        //     $parentId = $request['parent_id'];
 
-            if ($request->transaction_type === 'sale') {
-                if ($request['parent_id']) {
-                    $datas['quotation_no'] = $this->revisedQuotationNo($request['quotation_no']);
-                    $res=notes::where('quotation_id',$quotation_id)->delete();
-                }else{
-                    $datas['quotation_no'] = $this->getQuotationNo();
-                }
-            } elseif ($request->transaction_type === 'purchase') {
-                $datas['po_number'] = $this->getPONo();
-            } else {
-                $datas['quotation_no'] = null;
-                $datas['po_number'] = null;
-            }
+        // }
 
-            $quotation = Quotation::create($datas);
+
+
+        // try {
+        //     $datas = [
+        //         'party_id' => $request['party_id'],
+        //         'rfq_id' => $rfqId,
+        //         'status' => 'New',
+        //         'parent_id' => $parentId,
+        //         'total_value' => $request['total_value'],
+        //         'net_amount' => $request['net_amount'],
+        //         'vat_in_value' => $request['vat_in_value'],
+        //         'discount_in_p' => $request['discount_in_p'],
+        //         'validity' => $request['validity'],
+        //         'payment_terms' => $request['payment_terms'],
+        //         'warranty' => $request['warranty'],
+        //         'delivery_time' => $request['delivery_time'],
+        //         'inco_terms' => $request['inco_terms'],
+        //         'contact_id' => $request['contact_id'],
+        //         'transaction_type' => $request['transaction_type'],
+        //         'ps_date' => $request['ps_date'],  // ? $request['ps_date'] : Carbon::now()
+        //         'sign' => $request['sign'],  // ? $request['ps_date'] : Carbon::now()
+        //         'bank_id' => $request['bank_id'],  // ? $request['ps_date'] : Carbon::now()
+                
+        //     ];
+
+        //     if ($request->transaction_type === 'sale') {
+        //         if ($request['parent_id']) {
+        //             $datas['quotation_no'] = $this->revisedQuotationNo($request['quotation_no']);
+                   
+        //         }else{
+        //             $datas['quotation_no'] = $this->getQuotationNo();
+        //         }
+        //     } elseif ($request->transaction_type === 'purchase') {
+        //         $datas['po_number'] = $this->getPONo();
+        //     } else {
+        //         $datas['quotation_no'] = null;
+        //         $datas['po_number'] = null;
+        //     }
+
+        //     $quotation = Quotation::create($datas);
            
 
 
-            global $quotation_id;
-            $quotation_id = $quotation->id;
+        //     global $quotation_id;
+        //     $quotation_id = $quotation->id;
             
-            if ($request->transaction_type === 'purchase') {
-                foreach ($request['quotation_details'] as $key => $quotation_detail) {
-                    QuotationDetail::create([
-                        'quotation_id' => $quotation_id,
-                        'total_amount' => $quotation_detail['total_amount'],
-                        'analyse_id' => null,
-                        'product_id' => $quotation_detail['product_id'],
-                        'purchase_price' => $quotation_detail['purchase_price'],
-                        'description' => $quotation_detail['description'],
-                        // 'product_description' => $quotation_detail['descriptions'],
-                        'quantity' => $quotation_detail['quantity'],
-                        // 'unit_of_measure' => $quotation_detail['unit_of_measure'],
-                        'margin' => $quotation_detail['margin'],
-                        'sell_price' => $quotation_detail['sell_price'],
-                        'remark' => $quotation_detail['remark'],
-                    ]);
-                }
-            } else {
-                $index = 0;
-                while ($request['quotation_detail' . $index] != null) {
-                    $quotation_detail = (array) json_decode($request['quotation_detail' . $index], true);
-                    $filePath = null;
-                    if ($request->file('file' . $index)) {
-                        $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/' . $quotation_id);
-                    }
-                    QuotationDetail::create([
-                        'quotation_id' => $quotation_id,
-                        'total_amount' => $quotation_detail['total_amount'],
-                        'analyse_id' => null,
-                        'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:null,
-                        'purchase_price' => $quotation_detail['purchase_price'],
-                        'description' => $quotation_detail['description'],
-                        'unit_of_measure' => $quotation_detail['unit_of_measure']?$quotation_detail['unit_of_measure']:"",
-                        'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:"",
-                        'quantity' => $quotation_detail['quantity'],
-                        'margin' => $quotation_detail['margin'],
-                        'sell_price' => $quotation_detail['sell_price'],
-                        'remark' => $quotation_detail['remark'],
-                        // "amaco_description" => $quotation_detail['descriptionss'],
-                        'file_img_url' => $filePath,
-                    ]);
-                    $index++;
-                }
+        //     if ($request->transaction_type === 'purchase') {
+        //         foreach ($request['quotation_details'] as $key => $quotation_detail) {
+        //             QuotationDetail::create([
+        //                 'quotation_id' => $quotation_id,
+        //                 'total_amount' => $quotation_detail['total_amount'],
+        //                 'analyse_id' => null,
+        //                 'product_id' => $quotation_detail['product_id'],
+        //                 'purchase_price' => $quotation_detail['purchase_price'],
+        //                 'description' => $quotation_detail['description'],
+        //                 // 'product_description' => $quotation_detail['descriptions'],
+        //                 'quantity' => $quotation_detail['quantity'],
+        //                 // 'unit_of_measure' => $quotation_detail['unit_of_measure'],
+        //                 'margin' => $quotation_detail['margin'],
+        //                 'sell_price' => $quotation_detail['sell_price'],
+        //                 'remark' => $quotation_detail['remark'],
+        //             ]);
+        //         }
+        //     } else {
+        //         $index = 0;
+        //         while ($request['quotation_detail' . $index] != null) {
+        //             $quotation_detail = (array) json_decode($request['quotation_detail' . $index], true);
+        //             $filePath = null;
+        //             if ($request->file('file' . $index)) {
+        //                 $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/' . $quotation_id);
+        //             }
+        //             QuotationDetail::create([
+        //                 'quotation_id' => $quotation_id,
+        //                 'total_amount' => $quotation_detail['total_amount'],
+        //                 'analyse_id' => null,
+        //                 'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:null,
+        //                 'purchase_price' => $quotation_detail['purchase_price'],
+        //                 'description' => $quotation_detail['description'],
+        //                 'unit_of_measure' => $quotation_detail['unit_of_measure']?$quotation_detail['unit_of_measure']:"",
+        //                 'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:"",
+        //                 'quantity' => $quotation_detail['quantity'],
+        //                 'margin' => $quotation_detail['margin'],
+        //                 'sell_price' => $quotation_detail['sell_price'],
+        //                 'remark' => $quotation_detail['remark'],
+        //                 // "amaco_description" => $quotation_detail['descriptionss'],
+        //                 'file_img_url' => $filePath,
+        //             ]);
+        //             $index++;
+        //         }
                
                 
             
-            }
+        //     }
 
-            if ($request['parent_id']) {
-                $tempQuotaion = Quotation::where('id', $request['parent_id'])->first();
-                if ($tempQuotaion) {
-                    $tempQuotaion->update(['is_revised' => 1]);
-                }
-            }
+        //     if ($request['parent_id']) {
+        //         $tempQuotaion = Quotation::where('id', $request['parent_id'])->first();
+        //         if ($tempQuotaion) {
+        //             $tempQuotaion->update(['is_revised' => 1]);
+        //         }
+        //     }
            
            
            
-            $note_detail = json_decode($request->notes, true);
-                foreach ($note_detail as $div) {
+        //     $note_detail = json_decode($request->notes, true);
+        //         foreach ($note_detail as $div) {
                    
-                notes::create([
-                    'quotation_id' => $quotation_id,
-                    'notes' => $div['note'], 
+        //         notes::create([
+        //             'quotation_id' => $quotation_id,
+        //             'notes' => $div['note'], 
                     
         
-                ]); 
-            }
+        //         ]); 
+        //     }
             
 
-            // return response()->json($res);
-        } catch (Exception $e) {
-            return response()->json($request, 201);
-        }
+        //     // return response()->json($res);
+        // } catch (Exception $e) {
+        //     return response()->json($request, 201);
+        // }
     }
 
     /**
