@@ -8,10 +8,13 @@ use App\Models\QuotationDetail;
 use Illuminate\Http\Request;
 use App\Models\DeliveryNote;
 use App\Models\DeliveryNoteDetail;
+use App\Models\CompanyBank;
+
 use App\Models\notes;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+
 use Exception;
 use Illuminate\Support\Facades\File;
 
@@ -389,7 +392,7 @@ class QuotationController extends Controller
             "is_revised" => $quotation->is_revised,
             "sign" => $quotation->sign,
             "notes" => $quotation->notes,
-            "bank" => $quotation->bank,
+            "bank" => $quotation->quotation_bank,
 
             "quotation_details" => $quotation->quotationDetail->map(function ($quotation_detail) {
                 $filePath = $quotation_detail->file_img_url ? $quotation_detail->file_img_url : '';

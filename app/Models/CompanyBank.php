@@ -10,8 +10,8 @@ class CompanyBank extends Model
     use HasFactory;
 
     protected $guarded=[];
-    public function quotation()
+    public function quotation_bank()
     {
-        return $this->belongsTo(quotation::class);
+        return $this->hasOne(quotation::class,'bank_id',id);
     }
 }
