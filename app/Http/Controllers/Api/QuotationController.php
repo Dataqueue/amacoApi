@@ -261,6 +261,7 @@ class QuotationController extends Controller
             if ($request->transaction_type === 'sale') {
                 if ($request['parent_id']) {
                     $datas['quotation_no'] = $this->revisedQuotationNo($request['quotation_no']);
+                    
                 }else{
                     $datas['quotation_no'] = $this->getQuotationNo();
                 }
@@ -277,6 +278,17 @@ class QuotationController extends Controller
             global $quotation_id;
             $quotation_id = $quotation->id;
             // dd($request->quotation_details);
+            $note_detail = json_decode($request['notes'], true);
+           
+            foreach ($note_detail as $div) {
+                   
+                    notes::create([
+                        'quotation_id' => $quotation_id,
+                        'notes' => "hello", 
+                        
+            
+                    ]); 
+                }
 
             if ($request->transaction_type === 'purchase') {
                 foreach ($request['quotation_details'] as $key => $quotation_detail) {
@@ -332,17 +344,7 @@ class QuotationController extends Controller
                     $tempQuotaion->update(['is_revised' => 1]);
                 }
             }
-            $note_detail = json_decode($request['notes'], true);
            
-            foreach ($note_detail as $div) {
-                   
-                    notes::create([
-                        'quotation_id' => $quotation_id,
-                        'notes' => $div['notes'], 
-                        
-            
-                    ]); 
-                }
             
 
 
