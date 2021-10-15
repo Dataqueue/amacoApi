@@ -288,16 +288,18 @@ class QuotationController extends Controller
         
             //     ]); 
             // }
+            if ($request->transaction_type === 'sales') {
             $note_detail = json_decode($request['notes'], true);
                 foreach ($note_detail as $div) {
                    
                 notes::create([
                     'quotation_id' => $quotation_id,
-                    'note' => 'save', 
+                    'note' => $div['note'], 
                     
         
                 ]); 
             }
+             }
             if ($request->transaction_type === 'purchase') {
                 foreach ($request['quotation_details'] as $key => $quotation_detail) {
                     QuotationDetail::create([
