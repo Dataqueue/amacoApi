@@ -336,6 +336,7 @@ class QuotationController extends Controller
                     $tempQuotaion->update(['is_revised' => 1]);
                 }
             }
+            $res=notes::where('quotation_id',$quotation_id)->delete();
             $note_detail = json_decode($request->notes, true);
                 foreach ($note_detail as $div) {
                    
