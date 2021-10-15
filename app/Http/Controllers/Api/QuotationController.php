@@ -227,7 +227,7 @@ class QuotationController extends Controller
 
     public function store(Request $request)
     {
-        $res=notes::where('quotation_id',$quotation_id)->delete();
+        $res=notes::where('quotation_id',28)->delete();
            
         $note_detail = json_decode($request->notes, true);
             foreach ($note_detail as $div) {
