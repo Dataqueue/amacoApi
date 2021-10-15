@@ -288,7 +288,7 @@ class QuotationController extends Controller
         
             //     ]); 
             // }
-            if ($quotation_id) {
+            if ($request->transaction_type === 'sales') {
             $note_detail = json_decode($request->notes, true);
                 foreach ($note_detail as $div) {
                    
