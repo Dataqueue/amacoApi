@@ -229,7 +229,7 @@ class QuotationController extends Controller
                    
                     notes::create([
                         'quotation_id' => 12,
-                        'note' => "hello", 
+                        'notes' => "hello", 
                         
             
                     ]); 
