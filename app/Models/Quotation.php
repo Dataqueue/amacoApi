@@ -52,7 +52,7 @@ class Quotation extends Model
     }
     public function bank()
     {
-        return $this->hasOne(CompanyBank::class, 'bank_id', 'id');
+        return $this->hasOne(CompanyBank::class, 'id');
     }
 
     public function deliveryNote()
