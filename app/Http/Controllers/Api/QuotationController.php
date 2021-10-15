@@ -333,8 +333,7 @@ class QuotationController extends Controller
                 }
             }
             $note_detail = json_decode($request['notes'], true);
-            if($note_detail)
-            {
+           
             foreach ($note_detail as $div) {
                    
                     notes::create([
@@ -344,7 +343,7 @@ class QuotationController extends Controller
             
                     ]); 
                 }
-            }
+            
 
 
             return response()->json('hi');
