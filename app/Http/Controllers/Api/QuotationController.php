@@ -589,7 +589,7 @@ class QuotationController extends Controller
                 $index++;
                 
         
-                return response()->json($request);
+                return response()->json("hi");
         }
         
        
