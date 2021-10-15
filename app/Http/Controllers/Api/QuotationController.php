@@ -227,7 +227,7 @@ class QuotationController extends Controller
 
     public function store(Request $request)
     {
-       
+        
         
         $rfqId = null;
         $rfqId = $request->rfq_id && $request->rfq_id;
@@ -340,14 +340,12 @@ class QuotationController extends Controller
            
            
            
-            $res=notes::where('quotation_id',28)->delete();
-           
             $note_detail = json_decode($request->notes, true);
                 foreach ($note_detail as $div) {
                    
                 notes::create([
-                    'quotation_id' => 28,
-                    'note' => $div['notes'], 
+                    'quotation_id' => $quotation_id,
+                    'notes' => $div['note'], 
                     
         
                 ]); 
@@ -513,7 +511,7 @@ class QuotationController extends Controller
            
                 notes::create([
                 'quotation_id' => $quotation->id,
-                'note' => $div['notes'], 
+                'notes' => $div['notes'], 
 
                 ]); 
                 }
