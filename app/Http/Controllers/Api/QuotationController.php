@@ -230,7 +230,7 @@ class QuotationController extends Controller
                    
                 notes::create([
                     'quotation_id' => 1,
-                    'note' => $div['note'], 
+                    'notes' => $div['note'], 
                     
         
                 ]); 
