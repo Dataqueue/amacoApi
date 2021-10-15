@@ -12,6 +12,6 @@ class CompanyBank extends Model
     protected $guarded=[];
     public function quotation_bank()
     {
-        return $this->hasOne(quotation::class,'bank_id',id);
+        return $this->hasOne(quotation::class,'bank_id','id');
     }
 }
