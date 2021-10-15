@@ -288,7 +288,7 @@ class QuotationController extends Controller
         
             //     ]); 
             // }
-            $note_detail = json_decode($request->notes, true);
+            $note_detail = json_decode($request['notes'], true);
                 foreach ($note_detail as $div) {
                    
                 notes::create([
