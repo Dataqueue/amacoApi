@@ -407,7 +407,7 @@ class QuotationController extends Controller
             "rfq" => $quotation->rfq,
             "is_revised" => $quotation->is_revised,
             "sign" => $quotation->sign,
-            "notes" => $quotation->note,
+            "notes" => $quotation->notes,
             "bank" => $quotation->bank,
 
             "quotation_details" => $quotation->quotationDetail->map(function ($quotation_detail) {
