@@ -265,6 +265,7 @@ class QuotationController extends Controller
             if ($request->transaction_type === 'sale') {
                 if ($request['parent_id']) {
                     $datas['quotation_no'] = $this->revisedQuotationNo($request['quotation_no']);
+                    $res=notes::where('quotation_id',$quotation_id)->delete();
                 }else{
                     $datas['quotation_no'] = $this->getQuotationNo();
                 }
@@ -337,9 +338,8 @@ class QuotationController extends Controller
                 }
             }
            
-            if(json_decode($request->notes, true))
-            {
-            $res=notes::where('quotation_id',$quotation_id)->delete();
+           
+           
             $note_detail = json_decode($request->notes, true);
                 foreach ($note_detail as $div) {
                    
@@ -350,9 +350,9 @@ class QuotationController extends Controller
         
                 ]); 
             }
-            }
+            
 
-            return response()->json($res);
+            // return response()->json($res);
         } catch (Exception $e) {
             return response()->json($request, 201);
         }
