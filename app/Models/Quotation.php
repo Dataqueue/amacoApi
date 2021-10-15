@@ -50,6 +50,10 @@ class Quotation extends Model
     {
         return $this->hasMany(notes::class, 'quotation_id', 'id');
     }
+    public function bank()
+    {
+        return $this->hasOne(CompanyBank::class, 'bank_id', 'id');
+    }
 
     public function deliveryNote()
     {

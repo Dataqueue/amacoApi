@@ -389,6 +389,7 @@ class QuotationController extends Controller
             "is_revised" => $quotation->is_revised,
             "sign" => $quotation->sign,
             "notes" => $quotation->notes,
+            "bank" => $quotation->bank,
 
             "quotation_details" => $quotation->quotationDetail->map(function ($quotation_detail) {
                 $filePath = $quotation_detail->file_img_url ? $quotation_detail->file_img_url : '';

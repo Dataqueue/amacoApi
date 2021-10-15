@@ -10,4 +10,8 @@ class CompanyBank extends Model
     use HasFactory;
 
     protected $guarded=[];
+    public function quotation()
+    {
+        return $this->belongsTo(quotation::class);
+    }
 }
