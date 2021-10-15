@@ -388,6 +388,8 @@ class QuotationController extends Controller
             "rfq" => $quotation->rfq,
             "is_revised" => $quotation->is_revised,
             "sign" => $quotation->sign,
+            "sign" => $quotation->notes,
+
             "quotation_details" => $quotation->quotationDetail->map(function ($quotation_detail) {
                 $filePath = $quotation_detail->file_img_url ? $quotation_detail->file_img_url : '';
                 $urlPath = $filePath ? url($filePath) : null;
@@ -421,7 +423,8 @@ class QuotationController extends Controller
                     "remark" => $quotation_detail->remark,
                     "file" => $urlPath,
                     "created_at" => $quotation_detail->created_at,
-                    "updated_at" => $quotation_detail->updated_at
+                    "updated_at" => $quotation_detail->updated_at,
+                  
                 ];
             })
         ];

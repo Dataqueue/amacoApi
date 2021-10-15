@@ -48,7 +48,7 @@ class Quotation extends Model
     }
     public function notes()
     {
-        return $this->hasOne(notes::class, 'quotation_id', 'id');
+        return $this->hasMany(notes::class, 'quotation_id', 'id');
     }
 
     public function deliveryNote()
