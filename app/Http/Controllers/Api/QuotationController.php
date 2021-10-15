@@ -337,6 +337,8 @@ class QuotationController extends Controller
                 }
             }
             $res=notes::where('quotation_id',$quotation_id)->delete();
+            if($quotation_id)
+            {
             $note_detail = json_decode($request->notes, true);
                 foreach ($note_detail as $div) {
                    
@@ -346,6 +348,7 @@ class QuotationController extends Controller
                     
         
                 ]); 
+            }
             }
 
             return response()->json('hi');
