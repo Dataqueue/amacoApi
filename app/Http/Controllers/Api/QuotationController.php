@@ -255,6 +255,7 @@ class QuotationController extends Controller
                 'transaction_type' => $request['transaction_type'],
                 'ps_date' => $request['ps_date'],  // ? $request['ps_date'] : Carbon::now()
                 'sign' => $request['sign'],  // ? $request['ps_date'] : Carbon::now()
+                'notes' => $request['notes'],  // ? $request['ps_date'] : Carbon::now()
                 
             ];
 
@@ -272,7 +273,7 @@ class QuotationController extends Controller
             }
 
             $quotation = Quotation::create($datas);
-            foreach ($request->notes as $div) {
+            foreach ($datas['notes'] as $div) {
                    
                 notes::create([
                     'quotation_id' => 12,
