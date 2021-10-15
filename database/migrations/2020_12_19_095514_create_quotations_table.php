@@ -37,6 +37,7 @@ class CreateQuotationsTable extends Migration
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->boolean('is_revised')->default(0)->nullable();
             $table->boolean('file')->nullable();
+            $table->boolean('bank_id')->nullable();
             $table->timestamps();
         });
     }
