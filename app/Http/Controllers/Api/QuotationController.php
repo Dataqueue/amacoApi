@@ -526,7 +526,9 @@ class QuotationController extends Controller
                 'net_amount' => $request->net_amount,
                 'transaction_type' => $request->transaction_type,
                 'discount_in_p' => $request->discount_in_p,
-                'ps_date'=>$request->ps_date
+                'ps_date'=>$request->ps_date,
+                'sign'=>$request->sign,
+                'bank_id'=>$request->bank_id
                 // 'sales_order_number' => $data['sales_order_number'],
             ]);
             $index = 0;
@@ -576,6 +578,18 @@ class QuotationController extends Controller
         
                 return response()->json($quotation_detail);
         }
+        $res=notes::where('id',$quotation->id)->delete();
+        $note_detail = json_decode($request->notes, true);
+
+        foreach ($note_detail as $div) {
+           
+        notes::create([
+            'quotation_id' => $quotation->id,
+            'notes' => $div['notes'], 
+            
+
+        ]); 
+    }
        
         }
         
