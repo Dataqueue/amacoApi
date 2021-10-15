@@ -336,7 +336,7 @@ class QuotationController extends Controller
                 foreach ($note_detail as $div) {
                    
                 notes::create([
-                    'quotation_id' => 1,
+                    'quotation_id' => $quotation_id,
                     'notes' => $div['note'], 
                     
         
