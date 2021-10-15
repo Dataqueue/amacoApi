@@ -463,6 +463,7 @@ class QuotationController extends Controller
             'discount_in_p' => $request->discount_in_p,
             'ps_date' => $request->ps_date,
             'sign' => $request->sign,
+                'bank_id'=> $request->bank_id
             // 'sales_order_number' => $data['sales_order_number'],
         ]);
         $index = 0;
@@ -496,6 +497,20 @@ class QuotationController extends Controller
                     'file_img_url' => $filePath,
 
                 ]);
+
+
+                $res=notes::where('quotation_id',$quotation->id)->delete();
+                $note_detail = json_decode($request->notes, true);
+
+                foreach ($note_detail as $div) {
+           
+                notes::create([
+                'quotation_id' => $quotation->id,
+                'notes' => $div['notes'], 
+            
+
+                ]); 
+                }
             } else {
                 QuotationDetail::create([
                     'quotation_id' => $quotation->id,
@@ -527,8 +542,7 @@ class QuotationController extends Controller
                 'transaction_type' => $request->transaction_type,
                 'discount_in_p' => $request->discount_in_p,
                 'ps_date'=>$request->ps_date,
-                'sign'=>$request->sign,
-                'bank_id'=>$request->bank_id
+                
                 // 'sales_order_number' => $data['sales_order_number'],
             ]);
             $index = 0;
@@ -578,18 +592,7 @@ class QuotationController extends Controller
         
                 return response()->json($quotation_detail);
         }
-        $res=notes::where('quotation_id',$quotation->id)->delete();
-        $note_detail = json_decode($request->notes, true);
-
-        foreach ($note_detail as $div) {
-           
-        notes::create([
-            'quotation_id' => $quotation->id,
-            'notes' => $div['notes'], 
-            
-
-        ]); 
-    }
+        
        
         }
         
