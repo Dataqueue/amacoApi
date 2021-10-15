@@ -463,7 +463,7 @@ class QuotationController extends Controller
             'discount_in_p' => $request->discount_in_p,
             'ps_date' => $request->ps_date,
             'sign' => $request->sign,
-            'bank_id'=> $request->bank_id
+            'bank_id'=> (int)$request->bank_id
             // 'sales_order_number' => $data['sales_order_number'],
         ]);
         $index = 0;
