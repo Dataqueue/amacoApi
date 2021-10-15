@@ -278,16 +278,16 @@ class QuotationController extends Controller
             global $quotation_id;
             $quotation_id = $quotation->id;
             // dd($request->quotation_details);
-            $note_detail = json_decode($request['notes'], true);
-            foreach ($note_detail as $div) {
+            // $note_detail = json_decode($request['notes'], true);
+            // foreach ($note_detail as $div) {
                    
-                notes::create([
-                    'quotation_id' => $quotation_id,
-                    'note' => 'save', 
+            //     notes::create([
+            //         'quotation_id' => $quotation_id,
+            //         'note' => 'save', 
                     
         
-                ]); 
-            }
+            //     ]); 
+            // }
             if ($request->transaction_type === 'purchase') {
                 foreach ($request['quotation_details'] as $key => $quotation_detail) {
                     QuotationDetail::create([
