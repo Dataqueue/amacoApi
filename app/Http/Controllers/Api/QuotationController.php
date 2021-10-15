@@ -225,7 +225,7 @@ class QuotationController extends Controller
     public function store(Request $request)
     {
        
-        foreach ($request['notes'] as $div) {
+        foreach ($request->notes as $div) {
                    
                     notes::create([
                         'quotation_id' => 12,
