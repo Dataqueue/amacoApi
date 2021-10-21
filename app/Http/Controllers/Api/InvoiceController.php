@@ -97,9 +97,7 @@ class InvoiceController extends Controller
             'vat_in_value' => $data['vat_in_value'],
             'grand_total' => $data['grand_total'],
             'delivery_no' => null,
-            'product_name' => $request['product_name'],
-            'product_price' => $request['product_price'],
-            'unit_of_measure' => $request['unit_of_measure']
+            
         ]);
 
         global $_invoice_id;
@@ -116,6 +114,9 @@ class InvoiceController extends Controller
                 'description' => $invoice_detail['description'],
                 'arabic_description' => $invoice_detail['arabic_description'],
                 'invoice_id' => $_invoice_id,
+                'product_name' => $request['product_name'],
+                'product_price' => $request['product_price'],
+                'unit_of_measure' => $request['unit_of_measure']
             ]);
         }
         // return 'success';
