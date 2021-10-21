@@ -120,7 +120,7 @@ class DeliveryNoteDetailController extends Controller
      * @param  \App\Models\DeliveryNoteDetail $delivery_notes_detail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DeliveryNoteDetail$delivery_notes_detail)
+    public function destroy(DeliveryNoteDetail $delivery_notes_detail)
     {
         $delivery_notes_detail->delete();
 
