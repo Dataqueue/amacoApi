@@ -96,8 +96,8 @@ class InvoiceController extends Controller
             'discount_in_percentage' => $data['discount_in_percentage'],
             'vat_in_value' => $data['vat_in_value'],
             'grand_total' => $data['grand_total'],
-            'delivery_no' => null
-            
+            'delivery_no' => null,
+            'party_id' => $request['party_id']
         ]);
 
         global $_invoice_id;
@@ -105,8 +105,8 @@ class InvoiceController extends Controller
             $invoice_details=$request['invoice_details'];
         foreach($invoice_details as $invoice_detail) {
             $_invoice_detail = InvoiceDetail::create([
-                'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
-                // 'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:null,
+                'quotation_detail_id' => $invoice_detail['id'],
+                'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:null,
                 'sell_price' => $invoice_detail['sell_price'],
                 'quantity' => $invoice_detail['quantity'],
                 'total_amount' => $invoice_detail['total_amount'],
@@ -114,9 +114,6 @@ class InvoiceController extends Controller
                 'description' => $invoice_detail['description'],
                 'arabic_description' => $invoice_detail['arabic_description'],
                 'invoice_id' => $_invoice_id,
-                'product_name' => $request['product_name'],
-                'product_price' => $request['product_price'],
-                'unit_of_measure' => $request['unit_of_measure']
             ]);
         }
         // return 'success';
