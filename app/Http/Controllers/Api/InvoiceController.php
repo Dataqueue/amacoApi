@@ -114,9 +114,9 @@ class InvoiceController extends Controller
                 'description' => $invoice_detail['description'],
                 'arabic_description' => $invoice_detail['arabic_description'],
                 'invoice_id' => $_invoice_id,
-                // 'purchase_price' => $invoice_detail['purchase_price']?$invoice_detail['purchase_price']:null,
-                // 'product_name' => $invoice_detail['product_name']?$invoice_detail['product_name']:null,
-                // 'unit_of_measure' => $invoice_detail['unit_of_measure']?$invoice_detail['unit_of_measure']:null,
+                'purchase_price' => $invoice_detail['purchase_price']?$invoice_detail['purchase_price']:null,
+                'product_name' => $invoice_detail['product_name']?$invoice_detail['product_name']:null,
+                'unit_of_measure' => $invoice_detail['unit_of_measure']?$invoice_detail['unit_of_measure']:null,
             ]);
         }
         // return 'success';
