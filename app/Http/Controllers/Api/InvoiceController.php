@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use Illuminate\Http\Request;
+use DB;
 use Config;
 
 class InvoiceController extends Controller
