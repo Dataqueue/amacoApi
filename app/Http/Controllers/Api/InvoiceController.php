@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use Illuminate\Http\Request;
+use Config;
 
 class InvoiceController extends Controller
 {
@@ -104,6 +105,9 @@ class InvoiceController extends Controller
         $_invoice_id = $invoice['id'];
             $invoice_details=$request['invoice_details'];
         foreach($invoice_details as $invoice_detail) {
+            $apikey=  \Config::get('example.key');
+            // $json = json_decode(file_get_contents($path), true);
+            $arDescription = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
             $_invoice_detail = InvoiceDetail::create([
                 'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
                 'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:null,
@@ -111,12 +115,12 @@ class InvoiceController extends Controller
                 'quantity' => $invoice_detail['quantity'],
                 'total_amount' => $invoice_detail['total_amount'],
                 'unit_of_measure' => $invoice_detail['unit_of_measure'],
-                'description' => $invoice_detail['description'],
-                'arabic_description' => $invoice_detail['arabic_description'],
+                'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
+                'arabic_description' => $invoice_detail['arabic_description']?$invoice_detail['arabic_description']:$arDescription,
                 'invoice_id' => $_invoice_id,
                 'purchase_price' => $invoice_detail['purchase_price']?$invoice_detail['purchase_price']:null,
-                'product_name' => $invoice_detail['product']?$invoice_detail['product']:null,
-                'unit_of_measure' => $invoice_detail['unit_of_measure']?$invoice_detail['unit_of_measure']:null,
+                // 'product_name' => $invoice_detail['product']?$invoice_detail['product']:null,
+                // 'unit_of_measure' => $invoice_detail['unit_of_measure']?$invoice_detail['unit_of_measure']:null,
             ]);
         }
         // return 'success';
