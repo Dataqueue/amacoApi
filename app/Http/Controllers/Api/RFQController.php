@@ -107,9 +107,9 @@ class RFQController extends Controller
             $index=0;
            
             foreach ($rfq_details as $rfq_detail) {
-                if ($request->file('file0')) {
+                // if ($request->file('file0')) {
                    
-                }
+                // }
          
                 RFQDetails::create([
                     'product_id' => $rfq_detail['id'],
