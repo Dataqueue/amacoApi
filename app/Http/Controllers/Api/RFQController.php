@@ -107,7 +107,7 @@ class RFQController extends Controller
             $index=0;
            
             foreach ($rfq_details as $rfq_detail) {
-                $filename = $rfq_details['file'.$index]->getClientOriginalName();
+                $filename = $rfq_details['file'.$index];
                 
                 // $demo = (array) json_decode($request['$rfq_details'], true);
                 // $filePath = null;
