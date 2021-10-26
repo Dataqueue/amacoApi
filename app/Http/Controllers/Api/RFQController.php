@@ -103,15 +103,16 @@ class RFQController extends Controller
             $_rfq_id = $rfq['id'];
 
             $rfq_details = json_decode($request['rfq_details'], true);
-            $demo = (array) json_decode($request['$rfq_details'], true);
+           
             $index=0;
            
             foreach ($rfq_details as $rfq_detail) {
                 
-                // $filePath = null;
-                // if ($request->file('file' . $index)) {
-                //     $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/' . $quotation_id);
-                // }
+                $demo = json_decode($request['$rfq_details'], true);
+                $filePath = null;
+                if ($demo->file('file' . $index)) {
+                    $filePath = $demo->file('file' . $index)->move('quotation/quotation_detail/' .$_rfq_id);
+                }
                 RFQDetails::create([
                     'product_id' => $rfq_detail['id'],
                     'description' => ucwords(trans($rfq_detail['descriptionss'])),
