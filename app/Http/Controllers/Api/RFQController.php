@@ -108,7 +108,7 @@ class RFQController extends Controller
            
             foreach ($rfq_details as $rfq_detail) {
                 
-                $demo = json_decode($request['$rfq_details'], true);
+                $demo = (array) json_decode($request['$rfq_details'], true);
                 $filePath = null;
                 if ($demo->file('file' . $index)) {
                     $filePath = $demo->file('file' . $index)->move('quotation/quotation_detail/' .$_rfq_id);
