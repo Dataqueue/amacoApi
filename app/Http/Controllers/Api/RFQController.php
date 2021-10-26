@@ -104,12 +104,13 @@ class RFQController extends Controller
 
             $rfq_details = json_decode($request['rfq_details'], true);
             $index=0;
+           
             foreach ($rfq_details as $rfq_detail) {
-                // if ($rfq_detail->file('file' . $index)) {
-                   $filePath = $rfq_detail['file'.$index];
-                    // $filePath = $rfq_detail->file('file' . $index)->move('quotation/quotation_detail/' . $_rfq_id);
-                   
-                // }
+                $quotation_detail = (array) json_decode($request['$rfq_details'], true);
+                $filePath = null;
+                if ($quotation_detail->file('file' . $index)) {
+                    $filePath = $quotation_detail->file('file' . $index)->move('quotation/quotation_detail/' .$_rfq_id);
+                }
                 RFQDetails::create([
                     'product_id' => $rfq_detail['id'],
                     'description' => ucwords(trans($rfq_detail['descriptionss'])),
@@ -117,7 +118,7 @@ class RFQController extends Controller
                     'rfq_id' => $_rfq_id,
                     // 'file' => $filePath,
                 ]);
-                $index++;
+               
             }
 
 
