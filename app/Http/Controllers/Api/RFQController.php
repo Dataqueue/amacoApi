@@ -106,7 +106,7 @@ class RFQController extends Controller
             $index=0;
             foreach ($rfq_details as $rfq_detail) {
                 // if ($rfq_detail->file('file' . $index)) {
-                   $filePath = $rfq_detail;
+                   $filePath = $rfq_detail['file'.$index];
                     // $filePath = $rfq_detail->file('file' . $index)->move('quotation/quotation_detail/' . $_rfq_id);
                    
                 // }
@@ -136,7 +136,7 @@ class RFQController extends Controller
             //     'rfq_id' => $_rfq_id,
             //     'file_name' => $res,
             // ]);
-            return response()->json([$filePath->file('file0')]);
+            return response()->json([$filePath]);
             // return ([
             //     'data' => $request->all(),
             // ]);
