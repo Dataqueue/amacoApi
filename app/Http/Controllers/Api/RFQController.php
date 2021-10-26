@@ -116,7 +116,7 @@ class RFQController extends Controller
                     'description' => ucwords(trans($rfq_detail['descriptionss'])),
                     'quantity' => $rfq_detail['quantity'],
                     'rfq_id' => $_rfq_id,
-                    // 'file' => $filePath,
+                    'file' => $filePath,
                 ]);
                 $index++;
             }
