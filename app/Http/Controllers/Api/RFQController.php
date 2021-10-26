@@ -106,7 +106,8 @@ class RFQController extends Controller
             $index=0;
             foreach ($rfq_details as $rfq_detail) {
                 if ($rfq_detail->file('file' . $index)) {
-                    $filePath = $rfq_detail->file('file' . $index)->move('quotation/quotation_detail/' . $_rfq_id);
+                   $filePath = $request->file('image')->getClientOriginalName();
+                    // $filePath = $rfq_detail->file('file' . $index)->move('quotation/quotation_detail/' . $_rfq_id);
                    
                 }
                 RFQDetails::create([
