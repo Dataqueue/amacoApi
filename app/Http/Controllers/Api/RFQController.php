@@ -117,7 +117,7 @@ class RFQController extends Controller
                     }
          
                 RFQDetails::create([
-                    'product_id' => $rfq_detail['id']?$rfq_detail['id']:null,
+                    'product_id' => isset($rfq_detail['id'])?$rfq_detail['id']:null,
                     'description' => ucwords(trans($rfq_detail['descriptionss'])),
                     'quantity' => $rfq_detail['quantity'],
                     'rfq_id' => $_rfq_id,
