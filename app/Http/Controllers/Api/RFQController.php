@@ -75,7 +75,7 @@ class RFQController extends Controller
         // return response()->json($request, 201);
         // dd($request->file('files'));
 
-        // try {
+        try {
             $rfq = RFQ::create([
                 'requested_date' => $request->has('requested_date') ? $request['requested_date'] : date('Y-m-d'),
                 'require_date' => $request->has('require_date') ? $request['require_date'] : date('Y-m-d'),
@@ -103,33 +103,29 @@ class RFQController extends Controller
             $_rfq_id = $rfq['id'];
 
             $rfq_details = json_decode($request['rfq_details'], true);
-         
+           
+           
            
             foreach ($rfq_details as $rfq_detail) {
-                
                 $index = 0;
-                while ($rfq_detail['file'] != null) {
-                    // if ($request->file('file' . $index)) {
-                    //     $rfq_name = $request['file' . $index]->getClientOriginalName();
-                    //     $filePath = $request->file('file' . $index)->move('rfq/' . $rfq->id, $name);
-                    //     // FileUpload::create([
-                    //     //     'rfq_id' => $rfq->id,
-                    //     //     'file_name' => $path
-                    //     // ]);
-                    // }
-                    // $index++;
-                    return response()->json(['hi']);
-                // RFQDetails::create([
-                //     'product_id' => $rfq_detail['id'],
-                //     'description' => ucwords(trans($rfq_detail['descriptionss'])),
-                //     'quantity' => $rfq_detail['quantity'],
-                //     'rfq_id' => $_rfq_id,
-                //     'file' => $filePath,
-                // ]);
-                // $index++;
-             }
-
+                while ($request['rfq_details' . $index] != null) {
+                    $quotation_detail = (array) json_decode($request['rfq_details' . $index], true);
+                    $filePath = null;
+                    if ($request->file('file' . $index)) {
+                        $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/');
+                    }
+         
+                RFQDetails::create([
+                    'product_id' => $rfq_detail['id'],
+                    'description' => ucwords(trans($rfq_detail['descriptionss'])),
+                    'quantity' => $rfq_detail['quantity'],
+                    'rfq_id' => $_rfq_id,
+                    'file' => $filePath,
+                ]);
+                $index++;
+            }
         }
+
 
             // if($request->hasFile('files')){
             //     foreach($request->files as $file){
@@ -145,13 +141,13 @@ class RFQController extends Controller
             //     'rfq_id' => $_rfq_id,
             //     'file_name' => $res,
             // ]);
-            // return response()->json([]);
+            return response()->json(['hi']);
             // return ([
             //     'data' => $request->all(),
             // ]);
-        // } catch (Exception $e) {
-        //     return response()->json($e, 400);
-        // }
+        } catch (Exception $e) {
+            return response()->json($e, 400);
+        }
     }
 
     /**
