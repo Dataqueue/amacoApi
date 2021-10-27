@@ -109,14 +109,14 @@ class RFQController extends Controller
                 
                 $index = 0;
                 while ($rfq_details['file'] != null) {
-                    if ($request->file('file' . $index)) {
-                        $rfq_name = $request['file' . $index]->getClientOriginalName();
-                        $filePath = $request->file('file' . $index)->move('rfq/' . $rfq->id, $name);
-                        // FileUpload::create([
-                        //     'rfq_id' => $rfq->id,
-                        //     'file_name' => $path
-                        // ]);
-                    }
+                    // if ($request->file('file' . $index)) {
+                    //     $rfq_name = $request['file' . $index]->getClientOriginalName();
+                    //     $filePath = $request->file('file' . $index)->move('rfq/' . $rfq->id, $name);
+                    //     // FileUpload::create([
+                    //     //     'rfq_id' => $rfq->id,
+                    //     //     'file_name' => $path
+                    //     // ]);
+                    // }
                     $index++;
                 RFQDetails::create([
                     'product_id' => $rfq_detail['id'],
