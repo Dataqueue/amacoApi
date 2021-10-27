@@ -125,7 +125,7 @@ class RFQController extends Controller
                 $index++;
             }
 
-        }
+        
 
             // if($request->hasFile('files')){
             //     foreach($request->files as $file){
@@ -145,6 +145,7 @@ class RFQController extends Controller
             // return ([
             //     'data' => $request->all(),
             // ]);
+        }
         } catch (Exception $e) {
             return response()->json($e, 400);
         }
