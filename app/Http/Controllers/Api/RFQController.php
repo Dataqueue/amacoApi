@@ -141,7 +141,7 @@ class RFQController extends Controller
             //     'rfq_id' => $_rfq_id,
             //     'file_name' => $res,
             // ]);
-            return response()->json(['hi']);
+            return response()->json([$request['rfq_details' . $index]]);
             // return ([
             //     'data' => $request->all(),
             // ]);
