@@ -108,7 +108,7 @@ class RFQController extends Controller
             foreach ($rfq_details as $rfq_detail) {
                 
                 $index = 0;
-                while ($rfq_details['file'] != null) {
+                while ($rfq_detail['file'] != null) {
                     // if ($request->file('file' . $index)) {
                     //     $rfq_name = $request['file' . $index]->getClientOriginalName();
                     //     $filePath = $request->file('file' . $index)->move('rfq/' . $rfq->id, $name);
