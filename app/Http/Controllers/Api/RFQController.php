@@ -75,7 +75,7 @@ class RFQController extends Controller
         // return response()->json($request, 201);
         // dd($request->file('files'));
 
-        try {
+        // try {
             $rfq = RFQ::create([
                 'requested_date' => $request->has('requested_date') ? $request['requested_date'] : date('Y-m-d'),
                 'require_date' => $request->has('require_date') ? $request['require_date'] : date('Y-m-d'),
@@ -144,13 +144,13 @@ class RFQController extends Controller
             //     'rfq_id' => $_rfq_id,
             //     'file_name' => $res,
             // ]);
-            return response()->json([$request->file('file0')->move('rfq/rfq_detail/' . $_rfq_id)]);
+            return response()->json([]);
             // return ([
             //     'data' => $request->all(),
             // ]);
-        } catch (Exception $e) {
-            return response()->json($e, 400);
-        }
+        // } catch (Exception $e) {
+        //     return response()->json($e, 400);
+        // }
     }
 
     /**
