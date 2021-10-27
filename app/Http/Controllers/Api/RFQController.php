@@ -109,22 +109,23 @@ class RFQController extends Controller
                 
                 $index = 0;
                 while ($rfq_detail['file'] != null) {
-                    if ($request->file('file' . $index)) {
-                        $rfq_name = $request['file' . $index]->getClientOriginalName();
-                        $filePath = $request->file('file' . $index)->move('rfq/' . $rfq->id, $name);
-                        // FileUpload::create([
-                        //     'rfq_id' => $rfq->id,
-                        //     'file_name' => $path
-                        // ]);
-                    }
-                    $index++;
-                RFQDetails::create([
-                    'product_id' => $rfq_detail['id'],
-                    'description' => ucwords(trans($rfq_detail['descriptionss'])),
-                    'quantity' => $rfq_detail['quantity'],
-                    'rfq_id' => $_rfq_id,
-                    'file' => $filePath,
-                ]);
+                    // if ($request->file('file' . $index)) {
+                    //     $rfq_name = $request['file' . $index]->getClientOriginalName();
+                    //     $filePath = $request->file('file' . $index)->move('rfq/' . $rfq->id, $name);
+                    //     // FileUpload::create([
+                    //     //     'rfq_id' => $rfq->id,
+                    //     //     'file_name' => $path
+                    //     // ]);
+                    // }
+                    // $index++;
+                    return response()->json(['hi']);
+                // RFQDetails::create([
+                //     'product_id' => $rfq_detail['id'],
+                //     'description' => ucwords(trans($rfq_detail['descriptionss'])),
+                //     'quantity' => $rfq_detail['quantity'],
+                //     'rfq_id' => $_rfq_id,
+                //     'file' => $filePath,
+                // ]);
                 // $index++;
              }
 
@@ -144,7 +145,7 @@ class RFQController extends Controller
             //     'rfq_id' => $_rfq_id,
             //     'file_name' => $res,
             // ]);
-            return response()->json([]);
+            // return response()->json([]);
             // return ([
             //     'data' => $request->all(),
             // ]);
