@@ -108,21 +108,21 @@ class RFQController extends Controller
            
             foreach ($rfq_details as $rfq_detail) {
                 $index = 0;
-                return response()->json([$data]);
+               
                 // while ($data['rfq_details' . $index] != null) {
                 //     // $quotation_detail = (array) json_decode($request['rfq_details' . $index], true);
-                //     $filePath = null;
-                //     if ($request->file('file' . $index)) {
-                //         $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/');
-                //     }
+                    $filePath = null;
+                    if ($request->file('file' . $index)) {
+                        $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/');
+                    }
          
-                // RFQDetails::create([
-                //     'product_id' => $rfq_detail['id'],
-                //     'description' => ucwords(trans($rfq_detail['descriptionss'])),
-                //     'quantity' => $rfq_detail['quantity'],
-                //     'rfq_id' => $_rfq_id,
-                //     'file' => $filePath,
-                // ]);
+                RFQDetails::create([
+                    'product_id' => $rfq_detail['id'],
+                    'description' => ucwords(trans($rfq_detail['descriptionss'])),
+                    'quantity' => $rfq_detail['quantity'],
+                    'rfq_id' => $_rfq_id,
+                    'file' => $filePath?$filePath:NULL,
+                ]);
                 $index++;
             }
         // }
