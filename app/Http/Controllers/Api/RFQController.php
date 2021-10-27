@@ -103,17 +103,16 @@ class RFQController extends Controller
             $_rfq_id = $rfq['id'];
 
             $rfq_details = json_decode($request['rfq_details'], true);
-           
-           
+         
            
             foreach ($rfq_details as $rfq_detail) {
                 
-                $index = 0;
-                while ($rfq_detail[0] != null) {
-                    $quotation_detail = (array) json_decode($request['rfq_details'], true);
+                 $index = 0;
+                while ($request['rfq_details' . $index] != null) {
+                    $quotation_detail = (array) json_decode($request['rfq_details' . $index], true);
                     $filePath = null;
-                    if ($quotation_detail->file('file' . $index)) {
-                        $filePath = $quotation_detail->file('file' . $index)->move('quotation/quotation_detail/' .  $_rfq_id);
+                    if ($request->file('file' . $index)) {
+                        $filePath = $request->file('file' . $index)->move('rfq/rfq_detail/' . $_rfq_id);
                     }
                 RFQDetails::create([
                     'product_id' => $rfq_detail['id'],
@@ -125,7 +124,7 @@ class RFQController extends Controller
                 $index++;
             }
 
-        
+        }
 
             // if($request->hasFile('files')){
             //     foreach($request->files as $file){
@@ -141,11 +140,10 @@ class RFQController extends Controller
             //     'rfq_id' => $_rfq_id,
             //     'file_name' => $res,
             // ]);
-            return response()->json([$rfq_details[0]]);
+            return response()->json(['hi']);
             // return ([
             //     'data' => $request->all(),
             // ]);
-        }
         } catch (Exception $e) {
             return response()->json($e, 400);
         }
