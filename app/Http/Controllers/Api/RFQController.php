@@ -104,7 +104,7 @@ class RFQController extends Controller
 
             $rfq_details = json_decode($request['rfq_details'], true);
            
-            $index=0;
+           
            
             foreach ($rfq_details as $rfq_detail) {
                 
