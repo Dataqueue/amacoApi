@@ -124,7 +124,7 @@ class RFQController extends Controller
                 ]);
                 $index++;
             }
-        // }
+        }
 
 
             // if($request->hasFile('files')){
