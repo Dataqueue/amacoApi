@@ -140,7 +140,7 @@ class RFQController extends Controller
             //     'rfq_id' => $_rfq_id,
             //     'file_name' => $res,
             // ]);
-            return response()->json([$request]);
+            return response()->json([$data->file('file0')]);
             // return ([
             //     'data' => $request->all(),
             // ]);
