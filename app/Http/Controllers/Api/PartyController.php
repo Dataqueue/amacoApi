@@ -298,7 +298,9 @@ class PartyController extends Controller
             ->select('id', 'firm_name', 'contact')
             ->get()
             ->toArray();
-        return $vendors;
+            $vendors->map(function($payment){
+                return $payment->partyDivision;
+            });
     }
 
     // Api for customer list
