@@ -239,7 +239,7 @@ class QuotationController extends Controller
 
 
 
-        try {
+        // try {
             $datas = [
                 'party_id' => $request['party_id'],
                 'rfq_id' => $rfqId,
@@ -353,9 +353,9 @@ class QuotationController extends Controller
             
 
             // return response()->json($res);
-        } catch (Exception $e) {
-            return response()->json($request, 201);
-        }
+        // } catch (Exception $e) {
+        //     return response()->json($request, 201);
+        // }
     }
 
     /**
