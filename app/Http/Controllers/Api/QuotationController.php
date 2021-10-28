@@ -294,7 +294,7 @@ class QuotationController extends Controller
                         'description' => $quotation_detail['description'],
                         // 'product_description' => $quotation_detail['descriptions'],
                         'quantity' => $quotation_detail['quantity'],
-                        // 'unit_of_measure' => $quotation_detail['unit_of_measure'],
+                        'unit_of_measure' => $quotation_detail['unit_of_measure'],
                         'margin' => $quotation_detail['margin'],
                         'sell_price' => $quotation_detail['sell_price'],
                         'remark' => $quotation_detail['remark'],
