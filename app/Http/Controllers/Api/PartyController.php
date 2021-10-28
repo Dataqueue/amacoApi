@@ -301,6 +301,7 @@ class PartyController extends Controller
             $vendors->map(function($payment){
                 return $payment->partyDivision;
             });
+            return  $vendors;
     }
 
     // Api for customer list
