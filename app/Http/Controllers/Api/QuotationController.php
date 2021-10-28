@@ -252,6 +252,7 @@ class QuotationController extends Controller
                 'validity' => $request['validity'],
                 'payment_terms' => $request['payment_terms'],
                 'warranty' => $request['warranty'],
+                'freight' => $request['freight'],
                 'delivery_time' => $request['delivery_time'],
                 'inco_terms' => $request['inco_terms'],
                 'contact_id' => $request['contact_id'],
