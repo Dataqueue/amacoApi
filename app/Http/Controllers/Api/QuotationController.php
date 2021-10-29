@@ -400,6 +400,7 @@ class QuotationController extends Controller
             "sign" => $quotation->sign,
             "notes" => $quotation->notes,
             "bank" => $quotation->bank,
+            "currency_type" => $quotation->currency_type,
 
             "quotation_details" => $quotation->quotationDetail->map(function ($quotation_detail) {
                 $filePath = $quotation_detail->file_img_url ? $quotation_detail->file_img_url : '';
@@ -435,7 +436,7 @@ class QuotationController extends Controller
                     "file" => $urlPath,
                     "created_at" => $quotation_detail->created_at,
                     "updated_at" => $quotation_detail->updated_at,
-                    "currency_type" => $quotation_detail->currency_type,
+                   
                   
                 ];
             })
