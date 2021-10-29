@@ -435,6 +435,7 @@ class QuotationController extends Controller
                     "file" => $urlPath,
                     "created_at" => $quotation_detail->created_at,
                     "updated_at" => $quotation_detail->updated_at,
+                    "currency_type" => $quotation_detail->currency_type,
                   
                 ];
             })
