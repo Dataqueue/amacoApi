@@ -600,10 +600,10 @@ class QuotationController extends Controller
                 $index++;
                 
         
-                return response()->json("hi");
+               
         }
         
-       
+         return response()->json("hi");
         }
         
        
