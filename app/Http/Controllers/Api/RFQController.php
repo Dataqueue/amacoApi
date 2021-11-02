@@ -280,9 +280,9 @@ class RFQController extends Controller
             $temp = json_decode($request['rfq_details'], true);
             foreach ((array) $temp as $rfq_detail) {
                 $filePath = null;
-                if ($request->file('file' . $index)) {
+                // if ($request->file('file' . $index)) {
                     $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/');
-                }
+                // }
                 $rfq_update_data = RFQDetails::where('id',$rfq_detail['id'])->first();
                 if ($rfq_update_data) {
                     if (File::exists(public_path($rfq_update_data->file))) {
