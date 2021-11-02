@@ -190,6 +190,8 @@ class RFQController extends Controller
             "contact" => $rfq->contact,
             'rfq_details' => $rfq->rfq_details->map(function ($rfq_detail) {
                 $rfq_detail = RFQDetails::where('id', '=', $rfq_detail->id)->first();
+                $filePath =  $rfq_detail->file ?  $rfq_detail->file : '';
+                $urlPath = $filePath ? url($filePath) : null;
                 return [
                     "id" => $rfq_detail['id'],
                     "created_at" => $rfq_detail->created_at,
@@ -199,6 +201,7 @@ class RFQController extends Controller
                     "description" => $rfq_detail->description,
                     // "product_name" => $rfq_detail->product->name,
                     "product_name" => $rfq_detail->product_name,
+                    "file_path" => $url,
                     "product" => array($rfq_detail->product),
                     "prices" => isset($rfq_detail->product_id)?$rfq_detail->product->productPrice:[],
                     "party" =>  isset($rfq_detail->product_id)?$rfq_detail->product->productPrice->map(function ($price) {
@@ -251,7 +254,7 @@ class RFQController extends Controller
 
         $data = json_decode($request['rfq_details'], true);
         // return $request;
-        // try {
+        try {
             $rfq->update([
                 'requested_date' => $request->requested_date,
                 'require_date' => $request->require_date,
@@ -275,13 +278,22 @@ class RFQController extends Controller
             $_rfq_id = $rfq['id'];
             $temp = json_decode($request['rfq_details'], true);
             foreach ((array) $temp as $rfq_detail) {
+                $filePath = null;
+                if ($request->file('file' . $index)) {
+                    $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/');
+                }
                 $rfq_update_data = RFQDetails::where('id',$rfq_detail['id'])->first();
                 if ($rfq_update_data) {
+                    if (File::exists(public_path($rfq_update_data->file))) {
+
+                        File::delete(public_path($rfq_update_data->file));
+                    }
                     $_rfq_detail = $rfq_update_data->update([
                         'product_id' => $rfq_detail['product_id']?$rfq_detail['product_id']:null,
                         'product_name' => $rfq_detail['product_name'],
                         'description' => ucwords(trans($rfq_detail['description'])),
                         'quantity' => $rfq_detail['quantity'],
+                        'file' => $filePath,
                         // 'rfq_id' => $_rfq_id,
                     ]);
                 }else{
@@ -290,15 +302,16 @@ class RFQController extends Controller
                         'description' => ucwords(trans($rfq_detail['description'])),
                         'product_name' => $rfq_detail['product_name'],
                         'quantity' => $rfq_detail['quantity'],
-                        'rfq_id' => $_rfq_id
+                        'rfq_id' => $_rfq_id,
+                        'file' => $filePath,
                     ]);
                 }
             }
 
             return response()->json(['msg' => 'successfully updated']);
-        // } catch (Exception $e) {
-        //     return $e;
-        // }
+        } catch (Exception $e) {
+            return $e;
+        }
 
 
         // return response()->json($rfq, 200);
