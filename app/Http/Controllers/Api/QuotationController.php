@@ -607,7 +607,7 @@ class QuotationController extends Controller
         
         return response()->json($quotation);
         }
-        
+        return response()->json("hi"); 
        
     }
 
