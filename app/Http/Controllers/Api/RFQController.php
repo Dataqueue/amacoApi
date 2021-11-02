@@ -251,7 +251,7 @@ class RFQController extends Controller
 
         $data = json_decode($request['rfq_details'], true);
         // return $request;
-        try {
+        // try {
             $rfq->update([
                 'requested_date' => $request->requested_date,
                 'require_date' => $request->require_date,
@@ -296,9 +296,9 @@ class RFQController extends Controller
             }
 
             return response()->json(['msg' => 'successfully updated']);
-        } catch (Exception $e) {
-            return $e;
-        }
+        // } catch (Exception $e) {
+        //     return $e;
+        // }
 
 
         // return response()->json($rfq, 200);
