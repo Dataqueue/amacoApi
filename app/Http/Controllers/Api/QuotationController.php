@@ -544,17 +544,17 @@ class QuotationController extends Controller
         }
         else
         {
-        //     $quotation->update([
-        //         // 'status' => $request->status,
-        //         'total_value' => $request->total_value,
-        //         'vat_in_value' => $request->vat_in_value,
-        //         'net_amount' => $request->net_amount,
-        //         'transaction_type' => $request->transaction_type,
-        //         'discount_in_p' => $request->discount_in_p,
-        //         'ps_date'=>$request->ps_date,
+            $quotation->update([
+                // 'status' => $request->status,
+                'total_value' => $request->total_value,
+                'vat_in_value' => $request->vat_in_value,
+                'net_amount' => $request->net_amount,
+                'transaction_type' => $request->transaction_type,
+                'discount_in_p' => $request->discount_in_p,
+                'ps_date'=>$request->ps_date,
                 
-        //         // 'sales_order_number' => $data['sales_order_number'],
-        //     ]);
+                // 'sales_order_number' => $data['sales_order_number'],
+            ]);
         //     $index = 0;
         //     while ($request['quotation_details'] != null) {
         //         $quotation_detail = (array) json_decode(json_encode($request['quotation_details'], true));
