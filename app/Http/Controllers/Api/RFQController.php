@@ -278,10 +278,11 @@ class RFQController extends Controller
             global $_rfq_id;
             $_rfq_id = $rfq['id'];
             $temp = json_decode($request['rfq_details'], true);
+            $i = 0;
             foreach ((array) $temp as $rfq_detail) {
                 $filePath = null;
                 // if ($request->file('file' . $index)) {
-                    $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/');
+                    $filePath = $request->file('file'. $i)->move('quotation/quotation_detail/');
                 // }
                 $rfq_update_data = RFQDetails::where('id',$rfq_detail['id'])->first();
                 if ($rfq_update_data) {
@@ -307,6 +308,7 @@ class RFQController extends Controller
                         'file' => $filePath,
                     ]);
                 }
+                $i++;
             }
 
             return response()->json([$filePath]);
