@@ -201,7 +201,7 @@ class RFQController extends Controller
                     "description" => $rfq_detail->description,
                     // "product_name" => $rfq_detail->product->name,
                     "product_name" => $rfq_detail->product_name,
-                    "file_path" => $urlPath,
+                    "src" => $urlPath,
                     "product" => array($rfq_detail->product),
                     "prices" => isset($rfq_detail->product_id)?$rfq_detail->product->productPrice:[],
                     "party" =>  isset($rfq_detail->product_id)?$rfq_detail->product->productPrice->map(function ($price) {
