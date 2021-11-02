@@ -280,11 +280,17 @@ class RFQController extends Controller
             $temp = json_decode($request['rfq_details'], true);
             $i = 0;
             foreach ((array) $temp as $rfq_detail) {
+               
+               
+                $rfq_update_data = RFQDetails::where('id',$rfq_detail['id'])->first();
                 $filePath = null;
                 if ($request->file('file' . $i)) {
                     $filePath = $request->file('file'.$i)->move('quotation/quotation_detail/');
+                   $res=$rfq_update_data->update([
+                    'file' => $filePath
+                   ]);
                 }
-                $rfq_update_data = RFQDetails::where('id',$rfq_detail['id'])->first();
+
                 if ($rfq_update_data) {
                     if (File::exists(public_path($rfq_update_data->file))) {
 
@@ -295,7 +301,7 @@ class RFQController extends Controller
                         'product_name' => $rfq_detail['product_name'],
                         'description' => ucwords(trans($rfq_detail['description'])),
                         'quantity' => $rfq_detail['quantity'],
-                        'file' => $filePath,
+                        
                         // 'rfq_id' => $_rfq_id,
                     ]);
                 }else{
