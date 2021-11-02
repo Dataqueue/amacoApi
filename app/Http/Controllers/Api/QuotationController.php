@@ -584,7 +584,7 @@ class QuotationController extends Controller
                         'quotation_id' => $quotation->id,
                         'total_amount' => $quotation_detail['total_amount'],
                         // 'analyse_id' => $quotation_detail['analyse_id'],
-                        'product_id' => $quotation_detail['product_id'],
+                        'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:" ",
                         'purchase_price' => $quotation_detail['purchase_price'],
                         'description' => $quotation_detail['description'],
                         'quantity' => $quotation_detail['quantity'],
@@ -592,7 +592,7 @@ class QuotationController extends Controller
                         'sell_price' => $quotation_detail['sell_price'],
                         'unit_of_measure' => $quotation_detail['unit_of_measure'],
                         'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:"",
-                        'remark' => $quotation_detail['remark'],
+                       
     
                     ]);
                 }
