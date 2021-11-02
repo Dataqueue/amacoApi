@@ -278,7 +278,7 @@ class RFQController extends Controller
                 $rfq_update_data = RFQDetails::where('id',$rfq_detail['id'])->first();
                 if ($rfq_update_data) {
                     $_rfq_detail = $rfq_update_data->update([
-                        'product_id' => $rfq_detail['product_id']?$rfq_detail['product_id']:'',
+                        'product_id' => $rfq_detail['product_id']?$rfq_detail['product_id']:null,
                         'product_name' => $rfq_detail['product_name'],
                         'description' => ucwords(trans($rfq_detail['description'])),
                         'quantity' => $rfq_detail['quantity'],
@@ -286,7 +286,7 @@ class RFQController extends Controller
                     ]);
                 }else{
                     RFQDetails::create([
-                        'product_id' => $rfq_detail['product_id'],
+                        'product_id' => $rfq_detail['product_id']?$rfq_detail['product_id']:null,
                         'description' => ucwords(trans($rfq_detail['description'])),
                         'product_name' => $rfq_detail['product_name'],
                         'quantity' => $rfq_detail['quantity'],
