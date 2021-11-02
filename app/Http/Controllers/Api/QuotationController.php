@@ -603,10 +603,10 @@ class QuotationController extends Controller
                
         }
         
-        return response()->json("hi");
+      
         }
         
-       
+        return response()->json("hi");
     }
 
     public function updateQuotation(Request $request, $id)
