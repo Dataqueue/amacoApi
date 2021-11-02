@@ -458,8 +458,8 @@ class QuotationController extends Controller
     public function update(Request $request)
     {
         // return $request;
-        // $quotation = Quotation::where("id", $request->id)->first();
-        // $data = $request->all();
+        $quotation = Quotation::where("id", $request->id)->first();
+        $data = $request->all();
         // if ($request->transaction_type !== 'purchase') {
         // $quotation->update([
         //     'po_number' => $request->po_number,
@@ -606,7 +606,7 @@ class QuotationController extends Controller
       
         // }
         
-        return response()->json("hi");
+        return response()->json($quotation);
     }
 
     public function updateQuotation(Request $request, $id)
