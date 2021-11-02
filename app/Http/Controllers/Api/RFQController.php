@@ -286,7 +286,7 @@ class RFQController extends Controller
                 $filePath = null;
                 if ($request->file('file' . $i)) {
                     $filePath = $request->file('file'.$i)->move('quotation/quotation_detail/');
-                    if($rfq_update_data->id)
+                    if($rfq_detail['id'])
                     {
                     $res=$rfq_update_data->update([
                     'file' => $filePath
