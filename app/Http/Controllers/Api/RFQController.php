@@ -281,9 +281,9 @@ class RFQController extends Controller
             $i = 0;
             foreach ((array) $temp as $rfq_detail) {
                 $filePath = null;
-                // if ($request->file('file' . $index)) {
-                    $filePath = $request->file('file'. $i)->move('quotation/quotation_detail/');
-                // }
+                if ($request->file('file' . $i)) {
+                    $filePath = $request->file('file'.$i)->move('quotation/quotation_detail/');
+                }
                 $rfq_update_data = RFQDetails::where('id',$rfq_detail['id'])->first();
                 if ($rfq_update_data) {
                     if (File::exists(public_path($rfq_update_data->file))) {
