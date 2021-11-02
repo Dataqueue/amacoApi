@@ -295,10 +295,7 @@ class RFQController extends Controller
                 }
 
                 if ($rfq_update_data) {
-                    if (File::exists(public_path($rfq_update_data->file))) {
-
-                        File::delete(public_path($rfq_update_data->file));
-                    }
+                   
                     $_rfq_detail = $rfq_update_data->update([
                         'product_id' => $rfq_detail['product_id']?$rfq_detail['product_id']:null,
                         'product_name' => $rfq_detail['product_name'],
