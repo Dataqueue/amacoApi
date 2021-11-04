@@ -544,42 +544,42 @@ class QuotationController extends Controller
         }
         else
         {
-        //     $quotation->update([
-        //         // 'status' => $request->status,
-        //         'total_value' => $request->total_value,
-        //         'vat_in_value' => $request->vat_in_value,
-        //         'net_amount' => $request->net_amount,
-        //         'transaction_type' => $request->transaction_type,
-        //         'discount_in_p' => $request->discount_in_p,
-        //         'ps_date'=>$request->ps_date,
+            $quotation->update([
+                // 'status' => $request->status,
+                'total_value' => $request->total_value,
+                'vat_in_value' => $request->vat_in_value,
+                'net_amount' => $request->net_amount,
+                'transaction_type' => $request->transaction_type,
+                'discount_in_p' => $request->discount_in_p,
+                'ps_date'=>$request->ps_date,
                 
-        //         // 'sales_order_number' => $data['sales_order_number'],
-        //     ]);
-        //     $index = 0;
-        //     while ($request['quotation_details'] != null) {
-        //         $quotation_detail = (array) json_decode(json_encode($request['quotation_details'], true));
-        //         foreach ($request['quotation_details'] as $key => $quotation_detail) {
+                // 'sales_order_number' => $data['sales_order_number'],
+            ]);
+            $index = 0;
+            while ($request['quotation_details'] != null) {
+                $quotation_detail = (array) json_decode(json_encode($request['quotation_details'], true));
+                foreach ($request['quotation_details'] as $key => $quotation_detail) {
                 
-        //         $quotationDetail = QuotationDetail::where([
-        //             'id' => $quotation_detail['id'],
-        //             // 'quotation_id' => $request->id
-        //         ])->first();
-        //         if ($quotationDetail) {
+                $quotationDetail = QuotationDetail::where([
+                    'id' => $quotation_detail['id'],
+                    // 'quotation_id' => $request->id
+                ])->first();
+                if ($quotationDetail) {
                    
-        //             $quotationDetail->update([
-        //                 'total_amount' => $quotation_detail['total_amount'],
-        //                 'product_id' => $quotation_detail['product_id'],
-        //                 'purchase_price' => $quotation_detail['purchase_price'],
-        //                 'description' => $quotation_detail['description'],
-        //                 'quantity' => $quotation_detail['quantity'],
-        //                 'margin' => $quotation_detail['margin'],
-        //                 'sell_price' => $quotation_detail['sell_price'],
-        //                 'remark' => $quotation_detail['remark'],
-        //                 'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:"",
-        //                 'unit_of_measure' => $quotation_detail['unit_of_measure'],
+                    $quotationDetail->update([
+                        'total_amount' => $quotation_detail['total_amount'],
+                        'product_id' => $quotation_detail['product_id'],
+                        'purchase_price' => $quotation_detail['purchase_price'],
+                        'description' => $quotation_detail['description'],
+                        'quantity' => $quotation_detail['quantity'],
+                        'margin' => $quotation_detail['margin'],
+                        'sell_price' => $quotation_detail['sell_price'],
+                        'remark' => $quotation_detail['remark'],
+                        'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:"",
+                        'unit_of_measure' => $quotation_detail['unit_of_measure'],
     
-        //             ]);
-        //         } else {
+                    ]);
+                } else {
         //             QuotationDetail::create([
         //                 'quotation_id' => $quotation->id,
         //                 'total_amount' => $quotation_detail['total_amount'],
@@ -598,15 +598,17 @@ class QuotationController extends Controller
                    
         //         }
         //         $index++;
-        //         }
+                    }
                
                 
         
                
-        // }
+    
         return response()->json("hi");
       
         }
+    }
+}
         
     
     }
