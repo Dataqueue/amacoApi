@@ -581,17 +581,17 @@ class QuotationController extends Controller
                     ]);
                 } else {
                     QuotationDetail::create([
-                        'quotation_id' => 2,
+                        'quotation_id' => $quotation->id,
                         'total_amount' => $quotation_detail['total_amount'],
                         // 'analyse_id' => $quotation_detail['analyse_id'],
-                        // 'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:null,
-                        // 'purchase_price' => $quotation_detail['purchase_price'],
-                        // 'description' => $quotation_detail['product'],
-                        // 'quantity' => $quotation_detail['quantity'],
-                        // 'margin' => $quotation_detail['margin'],
-                        // 'sell_price' => $quotation_detail['sell_price'],
-                        // 'unit_of_measure' => $quotation_detail['unit_of_measure'],
-                        // 'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:null,
+                        'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:null,
+                        'purchase_price' => $quotation_detail['purchase_price'],
+                        'description' => $quotation_detail['product'],
+                        'quantity' => $quotation_detail['quantity'],
+                        'margin' => $quotation_detail['margin'],
+                        'sell_price' => $quotation_detail['sell_price'],
+                        'unit_of_measure' => $quotation_detail['unit_of_measure'],
+                        'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:null,
                        
     
                     ]);
@@ -599,15 +599,16 @@ class QuotationController extends Controller
       
         
                     }
-             $index++;
+                $index++;
                
                 
         
                
     
-                return response()->json($request);
+               
       
         }
+        return response()->json($request);
     }
 }
         
