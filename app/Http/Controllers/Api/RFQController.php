@@ -121,6 +121,7 @@ class RFQController extends Controller
                     'product_id' => isset($rfq_detail['id'])?$rfq_detail['id']:null,
                     'description' => ucwords(trans($rfq_detail['descriptionss'])),
                     'quantity' => $rfq_detail['quantity'],
+                    'unit_of_measure' => $rfq_detail['unit_of_measure'],
                     'rfq_id' => $_rfq_id,
                     'file' => $filePath?$filePath:NULL,
                     'product_name' => $rfq_detail['name'],
