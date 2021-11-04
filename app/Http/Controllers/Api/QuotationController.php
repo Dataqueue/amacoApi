@@ -230,7 +230,7 @@ class QuotationController extends Controller
         
         
         $rfqId = null;
-        $rfqId = $request->rfq_id ? $request->rfq_id :NULL;
+        $rfqId = $request->rfq_id ? $request->rfq_id :null;
         $parentId = null;
         if($request['parent_id']){
             $parentId = $request['parent_id'];
@@ -242,7 +242,7 @@ class QuotationController extends Controller
         // try {
             $datas = [
                 'party_id' => $request['party_id'],
-                'rfq_id' => $rfqId,
+                'rfq_id' => $rfqId?$rfqId:null,
                 'status' => 'New',
                 'parent_id' => $parentId,
                 'total_value' => $request['total_value'],
