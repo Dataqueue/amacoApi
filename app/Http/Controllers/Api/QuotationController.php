@@ -602,11 +602,11 @@ class QuotationController extends Controller
         
                
         }
-        
+        return response()->json("hi");
       
         }
         
-        return response()->json($quotation);
+    
     }
 
     public function updateQuotation(Request $request, $id)
