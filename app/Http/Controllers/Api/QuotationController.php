@@ -595,8 +595,9 @@ class QuotationController extends Controller
                        
     
                     ]);
+                    $index++;
                 }
-                $index++;
+            
                 }
                
                 
