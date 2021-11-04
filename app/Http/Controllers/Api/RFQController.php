@@ -303,6 +303,7 @@ class RFQController extends Controller
                         'product_name' => $rfq_detail['product_name'],
                         'description' => ucwords(trans($rfq_detail['description'])),
                         'quantity' => $rfq_detail['quantity'],
+                        'unit_of_measure' => $rfq_detail['unit_of_measure'],
                         
                         // 'rfq_id' => $_rfq_id,
                     ]);
@@ -312,6 +313,7 @@ class RFQController extends Controller
                         'description' => ucwords(trans($rfq_detail['description'])),
                         'product_name' => $rfq_detail['product_name'],
                         'quantity' => $rfq_detail['quantity'],
+                        'unit_of_measure' => $rfq_detail['unit_of_measure'],
                         'rfq_id' => $_rfq_id,
                         'file' => $filePath,
                     ]);
