@@ -200,6 +200,7 @@ class RFQController extends Controller
                     "updated_at" => $rfq_detail->updated_at,
                     "product_id" => $rfq_detail->product_id,
                     "quantity" => $rfq_detail->quantity,
+                    "unit_of_measure" => $rfq_detail->unit_of_measure,
                     "description" => $rfq_detail->description,
                     // "product_name" => $rfq_detail->product->name,
                     "product_name" => $rfq_detail->product_name,
