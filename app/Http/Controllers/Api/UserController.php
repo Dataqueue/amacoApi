@@ -171,12 +171,12 @@ class UserController extends Controller
 
             // ]);
             $invest = Investment::where('payment_account_id',$payment_account->id)->first();
-            // $invest->update([
-            //     'opening_balance'=>$request->opening_balance,
-            //     'profit_per'=>$request->profit_per,
+            $invest->update([
+                'opening_balance'=>$request->opening_balance,
+                'profit_per'=>$request->profit_per,
 
 
-            // ]);
+            ]);
             return response()->json($invest);
 
         //     $division = json_decode($request['divisions'], true);
