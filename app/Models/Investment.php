@@ -9,5 +9,9 @@ class Investment extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function PaymentAccount()
+    {
+        return $this->belongTo(PaymentAccount::class);
+    }
     
 }

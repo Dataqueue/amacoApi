@@ -29,4 +29,8 @@ class PaymentAccount extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function investment()
+    {
+        return $this->hasOne(Investment::class,'payment_account_id','id');
+    }
 }
