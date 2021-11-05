@@ -266,7 +266,7 @@ class QuotationController extends Controller
 
             if ($request->transaction_type === 'sale') {
                 if ($request['parent_id']) {
-                    $datas['quotation_no'] = $this->revisedQuotationNo($request['quotation_no']);
+                    $datas['quotation_no'] = $this->re4visedQuotationNo($request['quotation_no']);
                 
                 }else{
                     $datas['quotation_no'] = $this->getQuotationNo();

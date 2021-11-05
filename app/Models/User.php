@@ -56,6 +56,10 @@ protected $guarded = [];
     {
         return $this->hasOne(Investment::class);
     }
+    public function PaymentAccount()
+    {
+        return $this->hasOne(PaymentAccount::class,'user_id','id');
+    }
 
     public function getJWTIdentifier()
     {

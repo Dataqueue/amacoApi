@@ -25,4 +25,8 @@ class PaymentAccount extends Model
     {
         return $this->belongsTo(AdvancePayment::class);
     }
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
