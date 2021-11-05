@@ -168,7 +168,13 @@ class UserController extends Controller
                 'name'=>$request->nick_name,
 
             ]);
-           
+            $invest = Investment::where('payment_account_id',$payment_account->id)->first();
+            $invest->update([
+                'opening_balance'=>$request->opening_balance,
+                'profit_per'=>$request->profit_per,
+
+
+            ]);
             $division = json_decode($request['divisions'], true);
             foreach ($division as $div) {
 
@@ -193,6 +199,7 @@ class UserController extends Controller
             'designation' => $request->designation,
             'prefix' => $request->prefix,
         ]);
+       
        
  
 
