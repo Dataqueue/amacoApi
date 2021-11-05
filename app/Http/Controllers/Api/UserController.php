@@ -177,7 +177,7 @@ class UserController extends Controller
 
 
             // ]);
-            return response()->json("hello");
+            return response()->json($invest);
 
         //     $division = json_decode($request['divisions'], true);
         //     foreach ($division as $div) {
