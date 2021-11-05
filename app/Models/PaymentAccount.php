@@ -25,7 +25,7 @@ class PaymentAccount extends Model
     {
         return $this->belongsTo(AdvancePayment::class);
     }
-    public function users()
+    public function users_payment()
     {
         return $this->belongsTo(User::class);
     }
