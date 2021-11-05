@@ -181,7 +181,7 @@ class UserController extends Controller
             ]);
             }
             else{
-                $invest->create([
+                Investment::create([
                     'opening_balance'=>$request->opening_balance,
                     'profit_per'=>$request->profit_per,
     
