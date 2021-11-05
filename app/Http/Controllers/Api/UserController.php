@@ -183,6 +183,7 @@ class UserController extends Controller
             else{
                 Investment::create([
                     'opening_balance'=>$request->opening_balance,
+                    'payment_account_id'=>$payment_account->id,
                     'profit_per'=>$request->profit_per,
     
     
