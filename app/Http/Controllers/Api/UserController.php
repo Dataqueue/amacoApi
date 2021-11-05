@@ -163,13 +163,13 @@ class UserController extends Controller
             $payment_account = PaymentAccount::where('user_id',$user->id)->first();
           
 
-            // if(!$payment_account){
-            //     return response()->json(["msg" => "There is no payment account by the given user name for update"], 201);
-            // }
-            // $payment_account->update([
-            //     'name'=>$request->nick_name,
+            if(!$payment_account){
+                return response()->json(["msg" => "There is no payment account by the given user name for update"], 201);
+            }
+            $payment_account->update([
+                'name'=>$request->nick_name,
 
-            // ]);
+            ]);
             $invest = Investment::where('payment_account_id',$payment_account->id)->first();
             $invest->update([
                 'opening_balance'=>$request->opening_balance,
@@ -177,37 +177,37 @@ class UserController extends Controller
 
 
             ]);
-            return response()->json($invest);
+            // return response()->json($invest);
 
-        //     $division = json_decode($request['divisions'], true);
-        //     foreach ($division as $div) {
+            $division = json_decode($request['divisions'], true);
+            foreach ($division as $div) {
 
-        //         if($div['check']==true)
-        //         {
-        //          UserDivision::create([
-        //             'u_id' => $user->id,
-        //             'div_id'=>$div['id']
-        //         ]);
-        //         // return response()->json($div['check']);
-        //         }
+                if($div['check']==true)
+                {
+                 UserDivision::create([
+                    'u_id' => $user->id,
+                    'div_id'=>$div['id']
+                ]);
+                // return response()->json($div['check']);
+                }
             
-        //     }
+            }
         }
-        //     $user->update([
-        //     "name"=> $request->name,
-        //     "nick_name"=> $request->nick_name,
-        //     "email"=> $request->email,
-        //     "contact"=> $request->contact,
-        //     "role_id"=> $request->role_id,
-        //     'remember_token' => Str::random(10),
-        //     'designation' => $request->designation,
-        //     'prefix' => $request->prefix,
-        // ]);
+            $user->update([
+            "name"=> $request->name,
+            "nick_name"=> $request->nick_name,
+            "email"=> $request->email,
+            "contact"=> $request->contact,
+            "role_id"=> $request->role_id,
+            'remember_token' => Str::random(10),
+            'designation' => $request->designation,
+            'prefix' => $request->prefix,
+        ]);
        
        
  
 
-        // return response()->json($invest);
+     return response()->json("success");
     }
 
     /**
