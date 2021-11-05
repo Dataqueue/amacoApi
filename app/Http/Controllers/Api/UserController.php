@@ -129,7 +129,8 @@ class UserController extends Controller
         $user['division']=1;
 
         $user['img']=$user->userProfile();
-        $user['investments']=Investment::where('payment_account_id',$user->PaymentAccount->id);
+        // $user['investments']=Investment::where('payment_account_id',$user->PaymentAccount->id);
+        $user['investments']=$user->PaymentAccount->id;
         $user['divisions']=UserDivision::where('u_id',$user->id)->get();
         
 
