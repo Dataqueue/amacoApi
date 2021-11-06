@@ -173,7 +173,7 @@ Route::get('expense_chart', [ExpenseController::class, 'expense_chart']);
 Route::get('accountCategory', [AccountCategoryController::class, 'accountCategory']);
 Route::get('salesTax', [InvoiceController::class, 'salesTax']);
 Route::get('purchaseTax', [ExpenseController::class, 'purchaseTax']);
-Route::post('InvestmentsDetails', [InvestmentsDetailsController::class, 'InvestmentsDetails']);
+Route::post('InvestmentsDetails', [InvestmentsDetailsController::class, 'store']);
 
 
 
