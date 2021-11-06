@@ -16,14 +16,14 @@ class InvestmentsDetailsController extends Controller
      
         $data=InvestmentsDetails::create([
            'user_id'=>$request->user_id,
-           'payment_account_id'=>$request->id ,
+           'payment_account_id'=>$request->payment_account_id ,
            'amount'=>$request->balance 
         ]);
         $pay=AdvancePayment::create([
             'narration'=>'Investments',
-            'payment_account_id'=>$request->payment_account_id,
+            'payment_account_id'=>$request->received_by,
             'amount'=>$request->balance,
-            'received_by'=>$request->received_by,
+            'received_by'=>$request->payment_account_id,
             'payment_mode'=>'cash',
 
 
