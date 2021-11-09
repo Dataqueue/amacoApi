@@ -262,6 +262,7 @@ class QuotationController extends Controller
                 'sign' => $request['sign'],  // ? $request['ps_date'] : Carbon::now()
                 'bank_id' => (int)$request['bank_id'],  // ? $request['ps_date'] : Carbon::now()
                 'subject' => $request['subject']?$request['subject']:null,  // ? $request['ps_date'] : Carbon::now()
+                'rfq_no' => $request['rfq_no']?$request['rfq_no']:null,  // ? $request['ps_date'] : Carbon::now()
                 
             ];
 
@@ -475,6 +476,7 @@ class QuotationController extends Controller
             'discount_in_p' => $request->discount_in_p,
             'ps_date' => $request->ps_date,
             'sign' => $request->sign,
+            'rfq_no' => $request->rfq_no,
             'subject' => $request->subject,
             'bank_id'=> (int)$request->bank_id
             // 'sales_order_number' => $data['sales_order_number'],
