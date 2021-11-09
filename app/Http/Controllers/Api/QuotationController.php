@@ -261,6 +261,7 @@ class QuotationController extends Controller
                 'ps_date' => $request['ps_date'],  // ? $request['ps_date'] : Carbon::now()
                 'sign' => $request['sign'],  // ? $request['ps_date'] : Carbon::now()
                 'bank_id' => (int)$request['bank_id'],  // ? $request['ps_date'] : Carbon::now()
+                'subject' => $request['subject']?$request['subject']:null,  // ? $request['ps_date'] : Carbon::now()
                 
             ];
 
