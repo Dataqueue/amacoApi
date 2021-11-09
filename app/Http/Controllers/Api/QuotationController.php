@@ -403,6 +403,7 @@ class QuotationController extends Controller
             "bank" => $quotation->bank,
             "currency_type" => $quotation->currency_type,
             "freight_type" => $quotation->freight_type,
+            "subject" => $quotation->subject,
 
             "quotation_details" => $quotation->quotationDetail->map(function ($quotation_detail) {
                 $filePath = $quotation_detail->file_img_url ? $quotation_detail->file_img_url : '';
@@ -474,6 +475,7 @@ class QuotationController extends Controller
             'discount_in_p' => $request->discount_in_p,
             'ps_date' => $request->ps_date,
             'sign' => $request->sign,
+            'subject' => $request->subject,
             'bank_id'=> (int)$request->bank_id
             // 'sales_order_number' => $data['sales_order_number'],
         ]);
