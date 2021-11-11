@@ -153,6 +153,7 @@ Route::post('sale-tax', [TaxController::class, 'saleTax']);
 Route::post('purchase-tax', [TaxController::class, 'purchaseTax']);
 Route::get('all-categories',[CategoryController::class, 'categories']);
 Route::delete('quotation_details/{id}',[QuotationController::class, 'destroy_details']);
+Route::delete('rfq_details/{id}',[RFQController::class, 'rfq_details']);
 Route::post('sale-report',[QuotationController::class, 'saleReport']);
 Route::get('purchase-quote',[PurchaseInvoiceController::class, 'PurchaseInvoice'])->name('purchase.get');
 Route::post('expenseUpdate',[ExpenseController::class, 'expenseUpdate']);

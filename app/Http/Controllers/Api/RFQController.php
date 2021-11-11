@@ -344,6 +344,15 @@ class RFQController extends Controller
             return (['msg' => 'RFQ' . ' ' . $rfq->id . ' is successfully deleted']);
         }
     }
+     public function destroy_details($id)
+    {
+        $rfq = RFQDetails::where('id', $id)->first();
+
+        $res = $rfq->delete();
+        if ($res) {
+            return (['msg' => 'RFQ' . ' ' . $rfq->id . ' is successfully deleted']);
+        }
+    }
 
     public function history()
     {
