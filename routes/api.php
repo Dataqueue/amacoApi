@@ -152,7 +152,7 @@ Route::delete('delete-quotation-detail/{quotation_detail}', [QuotationController
 Route::post('sale-tax', [TaxController::class, 'saleTax']);
 Route::post('purchase-tax', [TaxController::class, 'purchaseTax']);
 Route::get('all-categories',[CategoryController::class, 'categories']);
-Route::delete('quotation_details/{id}',[CategoryController::class, 'destroy_details']);
+Route::delete('quotation_details/{id}',[QuotationController::class, 'destroy_details']);
 Route::post('sale-report',[QuotationController::class, 'saleReport']);
 Route::get('purchase-quote',[PurchaseInvoiceController::class, 'PurchaseInvoice'])->name('purchase.get');
 Route::post('expenseUpdate',[ExpenseController::class, 'expenseUpdate']);
