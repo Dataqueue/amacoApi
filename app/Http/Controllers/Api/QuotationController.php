@@ -689,6 +689,15 @@ class QuotationController extends Controller
             return (['msg' => 'Quotation' . ' ' . $quotation->id . ' is successfully deleted']);
         }
     }
+    public function destroy_details($id)
+    {
+        $quotation = QuotationDetail::where('id', $id)->first();
+
+        $res = $quotation->delete();
+        if ($res) {
+            return (['msg' => 'Quotation' . ' ' . $quotation->id . ' is successfully deleted']);
+        }
+    }
 
     public function invoice_list()
     {
