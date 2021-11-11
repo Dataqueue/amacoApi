@@ -44,6 +44,7 @@ use App\Http\Controllers\Api\demo;
 use App\Http\Controllers\Api\DivisionController;
 use App\Http\Controllers\Api\MasterAccountController;
 use App\Http\Controllers\Api\InvestmentsDetailsController;
+use App\Http\Controllers\Api\ProfitLossController;
 
 
 /*
@@ -173,6 +174,7 @@ Route::get('expense_chart', [ExpenseController::class, 'expense_chart']);
 Route::get('accountCategory', [AccountCategoryController::class, 'accountCategory']);
 Route::get('salesTax', [InvoiceController::class, 'salesTax']);
 Route::get('purchaseTax', [ExpenseController::class, 'purchaseTax']);
+Route::get('ProfitLoss', [ProfitLossController::class, 'profitLoss']);
 Route::post('InvestmentsDetails', [InvestmentsDetailsController::class, 'store']);
 
 

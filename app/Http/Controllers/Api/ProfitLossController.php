@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Expenses;
 use Illuminate\Http\Request;
 
-class ProfitLoss extends Controller
+class ProfitLossController extends Controller
 {
     //
     public function profitLoss(Request $request)
