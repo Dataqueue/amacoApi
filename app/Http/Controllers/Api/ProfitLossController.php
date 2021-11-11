@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Expenses;
+use App\Models\Expense;
 use Illuminate\Http\Request;
 
 class ProfitLossController extends Controller
@@ -11,7 +11,7 @@ class ProfitLossController extends Controller
     //
     public function profitLoss(Request $request)
     {
-            $res=Expense::join('account_categories','expense.account_category_id','account_categories.id')->get();
+            $res=Expense::join('account_categories','expenses.account_category_id','account_categories.id')->get();
             return response()->json($res);
     }
 }
