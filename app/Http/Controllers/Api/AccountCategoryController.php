@@ -177,7 +177,7 @@ class AccountCategoryController extends Controller
                 // $accountCategories,
                 $res->map(function($accountCategory){
                 return [
-                    $accountCategory,
+                    'category' => $accountCategory,
                     'sub_categories' => $this->checkParentcategories($accountCategory->account_category_id),
                     // 'sub_categories' => $this->subCategory($accountCategory->id),
                 ];
