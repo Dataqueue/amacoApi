@@ -43,16 +43,21 @@ class AccountCategoryController extends Controller
        
         if($groupedCategories->parent_id!==null)
         {
+            if($groupedCategories->id==35)
+            {
+                return $groupedCategories;
+           
+            
+            }
+            else{
+
+           
             return $this->checkParentcategories($groupedCategories->parent_id);
-           
+            
+            }
             
         }
-        if($groupedCategories->id==35)
-        {
-            return $groupedCategories;
-           
-            
-        }
+        
         else 
         {
             return $groupedCategories;
