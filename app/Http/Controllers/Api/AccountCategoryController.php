@@ -47,7 +47,7 @@ class AccountCategoryController extends Controller
         }
         // else
         else{
-            return $groupedCategories->parent_id;
+            return $groupedCategories->name;
         }
         
             // $temp = $groupedCategories[$id];
