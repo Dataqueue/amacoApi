@@ -46,7 +46,7 @@ class AccountCategoryController extends Controller
                 $temp->map(function ($category){
                     if($category->parent_id!==" ")
                     {
-                        $this->checkParentcategories($category->parent_id,$category->id);
+                        // $this->checkParentcategories($category->parent_id,$category->id);
                     }
                     else
                     {
