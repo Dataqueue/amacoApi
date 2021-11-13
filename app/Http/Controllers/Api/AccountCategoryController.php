@@ -50,7 +50,7 @@ class AccountCategoryController extends Controller
                     }
                     else
                     {
-                        return $category->name;
+                        return $category;
                     }
                 }
             ),
