@@ -37,21 +37,27 @@ class AccountCategoryController extends Controller
     }
     public function checkParentcategories($id)
     {
-        $groupedCategories = AccountCategory::all()->groupBy('parent_id');
+        $groupedCategories = AccountCategory::where('parent_id',$id)->get();
         // dd($groupedCategories[0]);
-        if($groupedCategories->has($id)){
-            $temp = $groupedCategories[$id];
-            $data = [
-                $temp->map(function ($category){
-                    return  [
-                        'category'=>$category,
-                        'sub_categories'=>$this->checkSubcategories($category->parent_id)];
-                }
-            ),
-            ];
-            return $data[0];
+        if($groupedCategories->has($parent_id)){
+
+            $temp=$this->checkParentcategories($parent->id);
         }
-        return $this->subCategory($id);
+        else{
+            return $groupedCategories->has($name);
+        }
+            // $temp = $groupedCategories[$id];
+            // $data = [
+            //     $temp->map(function ($category){
+            //         return  [
+            //             'category'=>$category,
+            //             'sub_categories'=>$this->checkParentcategories($category->id)];
+            //     }
+            // ),
+            // ];
+            // return $data[0];
+        // }
+        // return $this->subCategory($id);
     }
 
     public function index()
@@ -162,7 +168,7 @@ class AccountCategoryController extends Controller
                 $res->map(function($accountCategory){
                 return [
                     'category' => $accountCategory,
-                    'sub_categories' => $this->checkParentcategories($accountCategory->account_category_id),
+                    'sub_categories' => $this->checkParentcategories($accountCategory->parent_id),
                     // 'sub_categories' => $this->subCategory($accountCategory->id),
                 ];
             }),
