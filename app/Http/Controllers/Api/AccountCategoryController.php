@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AccountCategory;
 use App\Models\Expense;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class AccountCategoryController extends Controller
 {
