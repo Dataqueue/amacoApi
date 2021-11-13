@@ -41,9 +41,10 @@ class AccountCategoryController extends Controller
         $groupedCategories = AccountCategory::where('id',$a_id)->first();
         
        
-        if($groupedCategories->id)
-        return $groupedCategories->id;
-        
+        if($groupedCategories->parent_id)
+        return $this->subCategory($id);
+        else
+        return $groupedCategories->parent_id;
             // $temp = $groupedCategories[$id];
             // $data = [
             //     $temp->map(function ($category){
