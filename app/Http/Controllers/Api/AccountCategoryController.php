@@ -37,7 +37,7 @@ class AccountCategoryController extends Controller
     }
     public function checkParentcategories($id,$a_id)
     {
-        $groupedCategories = AccountCategory::where('parent_id',$id)->whereOr('parent_id',$id)->get();
+        $groupedCategories = AccountCategory::where('parent_id',$a_id)->whereOr('parent_id',$id)->get();
         // dd($groupedCategories[0]);
         // if($groupedCategories->has($parent_id)){
 
@@ -169,7 +169,7 @@ class AccountCategoryController extends Controller
                 $res->map(function($accountCategory){
                 return [
                     'category' => $accountCategory,
-                    'sub_categories' => $this->checkParentcategories($accountCategory->parent_id,$accountCategory->$account_category_id),
+                    'sub_categories' => $this->checkParentcategories($accountCategory->parent_id,$accountCategory->$id),
                     // 'sub_categories' => $this->subCategory($accountCategory->id),
                 ];
             }),
