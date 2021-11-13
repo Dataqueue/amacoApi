@@ -56,7 +56,7 @@ class AccountCategoryController extends Controller
             ),
             ];
             return $data[0];
-        }
+        
             // $temp = $groupedCategories[$id];
             // $data = [
             //     $temp->map(function ($category){
