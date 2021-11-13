@@ -47,7 +47,13 @@ class AccountCategoryController extends Controller
            
             
         }
-        else
+        if($groupedCategories->id==35)
+        {
+            return $groupedCategories;
+           
+            
+        }
+        else 
         {
             return $groupedCategories;
         }
