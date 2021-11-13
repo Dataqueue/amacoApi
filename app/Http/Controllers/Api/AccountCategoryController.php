@@ -41,9 +41,9 @@ class AccountCategoryController extends Controller
         $groupedCategories = AccountCategory::where('id',$a_id)->first();
         
        
-        if($groupedCategories->parent_id)
+        if($groupedCategories->parent_id!==null)
         {
-        $temp=$this->checkParentcategories($groupedCategories->parent_id);
+            $temp=$this->checkParentcategories($groupedCategories->parent_id);
         }
         // else
         // else{
