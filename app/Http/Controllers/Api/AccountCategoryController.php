@@ -43,8 +43,8 @@ class AccountCategoryController extends Controller
         // dd($groupedCategories[0]);
         if($groupedCategories->parent_id!==""){
 
-            // $temp=$this->checkParentcategories($groupedCategories->parent_id,$groupedCategories->id);
-            return "hhhhhhh";
+            $temp=$this->checkParentcategories($groupedCategories->parent_id,$groupedCategories->id);
+            // return "hhhhhhh";
         }
         else{
             return $groupedCategories;
