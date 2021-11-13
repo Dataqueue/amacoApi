@@ -42,7 +42,7 @@ class AccountCategoryController extends Controller
         
        
         if($groupedCategories->id)
-        return $groupedCategories;
+        return $groupedCategories->id;
         
             // $temp = $groupedCategories[$id];
             // $data = [
