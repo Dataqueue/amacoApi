@@ -149,5 +149,6 @@ class AccountCategoryController extends Controller
                 ];
             }),
         ];
+        return response()->json($data);
     }
 }
