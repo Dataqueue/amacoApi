@@ -45,7 +45,7 @@ class AccountCategoryController extends Controller
                 $temp->map(function ($category){
                     return  [
                         'category'=>$category,
-                        'sub_categories'=>$this->checkSubcategories($category->id)];
+                        'sub_categories'=>$this->checkSubcategories($category->parent_id)];
                 }
             ),
             ];
@@ -162,7 +162,7 @@ class AccountCategoryController extends Controller
                 $res->map(function($accountCategory){
                 return [
                     'category' => $accountCategory,
-                    'sub_categories' => $this->checkParentcategories($accountCategory->parent_id),
+                    'sub_categories' => $this->checkParentcategories($accountCategory->account_category_id),
                     // 'sub_categories' => $this->subCategory($accountCategory->id),
                 ];
             }),
