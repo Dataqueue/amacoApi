@@ -38,9 +38,10 @@ class AccountCategoryController extends Controller
     public function checkParentcategories($a_id)
     {
        
-        $groupedCategories = AccountCategory::where('id',$a_id)->get();
-       
+        $groupedCategories = AccountCategory::where('id',$a_id)->first();
         
+       
+        if($groupedCategories->id)
         return $groupedCategories;
         
             // $temp = $groupedCategories[$id];
