@@ -46,9 +46,9 @@ class AccountCategoryController extends Controller
         $temp=$this->checkParentcategories($groupedCategories->parent_id);
         }
         // else
-        else{
-            return $groupedCategories->name;
-        }
+        // else{
+        //     return $groupedCategories->name;
+        // }
         
             // $temp = $groupedCategories[$id];
             // $data = [
