@@ -505,4 +505,6 @@ return response()->json($expenses);
         // $result=$invoices->party;
         return $expenses;
     }
+
+    
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\AccountCategory;
+use App\Models\Expense;
 use Illuminate\Http\Request;
 
 class AccountCategoryController extends Controller
@@ -132,5 +133,20 @@ class AccountCategoryController extends Controller
         // $name = strtolower($name);
         $category = AccountCategory::get();
         return response()->json($category);
+    }
+    public function profitLoss()
+    {
+            $res = new Collection();
+            $res=Expense::join('account_categories','expenses.account_category_id','account_categories.id')->get();
+            $data = [
+                // $accountCategories,
+                $res->map(function($accountCategory){
+                return [
+                    'category' => $accountCategory,
+                    'sub_categories' => $this->checkSubcategories($accountCategory->id),
+                    // 'sub_categories' => $this->subCategory($accountCategory->id),
+                ];
+            }),
+        ];
     }
 }
