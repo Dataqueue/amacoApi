@@ -35,6 +35,24 @@ class AccountCategoryController extends Controller
         }
         return $this->subCategory($id);
     }
+    public function checkParentcategories($id)
+    {
+        $groupedCategories = AccountCategory::all()->groupBy('parent_id');
+        // dd($groupedCategories[0]);
+        if($groupedCategories->has($id)){
+            $temp = $groupedCategories[$id];
+            $data = [
+                $temp->map(function ($category){
+                    return  [
+                        'category'=>$category,
+                        'sub_categories'=>$this->checkSubcategories($category->id)];
+                }
+            ),
+            ];
+            return $data[0];
+        }
+        return $this->subCategory($id);
+    }
 
     public function index()
     {
@@ -144,7 +162,7 @@ class AccountCategoryController extends Controller
                 $res->map(function($accountCategory){
                 return [
                     'category' => $accountCategory,
-                    'sub_categories' => $this->checkSubcategories($accountCategory->parent_id),
+                    'sub_categories' => $this->checkParentcategories($accountCategory->account_category_id),
                     // 'sub_categories' => $this->subCategory($accountCategory->id),
                 ];
             }),
