@@ -41,13 +41,21 @@ class AccountCategoryController extends Controller
         $groupedCategories = AccountCategory::where('parent_id',$id)->where('id',$a_id)->get();
        
         // dd($groupedCategories[0]);
-        if($groupedCategories['parent_id']!==""){
-
-            // $temp=$this->checkParentcategories($groupedCategories->parent_id,$groupedCategories->id);
-            // return "hhhhhhh";
-        }
-        else{
-            return $groupedCategories;
+        $temp = $groupedCategories;
+            $data = [
+                $temp->map(function ($category){
+                    if($category->parent_id!==" ")
+                    {
+                        $this->checkParentcategories($category->parent_id,$category->id);
+                    }
+                    else
+                    {
+                        return $category->name;
+                    }
+                }
+            ),
+            ];
+            return $data[0];
         }
             // $temp = $groupedCategories[$id];
             // $data = [
