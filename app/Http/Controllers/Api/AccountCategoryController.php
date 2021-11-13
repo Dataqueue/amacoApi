@@ -49,7 +49,7 @@ class AccountCategoryController extends Controller
         }
         else
         {
-            return $groupedCategories->name;
+            return $groupedCategories;
         }
         // else
         // else{
