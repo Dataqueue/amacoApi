@@ -45,13 +45,13 @@ class AccountCategoryController extends Controller
         {
             if($groupedCategories->id==35)
             {
-            return $groupedCategories;
+            return "PURCHASE";
            
             
             }
             if($groupedCategories->id==5)
             {
-            return $groupedCategories;
+                return "PURCHASE";
            
             
             }
@@ -65,7 +65,7 @@ class AccountCategoryController extends Controller
         
         else 
         {
-            return $groupedCategories;
+            return $groupedCategories->name;
         }
         // else
         // else{
