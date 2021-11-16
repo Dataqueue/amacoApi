@@ -161,7 +161,7 @@ class AccountStatementController extends Controller
     {
         $userdetails = new Collection();
         $userdetails = PaymentAccount::join('investments','investments.payment_account_id','payment_accounts.id')->get();
-        return response($userdetails);
+        return response($userdetails,$userdetails->investment_details);
 
     }
   
