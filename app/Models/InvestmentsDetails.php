@@ -18,5 +18,6 @@ class InvestmentsDetails extends Model
     {
         return $this->belongsTo(paymentAccount::class);
     }
+    
 
 }
