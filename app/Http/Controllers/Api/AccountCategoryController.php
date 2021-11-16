@@ -185,7 +185,7 @@ class AccountCategoryController extends Controller
         $category = AccountCategory::get();
         return response()->json($category);
     }
-    public function profitLoss()
+    public function salesExpenseReport()
     {
             $res = new Collection();
             $res=Expense::join('account_categories','expenses.account_category_id','account_categories.id')->get();
