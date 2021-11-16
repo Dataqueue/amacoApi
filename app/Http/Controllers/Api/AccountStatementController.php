@@ -7,6 +7,7 @@ use App\Models\Invoice;
 use App\Models\Party;
 use App\Models\Receipt;
 use App\Models\Expense;
+use App\Models\PaymentAccount;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -155,6 +156,13 @@ class AccountStatementController extends Controller
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
 
         return response()->json([$datas]);
+    }
+    public function profitLoss(Request $request)
+    {
+        $userdetails = new Collection();
+        $userdetails = PaymentAccount::join('investments','investments.payment_account_id','payment_accounts.id')->get();
+        return response($userdetails);
+
     }
   
     

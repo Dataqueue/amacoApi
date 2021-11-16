@@ -177,6 +177,7 @@ Route::get('accountCategory', [AccountCategoryController::class, 'accountCategor
 Route::get('salesTax', [InvoiceController::class, 'salesTax']);
 Route::get('purchaseTax', [ExpenseController::class, 'purchaseTax']);
 Route::get('salesExpenseReport', [AccountCategoryController::class, 'salesExpenseReport']);
+Route::get('profitLoss', [AccountStatementController::class, 'profitLoss']);
 Route::post('InvestmentsDetails', [InvestmentsDetailsController::class, 'store']);
 
 
