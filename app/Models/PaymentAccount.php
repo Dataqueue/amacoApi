@@ -35,6 +35,6 @@ class PaymentAccount extends Model
     }
     public function investment_details()
     {
-        return $this->hasOne(InvestmentsDetails::class,'id','payment_account_id');
+        return $this->hasOne(InvestmentsDetails::class,'payment_account_id','payment_account_id');
     }
 }
