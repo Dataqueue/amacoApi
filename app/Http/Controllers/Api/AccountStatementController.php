@@ -159,9 +159,13 @@ class AccountStatementController extends Controller
     }
     public function profitLoss(Request $request)
     {
-        $userdetails = new Collection();
-        $userdetails = PaymentAccount::join('investments','investments.payment_account_id','payment_accounts.id')->get();
-        return response($userdetails);
+        $user_details = new Collection();
+        $user_details = PaymentAccount::join('investments','investments.payment_account_id','payment_accounts.id')->get();
+        $datas['data'] = $user_details->map(function ($item) {
+            $item['investment_details']=$item->investment_details;
+            return $item;
+        });
+        return response([$datas]);
 
     }
   
