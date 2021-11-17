@@ -162,7 +162,7 @@ class AccountStatementController extends Controller
         $user_details = new Collection();
         $user_details = PaymentAccount::join('investments','investments.payment_account_id','payment_accounts.id')->get();
         $datas['data'] = $user_details->map(function ($item) {
-            $item['investment_details']=$item->investment_details;
+            $item['investment_details']=$item->investment;
             return $item;
         });
         return response([$datas]);
