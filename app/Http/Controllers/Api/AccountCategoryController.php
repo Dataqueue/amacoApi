@@ -188,7 +188,7 @@ class AccountCategoryController extends Controller
     public function salesExpenseReport()
     {
             $res = new Collection();
-            $res=Expense::join('account_categories','expenses.account_category_id','account_categories.id')->get();
+            $res=Expense::join('account_categories','expenses.account_category_id','account_categories.id')->where('status','verified')->get();
             $data = [
                 // $accountCategories,
                 $res->map(function($accountCategory){
