@@ -174,7 +174,7 @@ class AccountStatementController extends Controller
        
         $invoiceCollection = Invoice::all();
         $expense =Expense::all();
-        $data = $invoiceCollection->merge($receiptCollection);
+        $data = $invoiceCollection->merge($expense);
         $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
