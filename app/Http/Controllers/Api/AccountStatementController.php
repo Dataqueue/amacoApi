@@ -196,7 +196,7 @@ class AccountStatementController extends Controller
 
         }));
 
-        return response($datas);
+        return response([$datas]);
     }
   
     
