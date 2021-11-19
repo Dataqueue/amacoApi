@@ -178,6 +178,8 @@ class AccountStatementController extends Controller
         $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
+            if($item!==null)
+            {
             if($item->vat_in_value)
             {
                 $item['type'] = "SALES";
@@ -200,10 +202,10 @@ class AccountStatementController extends Controller
                 $item['credit'] = null;
                 return [$item];
             }
+        }
 
         }));
-        $datas['opening_balance'] = 0;
-        $datas['name'] = "All";
+        
 
         return response([$datas]);
     }
