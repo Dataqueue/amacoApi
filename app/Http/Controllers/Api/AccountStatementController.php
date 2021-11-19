@@ -181,16 +181,20 @@ class AccountStatementController extends Controller
             if($item->vat_in_value)
             {
                 $item['type'] = "SALES";
+                $item['credit'] = $item->vat_in_value;
+
                 return [$item];
             }
             else if($item->account_category_id==33)
             {
                 $item['type'] = 'PURCHASE';
+                $item['dedit'] = $item->amount;
                 return [$item];
             }
             if($item->account_category_id==27)
             {
                 $item['type'] = 'VAT';
+                $item['dedit'] = $item->amount;
                 return [$item];
             }
 
