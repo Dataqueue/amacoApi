@@ -177,7 +177,7 @@ class AccountStatementController extends Controller
         $data = $invoiceCollection->merge($expense);
         $data = $data->sortBy('created_at');
 
-        $data && ($datas['data'] = $data->map(function ($item) {
+        $data && ($datas['data'] = $data->filter(function ($item) {
        
             if($item->vat_in_value)
             {
@@ -188,17 +188,23 @@ class AccountStatementController extends Controller
 
                 return [$item];
             }
-            
-            if($item->status=='verified')
+            if($item->account_category_id==33)
             {
-              
+                $item['type'] = 'PURCHASE';
+                $item['dedit'] = $item->amount;
+                $item['number'] = $item->voucher_no;
+                $item['credit'] = null;
+                return [$item];
+            }
+            if($item->account_category_id==27)
+            {
+                $item['type'] = 'VAT';
                 $item['dedit'] = $item->amount;
                 $item['number'] = $item->voucher_no;
                 $item['credit'] = null;
                 return [$item];
             }
            
-       
         // return [$item];
 
         }));
