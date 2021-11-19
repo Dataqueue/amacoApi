@@ -191,7 +191,7 @@ class AccountStatementController extends Controller
             if($item->account_category_id==33)
             {
                 $item['type'] = 'PURCHASE';
-                $item['dedit'] = $item->amount;
+                $item['debit'] = $item->amount;
                 $item['number'] = $item->voucher_no;
                 $item['credit'] = null;
                 return [$item];
