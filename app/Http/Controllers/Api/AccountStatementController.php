@@ -188,25 +188,16 @@ class AccountStatementController extends Controller
 
                 return [$item];
             }
-            if($item->account_category_id==33)
+            
+            if($item->status=='verified')
             {
-                $item['type'] = 'PURCHASE';
+              
                 $item['dedit'] = $item->amount;
                 $item['number'] = $item->voucher_no;
                 $item['credit'] = null;
                 return [$item];
             }
-            if($item->account_category_id==27)
-            {
-                $item['type'] = 'VAT';
-                $item['dedit'] = $item->amount;
-                $item['number'] = $item->voucher_no;
-                $item['credit'] = null;
-                return [$item];
-            }
-            else{
-                return [$item];
-            }
+           
        
         // return [$item];
 
