@@ -175,7 +175,7 @@ class AccountStatementController extends Controller
         $invoiceCollection = Invoice::all();
         $expense =Expense::all();
         $data = $invoiceCollection->merge($expense);
-        $data = $data->sortBy('created_at');
+        // $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
             if($item->vat_in_value)
@@ -191,7 +191,7 @@ class AccountStatementController extends Controller
 
         }));
 
-        return response([$datas]);
+        return response($datas);
     }
   
     
