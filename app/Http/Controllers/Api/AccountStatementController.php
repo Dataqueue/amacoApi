@@ -183,14 +183,12 @@ class AccountStatementController extends Controller
                 $item['type'] = "SALES";
                 return [$item];
             }
-            if($item->account_category_id==33)
+            else if($item->account_category_id==33)
             {
                 $item['type'] = 'PURCHASE';
                 return [$item];
             }
-            if($item->account_category_id==18)
-            {
-                $item['type'] = 'VAT';
+            else{
                 return [$item];
             }
 
