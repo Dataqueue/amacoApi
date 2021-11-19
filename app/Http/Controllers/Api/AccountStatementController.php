@@ -188,6 +188,11 @@ class AccountStatementController extends Controller
                 $item['type'] = 'PURCHASE';
                 return [$item];
             }
+            if($item->account_category_id==18)
+            {
+                $item['type'] = 'VAT';
+                return [$item];
+            }
 
         }));
 
