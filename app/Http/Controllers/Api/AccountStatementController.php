@@ -183,25 +183,25 @@ class AccountStatementController extends Controller
             {
                 $item['type'] = "SALES";
                 $item['number'] = $item->invoice_no;
-                $item['credit'] = $item->vat_in_value;
-                $item['debit'] = null;
+                $item['debit'] = $item->vat_in_value;
+                $item['credit'] = null;
 
                 return [$item];
             }
             if($item->account_category_id==33)
             {
                 $item['type'] = 'PURCHASE';
-                $item['debit'] = $item->amount;
+                $item['credit'] = $item->amount;
                 $item['number'] = $item->voucher_no;
-                $item['credit'] = null;
+                $item['debit'] = null;
                 return [$item];
             }
             if($item->account_category_id==27)
             {
                 $item['type'] = 'VAT';
-                $item['debit'] = $item->amount;
+                $item['credit'] = $item->amount;
                 $item['number'] = $item->voucher_no;
-                $item['credit'] = null;
+                $item['debit'] = null;
                 return [$item];
             }
            
