@@ -185,7 +185,7 @@ class AccountStatementController extends Controller
 
                 return [$item];
             }
-            else if($item->account_category_id==33)
+            if($item->account_category_id==33)
             {
                 $item['type'] = 'PURCHASE';
                 $item['dedit'] = $item->amount;
