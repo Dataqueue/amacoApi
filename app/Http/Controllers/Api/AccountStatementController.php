@@ -180,10 +180,12 @@ class AccountStatementController extends Controller
         $data && ($datas['data'] = $data->map(function ($item) {
             if($item->vat_in_value)
             {
+                $item['type'] = "SALES";
                 return [$item];
             }
             if($item->payment_account_id==33)
             {
+                $item['type'] = 'PURCHASE';
                 return [$item];
             }
 
