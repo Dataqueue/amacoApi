@@ -205,12 +205,13 @@ class AccountStatementController extends Controller
                 return [$item];
             }
            
-            $datas['opening_balance'] = 0;
-            $datas['name'] = "All";
-            $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
-            $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
+        // return [$item];
 
         }));
+        $datas['opening_balance'] = 0;
+        $datas['name'] = "All";
+        $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
+        $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
         
 
         return response([$datas]);
