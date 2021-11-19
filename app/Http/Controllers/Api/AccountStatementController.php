@@ -178,32 +178,34 @@ class AccountStatementController extends Controller
         $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
-        //     if($item!==null)
-        //     {
-        //     if($item->vat_in_value)
-        //     {
-        //         $item['type'] = "SALES";
-        //         $item['credit'] = $item->vat_in_value;
-        //         $item['debit'] = null;
+       
+            if($item->vat_in_value)
+            {
+                $item['type'] = "SALES";
+                $item['credit'] = $item->vat_in_value;
+                $item['debit'] = null;
 
-        //         return [$item];
-        //     }
-        //     if($item->account_category_id==33)
-        //     {
-        //         $item['type'] = 'PURCHASE';
-        //         $item['dedit'] = $item->amount;
-        //         $item['credit'] = null;
-        //         return [$item];
-        //     }
-        //     if($item->account_category_id==27)
-        //     {
-        //         $item['type'] = 'VAT';
-        //         $item['dedit'] = $item->amount;
-        //         $item['credit'] = null;
-        //         return [$item];
-        //     }
-        // }
-        return [$item];
+                return [$item];
+            }
+            if($item->account_category_id==33)
+            {
+                $item['type'] = 'PURCHASE';
+                $item['dedit'] = $item->amount;
+                $item['credit'] = null;
+                return [$item];
+            }
+            if($item->account_category_id==27)
+            {
+                $item['type'] = 'VAT';
+                $item['dedit'] = $item->amount;
+                $item['credit'] = null;
+                return [$item];
+            }
+            else{
+                return [$item];
+            }
+       
+        // return [$item];
 
         }));
         
