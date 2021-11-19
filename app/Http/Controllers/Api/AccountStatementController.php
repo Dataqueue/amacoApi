@@ -168,6 +168,29 @@ class AccountStatementController extends Controller
         return response([$datas]);
 
     }
+    public function vat(Request $request)
+    {
+        $invoiceCollection = new Collection();
+       
+        $invoiceCollection = Invoice::all();
+        $expense =Expense::all();
+        $data = $invoiceCollection->merge($receiptCollection);
+        $data = $data->sortBy('created_at');
+
+        $data && ($datas['data'] = $data->map(function ($item) {
+            if($item->vat_in_value)
+            {
+                return [$item];
+            }
+            if($item->payment_account_id==33)
+            {
+                return [$item];
+            }
+
+        }));
+
+        return response([$datas]);
+    }
   
     
 }
