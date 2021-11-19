@@ -183,7 +183,7 @@ class AccountStatementController extends Controller
                 $item['type'] = "SALES";
                 return [$item];
             }
-            if($item->payment_account_id==33)
+            if($item->account_category_id==33)
             {
                 $item['type'] = 'PURCHASE';
                 return [$item];
