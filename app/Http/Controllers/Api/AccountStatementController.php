@@ -178,19 +178,19 @@ class AccountStatementController extends Controller
         $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
-            // if($item->vat_in_value)
-            // {
-            //     $item['type'] = "SALES";
-            //     $item['credit'] = $item->vat_in_value;
+            if($item->vat_in_value)
+            {
+                $item['type'] = "SALES";
+                $item['credit'] = $item->vat_in_value;
 
-            //     return [$item];
-            // }
-            // if($item->account_category_id==33)
-            // {
-            //     $item['type'] = 'PURCHASE';
-            //     $item['dedit'] = $item->amount;
-            //     return [$item];
-            // }
+                return [$item];
+            }
+            if($item->account_category_id==33)
+            {
+                $item['type'] = 'PURCHASE';
+                $item['dedit'] = $item->amount;
+                return [$item];
+            }
             if($item->account_category_id==27)
             {
                 $item['type'] = 'VAT';
@@ -199,6 +199,8 @@ class AccountStatementController extends Controller
             }
 
         }));
+        $datas['opening_balance'] = 0;
+        $datas['name'] = "All";
 
         return response([$datas]);
     }
