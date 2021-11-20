@@ -21,14 +21,22 @@ class TaxController extends Controller
         return response()->json($invoiceCollection);
     }
 
-    public function purchaseTax()
+    public function purchaseTax(Request $request)
     {
-        // if ($request->from_date) {
-        //     $expenseCollection = Expense::whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
-        // } else {
-            $expenseCollection = Expense::get();
-        // }
+        if ($request->from_date) {
+            $expenseCollection = Expense::whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+        } else {
+            $expenseCollection = Expense::whereBetween('created_at', [ date("Y-m") . '-01'. ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+        }
 
-        return response()->json("deeee");
+        return response()->json($expenseCollection);
+    }
+    public function purchase_Tax()
+    {
+       
+            $expenseCollection = Expense::get();
+       
+
+        return response()->json($expenseCollection);
     }
 }
