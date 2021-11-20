@@ -23,7 +23,12 @@ class ExpenseController extends Controller
      * Display a listing of the expenses which are not paid.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
+    public function __construct(){
+        $this->middleware('auth:api')
+
+    }
     public function index()
     {
 //         $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->join('divisions','expenses.div_id','divisions.id')->
