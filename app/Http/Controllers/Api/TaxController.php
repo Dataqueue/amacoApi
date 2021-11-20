@@ -29,6 +29,6 @@ class TaxController extends Controller
             $expenseCollection = Expense::get();
         // }
 
-        return response()->json($expenseCollection);
+        return response()->json("deeee");
     }
 }
