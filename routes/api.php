@@ -175,7 +175,7 @@ Route::post('partyDelete_all', [PartyController::class, 'partyDelete_all']);
 Route::get('expense_chart', [ExpenseController::class, 'expense_chart']);
 Route::get('accountCategory', [AccountCategoryController::class, 'accountCategory']);
 Route::get('salesTax', [InvoiceController::class, 'salesTax']);
-Route::get('purchaseTax', [ExpenseController::class, 'purchase_Tax']);
+Route::get('purchase_Tax', [ExpenseController::class, 'purchase_Tax']);
 Route::get('salesExpenseReport', [AccountCategoryController::class, 'salesExpenseReport']);
 Route::get('profitLoss', [AccountStatementController::class, 'profitLoss']);
 Route::post('InvestmentsDetails', [InvestmentsDetailsController::class, 'store']);
