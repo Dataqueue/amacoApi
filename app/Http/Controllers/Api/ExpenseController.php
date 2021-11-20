@@ -63,6 +63,7 @@ return response()->json($expenses);
         $expenses->map(function ($expense) {
                
             return $expense->payment_account;
+            return $expense->accountcategory;
         });
         return response()->json($expenses);
     }
