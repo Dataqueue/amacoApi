@@ -62,7 +62,7 @@ return response()->json($expenses);
 )->where("status", 'verified')->orderBy('created_at', 'DESC')->get();
         $expenses->map(function ($expense) {
                
-            return $expense->payment_account;
+            // return $expense->payment_account;
             return $expense->accountcategory;
         });
         return response()->json($expenses);
