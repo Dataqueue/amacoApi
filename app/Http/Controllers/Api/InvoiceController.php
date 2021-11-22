@@ -46,21 +46,21 @@ class InvoiceController extends Controller
         $current_year = $this->getCurrentYear();
         $current_month = $this->getCurrentMonth();
         // dd([$last_year, $current_year]);
-        if ($current_year != $last_year) {
-            return ('AMC-INV-' . $current_year . '-'. $current_month  . sprintf("%02d", 1));
-        } else {
-            if($current_month != $last_month){
-                return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%02d", 1));
-            }else{
-                if((int)substr($this->getLastInvoiceNo(), 13) < 99){
+        // if ($current_year != $last_year) {
+        //     return ('AMC-INV-' . $current_year . '-'. $current_month  . sprintf("%02d", 1));
+        // } else {
+        //     if($current_month != $last_month){
+        //         return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%02d", 1));
+        //     }else{
+        //         if((int)substr($this->getLastInvoiceNo(), 13) < 99){
                     return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%02d", $latest_invoice_no + 1));
                     // return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%02d", ((int)substr($this->getLastInvoiceNo(), 13)) + 1));
-                }else{
-                    return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%03d", $latest_invoice_no + 1));
-                    // return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%03d", ((int)substr($this->getLastInvoiceNo(), 13)) + 1));
-                }
-            }
-        }
+            //     }else{
+            //         return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%03d", $latest_invoice_no + 1));
+            //         // return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%03d", ((int)substr($this->getLastInvoiceNo(), 13)) + 1));
+            //     }
+            // }
+        // }
     }
     public function index()
     {
