@@ -32,9 +32,10 @@ class InvoiceController extends Controller
         if ($invoice) {
             $latest_invoice_no = $invoice->invoice_no ? $invoice->invoice_no : 0;
             return ($latest_invoice_no);
-        } else {
-            return ('AMC-INV-' . $this->getCurrentYear() . '-' . sprintf("%02d", 0));
-        }
+        } 
+        // else {
+        //     return ('AMC-INV-' . $this->getCurrentYear() . '-' . sprintf("%02d", 0));
+        // }
     }
 
     public function getInvoiceNo()
