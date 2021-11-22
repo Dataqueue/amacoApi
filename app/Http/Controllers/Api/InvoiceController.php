@@ -69,7 +69,7 @@ class InvoiceController extends Controller
         // $result=$invoices->party;
         $invoices->map(function ($invoice) {
                
-            $invoice->payment_account;
+            // $invoice->payment_account;
            return $invoice->party;
        });
         return $invoices;
