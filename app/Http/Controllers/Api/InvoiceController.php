@@ -53,9 +53,11 @@ class InvoiceController extends Controller
                 return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%02d", 1));
             }else{
                 if((int)substr($this->getLastInvoiceNo(), 13) < 99){
-                    return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%02d", ((int)substr($this->getLastInvoiceNo(), 13)) + 1));
+                    return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%02d", $latest_invoice_no + 1));
+                    // return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%02d", ((int)substr($this->getLastInvoiceNo(), 13)) + 1));
                 }else{
-                    return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%03d", ((int)substr($this->getLastInvoiceNo(), 13)) + 1));
+                    return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%03d", $latest_invoice_no + 1));
+                    // return ('AMC-INV-' . $current_year . '-'. $current_month . sprintf("%03d", ((int)substr($this->getLastInvoiceNo(), 13)) + 1));
                 }
             }
         }
