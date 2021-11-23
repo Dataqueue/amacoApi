@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Config;
 
 class CompanyController extends Controller
 {
@@ -45,7 +46,8 @@ class CompanyController extends Controller
             $img3_path = $request->file('img3')->move('company/', $img3_name);
             $data['img3'] = $img3_path;
         }
-
+        $apikey=  \Config::get('example.key');
+        $namear = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($request['name']).'&target=ar'));
         $company = Company::create([([
             'name'=>$request['name'],
             'email'=>$request['email'],
@@ -59,6 +61,7 @@ class CompanyController extends Controller
             'img1'=>$img1_path,
             'img2'=>$img2_path,
             'img3'=>$img3_path,
+            'arabic_name'=>$namear,
 
         ])]);
         if ($company) {
