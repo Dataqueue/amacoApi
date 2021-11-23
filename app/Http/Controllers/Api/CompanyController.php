@@ -127,6 +127,58 @@ class CompanyController extends Controller
         return response()->json($company);
     }
 
+    public function company_edit(Request $request, Company $company)
+    {
+
+
+
+
+        $data = $request->all();
+        if ($request->file('img1')) {
+            if (File::exists(public_path($company->img1))) {
+
+                File::delete(public_path($company->img1));
+
+                $company->update([
+                    'img1' => null
+                ]);
+            }
+            $img1_name = $request['img1']->getClientOriginalName();
+            $img1_path = $request->file('img1')->move('company/', $img1_name);
+            $data['img1'] = $img1_path;
+        }
+        if ($request->file('img2')) {
+            if (File::exists(public_path($company->img2))) {
+
+                File::delete(public_path($company->img2));
+
+                $company->update([
+                    'img2' => null
+                ]);
+            }
+            $img2_name = $request['img2']->getClientOriginalName();
+            $img2_path = $request->file('img2')->move('company/', $img2_name);
+            $data['img2'] = $img2_path;
+        }
+        if ($request->file('img3')) {
+            if (File::exists(public_path($company->img3))) {
+
+                File::delete(public_path($company->img3));
+
+                $company->update([
+                    'img3' => null
+                ]);
+            }
+            $img3_name = $request['img3']->getClientOriginalName();
+            $img3_path = $request->file('img3')->move('company/', $img3_name);
+            $data['img3'] = $img3_path;
+        }
+
+        $company->update($data);
+
+        return response()->json($company);
+    }
+
     /**
      * Remove the specified resource from storage.
      *
