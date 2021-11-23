@@ -134,7 +134,7 @@ class CompanyController extends Controller
 
 
         $data = $request->all();
-        $id=Company::get();
+        $id=Company::where('id',$data->id)->get();
         if ($request->file('img1')) {
             if (File::exists(public_path($company->img1))) {
 
