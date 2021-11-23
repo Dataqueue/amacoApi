@@ -134,6 +134,7 @@ class CompanyController extends Controller
 
 
         $data = $request->all();
+        $id=Company::get();
         if ($request->file('img1')) {
             if (File::exists(public_path($company->img1))) {
 
@@ -176,7 +177,7 @@ class CompanyController extends Controller
 
         $company->update($data);
 
-        return response()->json($company);
+        return response()->json($id);
     }
 
     /**
