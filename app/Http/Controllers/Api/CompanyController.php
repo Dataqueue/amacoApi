@@ -175,7 +175,7 @@ class CompanyController extends Controller
             $data['img3'] = $img3_path;
         }
 
-        $company->update($data);
+        $id->update($data);
 
         return response()->json($id);
     }
