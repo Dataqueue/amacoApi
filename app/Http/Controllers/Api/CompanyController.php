@@ -48,7 +48,7 @@ class CompanyController extends Controller
         }
         $apikey=  \Config::get('example.key');
         $namear = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($request['name']).'&target=ar'));
-        $company = Company::create([([
+        $company = Company::create([
             'name'=>$request['name'],
             'email'=>$request['email'],
             'address'=>$request['address'],
@@ -63,7 +63,7 @@ class CompanyController extends Controller
             'img3'=>$img3_path,
             'arabic_name'=>$namear,
 
-        ])]);
+        ]);
         if ($company) {
 
             return response()->json($company);
