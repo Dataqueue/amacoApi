@@ -80,9 +80,9 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        $company->img1 && $company['img1'] = url($company->img1);
-        $company->img2 && $company['img2'] = url($company->img2);
-        $company->img3 && $company['img3'] = url($company->img3);
+        $company->img1 && $company['img1'] = url($company->Img1());
+        $company->img2 && $company['img2'] = url($company->Img2());
+        $company->img3 && $company['img3'] = url($company->Img3());
         return response()->json([$company]);
     }
 
