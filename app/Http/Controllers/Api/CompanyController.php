@@ -61,7 +61,7 @@ class CompanyController extends Controller
             'website'=>$request['website'],
             'img1'=>$img1_path,
             'img2'=>$img2_path,
-            'img3'=>$img3_path,
+            // 'img3'=>$img3_path,
             'arabic_name'=>$namear,
 
         ]);
