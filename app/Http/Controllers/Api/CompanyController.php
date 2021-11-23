@@ -64,11 +64,11 @@ class CompanyController extends Controller
             'arabic_name'=>$namear,
 
         ]);
-        if ($company) {
+        // if ($company) {
 
             return response()->json($company);
-        }
-        return response()->json(['msg' => "Error ", 500]);
+        // }
+        // return response()->json(['msg' => "Error ", 500]);
     }
 
     /**
