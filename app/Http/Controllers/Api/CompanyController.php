@@ -175,7 +175,18 @@ class CompanyController extends Controller
             $data['img3'] = $img3_path;
         }
 
-        $id->update($data);
+        $id->update([
+            'name'=>$request['name'],
+            'email'=>$request['email'],
+            'address'=>$request['address'],
+            'contact'=>$request['contact'],
+            'cr_no'=>$request['cr_no'],
+            'po_box'=>$request['po_box'],
+            'vat_no'=>$request['vat_no'],
+            'fax'=>$request['fax'],
+            'website'=>$request['website'],
+
+        ]);
 
         return response()->json($id);
     }
