@@ -112,7 +112,7 @@ Route::apiResource('company-bank', CompanyBankController::class);
 
 // restful api links
 
-Route::post('update_Company',[CompanyController::class,'update']);
+Route::post('company_edit',[CompanyController::class,'update']);
 Route::post('rfq-history', [RFQController::class, 'history'])->name('rfq.history');
 Route::post('invoice-history', [InvoiceController::class, 'history'])->name('invoice.history');
 Route::post('quotation-history', [QuotationController::class, 'history'])->name('quotation.history');
