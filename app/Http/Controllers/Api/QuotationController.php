@@ -1018,5 +1018,13 @@ class QuotationController extends Controller
 
         return response()->json($quotation);
     }
+    public function update_company(Request $request)
+    {
+        $quotations = Quotation::where('id',$request->id)->update([
+            'company_address'=> $request->company_address,
+
+        ]);
+
+    }
 
 }

@@ -180,6 +180,7 @@ Route::get('salesExpenseReport', [AccountCategoryController::class, 'salesExpens
 Route::get('profitLoss', [AccountStatementController::class, 'profitLoss']);
 Route::post('InvestmentsDetails', [InvestmentsDetailsController::class, 'store']);
 Route::post('vat', [AccountStatementController::class, 'vat']);
+Route::post('update_company', [QuotationController::class, 'update_company']);
 
 
 
