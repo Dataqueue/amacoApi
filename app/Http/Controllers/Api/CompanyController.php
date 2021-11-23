@@ -46,7 +46,21 @@ class CompanyController extends Controller
             $data['img3'] = $img3_path;
         }
 
-        $company = Company::create($data);
+        $company = Company::create([([
+            'name'=>$request['name'],
+            'email'=>$request['email'],
+            'address'=>$request['address'],
+            'contact'=>$request['contact'],
+            'cr_no'=>$request['cr_no'],
+            'po_box'=>$request['po_box'],
+            'vat_no'=>$request['vat_no'],
+            'fax'=>$request['fax'],
+            'website'=>$request['website'],
+            'img1'=>$img1_path,
+            'img2'=>$img2_path,
+            'img3'=>$img3_path,
+
+        ])]);
         if ($company) {
 
             return response()->json($company);
