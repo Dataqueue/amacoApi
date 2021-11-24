@@ -170,14 +170,14 @@ class CompanyController extends Controller
 
         ]);;
         if ($request->file('img1')) {
-            // if (File::exists(public_path($company->Img1()))) {
+            if (File::exists(public_path($company->Img1()))) {
 
-            //     File::delete(public_path($company->Img1()));
+                File::delete(public_path($company->Img1()));
 
-            //     $company->update([
-            //         'img1' => null
-            //     ]);
-            // }
+                $company->update([
+                    'img1' => null
+                ]);
+            }
             $img1_name = $request['img1']->getClientOriginalName();
             $img1_path = $request->file('img1')->move('company/', $img1_name);
             $data['img1'] = $img1_path;
