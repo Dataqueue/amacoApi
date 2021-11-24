@@ -232,7 +232,9 @@ class InvoiceController extends Controller
     public function salesTax(Invoice $invoice)
     {
         $invoices = Invoice::join('parties','parties.id','invoices.party_id')->get();
-        // $result=$invoices->party;
+        $invoices->map(function($val){
+            return $val->party;
+        });
         return $invoices;
     }
 }
