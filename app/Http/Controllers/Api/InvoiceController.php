@@ -231,7 +231,7 @@ class InvoiceController extends Controller
     }
     public function salesTax(Invoice $invoice)
     {
-        $invoices = Invoice::join('parties','parties.id','invoices.party_id')->get();
+        $invoices = Invoice::get();
         $invoices->map(function($val){
             return $val->party;
         });
