@@ -191,7 +191,7 @@ class AccountStatementController extends Controller
             if($item->tax)
             {
                 $item['type'] = 'PURCHASE/'.$item->company;
-                $item['credit'] = $item->amount;
+                $item['credit'] = $item->tax;
                 $item['number'] = $item->voucher_no;
                 $item['debit'] = null;
                 return [$item];
