@@ -13,7 +13,7 @@ class Company extends Model
     protected $guarded =[];
     public function Img1()
     {
-        $path = $this->file_path;
+        $path = $this->img1;
         if (File::exists(public_path($this->img1))) {
             return url($path);
         }
@@ -22,7 +22,7 @@ class Company extends Model
     }
     public function Img2()
     {
-        $path = $this->file_path;
+        $path = $this->img2;
         if (File::exists(public_path($this->img2))) {
             return url($path);
         }
@@ -31,7 +31,7 @@ class Company extends Model
     }
     public function Img3()
     {
-        $path = $this->file_path;
+        $path = $this->img3;
         if (File::exists(public_path($this->img3))) {
             return url($path);
         }
