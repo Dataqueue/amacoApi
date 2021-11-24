@@ -19,11 +19,11 @@ class CompanyController extends Controller
     public function index()
     {
         $company = Company::all();
-        // $company->map(function($val){
-        //     $vat['image1']=$vat->Img1();
-        //     return $vat;
-        // });
-        return response()->json("hello");
+        $company->map(function($val){
+            $val['image1']="hello";
+            return $val;
+        });
+        return response()->json($company);
     }
 
     /**
