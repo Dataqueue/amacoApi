@@ -210,12 +210,12 @@ class CompanyController extends Controller
             //         'img3' => null
             //     ]);
             // }
-            // $img3_name = $request['img3']->getClientOriginalName();
-            // $img3_path = $request->file('img3')->move('company/', $img3_name);
-            // $data['img3'] = $img3_path;
-            // $data=Company::where('id',$request['id'])->update([
-            //     "img3" => $request->file('img3') ? $img3_path : null,
-            // ]);
+            $img3_name = $request['img3']->getClientOriginalName();
+            $img3_path = $request->file('img3')->move('company/', $img3_name);
+            $data['img3'] = $img3_path;
+            $data=Company::where('id',$request['id'])->update([
+                "img3" => $request->file('img3') ? $img3_path : null,
+            ]);
         }
 
         
