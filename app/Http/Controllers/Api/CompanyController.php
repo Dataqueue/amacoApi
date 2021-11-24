@@ -19,7 +19,9 @@ class CompanyController extends Controller
     public function index()
     {
         $company = Company::all();
-
+        $company->map(function($val){
+            return $company->Img1();
+        });
         return response()->json($company);
     }
 

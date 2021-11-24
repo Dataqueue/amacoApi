@@ -1,4 +1,10 @@
 {
-    "private": "hello"
+    "private": "hello",
+    "apikey":"AIzaSyD7P8GLA-mfgOZkhg-BPAuM_iQ7UVEwVcs",
+    "DB_DATABASE":"amaco",
+    "DB-PASSWORD":"decoresite@12345",
+    "DB-SERVER":"127.0.0.1",
+    "DB_USER":"root"
     
 }
+
