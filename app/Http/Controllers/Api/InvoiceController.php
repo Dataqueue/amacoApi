@@ -233,6 +233,7 @@ class InvoiceController extends Controller
     {
         $invoices = Invoice::get();
         $invoices->map(function($val){
+            
             return $val->party;
         });
         return $invoices;

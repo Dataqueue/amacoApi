@@ -188,9 +188,9 @@ class AccountStatementController extends Controller
 
                 return [$item];
             }
-            if($item->account_category_id==33)
+            if($item->tax)
             {
-                $item['type'] = 'PURCHASE';
+                $item['type'] = 'PURCHASE/'.$item->company;
                 $item['credit'] = $item->amount;
                 $item['number'] = $item->voucher_no;
                 $item['debit'] = null;
