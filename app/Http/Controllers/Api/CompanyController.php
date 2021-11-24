@@ -20,7 +20,7 @@ class CompanyController extends Controller
     {
         $company = Company::all();
         $company->map(function($val){
-            $val['image1']="hello";
+            $val['image1']=$val->Img1();
             return $val;
         });
         return response()->json($company);
