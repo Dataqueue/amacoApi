@@ -170,9 +170,9 @@ class CompanyController extends Controller
 
         ]);;
         if ($request->file('img1')) {
-            if (File::exists(public_path($company->img1))) {
+            if (File::exists(public_path($company->Img1()))) {
 
-                File::delete(public_path($company->img1));
+                File::delete(public_path($company->Img1()));
 
                 $company->update([
                     'img1' => null
@@ -183,9 +183,9 @@ class CompanyController extends Controller
             $data['img1'] = $img1_path;
         }
         if ($request->file('img2')) {
-            if (File::exists(public_path($company->img2))) {
+            if (File::exists(public_path($company->Img2()))) {
 
-                File::delete(public_path($company->img2));
+                File::delete(public_path($company->Img2()));
 
                 $company->update([
                     'img2' => null
@@ -196,9 +196,9 @@ class CompanyController extends Controller
             $data['img2'] = $img2_path;
         }
         if ($request->file('img3')) {
-            if (File::exists(public_path($company->img3))) {
+            if (File::exists(public_path($company->Img3()))) {
 
-                File::delete(public_path($company->img3));
+                File::delete(public_path($company->Img3()));
 
                 $company->update([
                     'img3' => null
