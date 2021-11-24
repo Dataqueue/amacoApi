@@ -23,7 +23,7 @@ class Company extends Model
     public function Img2()
     {
         $path = $this->file_path;
-        if (File::exists(public_path($this->Img2))) {
+        if (File::exists(public_path($this->img2))) {
             return url($path);
         }
         return "No file Uploaded";
