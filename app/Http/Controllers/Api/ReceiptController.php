@@ -25,6 +25,7 @@ class ReceiptController extends Controller
         )->get();
 
         $allReceipt->map(function ($receipt){
+            $receipt['credit']=$receipt->paid_amount;
             return $receipt->party;
         });
 
