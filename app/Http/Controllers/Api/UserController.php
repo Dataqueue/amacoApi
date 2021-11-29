@@ -176,7 +176,7 @@ class UserController extends Controller
             $invest->update([
                 'opening_balance'=>$request->opening_bal,
                 'profit_per'=>$request->profit_per,
-
+                'status'=>$request->profit_per?1:0,
 
             ]);
             }
@@ -185,7 +185,8 @@ class UserController extends Controller
                     'opening_balance'=>$request->opening_bal,
                     'payment_account_id'=>$payment_account->id,
                     'profit_per'=>$request->profit_per,
-    
+                    'status'=>$request->profit_per?1:0,
+                    
     
                 ]); 
             }
