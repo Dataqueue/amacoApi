@@ -176,7 +176,7 @@ class UserController extends Controller
             $invest->update([
                 'opening_balance'=>$request->opening_bal,
                 'profit_per'=>$request->profit_per,
-                'status'=>$request->profit_per?1:0,
+                'status'=>int($request->profit_per)?1:0,
 
             ]);
             }
