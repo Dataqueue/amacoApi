@@ -66,7 +66,8 @@ return response()->json($expenses);
                 'expenses.*'
 )->where("status", 'verified')->orderBy('created_at', 'DESC')->get();
         $expenses->map(function ($expense) {
-               
+            
+             $expense['debit']=$expense->amount;
              $expense->payment_account;
             return $expense->account_categories;
         });
