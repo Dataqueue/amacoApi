@@ -21,6 +21,7 @@ class AdvancePaymentController extends Controller
         $allPayments = AdvancePayment::all();
 
         $allPayments->map(function($payment){
+                    $payment['credit']=$payment->amount;
                     $payment->receivedBy;
             return $payment->paymentAccount;
         });
