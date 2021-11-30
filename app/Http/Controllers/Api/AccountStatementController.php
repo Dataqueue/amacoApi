@@ -216,6 +216,36 @@ class AccountStatementController extends Controller
 
         return response([$datas]);
     }
+  public function responseData()
+  {
+    $temp = new Collection();
+    $allReceipt = Receipt::join('payment_accounts','receipts.div_id','payment_accounts.id')->select(
+        'payment_accounts.name as div_name',
+        'receipts.*'
+    )->get();
+
+    $allReceipt->map(function ($receipt){
+        $receipt['credit']=$receipt->paid_amount;
+        return $receipt->party;
+    });
+    $expenses = $expenses = Expense::join('account_categories','expenses.account_category_id','account_categories.id')->join('payment_accounts','expenses.utilize_div_id','payment_accounts.id')->select(
+        'payment_accounts.name as paid_from',
+        'payment_accounts.name as paid_towards',
+        'account_categories.name',
+            'expenses.*'
+)->where("status", 'verified')->orderBy('created_at', 'DESC')->get();
+    $expenses->map(function ($expense) {
+        
+         $expense['debit']=$expense->amount;
+         $expense->payment_account;
+        return $expense->account_categories;
+    });
+    $datas['Receipt'] =$allReceipt ;
+    $datas['Expense'] = $expense;
+    
   
+    return response($datas);
+
+  }
     
 }
