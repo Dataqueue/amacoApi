@@ -240,8 +240,16 @@ class AccountStatementController extends Controller
          $expense->payment_account;
         return $expense->account_categories;
     });
+    $allPayments = AdvancePayment::all();
+
+    $allPayments->map(function($payment){
+                $payment['credit']=$payment->amount;
+                $payment->receivedBy;
+        return $payment->paymentAccount;
+    });
     $datas['Receipt'] =$allReceipt ;
     $datas['Expense'] = $expenses;
+    $datas['Advance'] = $allPayments;
     
   
     return response($datas);
