@@ -241,7 +241,7 @@ class AccountStatementController extends Controller
         return $expense->account_categories;
     });
     $datas['Receipt'] =$allReceipt ;
-    $datas['Expense'] = $expense;
+    $datas['Expense'] = $expenses;
     
   
     return response($datas);
