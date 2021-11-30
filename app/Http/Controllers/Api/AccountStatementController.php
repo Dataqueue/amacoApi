@@ -8,6 +8,7 @@ use App\Models\Party;
 use App\Models\Receipt;
 use App\Models\Expense;
 use App\Models\PaymentAccount;
+use App\Models\AdvancePayment;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
