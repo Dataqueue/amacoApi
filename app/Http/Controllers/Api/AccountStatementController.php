@@ -220,7 +220,7 @@ class AccountStatementController extends Controller
   public function responseData()
   {
       $date="2021-01-01";
-      $to_date=new DateTime('today');
+      $to_date=now();
     $temp = date('Y-m-d H:i:s');
     $allReceipt = Receipt::join('payment_accounts','receipts.div_id','payment_accounts.id')->select(
         'payment_accounts.name as div_name',
@@ -243,7 +243,7 @@ class AccountStatementController extends Controller
          $expense->payment_account;
         return $expense->account_categories;
     });
-    $allPayments = AdvancePayment::whereBetween('created_at', [$date. ' ' . '00:00:00',now()])->get();
+    $allPayments = AdvancePayment::whereBetween('created_at', [$date. ' ' . '00:00:00',$to_date.' '.'23:59:59' ])->get();
 
     $allPayments->map(function($payment){
                 $payment['credit']=$payment->amount;
