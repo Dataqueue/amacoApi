@@ -225,7 +225,7 @@ class AccountStatementController extends Controller
     $allReceipt = Receipt::join('payment_accounts','receipts.div_id','payment_accounts.id')->select(
         'payment_accounts.name as div_name',
         'receipts.*'
-    )->get();
+    )->whereBetween('created_at', [$date. ' ' . '00:00:00',$to_date.' '.'23:59:59' ])->get();
 
     $allReceipt->map(function ($receipt){
         $receipt['credit']=$receipt->paid_amount;
@@ -236,7 +236,7 @@ class AccountStatementController extends Controller
         'payment_accounts.name as paid_towards',
         'account_categories.name',
             'expenses.*'
-)->where("status", 'verified')->orderBy('created_at', 'DESC')->get();
+)->where("status", 'verified')->orderBy('created_at', 'DESC')->whereBetween('created_at', [$date. ' ' . '00:00:00',$to_date.' '.'23:59:59' ])->get();
     $expenses->map(function ($expense) {
         
          $expense['debit']=$expense->amount;
