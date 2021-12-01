@@ -179,7 +179,7 @@ class ReceiptController extends Controller
             'check_no' => $request->check_no,
             'bank_id' => $request->bank_id,
             "sender" => $request->sender,
-            "receiver" => $request->receiver!==null?$request->receiver:0,
+            // "receiver" => $request->receiver!==null?$request->receiver:0,
             "paid_date" => $request->paid_date,
             // 'file' => $filePath,
         
