@@ -219,6 +219,7 @@ class AccountStatementController extends Controller
     }
   public function responseData()
   {
+      $date="2021-01-01";
     $temp = new Collection();
     $allReceipt = Receipt::join('payment_accounts','receipts.div_id','payment_accounts.id')->select(
         'payment_accounts.name as div_name',
@@ -241,7 +242,7 @@ class AccountStatementController extends Controller
          $expense->payment_account;
         return $expense->account_categories;
     });
-    $allPayments = AdvancePayment::all();
+    $allPayments = AdvancePayment::whereDate('created_at', $date. ' ' . '00:00:00')->get();
 
     $allPayments->map(function($payment){
                 $payment['credit']=$payment->amount;
