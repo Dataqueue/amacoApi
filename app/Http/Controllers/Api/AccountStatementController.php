@@ -246,7 +246,7 @@ class AccountStatementController extends Controller
     $allPayments = AdvancePayment::whereBetween('created_at', [$date. ' ' . '00:00:00',$to_date.' '.'23:59:59' ])->get();
 
     $allPayments->map(function($payment){
-                $payment['credit']=$payment->amount;
+                // $payment['credit']=$payment->amount;
                 $payment->receivedBy;
         return $payment->paymentAccount;
     });
