@@ -236,7 +236,7 @@ class AccountStatementController extends Controller
         'payment_accounts.name as paid_towards',
         'account_categories.name',
             'expenses.*'
-)->where("status", 'verified')->where("is_paid", 1)->orderBy('created_at', 'DESC')->whereBetween('expenses.created_at', [$date. ' ' . '00:00:00',$to_date.' '.'23:59:59' ])->get();
+)->where("is_paid", 1)->orderBy('created_at', 'DESC')->whereBetween('expenses.created_at', [$date. ' ' . '00:00:00',$to_date.' '.'23:59:59' ])->get();
     $expenses->map(function ($expense) {
         
          $expense['debit']=$expense->amount;
