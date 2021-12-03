@@ -100,7 +100,7 @@ class DivisionController extends Controller
             $accountSum=PaymentAccount::where('id',$item['id'])->sum('balance');
             $recievedby=AdvancePayment::where('received_by',$item['id'])->sum('amount');
             $paidby=AdvancePayment::where('payment_account_id',$item['id'])->sum('amount');
-            $paid_date= $item->receivedBy;
+            $paid_date= $item->users_payment;
             $item['name']=$item->name;
             $item['id']=$item->id;
             $item['balance'] =$accountSum+$recievedby-$paidby;
