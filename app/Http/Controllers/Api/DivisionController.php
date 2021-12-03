@@ -103,7 +103,7 @@ class DivisionController extends Controller
             $paid_date=AdvancePayment::get();
             $item['name']=$item->name;
             $item['id']=$item->id;
-            $item['balance'] =$accountSum+$recievedby-$paidby;
+            // $item['balance'] =$accountSum+$recievedby-$paidby;
             return $item;
 
            }
