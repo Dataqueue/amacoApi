@@ -43,7 +43,7 @@ class MasterAccountController extends Controller
 
         $oldInvoiceCollection = $this->getInvoiceData($div->id, $request['from_date']);
         $oldReceiptCollection = $this->getReceiptData($div->id, $request['from_date']);
-        $oldData = $oldInvoiceCollection->merge($oldReceiptCollection);
+        $oldData = $oldInvoiceCollection->concat($oldReceiptCollection);
         if (!$oldData) {
             return response()->json(['msg' => "There are no entries between" . $request['from_date'] . " to " . $request['from_date']], 400);
         }
@@ -64,7 +64,7 @@ class MasterAccountController extends Controller
         $invoiceCollection = $this->getInvoiceData($div->id, $request['to_date'], $request['from_date']);
 
         $receiptCollection = $this->getReceiptData($div->id, $request['to_date'], $request['from_date']);
-        $data = $invoiceCollection->merge($receiptCollection);
+        $data = $invoiceCollection->concat($receiptCollection);
         $data = $data->sortBy('created_at');
 
         $data && ( $datas['data'] = $data->map(function ($item)  {

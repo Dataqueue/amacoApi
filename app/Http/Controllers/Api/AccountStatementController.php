@@ -50,7 +50,7 @@ class AccountStatementController extends Controller
 
         $oldInvoiceCollection = $this->getInvoiceData($party->id, $request['from_date']);
         $oldReceiptCollection = $this->getReceiptData($party->id, $request['from_date']);
-        $oldData = $oldInvoiceCollection->merge($oldReceiptCollection);
+        $oldData = $oldInvoiceCollection->concat($oldReceiptCollection);
         if (!$oldData) {
             return response()->json(['msg' => "There are no entries between" . $request['from_date'] . " to " . $request['from_date']], 400);
         }
@@ -71,7 +71,7 @@ class AccountStatementController extends Controller
         $invoiceCollection = $this->getInvoiceData($party->id, $request['to_date'], $request['from_date']);
 
         $receiptCollection = $this->getReceiptData($party->id, $request['to_date'], $request['from_date']);
-        $data = $invoiceCollection->merge($receiptCollection);
+        $data = $invoiceCollection->concat($receiptCollection);
         $data = $data->sortBy('created_at');
 
         $data && ( $datas['data'] = $data->map(function ($item)  {
@@ -125,7 +125,7 @@ class AccountStatementController extends Controller
             $receiptCollection = Receipt::all();
         }
 
-        $data = $invoiceCollection->merge($receiptCollection);
+        $data = $invoiceCollection->concat($receiptCollection);
         $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
@@ -175,7 +175,7 @@ class AccountStatementController extends Controller
        
         $invoiceCollection = Invoice::whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
         $expense =Expense::whereBetween('created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
-        $data = $invoiceCollection->merge($expense);
+        $data = $invoiceCollection->concat($expense);
         // $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->filter(function ($item) {
