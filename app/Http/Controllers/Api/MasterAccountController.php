@@ -138,7 +138,7 @@ class MasterAccountController extends Controller
 
         }
 
-        $data = $invoiceCollection->merge($receiptCollection);
+        $data = $invoiceCollection->concat($receiptCollection);
         $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
