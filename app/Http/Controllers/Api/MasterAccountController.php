@@ -111,16 +111,7 @@ class MasterAccountController extends Controller
         $total_div=Paymentaccount::where('type','division')->sum('balance');
         // $total_div=Division::sum('opening_bal');
         if($request->from_date){
-            $invoiceCollection = Expense::
-            // join('payment_accounts','expenses.utilize_div_id','payment_accounts.id')
-            // ->join('account_categories','account_categories.id','expenses.account_category_id')
-            // ->where('status','verified')
-            // ->where('payment_accounts.type','division')
-            // ->
-            select(
-                // 'payment_accounts.name as div_name','payment_accounts.name as nick_name'
-            // ,'account_categories.name as cat_name',
-            'expenses.utilize_div_id as divid','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+            $invoiceCollection = Expense::join('payment_accounts','expenses.utilize_div_id','payment_accounts.id')->join('account_categories','account_categories.id','expenses.account_category_id')->where('status','verified')->where('payment_accounts.type','division')->select('payment_accounts.name as div_name','payment_accounts.name as nick_name','account_categories.name as cat_name','expenses.utilize_div_id as divid','expenses.*')->whereBetween('expenses.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
 
             $divEopenbalance=Expense::where('status','verified')->whereDate('created_at','<=' ,date('Y-m-d H:i:s', strtotime($request->from_date)))->sum('amount');
         }else{
