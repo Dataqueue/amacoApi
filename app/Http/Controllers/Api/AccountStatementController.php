@@ -277,8 +277,8 @@ class AccountStatementController extends Controller
       $data && ($datas['data'] = $data->map(function ($item) {
           if ($item->po_number) {
               $item['date'] = $item->created_at;
-              $item['code_no'] = $item->invoice_no;
-              $item['description'] = "Sale"."/".$item->party->firm_name;
+              $item['code_no'] = $item->po_number;
+              $item['description'] = "Purchase"."/".$item->party->firm_name;
               $item['debit'] = floatval(str_replace(",","",$item->total_value));
               $item['po_number'] = $item->po_number;
               $item['credit'] = null;
