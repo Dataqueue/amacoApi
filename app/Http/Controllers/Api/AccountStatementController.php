@@ -270,7 +270,7 @@ class AccountStatementController extends Controller
 
       $receiptCollection = new Collection();
       if($request->from_date){
-          $receiptCollection = Expense::join('parties','expenses.vendor_id','parties.id')->where('transaction_type','purchase')->whereBetween('expenses.paid_date', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
+          $receiptCollection = Expense::join('parties','expenses.vendor_id','parties.id')->whereBetween('expenses.paid_date', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
       }else{
           $receiptCollection = Receipt::all();
       }
