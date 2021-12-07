@@ -275,7 +275,7 @@ class AccountStatementController extends Controller
       $data = $data->sortBy('created_at');
 
       $data && ($datas['data'] = $data->map(function ($item) {
-          if ($item->quotation_no) {
+          if ($item->po_number) {
               $item['date'] = $item->created_at;
               $item['code_no'] = $item->invoice_no;
               $item['description'] = "Sale"."/".$item->party->firm_name;
