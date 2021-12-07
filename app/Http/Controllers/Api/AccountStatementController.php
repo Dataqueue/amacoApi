@@ -295,7 +295,7 @@ class AccountStatementController extends Controller
               $item['code_no'] = $item->voucher_no;
               $item['description'] = "Matrial Purchase";
               $item['credit'] = floatval(str_replace(",","",$item->amount));
-              $item['po_number'] = $item->po_number;
+              $item['po_number'] = $item->voucher_no;
               $item['debit'] = null;
               $item['credit_days'] = floatval($item->party->credit_days);
               return [$item];
