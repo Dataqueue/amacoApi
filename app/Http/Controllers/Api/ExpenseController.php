@@ -164,7 +164,8 @@ return response()->json($expenses);
                 "company" => $request->company?$request->company:" ",
                 "vatno" => $request->vatno?$request->vatno:" ",
                 "inv_no" => $request->inv_no?$request->inv_no:" ",
-                "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" "
+                "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" ",
+                "vendor_id"=>$request->vendor_id?$request->vendor_id:" "
     
             ]);
     

@@ -9,6 +9,7 @@ use App\Models\Receipt;
 use App\Models\Expense;
 use App\Models\PaymentAccount;
 use App\Models\AdvancePayment;
+use App\Models\Quotation;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -257,6 +258,55 @@ class AccountStatementController extends Controller
   
     return response($datas);
 
+  }
+  public function vendorStatement(Request $request)
+  {
+      $invoiceCollection = new Collection();
+      if($request->from_date){
+          $invoiceCollection = Quotation::join('parties','quotation.party_id','parties.id')->where('transaction_type','purchase')->select('parties.credit_days','quotation.*')->whereBetween('quotation.ps_date', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+      }else{
+          $invoiceCollection = Invoice::all();
+      }
+
+      $receiptCollection = new Collection();
+      if($request->from_date){
+          $receiptCollection = Expense::whereBetween('expenses.paid_date', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
+      }else{
+          $receiptCollection = Receipt::all();
+      }
+
+      $data = $invoiceCollection->concat($receiptCollection);
+      $data = $data->sortBy('created_at');
+
+      $data && ($datas['data'] = $data->map(function ($item) {
+          if ($item->quotation_no) {
+              $item['date'] = $item->created_at;
+              $item['code_no'] = $item->invoice_no;
+              $item['description'] = "Sale"."/".$item->party->firm_name;
+              $item['debit'] = floatval(str_replace(",","",$item->total_value));
+              $item['po_number'] = $item->po_number;
+              $item['credit'] = null;
+              $item['credit_days'] = floatval($item->party->credit_days);
+              return [$item];
+          }
+
+          if ($item->voucher_no) {
+              $item['date'] = $item->created_at;
+              $item['code_no'] = $item->voucher_no;
+              $item['description'] = "Matrial Purchase";
+              $item['credit'] = floatval(str_replace(",","",$item->amount));
+              $item['po_number'] = $item->po_number;
+              $item['debit'] = null;
+              $item['credit_days'] = floatval($item->party->credit_days);
+              return [$item];
+          }
+      }));
+      $datas['opening_balance'] = 0;
+      $datas['name'] = "All";
+      $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
+      $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
+
+      return response()->json([$datas]);
   }
     
 }
