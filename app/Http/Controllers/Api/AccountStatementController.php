@@ -262,18 +262,14 @@ class AccountStatementController extends Controller
   public function vendorStatement(Request $request)
   {
       $invoiceCollection = new Collection();
-      if($request->from_date){
+     
           $invoiceCollection = Quotation::join('parties','quotations.party_id','parties.id')->where('transaction_type','purchase')->select('parties.credit_days','quotations.*')->get();
-      }else{
-          $invoiceCollection = Invoice::all();
-      }
+     
 
       $receiptCollection = new Collection();
-      if($request->from_date){
+     
           $receiptCollection = Expense::join('parties','expenses.vendor_id','parties.id')->get();
-      }else{
-          $receiptCollection = Receipt::all();
-      }
+     
 
       $data = $invoiceCollection->concat($receiptCollection);
       $data = $data->sortBy('created_at');
