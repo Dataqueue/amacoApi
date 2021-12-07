@@ -263,7 +263,7 @@ class AccountStatementController extends Controller
   {
       $invoiceCollection = new Collection();
       if($request->from_date){
-          $invoiceCollection = Quotation::join('parties','quotation.party_id','parties.id')->where('transaction_type','purchase')->select('parties.credit_days','quotation.*')->whereBetween('quotation.ps_date', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
+          $invoiceCollection = Quotation::join('parties','quotations.party_id','parties.id')->where('transaction_type','purchase')->select('parties.credit_days','quotations.*')->whereBetween('quotations.ps_date', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date . ' ' . '23:59:59' : now()])->get();
       }else{
           $invoiceCollection = Invoice::all();
       }
