@@ -426,6 +426,7 @@ return response()->json($expenses);
                 "div_id" => $request->div_id,
          
             'bank_id' => $request->bank_id?$request->bank_id:null,
+            "vendor_id"=>$request->vendor_id?$request->vendor_id:" "
 
         ]);
         
