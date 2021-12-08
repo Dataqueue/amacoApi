@@ -280,7 +280,7 @@ class AccountStatementController extends Controller
               $item['code_no'] = $item->po_number;
               $item['description'] = "Purchase"."/".$item->party->firm_name;
               $item['debit'] = floatval(str_replace(",","",$item->total_value));
-              $item['po_number'] = $item->po_number;
+            //   $item['po_number'] = $item->po_number;
               $item['credit'] = null;
               $item['credit_days'] = floatval($item->party->credit_days);
               return [$item];
@@ -291,7 +291,7 @@ class AccountStatementController extends Controller
               $item['code_no'] = $item->voucher_no;
               $item['description'] = "Matrial Purchase";
               $item['credit'] = floatval(str_replace(",","",$item->amount));
-              $item['po_number'] = $item->voucher_no;
+            //   $item['po_number'] = $item->voucher_no;
               $item['debit'] = null;
               $item['credit_days'] = floatval($item->credit_days);
               return [$item];
