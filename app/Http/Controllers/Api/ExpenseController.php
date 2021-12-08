@@ -165,7 +165,7 @@ return response()->json($expenses);
                 "vatno" => $request->vatno?$request->vatno:" ",
                 "inv_no" => $request->inv_no?$request->inv_no:" ",
                 "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" ",
-                "vendor_id"=>$request->vendor_id?$request->vendor_id:" "
+                "vendor_id"=>$request->vendor_id?$request->vendor_id:0
     
             ]);
     
