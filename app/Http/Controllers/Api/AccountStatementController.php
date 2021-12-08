@@ -237,7 +237,7 @@ class AccountStatementController extends Controller
         'payment_accounts.name as paid_towards',
         'account_categories.name',
             'expenses.*'
-)->where("is_paid", 1)->orderBy('created_at', 'DESC')->get();
+)->orderBy('created_at', 'DESC')->get();
     $expenses->map(function ($expense) {
         
          $expense['debit']=$expense->amount;
