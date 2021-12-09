@@ -60,7 +60,7 @@ class ReceiptController extends Controller
         "receiver" => $request->receiver,
     ]);
     if ($receipt->id) {
-        $receipt->update(['voucher_no' => 'AMC-'.'TR-'.'RV-'.date('y').'-' . sprintf('%05d', $receipt->id)]);
+        $receipt->update(['voucher_no' => 'AMC-'.substr($request->division,0,1).'-'.'RV-'.date('y').'-' . sprintf('%05d', $receipt->id)]);
     }
     if($request->payment_mode=="cash")
     {
