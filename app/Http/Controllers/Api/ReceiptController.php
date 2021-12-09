@@ -59,6 +59,9 @@ class ReceiptController extends Controller
         "sender" => $request->sender,
         "receiver" => $request->receiver,
     ]);
+    if ($receipt->id) {
+        $receipt->update(['voucher_no' => 'AMC-'.'TR-'.'RV-'.date('y').'-' . sprintf('%05d', $receipt->id)]);
+    }
     if($request->payment_mode=="cash")
     {
         $res=AdvancePayment::create([
