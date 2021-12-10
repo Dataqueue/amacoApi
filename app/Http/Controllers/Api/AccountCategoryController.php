@@ -165,10 +165,10 @@ class AccountCategoryController extends Controller
             $sub_categories = AccountCategory::where('parent_id', '=', null)->whereOr('delete_status',0)->get();
         }else{
             // $sub_categories = AccountCategory::where([['parent_id', '=', $id],['delete_status','=',1]])->get();
-            $sub_categories = AccountCategory::where('delete_status','=',1)->get();
+            $sub_categories = AccountCategory::where('delete_status',1)->get();
         }
         if($sub_categories){
-            return response()->json($sub_categories);
+            return response()->json($id);
         }
         return response()->json(null);
     }
