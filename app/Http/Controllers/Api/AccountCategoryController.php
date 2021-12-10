@@ -19,7 +19,7 @@ class AccountCategoryController extends Controller
 
     public function checkSubcategories($id)
     {
-        $groupedCategories = AccountCategory::all()->groupBy('parent_id');
+        $groupedCategories = AccountCategory::where(['delete_status','=',0])->all()->groupBy('parent_id');
         // dd($groupedCategories[0]);
         if($groupedCategories->has($id)){
             $temp = $groupedCategories[$id];
@@ -38,7 +38,7 @@ class AccountCategoryController extends Controller
     public function checkParentcategories($a_id)
     {
        
-        $groupedCategories = AccountCategory::where('id',$a_id)->first();
+        $groupedCategories = AccountCategory::where([['id',$a_id],['delete_status','=',0]])->first();
         
        
         if($groupedCategories->parent_id!==null)
@@ -90,7 +90,7 @@ class AccountCategoryController extends Controller
     {
         // $groupedCategories = AccountCategory::all()->groupBy('parent_id');
         // dd($groupedCategories[0]);
-        $accountCategories = AccountCategory::where('parent_id', '=', null)->get();
+        $accountCategories = AccountCategory::where([['parent_id', '=', null],['delete_status','=',0]])->get();
         $data = [
             // $accountCategories,
             $accountCategories->map(function($accountCategory){
@@ -127,7 +127,7 @@ class AccountCategoryController extends Controller
      */
     public function show(AccountCategory $accountCategory)
     {
-        $accountCategory=$accountCategory::where('delete_status',1)->get();
+        $accountCategory=$accountCategory::where('delete_status',0)->get();
         return response()->json($accountCategory);
     }
 
@@ -162,7 +162,7 @@ class AccountCategoryController extends Controller
     public function subCategory($id)
     {
         if($id == 0){
-            $sub_categories = AccountCategory::where('parent_id', '=', null)->whereOr('delete_status',0)->get();
+            $sub_categories = AccountCategory::where([['parent_id', '=', null],['delete_status','=',0]])->get();
         }else{
             $sub_categories = AccountCategory::where([['parent_id', '=', $id],['delete_status','=',0]])->get();
         }
@@ -183,7 +183,7 @@ class AccountCategoryController extends Controller
     public function accountCategory()
     {
         // $name = strtolower($name);
-        $category = AccountCategory::get();
+        $category = AccountCategory::where(['delete_status','=',0])->get();
         return response()->json($category);
     }
    
