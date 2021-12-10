@@ -90,7 +90,7 @@ class AccountCategoryController extends Controller
     {
         // $groupedCategories = AccountCategory::all()->groupBy('parent_id');
         // dd($groupedCategories[0]);
-        $accountCategories = AccountCategory::where([['parent_id', '=', null],['delete_status','=',0]])->get();
+        $accountCategories = AccountCategory::where(['parent_id', '=', null])->get();
         $data = [
             // $accountCategories,
             $accountCategories->map(function($accountCategory){
