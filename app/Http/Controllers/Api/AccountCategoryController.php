@@ -128,7 +128,7 @@ class AccountCategoryController extends Controller
     public function show(AccountCategory $accountCategory)
     {
         $accountCategory=$accountCategory::where('delete_status',1)->get();
-        return response()->json(1);
+        return response()->json($accountCategory);
     }
 
     /**
@@ -161,14 +161,14 @@ class AccountCategoryController extends Controller
 
     public function subCategory($id)
     {
-        if($id == 0){
-            $sub_categories = AccountCategory::where('parent_id', '=', null)->whereOr('delete_status',0)->get();
-        }else{
-            $sub_categories = AccountCategory::where('parent_id', '=', $id)->whereOr('delete_status',0)->get();
-        }
-        if($sub_categories){
-            return response()->json($sub_categories);
-        }
+        // if($id == 0){
+        //     $sub_categories = AccountCategory::where('parent_id', '=', null)->whereOr('delete_status',0)->get();
+        // }else{
+        //     $sub_categories = AccountCategory::where('parent_id', '=', $id)->whereOr('delete_status',0)->get();
+        // }
+        // if($sub_categories){
+        //     return response()->json($sub_categories);
+        // }
         return response()->json(null);
     }
 
