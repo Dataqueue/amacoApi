@@ -127,6 +127,7 @@ class AccountCategoryController extends Controller
      */
     public function show(AccountCategory $accountCategory)
     {
+        $accountCategory=$accountCategory::where('delete_status',0)->get();
         return response()->json($accountCategory);
     }
 
