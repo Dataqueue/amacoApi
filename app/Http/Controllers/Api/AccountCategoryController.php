@@ -185,6 +185,7 @@ class AccountCategoryController extends Controller
         $category = AccountCategory::get();
         return response()->json($category);
     }
+   
     public function salesExpenseReport()
     {
             $res = new Collection();
@@ -200,5 +201,11 @@ class AccountCategoryController extends Controller
             }),
         ];
         return response()->json($data);
+    }
+    public function accountcategories($id)
+    {
+        $category = AccountCategory::where('id',$id)
+            ->update(['delete_status'=>1]);
+        return response()->json($category);
     }
 }
