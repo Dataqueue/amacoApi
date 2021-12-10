@@ -209,4 +209,10 @@ class AccountCategoryController extends Controller
             ->update(['delete_status'=>1]);
         return response()->json($category);
     }
+    public function accountEdit(Request $request,$id)
+    {
+        $category = AccountCategory::where('id',$id)
+            ->update(['name'=>$request->name]);
+        return response()->json($category);
+    }
 }
