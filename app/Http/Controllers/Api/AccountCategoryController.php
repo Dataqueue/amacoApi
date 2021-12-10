@@ -19,7 +19,7 @@ class AccountCategoryController extends Controller
 
     public function checkSubcategories($id)
     {
-        $groupedCategories = AccountCategory::get()->groupBy('parent_id');
+        $groupedCategories = AccountCategory::where(['delete_status','=',0])->get()->groupBy('parent_id');
         // dd($groupedCategories[0]);
         if($groupedCategories->has($id)){
             $temp = $groupedCategories[$id];
