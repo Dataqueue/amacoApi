@@ -178,38 +178,38 @@ class MasterAccountController extends Controller
             if($item->status=="advance_type")
             {
 
-                if($item->payment_account['type']=="division" && $item->received_by['type']=="personal")
-                {
-                    // $item['div_name']=$item->payment_account->name;
-                    $item['date'] = $item->created_at;
-                    $item['code_no'] = " ";
-                    // $item['paid_to'] = $item->received_by->name;
-                    $item['description'] = $item->narration;
-                    $item['cat_name'] = 'Division';
-                    $item['debit'] = floatval(str_replace(",","",$item->amount));
-                    $item['po_number'] = " ";
-                    $item['credit'] = null;
-                    // $item['credit_days'] = floatval($item->credit_days);
-                    return [$item];
+                // if($item->payment_account['type']=="division" && $item->received_by['type']=="personal")
+                // {
+                //     // $item['div_name']=$item->payment_account->name;
+                //     $item['date'] = $item->created_at;
+                //     $item['code_no'] = " ";
+                //     // $item['paid_to'] = $item->received_by->name;
+                //     $item['description'] = $item->narration;
+                //     $item['cat_name'] = 'Division';
+                //     $item['debit'] = floatval(str_replace(",","",$item->amount));
+                //     $item['po_number'] = " ";
+                //     $item['credit'] = null;
+                //     // $item['credit_days'] = floatval($item->credit_days);
+                //     return [$item];
 
-                }
-                if($item->received_by->type=="division" && $item->payment_account->type=="personal")
-                {
+                // }
+            //     if($item->received_by->type=="division" && $item->payment_account->type=="personal")
+            //     {
                     
-                    if ($item->paid_amount) {
-                    // $item['div_name']=$item->received_by->name;
-                    $item['date'] = $item->created_at;
-                    $item['code_no'] = " ";
-                    // $item['paid_to'] = $item->payment_account->name;
-                    $item['description'] = $item->narration;
-                    $item['cat_name'] = 'Division';
-                    $item['credit'] = floatval(str_replace(",","",$item->amount));
-                    $item['po_number'] = " ";
-                    $item['debit'] = null;
-                        // $item['credit_days'] = floatval($item->credit_days);
-                        return [$item];
-                }
-            }
+            //         if ($item->paid_amount) {
+            //         // $item['div_name']=$item->received_by->name;
+            //         $item['date'] = $item->created_at;
+            //         $item['code_no'] = " ";
+            //         // $item['paid_to'] = $item->payment_account->name;
+            //         $item['description'] = $item->narration;
+            //         $item['cat_name'] = 'Division';
+            //         $item['credit'] = floatval(str_replace(",","",$item->amount));
+            //         $item['po_number'] = " ";
+            //         $item['debit'] = null;
+            //             // $item['credit_days'] = floatval($item->credit_days);
+            //             return [$item];
+            //     }
+            // }
 
 
             }
