@@ -194,7 +194,7 @@ class MasterAccountController extends Controller
                     return [$item];
 
                 }
-                if($item->receivedBy['type']=="division" && $item->paidBy['type']=="personal")
+                else if($item->receivedBy['type']=="division" && $item->paidBy['type']=="personal")
                 {
                     
                     if ($item->paid_amount) {
