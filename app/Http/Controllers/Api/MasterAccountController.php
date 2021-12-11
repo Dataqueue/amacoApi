@@ -202,7 +202,7 @@ class MasterAccountController extends Controller
                 if($item->receivedBy->type=="division" && $item->paymentAccount->type=="personal")
                 {
                     
-                    if ($item->paid_amount) {
+                    
                     $item['div_name']=$item->receivedBy['name'];
                     $item['date'] = $item->created_at;
                     $item['code_no'] = " ";
@@ -213,7 +213,7 @@ class MasterAccountController extends Controller
                     $item['po_number'] = " ";
                     $item['debit'] = null;
                     return [$item];
-                }
+                
 
                   
                 }
