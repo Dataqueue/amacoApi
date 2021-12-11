@@ -145,7 +145,7 @@ class MasterAccountController extends Controller
         
 
         $data && ($datas['data'] = $data->map(function ($item) {
-            if ($item->amount) {
+            // if ($item->amount) {
             if ($item->expense_type) {
                 $item['div_name']=$item->div_name;
                 $item['user_name']=$item->nick_name;
@@ -191,7 +191,7 @@ class MasterAccountController extends Controller
                     $item['po_number'] = " ";
                     $item['credit'] = null;
                     // $item['credit_days'] = floatval($item->credit_days);
-                    // return [$item];
+                    return [$item];
 
                 }
                 if($item->receivedBy['type']=="division" && $item->paidBy['type']=="personal")
@@ -208,13 +208,13 @@ class MasterAccountController extends Controller
                     $item['po_number'] = " ";
                     $item['debit'] = null;
                         // $item['credit_days'] = floatval($item->credit_days);
-                    //  return [$item];
+                    return [$item];
                 }
-                return [$item];
+               
                 }
 
             }
-        }
+        
             
            
         }));
