@@ -226,7 +226,7 @@ return response()->json($expenses);
                     }
                 );
         if ($expense->id) {
-                    $expense->update(['voucher_no' => 'AMCTV-' . sprintf('%05d', $expense->id)]);
+                    $expense->update(['voucher_no' => 'AMC-'.'TR-'.'EV-'.date('y').'-' . sprintf('%05d', $expense->id)]);
         }
             return response()->json($test);
         }
