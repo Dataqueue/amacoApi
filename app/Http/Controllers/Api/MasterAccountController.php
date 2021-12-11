@@ -131,10 +131,16 @@ class MasterAccountController extends Controller
         }
         $advanceCollection = new Collection();
         $advance=AdvancePayment::whereBetween('advance_payments.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
+        $advanceData=$advance->map(function($obj){
+            $obj["status"]='advance_type';
+            $obj->paymentAccount;
+            $obj->receivedBy;
+           
 
-        $paidBy=AdvancePayment::join('payment_accounts','payment_accounts.id','advance_payments.payment_account_id')->where('payment_accounts.type','=','division')->select('payment_accounts.name as paidBy','advance_payment.payment_account_id','advacnce_payments*')->get();
-      
-        $data =$advance;
+            return $obj;
+        });
+
+        $data =$advanceData;
         // $data = $invoiceCollection->concat($receiptCollection)->concat($advance);
         
 
@@ -195,7 +201,7 @@ class MasterAccountController extends Controller
                 //     $item['div_name']=$item->receivedBy['name'];
                 //     $item['date'] = $item->created_at;
                 //     $item['code_no'] = " ";
-                 $item['paid_to'] = $item->payment_account;
+                //  $item['paid_to'] = $item->payment_account->name;
                 //     $item['description'] = $item->narration;
                 //     $item['cat_name'] = 'Division';
                 //     $item['credit'] = floatval(str_replace(",","",$item->amount));
@@ -219,6 +225,6 @@ class MasterAccountController extends Controller
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
 
-        return response()->json([$paidBy]);
+        return response()->json([$datas]);
     }
 }
