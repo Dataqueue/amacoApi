@@ -7,6 +7,7 @@ use App\Models\Expense;
 use App\Models\Party;
 use App\Models\Division;
 use App\Models\PaymentAccount;
+use App\Models\AdvancePayment;
 use App\Models\Receipt;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
@@ -123,6 +124,15 @@ class MasterAccountController extends Controller
         if($request->from_date){
             $receiptCollection = Receipt::join('payment_accounts','receipts.div_id','payment_accounts.id')->join('parties','parties.id','receipts.party_id')->select('payment_accounts.name as div_name','receipts.*','parties.firm_name as paid_to','payment_accounts.name as receipt_type')->whereBetween('receipts.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
             $divRopenbalance=Receipt::whereDate('created_at','<=' ,date('Y-m-d H:i:s', strtotime($request->from_date)))->sum('paid_amount');
+        }else{
+            $receiptCollection = Receipt::all();
+           
+
+        }
+        $advanceCollection = new Collection();
+        if($request->from_date){
+            $advanceCollection = AdvancePayment::join('payment_accounts','advance_payments.payment_account_id','payment_accounts.id')->select('payment_accounts.name as div_name','receipts.*','payment_accounts.name as advance_type')->whereBetween('advance_payments.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
+            $divRopenbalance=Receipt::whereDate('created_at','<=' ,date('Y-m-d H:i:s', strtotime($request->from_date)))->sum('amount');
         }else{
             $receiptCollection = Receipt::all();
            
