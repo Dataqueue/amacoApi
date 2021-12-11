@@ -191,7 +191,7 @@ class MasterAccountController extends Controller
                     $item['po_number'] = " ";
                     $item['credit'] = null;
                     // $item['credit_days'] = floatval($item->credit_days);
-                    return [$item];
+                    // return [$item];
 
                 }
                 if($item->receivedBy['type']=="division" && $item->paidBy['type']=="personal")
@@ -208,8 +208,9 @@ class MasterAccountController extends Controller
                     $item['po_number'] = " ";
                     $item['debit'] = null;
                         // $item['credit_days'] = floatval($item->credit_days);
-                     return [$item];
+                    //  return [$item];
                 }
+                return [$item];
                 }
 
             }
