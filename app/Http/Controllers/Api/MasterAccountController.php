@@ -194,7 +194,7 @@ class MasterAccountController extends Controller
                     return [$item];
 
                 }
-                else if($item->receivedBy['type']=="division" && $item->paidBy['type']=="personal")
+                if($item->receivedBy['type']=="division" && $item->paidBy['type']=="personal")
                 {
                     
                     if ($item->paid_amount) {
@@ -207,7 +207,6 @@ class MasterAccountController extends Controller
                     $item['credit'] = floatval(str_replace(",","",$item->amount));
                     $item['po_number'] = " ";
                     $item['debit'] = null;
-                        // $item['credit_days'] = floatval($item->credit_days);
                     return [$item];
                 }
                
