@@ -180,7 +180,7 @@ class MasterAccountController extends Controller
 
                 // if($item->payment_account['type']=="division" && $item->received_by['type']=="personal")
                 // {
-                //     // $item['div_name']=$item->payment_account->name;
+                    $item['div_name']=$item->payment_account->name;
                 //     $item['date'] = $item->created_at;
                 //     $item['code_no'] = " ";
                 //     // $item['paid_to'] = $item->received_by->name;
