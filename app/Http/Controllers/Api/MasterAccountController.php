@@ -180,7 +180,7 @@ class MasterAccountController extends Controller
 
                 // if($item->payment_account['type']=="division" && $item->received_by['type']=="personal")
                 // {
-                    $item['div_name']=$item->payment_account;
+                    // $item['div_name']=$item->payment_account;
                 //     $item['date'] = $item->created_at;
                 //     $item['code_no'] = " ";
                 //     // $item['paid_to'] = $item->received_by->name;
@@ -207,7 +207,7 @@ class MasterAccountController extends Controller
             //         $item['po_number'] = " ";
             //         $item['debit'] = null;
             //             // $item['credit_days'] = floatval($item->credit_days);
-                     return [$item];
+                     return [$item->payment_account];
             //     }
             // }
 
