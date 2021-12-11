@@ -200,9 +200,9 @@ class MasterAccountController extends Controller
                     // $item['paid_to'] = $item->received_by->name;
                     $item['description'] = $item->narration;
                     $item['cat_name'] = 'Division';
-                    $item['debit'] = floatval(str_replace(",","",$item->amount));
+                    $item['credit'] = floatval(str_replace(",","",$item->amount));
                     $item['po_number'] = " ";
-                    $item['credit'] = null;
+                    $item['debit'] = null;
                     // $item['credit_days'] = floatval($item->credit_days);
                     return [$item];
 
@@ -217,9 +217,9 @@ class MasterAccountController extends Controller
                     $item['paid_to'] = $item->paymentAccount->name;
                     $item['description'] = $item->narration;
                     $item['cat_name'] = 'Division';
-                    $item['credit'] = floatval(str_replace(",","",$item->amount));
+                    $item['debit'] = floatval(str_replace(",","",$item->amount));
                     $item['po_number'] = " ";
-                    $item['debit'] = null;
+                    $item['credit'] = null;
                     return [$item];
                 
 
