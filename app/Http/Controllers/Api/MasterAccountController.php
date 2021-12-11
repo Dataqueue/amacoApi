@@ -130,16 +130,15 @@ class MasterAccountController extends Controller
 
         }
         $advanceCollection = new Collection();
-        if($request->from_date){
-            $advanceCollection = AdvancePayment::join('payment_accounts','advance_payments.payment_account_id','payment_accounts.id')->select('payment_accounts.name as div_name','receipts.*','payment_accounts.name as advance_type')->whereBetween('advance_payments.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
-            $divRopenbalance=Receipt::whereDate('created_at','<=' ,date('Y-m-d H:i:s', strtotime($request->from_date)))->sum('amount');
-        }else{
-            $receiptCollection = Receipt::all();
-           
+        $advance=AdvancePayment::whereBetween('advance_payments.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
+        $advance=$advance->map(function($obj){
+            $obj->paymentAccount;
+            $obj->receivedBy;
 
-        }
+            return $obj;
+        });
 
-        $data = $invoiceCollection->concat($receiptCollection);
+        $data = $invoiceCollection->concat($receiptCollection)->concat($advanceCollection);
         $data = $data->sortBy('created_at');
 
         $data && ($datas['data'] = $data->map(function ($item) {
@@ -174,12 +173,13 @@ class MasterAccountController extends Controller
                 // $item['credit_days'] = floatval($item->credit_days);
                 return [$item];
             }
+           
         }));
         $datas['opening_balance'] = $divRopenbalance-$divEopenbalance+$total_div;
         $datas['name'] = "All";
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
 
-        return response()->json([$datas]);
+        return response()->json([$advance]);
     }
 }
