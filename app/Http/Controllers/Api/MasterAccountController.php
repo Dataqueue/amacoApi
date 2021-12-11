@@ -208,7 +208,7 @@ class MasterAccountController extends Controller
                 //         // $item['credit_days'] = floatval($item->credit_days);
                 //         return [$item];
                 // }
-            }
+            // }
 
 
             }
