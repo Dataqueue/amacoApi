@@ -184,7 +184,7 @@ class MasterAccountController extends Controller
             // if($item->status=="advance_type")
             // {
 
-                if($item->paidByTtype=="division")
+                if($item->paidByType=="division")
                 {
                     $item['div_name']=$item->paidBy;
                     $item['date'] = $item->created_at;
