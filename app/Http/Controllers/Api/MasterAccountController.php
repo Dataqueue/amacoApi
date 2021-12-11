@@ -203,10 +203,10 @@ class MasterAccountController extends Controller
                 {
                     
                     
-                    $item['div_name']=$item->receivedBy['name'];
+                    $item['div_name']=$item->receivedBy->name;
                     $item['date'] = $item->created_at;
                     $item['code_no'] = " ";
-                 $item['paid_to'] = $item->payment_account->name;
+                     $item['paid_to'] = $item->paymentAccount->name;
                     $item['description'] = $item->narration;
                     $item['cat_name'] = 'Division';
                     $item['credit'] = floatval(str_replace(",","",$item->amount));
