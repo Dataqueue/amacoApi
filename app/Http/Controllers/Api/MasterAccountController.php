@@ -131,7 +131,7 @@ class MasterAccountController extends Controller
         }
         $advanceCollection = new Collection();
         $advance=AdvancePayment::whereBetween('advance_payments.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
-        // $advanceData=$advance->map(function($obj){
+        // $advanceData=$advance->filter(function($obj){
         //     $obj["status"]='advance_type';
         //     $obj["paidBy"]=$obj->paymentAccount->name;
         //     $obj["receivedBy"]=$obj->receivedBy->name;
@@ -217,6 +217,10 @@ class MasterAccountController extends Controller
 
                   
                 }
+                else
+                {
+                    return !is_null($item);
+                }
                   
 
             // }
@@ -225,6 +229,7 @@ class MasterAccountController extends Controller
             
            
         }));
+        
         $datas['opening_balance'] = $divRopenbalance-$divEopenbalance+$total_div;
         $datas['name'] = "All";
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
