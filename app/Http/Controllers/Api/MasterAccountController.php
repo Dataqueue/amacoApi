@@ -135,7 +135,7 @@ class MasterAccountController extends Controller
             $obj["status"]='advance_type';
             $obj["paidBy"]=$obj->paymentAccount->name;
             $obj["receivedBy"]=$obj->receivedBy->name;
-            // $obj["paidByType"]=$obj->paymentAccount->type;
+            $obj["paidByType"]=$obj->paymentAccount->type;
             // $obj["receivedByType"]=$obj->receivedBy->type;
             $obj["advance_amount"]=$obj->amount;
             $obj->paymentAccount;
