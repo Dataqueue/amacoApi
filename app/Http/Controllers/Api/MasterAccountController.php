@@ -208,7 +208,7 @@ class MasterAccountController extends Controller
             //         $item['po_number'] = " ";
             //         $item['debit'] = null;
             //             // $item['credit_days'] = floatval($item->credit_days);
-                     return [$item->paidBy];
+                     return [$item->paidBy['name']];
             //     }
             // }
 
