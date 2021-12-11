@@ -133,14 +133,14 @@ class MasterAccountController extends Controller
         $advance=AdvancePayment::whereBetween('advance_payments.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
         $advance=$advance->map(function($obj){
             $obj["status"]='advance_type';
-            $obj["paidBy"]=$obj->paymentAccount;
-            $obj["receivedBy"]= $obj->receivedBy;
+            $obj->paymentAccount;
+            $obj->receivedBy;
            
 
             return $obj;
         });
 
-        $data =$advance;
+        // $data =$advance;
         // $data = $invoiceCollection->concat($receiptCollection)->concat($advance);
         
 
@@ -179,40 +179,43 @@ class MasterAccountController extends Controller
             // if($item->status=="advance_type")
             // {
 
-                if($item->paidBy['type']=="division" && $item->receivedBy['type']=="personal")
-                {
-                    $item['div_name']=$item->paidBy['name'];
-                    $item['date'] = $item->created_at;
-                    $item['code_no'] = " ";
-                    // $item['paid_to'] = $item->received_by->name;
-                    $item['description'] = $item->narration;
-                    $item['cat_name'] = 'Division';
-                    $item['debit'] = floatval(str_replace(",","",$item->amount));
-                    $item['po_number'] = " ";
-                    $item['credit'] = null;
-                    // $item['credit_days'] = floatval($item->credit_days);
-                    return [$item];
+                // if($item->paidBy['type']=="division" && $item->receivedBy['type']=="personal")
+                // {
+                //     $item['div_name']=$item->paidBy['name'];
+                //     $item['date'] = $item->created_at;
+                //     $item['code_no'] = " ";
+                //     // $item['paid_to'] = $item->received_by->name;
+                //     $item['description'] = $item->narration;
+                //     $item['cat_name'] = 'Division';
+                //     $item['debit'] = floatval(str_replace(",","",$item->amount));
+                //     $item['po_number'] = " ";
+                //     $item['credit'] = null;
+                //     // $item['credit_days'] = floatval($item->credit_days);
+                //     return [$item];
 
-                }
-                if($item->receivedBy['type']=="division" && $item->paidBy['type']=="personal")
-                {
+                // }
+                // if($item->receivedBy['type']=="division" && $item->paidBy['type']=="personal")
+                // {
                     
-                    if ($item->paid_amount) {
-                    $item['div_name']=$item->receivedBy['name'];
-                    $item['date'] = $item->created_at;
-                    $item['code_no'] = " ";
-                    // $item['paid_to'] = $item->payment_account->name;
-                    $item['description'] = $item->narration;
-                    $item['cat_name'] = 'Division';
-                    $item['credit'] = floatval(str_replace(",","",$item->amount));
-                    $item['po_number'] = " ";
-                    $item['debit'] = null;
-                    return [$item];
-                }
-               
+                //     if ($item->paid_amount) {
+                //     $item['div_name']=$item->receivedBy['name'];
+                //     $item['date'] = $item->created_at;
+                //     $item['code_no'] = " ";
+                //     // $item['paid_to'] = $item->payment_account->name;
+                //     $item['description'] = $item->narration;
+                //     $item['cat_name'] = 'Division';
+                //     $item['credit'] = floatval(str_replace(",","",$item->amount));
+                //     $item['po_number'] = " ";
+                //     $item['debit'] = null;
+                //     return [$item];
                 // }
 
-            }
+               
+                // }
+        
+
+            // }
+            return [$item];
         
             
            
