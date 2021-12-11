@@ -136,7 +136,7 @@ class MasterAccountController extends Controller
             $obj["paidBy"]=$obj->paymentAccount->name;
             $obj["receivedBy"]=$obj->receivedBy->name;
             $obj["paidByType"]=$obj->paymentAccount->type;
-            $obj["receivedByType"]=$obj->receivedBy->type;
+            // $obj["receivedByType"]=$obj->receivedBy->type;
             $obj["advance_amount"]=$obj->amount;
             $obj->paymentAccount;
             $obj->receivedBy;
@@ -184,21 +184,21 @@ class MasterAccountController extends Controller
             // if($item->status=="advance_type")
             // {
 
-                // if($item->paidBy['type']=="division" && $item->receivedBy['type']=="personal")
-                // {
-                //     $item['div_name']=$item->paidBy['name'];
-                //     $item['date'] = $item->created_at;
-                //     $item['code_no'] = " ";
-                //     // $item['paid_to'] = $item->received_by->name;
-                //     $item['description'] = $item->narration;
-                //     $item['cat_name'] = 'Division';
-                //     $item['debit'] = floatval(str_replace(",","",$item->amount));
-                //     $item['po_number'] = " ";
-                //     $item['credit'] = null;
-                //     // $item['credit_days'] = floatval($item->credit_days);
-                //     return [$item];
+                if($item->paidByTtype=="division")
+                {
+                    $item['div_name']=$item->paidBy;
+                    $item['date'] = $item->created_at;
+                    $item['code_no'] = " ";
+                    // $item['paid_to'] = $item->received_by->name;
+                    $item['description'] = $item->narration;
+                    $item['cat_name'] = 'Division';
+                    $item['debit'] = floatval(str_replace(",","",$item->amount));
+                    $item['po_number'] = " ";
+                    $item['credit'] = null;
+                    // $item['credit_days'] = floatval($item->credit_days);
+                    return [$item];
 
-                // }
+                }
                 // if($item->receivedBy['type']=="division" && $item->paidBy['type']=="personal")
                 // {
                     
@@ -215,12 +215,12 @@ class MasterAccountController extends Controller
                 //     return [$item];
                 // }
 
-                    $item['dee']=$item->status;
+                  
                 // }
                   
 
             // }
-            return [$item];
+          
         
             
            
@@ -230,6 +230,6 @@ class MasterAccountController extends Controller
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
 
-        return response()->json([$advanceData]);
+        return response()->json([$datas]);
     }
 }
