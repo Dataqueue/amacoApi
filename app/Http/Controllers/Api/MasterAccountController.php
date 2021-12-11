@@ -149,7 +149,7 @@ class MasterAccountController extends Controller
         // $data = $invoiceCollection->concat($receiptCollection)->concat($advance);
         
 
-        $data && ($datas['data'] = $data->map(function ($item) {
+        $data && ($datas['data'] = $data->filter(function ($item) {
             // if ($item->amount) {
             // if ($item->expense_type) {
             //     $item['div_name']=$item->div_name;
@@ -217,11 +217,7 @@ class MasterAccountController extends Controller
 
                   
                 }
-                else
-                {
-                    return !is_null($item);
-                }
-                  
+               
 
             // }
           
