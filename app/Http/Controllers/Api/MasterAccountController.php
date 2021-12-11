@@ -133,8 +133,8 @@ class MasterAccountController extends Controller
         $advance=AdvancePayment::whereBetween('advance_payments.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
         $advance=$advance->map(function($obj){
             $obj["status"]='advance_type';
-            $obj->paymentAccount;
-            $obj->receivedBy;
+            [$obj->paymentAccount];
+            [$obj->receivedBy];
            
 
             return $obj;
@@ -212,7 +212,7 @@ class MasterAccountController extends Controller
 
                
                 // }
-                    $item['deekshitha']=$item['payment_account'];
+                  
 
             // }
             return [$item];
@@ -225,6 +225,6 @@ class MasterAccountController extends Controller
         $datas['from_date'] = $request['from_date'] ? $request['from_date'] : "2021-01-01";
         $datas['to_date'] = $request['to_date'] ? $request['to_date'] : substr(now(), 0, 10);
 
-        return response()->json([$datas]);
+        return response()->json([$advance]);
     }
 }
