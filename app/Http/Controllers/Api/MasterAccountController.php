@@ -210,7 +210,7 @@ class MasterAccountController extends Controller
                 //     return [$item];
                 // }
 
-                    $item['dee']=$item->advance_type;
+                    $item['dee']=$item->status;
                 // }
                   
 
