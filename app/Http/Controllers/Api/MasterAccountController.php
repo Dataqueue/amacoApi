@@ -212,7 +212,7 @@ class MasterAccountController extends Controller
 
                
                 // }
-                    $item['deekshitha']=$item[0]->payment_account;
+                    $item['deekshitha']=$item['payment_account'];
 
             // }
             return [$item];
