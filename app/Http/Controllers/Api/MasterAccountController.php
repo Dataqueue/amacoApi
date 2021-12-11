@@ -176,8 +176,8 @@ class MasterAccountController extends Controller
                 // $item['credit_days'] = floatval($item->credit_days);
                 return [$item];
             }
-            if($item->status=="advance_type")
-            {
+            // if($item->status=="advance_type")
+            // {
 
                 if($item->paidBy['type']=="division" && $item->receivedBy['type']=="personal")
                 {
@@ -211,7 +211,7 @@ class MasterAccountController extends Controller
                     return [$item];
                 }
                
-                }
+                // }
 
             }
         
