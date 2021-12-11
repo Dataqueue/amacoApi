@@ -131,21 +131,21 @@ class MasterAccountController extends Controller
         }
         $advanceCollection = new Collection();
         $advance=AdvancePayment::whereBetween('advance_payments.created_at', [$request->from_date . ' ' . '00:00:00', $request->to_date ? $request->to_date. ' ' . '23:59:59' : now()])->get();
-        $advanceData=$advance->map(function($obj){
-            $obj["status"]='advance_type';
-            $obj["paidBy"]=$obj->paymentAccount->name;
-            $obj["receivedBy"]=$obj->receivedBy->name;
-            $obj["paidByType"]=$obj->paymentAccount->type;
-            // $obj["receivedByType"]=$obj->receivedBy->type;
-            $obj["advance_amount"]=$obj->amount;
-            $obj->paymentAccount;
-            $obj->receivedBy;
+        // $advanceData=$advance->map(function($obj){
+        //     $obj["status"]='advance_type';
+        //     $obj["paidBy"]=$obj->paymentAccount->name;
+        //     $obj["receivedBy"]=$obj->receivedBy->name;
+        //     $obj["paidByType"]=$obj->paymentAccount->type;
+        //     $obj["receivedByType"]=$obj->receivedBy->type;
+        //     $obj["advance_amount"]=$obj->amount;
+        //     $obj->paymentAccount;
+        //     $obj->receivedBy;
            
 
-            return $obj;
-        });
+        //     return $obj;
+        // });
 
-        $data =$advanceData;
+        $data =$advance;
         // $data = $invoiceCollection->concat($receiptCollection)->concat($advance);
         
 
@@ -184,9 +184,9 @@ class MasterAccountController extends Controller
             // if($item->status=="advance_type")
             // {
 
-                if($item->paidByType=="division")
+                if($item->paymentAccount->type=="division")
                 {
-                    $item['div_name']=$item->paidBy;
+                    $item['div_name']=$item->paymentAccount->name;
                     $item['date'] = $item->created_at;
                     $item['code_no'] = " ";
                     // $item['paid_to'] = $item->received_by->name;
