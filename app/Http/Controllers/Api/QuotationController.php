@@ -480,7 +480,13 @@ class QuotationController extends Controller
             'sign' => $request->sign,
             'rfq_no' => $request->rfq_no,
             'subject' => $request->subject,
-            'bank_id'=> (int)$request->bank_id
+            'bank_id'=> (int)$request->bank_id,
+            'validity' => $request['validity'],
+            'payment_terms' => $request['payment_terms'],
+            'warranty' => $request['warranty'],
+            'currency_type' => $request['currency_type'],
+            'delivery_time' => $request['delivery_time'],
+            'inco_terms' => $request['inco_terms'],
             // 'sales_order_number' => $data['sales_order_number'],
         ]);
         $index = 0;
