@@ -153,8 +153,8 @@ class MasterAccountController extends Controller
         //     return $obj;
         // });
 
-        $data =$advanceData;
-        // $data = $invoiceCollection->concat($receiptCollection)->concat($advance);
+        // $data =$advanceData;
+        $data = $invoiceCollection->concat($receiptCollection)->concat($advanceData);
         
 
         $data && ($datas['data'] = $data->map(function ($item) {
