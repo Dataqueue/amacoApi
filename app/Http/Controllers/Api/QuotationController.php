@@ -58,7 +58,7 @@ class QuotationController extends Controller
     public function getLastQuotationNo()
     {
         $quotation = Quotation::where('transaction_type', 'sale')
-            ->latest('created_at')->first();
+        ->where('quotation_no','not like', '%REV%')->latest('created_at')->first();
         if ($quotation) {
             $latest_quotation_no = $quotation->quotation_no ? $quotation->quotation_no : 0;
             return ($latest_quotation_no);
@@ -69,8 +69,7 @@ class QuotationController extends Controller
 
     public function getLastPONo()
     {
-        $quotation = Quotation::where('transaction_type', 'purchase')
-            ->where('quotation_no','not like', '%REV%')->latest('created_at')->first();
+        $quotation = Quotation::where('transaction_type', 'purchase')->latest('created_at')->first();
         if ($quotation) {
             $latest_po_number = $quotation->po_number ? $quotation->po_number : 0;
             return ($latest_po_number);
