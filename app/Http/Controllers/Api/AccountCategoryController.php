@@ -114,7 +114,7 @@ class AccountCategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $val=$accountCategory::where('name','=',$request->name)->exists();
+        $val=AccountCategory::where('name','=',$request->name)->exists();
         // $accountCategory = AccountCategory::create($data);
 
         return response()->json($val);
