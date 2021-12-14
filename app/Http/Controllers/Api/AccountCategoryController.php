@@ -115,9 +115,15 @@ class AccountCategoryController extends Controller
     {
         $data = $request->all();
         $val=AccountCategory::where('name','=',$request->name)->exists();
-        // $accountCategory = AccountCategory::create($data);
+        if($val)
+        {
+            return response()->json($val);
+        }
+        else{
+        $accountCategory = AccountCategory::create($data);
+        }
 
-        return response()->json($val);
+        
     }
 
     /**
