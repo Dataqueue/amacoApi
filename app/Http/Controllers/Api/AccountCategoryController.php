@@ -114,9 +114,19 @@ class AccountCategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $accountCategory = AccountCategory::create($data);
+        $users = AccountCategory::where('name', '=', $request->name)->get();
+        if($users)
+        {
+            return response('error');
+        }
+        else{
 
+        
+        $accountCategory = AccountCategory::create($data);
         return response()->json($accountCategory);
+        }
+
+        
     }
 
     /**
