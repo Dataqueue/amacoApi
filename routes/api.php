@@ -46,6 +46,10 @@ use App\Http\Controllers\Api\MasterAccountController;
 use App\Http\Controllers\Api\InvestmentsDetailsController;
 use App\Http\Controllers\Api\ProfitLossController;
 
+use App\Http\Controllers\Api\PurchaseReturnController;
+use App\Http\Controllers\Api\SalesReturnController;
+use App\Http\Controllers\Api\EmployeesController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -186,6 +190,33 @@ Route::post('update_company', [QuotationController::class, 'update_company']);
 Route::get('responseData', [AccountStatementController::class, 'responseData']);
 Route::get('accountcategories/{id}', [AccountCategoryController::class, 'accountcategories']);
 Route::put('accountEdit/{id}', [AccountCategoryController::class, 'accountEdit']);
+
+
+//purchase Return API's
+
+Route::delete('purchase-return-delete/{id}', [PurchaseReturnController::class, 'deletepurchasereturn']);
+Route::get('getPurchaseReturnINV/{id}', [PurchaseReturnController::class, 'getPurchaseReturnINV']);
+Route::get('purchase-return-data/{id}', [PurchaseReturnController::class, 'index']);
+Route::get('getProductsPR/{id}', [PurchaseReturnController::class, 'getProductsPR']);
+Route::get('purchase-return-table', [PurchaseReturnController::class, 'purchaseReturnTableData']);
+Route::post('purchase-return', [PurchaseReturnController::class, 'purchasereturn']);
+
+
+
+// sales Return API's
+Route::get('getSalesFormData/{id}', [SalesReturnController::class, 'index']);
+Route::get('getSalesReturnINV/{id}', [SalesReturnController::class, 'getSalesReturnINV']);
+
+Route::get('sales-return-table', [SalesReturnController::class, 'SalesReturnTableData']);
+
+// empoyee Api
+Route::post('save-emp', [EmployeesController::class, 'store']);
+Route::post('update-emp', [EmployeesController::class, 'update']);
+Route::get('getEmp', [EmployeesController::class, 'index']);
+Route::delete('delete-emp/{id}', [EmployeesController::class, 'destroy']);
+
+
+
 
 
 
