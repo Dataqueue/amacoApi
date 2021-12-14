@@ -1033,5 +1033,12 @@ class QuotationController extends Controller
         ]);
 
     }
+    public function  quoteNum(Request $request)
+    {
+        $current_year = $this->getCurrentYear();
+        $current_month = $this->getCurrentMonth();
+        $quote_num = Quotation::orderBy('id','DESC')->get('id');
+        return ('AMC-QT-' . $current_year . '-' . $current_month  . sprintf("%02d", 1));
+    }
 
 }
