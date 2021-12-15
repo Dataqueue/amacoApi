@@ -489,6 +489,8 @@ class QuotationController extends Controller
             'currency_type' => $request['currency_type'],
             'delivery_time' => $request['delivery_time'],
             'inco_terms' => $request['inco_terms'],
+            'transport' => $request['transport'],
+            'other' => $request['other'],
             // 'sales_order_number' => $data['sales_order_number'],
         ]);
         $index = 0;
