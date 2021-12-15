@@ -1037,16 +1037,16 @@ class QuotationController extends Controller
     }
     public function  productAdd($request)
     {
-        $index = 0;
-                while ($request['quotation_detail' . $index] != null) {
-                    $quotation_detail = (array) json_decode($request['quotation_detail' . $index], true);
-                    if($quotation_detail['product_id'])
-                    {
-                        Product::create([
+        // $index = 0;
+        //         while ($request['quotation_detail' . $index] != null) {
+        //             $quotation_detail = (array) json_decode($request['quotation_detail' . $index], true);
+        //             if($quotation_detail['product_id'])
+        //             {
+        //                 Product::create([
 
-                        ])
-                    }
-                }
+        //                 ])
+        //             }
+        //         }
     }
 
 }
