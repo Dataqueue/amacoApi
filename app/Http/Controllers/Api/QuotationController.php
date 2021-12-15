@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\DeliveryNote;
 use App\Models\DeliveryNoteDetail;
 use App\Models\CompanyBank;
+use App\Models\Product;
 
 use App\Models\notes;
 use Carbon\Carbon;
@@ -262,6 +263,8 @@ class QuotationController extends Controller
                 'bank_id' => (int)$request['bank_id'],  // ? $request['ps_date'] : Carbon::now()
                 'subject' => $request['subject']?$request['subject']:null,  // ? $request['ps_date'] : Carbon::now()
                 'rfq_no' => $request['rfq_no']?$request['rfq_no']:null,  // ? $request['ps_date'] : Carbon::now()
+                'transport' => $request['transport']?$request['transport']:null,  // ? $request['ps_date'] : Carbon::now()
+                'other' => $request['other']?$request['other']:null,  // ? $request['ps_date'] : Carbon::now()
                 
             ];
 
@@ -350,7 +353,7 @@ class QuotationController extends Controller
                 }
             }
            
-           
+           $this->productAdd($request);
            
            
             
@@ -1032,12 +1035,18 @@ class QuotationController extends Controller
         ]);
 
     }
-    public function  quoteNum(Request $request)
+    public function  productAdd($request)
     {
-        $current_year = $this->getCurrentYear();
-        $current_month = $this->getCurrentMonth();
-        $quote_num = Quotation::orderBy('id','DESC')->get('id');
-        return ('AMC-QT-' . $current_year . '-' . $current_month  . sprintf("%02d", 1));
+        $index = 0;
+                while ($request['quotation_detail' . $index] != null) {
+                    $quotation_detail = (array) json_decode($request['quotation_detail' . $index], true);
+                    if($quotation_detail['product_id'])
+                    {
+                        Product::create([
+
+                        ])
+                    }
+                }
     }
 
 }

@@ -37,6 +37,8 @@ class CreateQuotationsTable extends Migration
             $table->string('subject')->nullable();
             $table->string('rfq_no')->nullable();
             $table->string('company_address')->nullable();
+            $table->string('transport')->nullable();
+            $table->string('other')->nullable();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->boolean('is_revised')->default(0)->nullable();
             $table->boolean('file')->nullable();
