@@ -408,6 +408,8 @@ class QuotationController extends Controller
             "freight_type" => $quotation->freight_type,
             "subject" => $quotation->subject,
             "rfq_no" => $quotation->rfq_no,
+            "transport" => $quotation->transport,
+            "other" => $quotation->other,
 
             "quotation_details" => $quotation->quotationDetail->map(function ($quotation_detail) {
                 $filePath = $quotation_detail->file_img_url ? $quotation_detail->file_img_url : '';
