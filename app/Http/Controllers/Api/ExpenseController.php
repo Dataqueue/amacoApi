@@ -165,7 +165,8 @@ return response()->json($expenses);
                 "vatno" => $request->vatno?$request->vatno:" ",
                 "inv_no" => $request->inv_no?$request->inv_no:" ",
                 "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" ",
-                "vendor_id"=>$request->vendor_id?$request->vendor_id:0
+                "vendor_id"=>$request->vendor_id?$request->vendor_id:0,
+                "employee_id"=>$request->employee_id?$request->employee_id:0
     
             ]);
     
@@ -426,7 +427,8 @@ return response()->json($expenses);
                 "div_id" => $request->div_id,
          
             'bank_id' => $request->bank_id?$request->bank_id:null,
-            "vendor_id"=>$request->vendor_id?$request->vendor_id:" "
+            "vendor_id"=>$request->vendor_id?$request->vendor_id:" ",
+            "employee_id"=>$request->employee_id?$request->employee_id:0
 
         ]);
         
