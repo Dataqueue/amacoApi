@@ -59,4 +59,8 @@ class Product extends Model
     {
         return $this->hasOne(DeliveryNoteDetail::class, 'product_id', 'id');
     }
+    public function purchaseReturn()
+    {
+        return $this->belongsTo(PurchaseReturn::class);
+    }
 }
