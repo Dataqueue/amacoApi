@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\PurchaseReturn;
+use App\Models\PurchaseReturnDetail;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
