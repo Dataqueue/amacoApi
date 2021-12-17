@@ -121,6 +121,7 @@ Route::apiResource('company', CompanyController::class);
 Route::apiResource('company-bank', CompanyBankController::class);
 Route::apiResource('demo', demo::class);
 Route::apiResource('division', DivisionController::class);
+Route::apiResource('stock', StockController::class);
 // restful api links
 Route::post('company_edit',[CompanyController::class,'company_edit']);
 Route::post('rfq-history', [RFQController::class, 'history'])->name('rfq.history');
