@@ -32,8 +32,8 @@ class PurchaseReturnDetail extends Model
     //     'product_description',	
     //     'unit_of_measure',
     // ];
-    public function product_purchase()
+    public function product_purchaseReturn()
     {
-        return $this->belongsTo(Product::class);
+        return $this->hasMany(Product::class, 'product_id','product_id');
     }
 }

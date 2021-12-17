@@ -23,9 +23,9 @@ class Product extends Model
     {
         return $this->hasMany(Category::class, 'id','category_id');
     }
-    public function product_purchaseReturn()
+    public function product_purchase()
     {
-        return $this->hasMany(PurchaseReturnDetail::class, 'id','product_id');
+        return $this->belongsTo(PurchaseReturnDetail::class);
     }
     public function rfq()
     {
