@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\InvoiceDetail;
 use Illuminate\Http\Request;
+use App\Models\Product;
 use DB;
 use Config;
 
@@ -117,9 +118,15 @@ class InvoiceController extends Controller
             $apikey=  \Config::get('example.key');
             // $json = json_decode(file_get_contents($path), true);
             $arDescription = $invoice_detail['id']?null:json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
+            if(!$invoice_detail['productId'])
+            {
+               $product=Product::create([
+                    'name'=> $invoice_detail['product']
+                ]);
+            }
             $_invoice_detail = InvoiceDetail::create([
                 'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
-                'product_id' => $invoice_detail['productId']?$invoice_detail['productId']:null,
+                'product_id' => $invoice_detail['productId']?$invoice_detail['productId']:$product->id,
                 'sell_price' => $invoice_detail['sell_price'],
                 'quantity' => $invoice_detail['quantity'],
                 'total_amount' => $invoice_detail['total_amount'],
