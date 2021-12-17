@@ -23,6 +23,10 @@ class Product extends Model
     {
         return $this->hasMany(Category::class, 'id','category_id');
     }
+    public function product_purchaseReturn()
+    {
+        return $this->hasMany(PurchaseReturnDetail::class, 'product_id','product_id');
+    }
     public function rfq()
     {
         return $this->belongsTo(RFQDetails::class, 'rfq_id');
