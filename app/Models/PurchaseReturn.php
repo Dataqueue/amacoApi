@@ -44,8 +44,5 @@ class PurchaseReturn extends Model
         'rfq_no',	
         'company_address',
     ];
-    public function product_purchaseReturn()
-    {
-        return $this->hasMany(Product::class, 'id','product_id');
-    }
+    
 }

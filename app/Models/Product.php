@@ -61,6 +61,6 @@ class Product extends Model
     }
     public function purchaseReturn()
     {
-        return $this->belongsTo(PurchaseReturn::class);
+        return $this->belongsTo(PurchaseReturnDetail::class);
     }
 }
