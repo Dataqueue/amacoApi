@@ -321,17 +321,17 @@ class QuotationController extends Controller
                     if ($request->file('file' . $index)) {
                         $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/' . $quotation_id);
                     }
-                    if(!$quotation_detail['product_id'])
-                    {
-                       $product=Product::create([
-                            'name'=> $quotation_detail['description']
-                        ]);
-                    }
+                    // if(!$quotation_detail['product_id'])
+                    // {
+                    //    $product=Product::create([
+                    //         'name'=> $quotation_detail['description']
+                    //     ]);
+                    // }
                     QuotationDetail::create([
                         'quotation_id' => $quotation_id,
                         'total_amount' => $quotation_detail['total_amount'],
                         'analyse_id' => null,
-                        'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:$product->id,
+                        'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:null,
                         'purchase_price' => $quotation_detail['purchase_price'],
                         'description' => $quotation_detail['description'],
                         'unit_of_measure' => $quotation_detail['unit_of_measure']?$quotation_detail['unit_of_measure']:"",
@@ -519,12 +519,12 @@ class QuotationController extends Controller
                 'id' => $quotation_detail['id'],
                 // 'quotation_id' => $request->id
             ])->first();
-            if(!$quotation_detail['product_id'])
-            {
-               $product=Product::create([
-                    'name'=> $quotation_detail['description']
-                ]);
-            }
+            // if(!$quotation_detail['product_id'])
+            // {
+            //    $product=Product::create([
+            //         'name'=> $quotation_detail['description']
+            //     ]);
+            // }
             if ($quotationDetail) {
                 if (File::exists(public_path($quotationDetail->file_img_url))) {
 
@@ -569,7 +569,7 @@ class QuotationController extends Controller
                     'quotation_id' => $quotation->id,
                     'total_amount' => $quotation_detail['total_amount'],
                     // 'analyse_id' => $quotation_detail['analyse_id'],
-                    'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:$product->id,
+                    'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:null,
                     'purchase_price' => $quotation_detail['purchase_price'],
                     'description' => $quotation_detail['description'],
                     'quantity' => $quotation_detail['quantity'],
