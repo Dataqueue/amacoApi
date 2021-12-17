@@ -25,7 +25,7 @@ class Product extends Model
     }
     public function product_purchaseReturn()
     {
-        return $this->hasMany(PurchaseReturnDetail::class, 'product_id','product_id');
+        return $this->hasMany(PurchaseReturnDetail::class, 'id','product_id');
     }
     public function rfq()
     {
