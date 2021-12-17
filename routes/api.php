@@ -49,6 +49,7 @@ use App\Http\Controllers\Api\ProfitLossController;
 use App\Http\Controllers\Api\PurchaseReturnController;
 use App\Http\Controllers\Api\SalesReturnController;
 use App\Http\Controllers\Api\EmployeesController;
+use App\Http\Controllers\Api\StockController;
 
 
 /*
