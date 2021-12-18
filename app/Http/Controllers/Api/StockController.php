@@ -19,7 +19,7 @@ class StockController extends Controller
     {
         //
         $product=Product::get();
-        $product->map(function($product){
+        $data = $product->map(function($product){
             // $product->product_category
          return[
         $product->product_purchase,
@@ -28,7 +28,7 @@ class StockController extends Controller
 
         ];
         });
-        // return $product;
+        return $data;
 
 
 
