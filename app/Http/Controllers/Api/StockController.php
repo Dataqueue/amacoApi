@@ -26,12 +26,13 @@ class StockController extends Controller
          $product->product_purchaseReturn,
          $product->product_quotation,
          $myStudents = collect($product->product_quotation),
-         "sumPurchase" =>  $myStudents->filter(function ($value, $key) {
-            // if($value->po_number!== null){
-            //     return sum($value->total_amount);
-            // };
-            return $value;
-        })
+        //  "sumPurchase" =>  $myStudents->filter(function ($value, $key) {
+        //     // if($value->po_number!== null){
+        //     //     return sum($value->total_amount);
+        //     // };
+        //     return $value;
+        // })
+        "sumPurchase" => "1000"
        
          ];
         });
