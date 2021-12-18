@@ -23,10 +23,7 @@ class Product extends Model
     {
         return $this->hasMany(Category::class, 'id','category_id');
     }
-    public function product_subcategory()
-    {
-        return $this->hasMany(Category::class, 'parent_id','parent_id');
-    }
+   
     public function product_purchase()
     {
         return $this->hasMany(PurchaseReturnDetail::class);
