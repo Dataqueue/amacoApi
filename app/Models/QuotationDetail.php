@@ -29,7 +29,10 @@ class QuotationDetail extends Model
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
-
+    public function product_quotation()
+    {
+        return $this->hasMany(Product::class, 'id','product_id');
+    }
     public function getDeliveredQuantity(QuotationDetail $quotation_detail)
     {
         $deliveryNoteDetails = DB::table('delivery_notes')

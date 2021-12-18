@@ -23,6 +23,7 @@ class StockController extends Controller
             // $product->product_category;
          $product->product_purchase;
          $product->product_purchaseReturn;
+         $product->product_quotation;
         });
         return $product;
 
