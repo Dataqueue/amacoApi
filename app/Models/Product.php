@@ -27,6 +27,10 @@ class Product extends Model
     {
         return $this->hasMany(PurchaseReturnDetail::class);
     }
+    public function product_sales()
+    {
+        return $this->hasMany(InvoiceDetail::class);
+    }
     public function rfq()
     {
         return $this->belongsTo(RFQDetails::class, 'rfq_id');
