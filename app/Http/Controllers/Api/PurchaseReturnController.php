@@ -175,7 +175,7 @@ class PurchaseReturnController extends Controller
                         'pr_id' => $quotation_id,
                         'total_amount' => $quotation_detail['total_amount'],
                         'analyse_id' => null,
-                        'quotation_no' => $quotation_detail['quotation_no'],
+                        'invoice_no' => $quotation_detail['invoice_no'],
                         'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:null,
                         'purchase_price' => $quotation_detail['purchase_price'],
                         'description' => $quotation_detail['product_name']?$quotation_detail['product_name']:$quotation_detail['product'],
@@ -218,8 +218,10 @@ class PurchaseReturnController extends Controller
             return ('AMC-CN-' . $current_year . '-' . $current_month  . sprintf("%02d", 1));
         } else {
             if ($current_month != $last_month) {
+                 
                 return ('AMC-CN-' . $current_year . '-' . $current_month  . sprintf("%02d", 1));
             } else {
+               
                 if (((int)substr($this->getLastQuotationNo(), 12) < 99)) {
                     return ('AMC-CN-' . $current_year . '-' . $current_month . sprintf("%02d", ((int)substr($this->getLastQuotationNo(), 12)) + 1));
                 } else {
@@ -231,10 +233,12 @@ class PurchaseReturnController extends Controller
     
     public function getLastQuotationNo()
     {
-        $quotation = PurchaseReturn::where('transaction_type', 'sale')
+        $quotation = PurchaseReturn::where('transaction_type', 'sales')
             ->latest('created_at')->first();
-        if ($quotation) {
-            $latest_quotation_no = $quotation->quotation_no ? $quotation->quotation_no : 0;
+
+
+            if ($quotation) {
+            $latest_quotation_no = $quotation->quotationr_no ? $quotation->quotationr_no : 0;
             return ($latest_quotation_no);
         } else {
             return ('AMC-CN-' . $this->getCurrentYear() . '-' . $this->getCurrentMonth() . sprintf("%02d", 0));

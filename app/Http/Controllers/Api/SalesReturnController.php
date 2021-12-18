@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Quotation;
 use App\Models\PurchaseReturn;
+use App\Models\Invoice;
+use App\Models\InvoiceDetail;
 use App\Models\PurchaseReturnDetail;
 
 
@@ -14,9 +16,8 @@ class SalesReturnController extends Controller
 
     public function index($id){
         
-        $data = Quotation::
-        where('transaction_type','=','sale')
-        ->where('party_id','=',$id)
+        $data = Invoice::
+        where('party_id','=',$id)
         ->get();
         return response()->json([
             'status' => 200,
@@ -42,6 +43,22 @@ class SalesReturnController extends Controller
             'getReturnParty' => $purchaseReturn,
             'getReturnItems' => $returnItems
         ]);    
+    }
+
+    public function getProductsSR($iv){
+         $data = Invoice::
+        where('invoice_no','=',$iv)
+        ->get('id');
+
+          $dd = InvoiceDetail::
+        where('invoice_id','=',$data[0]->id)
+        ->get();
+
+
+        return response()->json([
+            'status' => 200,
+            'getPData' => $dd,
+        ]);
     }
 
 
