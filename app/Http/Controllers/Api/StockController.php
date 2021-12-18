@@ -20,11 +20,15 @@ class StockController extends Controller
         //
         $product=Product::get();
         $product->map(function($product){
-            // $product->product_category;
-         $product->product_purchase;
-         $product->product_purchaseReturn;
+            // $product->product_category
+         return[
+        $product->product_purchase,
+         'purchse'=>$product->product_purchaseReturn::whereNotNull('po_number'),
+         'sales'=>$product->product_purchaseReturn::whereNull('po_number'),
+
+        ];
         });
-        return $product;
+        // return $product;
 
 
 
