@@ -10,7 +10,7 @@ class PurchaseReturnDetail extends Model
     protected $guarded = [];
     use HasFactory;
 
-    // protected $table = "purchase_returns_details";
+     protected $table = "products";
 
     // protected $fillable = [
     //     'prd_id',	
@@ -34,6 +34,6 @@ class PurchaseReturnDetail extends Model
     // ];
     public function product_purchaseReturn()
     {
-        return $this->hasOne(Product::class, 'id','product_id');
+        return $this->hasMany($table, 'id','product_id');
     }
 }
