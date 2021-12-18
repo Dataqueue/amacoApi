@@ -291,7 +291,7 @@ class QuotationController extends Controller
             
             if ($request->transaction_type === 'purchase') {
                 foreach ($request['quotation_details'] as $key => $quotation_detail) {
-                    if(!$quotation_detail['product_id'])
+                    if(!$quotation_detail['product_id']||!$quotation_detail['productId'])
                     {
                        $product=Product::create([
                             'name'=> $quotation_detail['product']
@@ -559,7 +559,7 @@ class QuotationController extends Controller
                 ]); 
                 }
             } else {
-                if(!$quotation_detail['product_id'] || !$quotation_detail['productId'])
+                if(!$quotation_detail['product_id'] )
                 {
                    $product=Product::create([
                         'name'=> $quotation_detail['description']
