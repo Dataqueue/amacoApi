@@ -69,6 +69,6 @@ class Product extends Model
     }
     public function sales_purchase()
     {
-        return $this->belongsTo(QuotationDetail::class);
+        return $this->hasMany(QuotationDetail::class);
     }
 }
