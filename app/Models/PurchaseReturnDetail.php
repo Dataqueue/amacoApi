@@ -36,7 +36,7 @@ class PurchaseReturnDetail extends Model
     {
         return $this->hasMany(Product::class, 'id','product_id');
     }
-    public function purchase_sales_Return()
+    public function purchase_salesReturn()
     {
         return $this->belongsTo(PurchaseReturn::class);
     }

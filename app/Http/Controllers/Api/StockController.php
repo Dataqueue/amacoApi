@@ -22,7 +22,7 @@ class StockController extends Controller
         $product->map(function($product){
             // $product->product_category;
          $product->product_purchase->map(function($sales){
-             $sales->purchase_sales_Return;
+             $sales->purchase_salesReturn;
          });
 
         });
