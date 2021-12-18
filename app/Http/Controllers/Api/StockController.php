@@ -25,6 +25,12 @@ class StockController extends Controller
          $product->product_purchase,
          $product->product_purchaseReturn,
          $product->product_quotation,
+         "sumPurchase" =>  $product->product_quotation->filter(function ($value, $key) {
+            if($value->po_number!== null){
+                return sum($value->total_amount);
+            };
+        })
+       
          ];
         });
         return $product;
