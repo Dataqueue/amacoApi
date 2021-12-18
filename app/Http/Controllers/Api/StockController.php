@@ -25,7 +25,7 @@ class StockController extends Controller
          return
          [  
        $product->product_category->map(function($product){
-        return $product->product_subcategory;
+        return [ $product->product_subcategory ];
         }),
         $product->product_category,
         $product->product_purchase,
