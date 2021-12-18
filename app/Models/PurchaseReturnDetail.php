@@ -10,7 +10,7 @@ class PurchaseReturnDetail extends Model
     protected $guarded = [];
     use HasFactory;
 
-    protected $table = "purchase_returns_details";
+    // protected $table = "purchase_returns_details";
 
     // protected $fillable = [
     //     'prd_id',	
