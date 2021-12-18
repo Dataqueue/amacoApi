@@ -23,7 +23,7 @@ class StockController extends Controller
             // $product->product_category
          return[
         $product->product_purchase,
-         'purchse'=>$product->product_purchaseReturn::whereNotNull('po_number')->get(),
+         'purchse'=>$product->product_purchaseReturn,
         //  'sales'=>$product->product_purchaseReturn::whereNull('po_number'),
 
         ];
