@@ -44,5 +44,9 @@ class PurchaseReturn extends Model
         'rfq_no',	
         'company_address',
     ];
+    public function sales_purchase_Return()
+    {
+        return $this->hasMany(PurchaseReturnDetail::class, 'pr_id','pr_id');
+    }
     
 }
