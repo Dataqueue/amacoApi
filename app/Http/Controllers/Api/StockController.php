@@ -19,17 +19,29 @@ class StockController extends Controller
     public function index()
     {
         //
-        $product=Product::get();
-        $returns=PurchaseReturnDetail::join('products','products.id','purchase_returns_details.product_id')->get();
-        $returns->map(function($returns){
-            // $product->product_category;
-        //  $product->product_purchase->map(function($product){
-          return ["hello" =>$returns->purchase_salesReturn];
-        //  });
+        // $product=Product::get();
+        // $returns=PurchaseReturnDetail::join('products','products.id','purchase_returns_details.product_id')->get();
+        // $returns->map(function($returns){
+        //     // $product->product_category;
+        // //  $product->product_purchase->map(function($product){
+        //   return ["hello" =>$returns->purchase_salesReturn];
+        // //  });
 
-        });
-        return $returns;
+        // });
+        // return $returns;
+        $accountCategories=PurchaseReturnDetail::join('products','products.id','purchase_returns_details.product_id')->get();
+        $data = [
+            // $accountCategories,
+            $accountCategories->map(function($accountCategory){
+            return [
+                'category' => $accountCategory,
+                'sub_categories' => $accountCategory->purchase_salesReturn,
+                // 'sub_categories' => $this->subCategory($accountCategory->id),
+            ];
+        }),
+    ];
 
+        return response()->json($data[0]);
 
 
     }
