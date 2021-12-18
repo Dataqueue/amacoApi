@@ -20,14 +20,15 @@ class StockController extends Controller
     {
         //
         $product=Product::get();
-        $product->map(function($product){
+        $returns=PurchaseReturnDetail::join('products','products.id','purchase_returns_details.product_id')->get();
+        $returns->map(function($returns){
             // $product->product_category;
         //  $product->product_purchase->map(function($product){
-             $product->product_purchase->sales_purchase_Return;
+            $returns->sales_purchase_Return;
         //  });
 
         });
-        return $product;
+        return $returns;
 
 
 
