@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\PurchaseReturnDetail;
-use App\Models\PurchaseReturn;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -19,29 +18,14 @@ class StockController extends Controller
     public function index()
     {
         //
-        // $product=Product::get();
-        // $returns=PurchaseReturnDetail::join('products','products.id','purchase_returns_details.product_id')->get();
-        // $returns->map(function($returns){
-        //     // $product->product_category;
-        // //  $product->product_purchase->map(function($product){
-        //   return ["hello" =>$returns->purchase_salesReturn];
-        // //  });
+        $product=Product::get();
+        $product->map(function($product){
+            // $product->product_category;
+         $product->product_purchase;
+         $product->product_purchaseReturn;
+        });
+        return $product;
 
-        // });
-        // return $returns;
-        $accountCategories=PurchaseReturnDetail::join('products','products.id','purchase_returns_details.product_id')->get();
-        $data = [
-            // $accountCategories,
-            $accountCategories->map(function($accountCategory){
-            return [
-                'category' => $accountCategory->product_category,
-                'sub_categories' => $accountCategory->sales_purchase_Return,
-                // 'sub_categories' => $this->subCategory($accountCategory->id),
-            ];
-        }),
-    ];
-
-        return response()->json($data[0]);
 
 
     }
