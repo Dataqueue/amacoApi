@@ -34,7 +34,7 @@ class StockController extends Controller
             // $accountCategories,
             $accountCategories->map(function($accountCategory){
             return [
-                'category' => $product->product_category,
+                'category' => $accountCategory->product_category,
                 'sub_categories' => $accountCategory->sales_purchase_Return,
                 // 'sub_categories' => $this->subCategory($accountCategory->id),
             ];
