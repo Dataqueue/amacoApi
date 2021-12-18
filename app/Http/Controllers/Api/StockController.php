@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\PurchaseReturnDetail;
+use App\Models\PurchaseReturn;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
