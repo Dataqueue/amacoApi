@@ -19,7 +19,7 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'rfq_id');
     }
-    public function product_category()
+    public function product_subcategory()
     {
         return $this->hasMany(Category::class, 'id','category_id');
     }
