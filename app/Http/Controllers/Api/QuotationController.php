@@ -559,7 +559,7 @@ class QuotationController extends Controller
                 ]); 
                 }
             } else {
-                if(!$quotation_detail['product_id'])
+                if(!$quotation_detail['product_id'] || !$quotation_detail['productId'])
                 {
                    $product=Product::create([
                         'name'=> $quotation_detail['description']
