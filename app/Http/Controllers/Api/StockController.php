@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\PurchaseReturnDetail;
 use App\Models\QuotationDetail;
+use App\Models\InvoiceDetail;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -24,9 +25,8 @@ class StockController extends Controller
          return
          [   // $product->product_category;
         $product->product_purchase,
-        $product->product_purchaseReturn,
         $product->sales_purchase,
-        // $product->product_invoice,
+        $product->product_invoice,
          
        
        
