@@ -25,7 +25,7 @@ class StockController extends Controller
          return
          [   // $product->product_category;
         $product->product_purchase,
-        $product->purchaseReturn,
+        $product->purchase_sale_Return,
         $product->product_sales,
          
        
