@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\PurchaseReturnDetail;
+use App\Models\QuotationDetail;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -22,17 +23,16 @@ class StockController extends Controller
         $data=$product->map(function($product){
          return
          [   // $product->product_category;
-         $product->product_purchase,
-         $product->product_purchaseReturn,
+        //  $product->product_purchase,
+        //  $product->product_purchaseReturn,
          $product->product_quotation,
-         $myStudents = collect($product->product_quotation),
         //  "sumPurchase" =>  $myStudents->filter(function ($value, $key) {
         //     // if($value->po_number!== null){
         //     //     return sum($value->total_amount);
         //     // };
         //     return $value;
         // })
-        "sumPurchase" => "1000"
+       
        
          ];
         });
