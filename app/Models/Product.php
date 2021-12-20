@@ -21,7 +21,7 @@ class Product extends Model
     }
     public function product_subcategory()
     {
-        return $this->hasMany(Category::class, 'id','category_id');
+        return $this->hasMany(Category::class, 'parent_id','category_id');
     }
    
     public function product_purchase()
