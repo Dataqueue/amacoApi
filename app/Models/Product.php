@@ -21,17 +21,20 @@ class Product extends Model
     }
     public function product_subcategory()
     {
-        return $this->hasMany(Category::class, 'id','category_id');
+        // return $this->hasMany(Category::class, 'id','category_id');
+        return $this->belongsToMany(Category::class, 'category_id');
     }
    
     public function product_purchase()
     {
         return $this->hasMany(PurchaseReturnDetail::class);
+        
     }
     public function product_sales()
     {
         return $this->hasMany(InvoiceDetail::class);
     }
+    
     public function rfq()
     {
         return $this->belongsTo(RFQDetails::class, 'rfq_id');
@@ -74,6 +77,6 @@ class Product extends Model
     }
     public function sales_purchase()
     {
-        return $this->belongsTo(QuotationDetail::class);
+        return $this->hasMany(QuotationDetail::class);
     }
 }

@@ -19,7 +19,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        //
+        
         $product=Product::get();
         $data=$product->map(function($product){
          return
@@ -37,6 +37,7 @@ class StockController extends Controller
          ];
         });
         return $product;
+    
 
 
 
