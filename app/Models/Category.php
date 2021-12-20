@@ -20,7 +20,7 @@ class Category extends Model
     }
     public function product_sub()
     {
-        return $this->hasMany(Category::class, 'id','category_id');
+        return $this->hasMany(Category::class, 'parent_id','category_id');
         // return $this->belongsToMany(Category::class, 'id','category_id');
     }
 }
