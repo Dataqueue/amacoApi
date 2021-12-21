@@ -190,7 +190,7 @@ class AccountCategoryController extends Controller
     public function accountCategory()
     {
         // $name = strtolower($name);
-        $category = AccountCategory::where(['delete_status','=',0])->get();
+        $category = AccountCategory::where([['delete_status','=',0]])->get();
         return response()->json($category);
     }
    
