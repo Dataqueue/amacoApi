@@ -450,6 +450,7 @@ class QuotationController extends Controller
                     "description" => $quotation_detail->description,
                     "quantity" => $quotation_detail->quantity,
                     "discount" => $quotation_detail->discount,
+                    "margin_val"=>((float($quotation_detail->purchase_price)*float($quotation_detail->margin))/100)*float($quotation_detail->quantity),
                     "cost_qty"  => (float)$quotation_detail->purchase_price*(int)$quotation_detail->quantity,
                     'unit_of_measure' => $quotation_detail->unit_of_measure,
                     // "delivered_quantity"=> $quotation_detail->quantity,
