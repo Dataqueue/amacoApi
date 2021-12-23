@@ -21,6 +21,7 @@ class CreateQuotationDetailsTable extends Migration
             $table->string('product_id')->nullable();
             $table->string('purchase_price')->nullable();
             $table->string('description')->nullable();
+            $table->string('discount')->nullable();
             $table->string('quantity')->nullable();
             $table->string('margin')->nullable();
             $table->string('sell_price')->nullable();

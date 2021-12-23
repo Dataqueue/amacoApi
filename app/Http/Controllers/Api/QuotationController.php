@@ -313,6 +313,16 @@ class QuotationController extends Controller
                     ]);
                 }
             } else {
+                $note_detail = json_decode($request->notes, true);
+                foreach ($note_detail as $div) {
+                   
+                notes::create([
+                    'quotation_id' => $quotation_id,
+                    'notes' => $div['note'], 
+                    
+        
+                ]); 
+            }
                 $index = 0;
                 while ($request['quotation_detail' . $index] != null) {
                    
@@ -347,16 +357,16 @@ class QuotationController extends Controller
                     $index++;
                 }
                
-                $note_detail = json_decode($request->notes, true);
-                foreach ($note_detail as $div) {
+            //     $note_detail = json_decode($request->notes, true);
+            //     foreach ($note_detail as $div) {
                    
-                notes::create([
-                    'quotation_id' => $quotation_id,
-                    'notes' => $div['note'], 
+            //     notes::create([
+            //         'quotation_id' => $quotation_id,
+            //         'notes' => $div['note'], 
                     
         
-                ]); 
-            }
+            //     ]); 
+            // }
             
             }
 
