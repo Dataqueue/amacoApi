@@ -24,5 +24,8 @@ class PurchaseInvoice extends Model
     {
         return $this->hasMany(RFQ::class, 'id', 'rfq_id');
     }
-    
+    public function party()
+    {
+        return $this->hasOne(Party::class, 'id','party_id');
+    }
 }

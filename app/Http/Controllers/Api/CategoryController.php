@@ -228,4 +228,11 @@ class CategoryController extends Controller
             ->get();
         return response()->json($category);
     }
+
+    
+    public function getAllCat()
+    {
+        $categories = Category::get();
+        return response()->json($categories, 200);
+    }
 }

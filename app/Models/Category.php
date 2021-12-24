@@ -16,11 +16,11 @@ class Category extends Model
     }
     public function product_category()
     {
-        return $this->hasMany(Category::class, 'id','parent_id');
+        return $this->hasMany(Category::class, 'parent_id','id');
     }
     public function product_sub()
     {
-        return $this->hasMany(Category::class, 'parent_id','category_id');
+        return $this->hasMany(Category::class, 'id','parent_id');
         // return $this->belongsToMany(Category::class, 'id','category_id');
     }
 }

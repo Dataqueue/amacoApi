@@ -49,6 +49,8 @@ use App\Http\Controllers\Api\ProfitLossController;
 use App\Http\Controllers\Api\PurchaseReturnController;
 use App\Http\Controllers\Api\SalesReturnController;
 use App\Http\Controllers\Api\EmployeesController;
+use App\Http\Controllers\Api\ModuleController;
+use App\Http\Controllers\Api\PermissionDeniedController;
 use App\Http\Controllers\Api\StockController;
 
 
@@ -217,6 +219,20 @@ Route::post('save-emp', [EmployeesController::class, 'store']);
 Route::post('update-emp', [EmployeesController::class, 'update']);
 Route::get('getEmp', [EmployeesController::class, 'index']);
 Route::delete('delete-emp/{id}', [EmployeesController::class, 'destroy']);
+Route::get('getAllCat', [CategoryController::class, 'getAllCat']);
+
+//userPermission
+Route::post('add-permission', [PermissionDeniedController::class, 'store']);
+Route::get('get-modules-per/{id}', [PermissionDeniedController::class, 'index']);
+Route::get('userPermission/{id}', [PermissionDeniedController::class, 'userPermission']);
+
+//Module API's
+Route::post('add-module', [ModuleController::class, 'store']);
+Route::delete('delete-modules/{id}', [ModuleController::class, 'destroy']);
+Route::get('edit-data-modules/{id}', [ModuleController::class, 'edit']);
+Route::put('update-module/{id}', [ModuleController::class, 'update']);
+Route::get('get-modules', [ModuleController::class, 'index']);
+
 
 
 

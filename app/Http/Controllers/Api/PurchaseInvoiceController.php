@@ -47,8 +47,17 @@ class PurchaseInvoiceController extends Controller
     }
     public function index()
     {
-        $invoices = PurchaseInvoice::where('status','!=','Delivered')
-        ->orderBy('created_at','DESC')->get();
+        // $invoices = PurchaseInvoice::where('status','!=','Delivered')
+        // ->orderBy('created_at','DESC')->get();
+        // return $invoices;
+         $invoices = PurchaseInvoice::
+        orderBy('created_at','DESC')->get();
+        // $result=$invoices->party;
+        $invoices->map(function ($invoice) {
+               
+            // $invoice->payment_account;
+           return $invoice->party;
+       });
         return $invoices;
     }
 
@@ -60,11 +69,18 @@ class PurchaseInvoiceController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->json()->all();
-        // dd($data);
-        // dd($request->vat_in_value);
-        // dd($request->vat_in_value);
-        // $data['invoice_no'] = $this->getInvoiceNo();
+
+        
+        $fpath = NULL;
+        if($request->hasFile('file')){
+            $request->file('file');
+            $fname =  $request->file('file','name');
+            $extension = $request->file->getClientOriginalExtension();
+            $fpath = $request->file('file')->move('uploadedFiles/',$fname.'.'.$extension);
+        }
+
+        $data = $request->all();
+
         $data['issue_date'] = $request['issue_date'];
         $data['status'] = "New";
         $data['quotation_id'] = $request['quotation_id'];
@@ -73,10 +89,15 @@ class PurchaseInvoiceController extends Controller
         $data['vat_in_value'] = $request['vat_in_value'];
         $data['grand_total'] = $request['grand_total'];
         $data['bill_no'] = $request['bill_no'];
+        $data['party_id'] = $request['party_id'];
+        $data['invoice_no'] = $request['invoice_no'];
+        $data['ps_date'] = $request['ps_date'];
         $invoice = PurchaseInvoice::create([
             'invoice_no' => $data['invoice_no'],
-            'issue_date' => $data['issue_date'],
+            'issue_date' => $data['ps_date'],
+            'file' => $fpath,
             'status' => $data['status'],
+            'party_id' => $data['party_id'],
             'quotation_id' => $data['quotation_id'],
             'total_value' => $data['total_value'],
             'discount_in_percentage' => $data['discount_in_percentage'],
@@ -85,21 +106,34 @@ class PurchaseInvoiceController extends Controller
             'bill_no' => $data['bill_no'],
         ]);
 
+        //   return response()->json(gettype($a));
         global $_invoice_id;
         $_invoice_id = $invoice['id'];
-
-        foreach($data['invoice_details'] as $invoice_detail) {
-            $_invoice_detail = PurchaseInvoiceDetail::create([
+        $index = 0;
+         while ($request['invoice_details' . $index] != null) {
+                    $invoice_detail = (array) json_decode($request['invoice_details' . $index], true);
+                    $_invoice_detail = PurchaseInvoiceDetail::create([
                 'quotation_detail_id' => $invoice_detail['id'],
-                'product_id' => $invoice_detail['product_id'],
-                'sell_price' => $invoice_detail['sell_price'],
+                'product_id' => $invoice_detail['productId'],
+                'purchase_price' => $invoice_detail['purchase_price'],
                 'quantity' => $invoice_detail['quantity'],
+                
+                'unit_of_measure' => $invoice_detail['unit_of_measure'],
+                'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
+                // 'arabic_description' => $invoice_detail['arabic_description']?$invoice_detail['arabic_description']:$arDescription->data->translations[0]->translatedText,
                 'total_amount' => $invoice_detail['total_amount'],
                 'purchase_invoice_id' => $_invoice_id,
             ]);
-        }
+                    $index++;
+                }
+      
+              
+                  return response()->json('success');
+
+
+
         // return 'success';
-        return response()->json($invoice);
+        
     }
 
     /**
@@ -120,11 +154,6 @@ class PurchaseInvoiceController extends Controller
                     $purchaseInvoice_detail->product,
                 ];
             }),
-            // $invoice->invoiceDetail->map(function ($invoice_detail){
-            //     return [
-            //         $invoice_detail->quotationDetail,
-            //     ];
-            // }),
         ];
     }
 
@@ -182,7 +211,10 @@ class PurchaseInvoiceController extends Controller
      */
     public function destroy(PurchaseInvoice $purchaseInvoice)
     {
-        return ($purchaseInvoice->delete());
+        $purchaseInvoice->delete();
+        PurchaseInvoiceDetail::where('purchase_invoice_id',$purchaseInvoice->id)->delete();
+        return ($purchaseInvoice);
+        // return ($purchaseInvoice->delete());
     }
 
     // public function history()

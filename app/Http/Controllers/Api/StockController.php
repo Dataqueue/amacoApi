@@ -19,31 +19,76 @@ class StockController extends Controller
      */
     public function index()
     {
-        
-        $product=Product::get();
-        $data=$product->map(function($product){
+
+        $category=Category::get();
+        $data=$category->map(function($category){
          return
          [  
-       $product->product_subcategory->map(function($product){
-        return [ $product->product_category ];
-        }),
-        $product->product_sub,
-        // $product->product_subcategory,
-        $product->product_purchase,
-        $product->purchase_sale_Return,
-        $product->product_sales,
-         
-       
-       
-         ];
+                $data=$category->product_category->map(function($category){
+                $category->product->map(function($arr){
+                $arr["purchase"] =  $this->purchase($arr->id);
+                $arr["purchaseQuantity"] =  $this->purchaseQuantity($arr->id);
+                $arr["sales"] = $this -> sale($arr->id);
+                $arr["salesQuantity"] = $this -> salesQuantity($arr->id);
+                $arr["purchaseReturn"] = $this -> purchaseReturn($arr->id);
+                $arr["purchaseReturnQuantity"] = $this -> purchaseReturnQuantity($arr->id);
+                $arr["salesReturn"] = $this -> salesReturn($arr->id);
+                $arr["salesReturnQuantity"] = $this -> salesReturnQuantity($arr->id);
+                $arr["latestPrice"] = $this -> latestPrice($arr->id);
+            });
+            })];
         });
-        return $product;
-    
-
-
-
+        return $category;
+        
     }
 
+    public function latestPrice($id){
+        $data = QuotationDetail::where('product_id',$id)->whereNull('sell_price')->orderBy('id','DESC')->get('purchase_price');
+        return $data;
+    }
+    public function purchase($id){
+        $data = QuotationDetail::where('product_id',$id)->get();
+        return $data;
+    }
+    public function purchaseQuantity($id){
+        $data = QuotationDetail::where('product_id',$id)->sum('quantity');
+        return $data;
+    }
+    public function sale($id){
+        $data = InvoiceDetail::where('product_id',$id)->get();
+        return $data;
+    }
+    public function salesQuantity($id){
+        $data = InvoiceDetail::where('product_id',$id)->sum('quantity');
+        return $data;
+    }
+
+    public function purchaseReturn($id){
+        $data = PurchaseReturnDetail::where('product_id',$id)->whereNotNull('po_number')->get();
+        return $data;
+    }
+    public function purchaseReturnQuantity($id){
+        $data = PurchaseReturnDetail::where('product_id',$id)->whereNotNull('po_number')->sum('quantity');
+        return $data;
+    }
+    public function salesReturn($id){
+        $data = PurchaseReturnDetail::where('product_id',$id)->whereNull('po_number')->get();
+        return $data;
+    }
+    public function salesReturnQuantity($id){
+        $data = PurchaseReturnDetail::where('product_id',$id)->whereNull('po_number')->sum('quantity');
+        return $data;
+    }
+
+    public function check($id){
+        $data = QuotationDetail::where('product_id',$id)->get();
+        $q=0;
+        foreach ($data as $key => $value) {
+            $q = $value->quantity;
+        }
+        $data['purchasequantity'] = $q;
+        return $data;
+    }
     /**
      * Show the form for creating a new resource.
      *
