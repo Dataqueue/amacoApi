@@ -66,6 +66,7 @@ class PartyController extends Controller
             //     $request->vat_no,'ar'),
             'post_box_no' => $request->post_box_no,
             'street' => $request->street?ucwords(trans($request->street)):" ",
+            'street_ar' => $street_ar->data->translations[0]->translatedText,
             'city' => $request->city?ucwords(trans($request->city)):" ",
             'proviance' => $request->proviance?ucwords(trans($request->proviance)):" ",
             'country' =>$request->country?ucwords(trans($request->country)):"",
@@ -256,6 +257,7 @@ class PartyController extends Controller
             'country_ar' => $cityar->data->translations[0]->translatedText,
             'proviance_ar' => $proviancear->data->translations[0]->translatedText,
             'zip_code_ar' => $request->zip_code_ar,
+            'street_ar' => $street_ar->data->translations[0]->translatedText,
         ]);
        
         if($request->division)
