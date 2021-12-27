@@ -234,7 +234,7 @@ class PartyController extends Controller
             // 'vat_no_in_ar'=> $request->registration_no == null ? $party->vat_no_in_ar :   GoogleTranslate::trans($request->vat_no,'ar'),
             'post_box_no' => $request->post_box_no == null ? null : $request->post_box_no,
             'street' => $request->street == null ? null : ucwords(trans($request->street)),
-            'city' => $request->city == null ? $null : ucwords(trans($request->city)),
+            'city' => $request->city == null ? null : ucwords(trans($request->city)),
             'proviance' => $request->proviance == null ? null : ucwords(trans($request->proviance)),
             'country' => $request->country == null ? null : ucwords(trans($request->country)),
             'zip_code' => $request->zip_code == null ? null : $request->zip_code,
