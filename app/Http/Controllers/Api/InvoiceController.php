@@ -245,7 +245,7 @@ class InvoiceController extends Controller
                     // 'quotation_id' => $request->id
                 ])->update([
                         'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
-                        'product_id' => $invoice_detail['productId']?$invoice_detail['productId']:$product->id,
+                        'product_id' => $invoice_detail['product_id']?$invoice_detail['productId']:$product->id,
                         'sell_price' => $invoice_detail['sell_price'],
                         'quantity' => $invoice_detail['quantity'],
                         'total_amount' => $invoice_detail['total_amount'],
