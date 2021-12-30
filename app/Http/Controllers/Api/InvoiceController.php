@@ -245,6 +245,8 @@ class InvoiceController extends Controller
                     'id' => $invoice_detail['quotation_detail_id'],
                     
                 ])->first();
+                if($invoiceDetail)
+                {
                 $invoiceDetail->update([
                         // 'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
                         'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:$product->id,
@@ -259,6 +261,28 @@ class InvoiceController extends Controller
                        
     
                     ]);
+
+                }
+                else{
+                    InvoiceCreate::create([
+                       
+                            // 'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
+                            'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:$product->id,
+                            'sell_price' => $invoice_detail['sell_price'],
+                            'quantity' => $invoice_detail['quantity'],
+                            'total_amount' => $invoice_detail['total_amount'],
+                            'unit_of_measure' => $invoice_detail['unit_of_measure'],
+                            'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
+                            'arabic_description' => $invoice_detail['arabic_description']?$invoice_detail['arabic_description']:$arDescription->data->translations[0]->translatedText,
+                            // 'invoice_id' => $_invoice_id,
+                            'purchase_price' => $invoice_detail['purchase_price']?$invoice_detail['purchase_price']:null,
+                           
+        
+                      
+                
+                    ]);
+                }
+
             
                 $i++;
                 return response($invoice_detail);
