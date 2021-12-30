@@ -226,7 +226,7 @@ class InvoiceController extends Controller
             'invoice_no' => $request->invoice_no,
             'po_number' => $request->po_number,
             'issue_date' => $request->issue_date,
-            'status' => $request->status,
+            // 'status' => $request->status,
             'quotation_id' => $request->quotation_id,
             'total_value' => $request->total_value,
             'discount_in_percentage' => $request->discount_in_percentage,
