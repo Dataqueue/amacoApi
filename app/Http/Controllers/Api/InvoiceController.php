@@ -240,7 +240,7 @@ class InvoiceController extends Controller
         $invoice_details=$request['invoice_details'];
         foreach($invoice_details as $invoice_detail) {
             
-            if ($invoice_detail) {
+            
                 $apikey=  \Config::get('example.key');
                 // $json = json_decode(file_get_contents($path), true);
                 if($invoice_detail['product_id'])
@@ -257,7 +257,8 @@ class InvoiceController extends Controller
                     'id' => $invoice_detail['invoice_id'],
                     // 'quotation_id' => $request->id
                 ])->first();
-               
+               if($invoiceDetail)
+               {
                 $invoiceDetail->update([
                     'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
                 'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:$product->id,
@@ -272,10 +273,11 @@ class InvoiceController extends Controller
                 // 'product_name' => $invoice_detail['product']?$invoice_detail['product']:null,
                 // 'unit_of_measure' => $invoice_detail['unit_of_measure']?$invoice_detail['unit_of_measure']:null,
                 ]);
+            }
 
 
                
-            } else {
+        else {
                 if(!$invoice_detail['product_id'] )
                 {
                    $product=Product::create([
@@ -298,8 +300,9 @@ class InvoiceController extends Controller
 
                 ]);
             }
-            
         }
+            
+        
         // $data['status'] = 'Delivered';
         // $data['delivery_no'] = $this->getDeliveryNo();
         // $invoice->update($data);
