@@ -244,7 +244,7 @@ class InvoiceController extends Controller
                 $apikey=  \Config::get('example.key');
                 // $json = json_decode(file_get_contents($path), true);
                 $arDescription = $invoice_detail['id']?null:json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
-                if(!$invoice_detail['productId'])
+                if(!$invoice_detail['product_id'])
                 {
                    $product=Product::create([
                         'name'=> $invoice_detail['product']
