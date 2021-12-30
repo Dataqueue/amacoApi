@@ -260,7 +260,7 @@ class InvoiceController extends Controller
                 // } 
                 $index++;
             }
-
+            return response($request['invoice_details0']);
     }
 
     /**
