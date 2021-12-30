@@ -227,7 +227,7 @@ class InvoiceController extends Controller
             'po_number' => $request->po_number,
             'issue_date' => $request->issue_date,
             // 'status' => $request->status,
-            'quotation_id' => $request->quotation_id,
+            // 'quotation_id' => $request->quotation_id,
             'total_value' => $request->total_value,
             'discount_in_percentage' => $request->discount_in_percentage,
             'vat_in_value' => $request->vat_in_value,
@@ -235,82 +235,60 @@ class InvoiceController extends Controller
             'delivery_no' => null,
             'party_id' => $request->party_id
         ]);
-        global $_invoice_id;
-        $_invoice_id = $invoice['id'];
-        $invoice_details=$request['invoice_details'];
         $index = 0;
-        while ($request['invoice_details' . $index] != null) {
-            $invoice_detail = (array) json_decode($request['invoice_details' . $index], true);
-            $invoiceDetail = InvoiceDetail::where([
-                'id' => $invoice_detail['invoice_id'],
-                // 'quotation_id' => $request->id
-            ])->first();
-            if($invoiceDetail)
-            {
-                $apikey=  \Config::get('example.key');
-               
-
-                if(!$invoice_detail['product_id'])
-                {
-                   $product=Product::create([
-                        'name'=> $invoice_detail['product']
+            while ($request['invoice_details'] != null) {
+                $invoice_detail = (array) json_decode(json_encode($request['invoice_details'], true));
+                foreach ($request['invoice_details'] as $key => $invoice_detail) {
+                
+                $invoiceDetail = InvoiceDetail::where([
+                    'id' => $invoice_detail['invoice_id'],
+                    // 'quotation_id' => $request->id
+                ])->first();
+                
+                if ($invoiceDetail) {
+                   
+                    $invoiceDetail->update([
+                        'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
+                        'product_id' => $invoice_detail['productId']?$invoice_detail['productId']:$product->id,
+                        'sell_price' => $invoice_detail['sell_price'],
+                        'quantity' => $invoice_detail['quantity'],
+                        'total_amount' => $invoice_detail['total_amount'],
+                        'unit_of_measure' => $invoice_detail['unit_of_measure'],
+                        'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
+                        'arabic_description' => $invoice_detail['arabic_description']?$invoice_detail['arabic_description']:$arDescription->data->translations[0]->translatedText,
+                        'invoice_id' => $_invoice_id,
+                        'purchase_price' => $invoice_detail['purchase_price']?$invoice_detail['purchase_price']:null,
+                       
+    
                     ]);
-                }
-               
-              
-                $invoiceDetail->update([
-                'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
-                'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:$product->id,
-                'sell_price' => $invoice_detail['sell_price'],
-                'quantity' => $invoice_detail['quantity'],
-                'total_amount' => $invoice_detail['total_amount'],
-                'unit_of_measure' => $invoice_detail['unit_of_measure'],
-                'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
-                'arabic_description' => $invoice_detail['arabic_description']?$invoice_detail['arabic_description']:$arDescription->data->translations[0]->translatedText,
-                'invoice_id' => $_invoice_id,
-                'purchase_price' => $invoice_detail['purchase_price']?$invoice_detail['purchase_price']:null,
-                // 'product_name' => $invoice_detail['product']?$invoice_detail['product']:null,
-                // 'unit_of_measure' => $invoice_detail['unit_of_measure']?$invoice_detail['unit_of_measure']:null,
-                ]);
-            }
-
-
-               
-        else {
-            
-                if(!$invoice_detail['product_id'] )
-                {
-                   $product=Product::create([
-                        'name'=> $invoice_detail['description']
+                } else {
+                    if(!$quotation_detail['product_id'])
+                    {
+                       $product=Product::create([
+                            'name'=> $quotation_detail['product']
+                        ]);
+                    }
+                    QuotationDetail::create([
+                        'quotation_id' => $quotation->id,
+                        'total_amount' => $quotation_detail['total_amount'],
+                        // 'analyse_id' => $quotation_detail['analyse_id'],
+                        'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:$product->id,
+                        'purchase_price' => $quotation_detail['purchase_price'],
+                        'description' => $quotation_detail['product'],
+                        'quantity' => $quotation_detail['quantity'],
+                        'margin' => $quotation_detail['margin'],
+                        'sell_price' => $quotation_detail['sell_price'],
+                        'unit_of_measure' => $quotation_detail['unit_of_measure'],
+                        'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:null,
+                       
+    
                     ]);
-                }
-                else
-                {
-                    $arDescription = $invoice_detail['id']?null:json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
-                }
-                InvoiceDetail::create([
-                    'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
-                    'product_id' => $invoice_detail['productId']?$invoice_detail['productId']:$product->id,
-                    'sell_price' => $invoice_detail['sell_price'],
-                    'quantity' => $invoice_detail['quantity'],
-                    'total_amount' => $invoice_detail['total_amount'],
-                    'unit_of_measure' => $invoice_detail['unit_of_measure'],
-                    'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
-                    'arabic_description' => $invoice_detail['arabic_description']?$invoice_detail['arabic_description']:$arDescription->data->translations[0]->translatedText,
-                    'invoice_id' => $_invoice_id,
-                    'purchase_price' => $invoice_detail['purchase_price']?$invoice_detail['purchase_price']:null,
-                    // 'product_name' => $invoice_detail['product']?$invoice_detail['product']:null,
-                    // 'unit_of_measure' => $invoice_detail['unit_of_measure']?$invoice_detail['unit_of_measure']:null,
-
-                ]);
-            }
-        }
-            
+                   
+      
         
-        // $data['status'] = 'Delivered';
-        // $data['delivery_no'] = $this->getDeliveryNo();
-        // $invoice->update($data);
-        return $invoice;
+                    }
+                $index++;
+
     }
 
     /**
