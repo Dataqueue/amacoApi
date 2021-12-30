@@ -223,7 +223,7 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::where('id',$request->id)->first();
         $invoice->update([
-            'invoice_no' => $request->invoice_no,
+            // 'invoice_no' => $request->invoice_no,
             'po_number' => $request->po_number,
             'issue_date' => $request->issue_date,
             // 'status' => $request->status,
