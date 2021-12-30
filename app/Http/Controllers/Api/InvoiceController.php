@@ -235,21 +235,11 @@ class InvoiceController extends Controller
             'delivery_no' => null,
             'party_id' => $request->party_id
         ]);
-        $index = 0;
-        while ($request['invoice_detail' . $index] != null) {
-            $invoice_detail = (array) json_decode($request['invoice_detail' . $index], true);
-            $filePath = null;
+        global $_invoice_id;
+        $_invoice_id = $invoice['id'];
+        $invoice_details=$request['invoice_details'];
+        foreach($invoice_details as $invoice_detail) {
             
-            $invoiceDetail = InvoiceDetail::where([
-                'id' => $invoice_detail['id'],
-                // 'quotation_id' => $request->id
-            ])->first();
-            // if(!$quotation_detail['product_id'])
-            // {
-            //    $product=Product::create([
-            //         'name'=> $quotation_detail['description']
-            //     ]);
-            // }
             if ($invoiceDetail) {
                 $apikey=  \Config::get('example.key');
                 // $json = json_decode(file_get_contents($path), true);
@@ -301,7 +291,7 @@ class InvoiceController extends Controller
 
                 ]);
             }
-            $index++;
+            
         }
         // $data['status'] = 'Delivered';
         // $data['delivery_no'] = $this->getDeliveryNo();
