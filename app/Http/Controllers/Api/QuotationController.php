@@ -425,7 +425,7 @@ class QuotationController extends Controller
             }),
             "rfq" => $quotation->rfq,
             "is_revised" => $quotation->is_revised,
-            "sign" => $quotation->sign,
+            "sign" => $quotation->signature,
             "notes" => $quotation->notes,
             "bank" => $quotation->bank,
             "currency_type" => $quotation->currency_type,

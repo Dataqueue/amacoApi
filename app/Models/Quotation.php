@@ -54,6 +54,10 @@ class Quotation extends Model
     {
         return $this->hasOne(CompanyBank::class, 'id','bank_id');
     }
+    public function signature()
+    {
+        return $this->hasOne(User::class, 'id','sign');
+    }
 
     public function deliveryNote()
     {
