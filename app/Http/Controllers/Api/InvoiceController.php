@@ -245,7 +245,7 @@ class InvoiceController extends Controller
                     // 'quotation_id' => $request->id
                 ])->first();
                 
-                if ($invoiceDetail) {
+                // if ($invoiceDetail) {
                    
                     $invoiceDetail->update([
                         'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
@@ -261,7 +261,7 @@ class InvoiceController extends Controller
                        
     
                     ]);
-                } 
+                // } 
                 $index++;
             }
 
