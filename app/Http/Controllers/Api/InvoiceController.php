@@ -267,7 +267,7 @@ class InvoiceController extends Controller
                     InvoiceDetail::create([
                        
                             // 'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
-                            'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:$product->id,
+                            // 'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:$product->id,
                             'sell_price' => $invoice_detail['sell_price'],
                             'quantity' => $invoice_detail['quantity'],
                             'total_amount' => $invoice_detail['total_amount'],
