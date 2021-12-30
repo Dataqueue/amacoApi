@@ -236,9 +236,9 @@ class InvoiceController extends Controller
             'party_id' => $request->party_id
         ]);
         $index = 0;
-            while ($request['invoice_details'] != null) {
-                $invoice_detail = (array) json_decode(json_encode($request['invoice_details'], true));
-                foreach ($request['invoice_details'] as $key => $invoice_detail) {
+        while ($request['invoice_details' . $index] != null) {
+            $invoice_detail = (array) json_decode($request['invoice_details' . $index], true);
+            
                 
                 $invoiceDetail = InvoiceDetail::where([
                     'id' => $invoice_detail['invoice_id'],
@@ -261,33 +261,9 @@ class InvoiceController extends Controller
                        
     
                     ]);
-                } else {
-                    if(!$quotation_detail['product_id'])
-                    {
-                       $product=Product::create([
-                            'name'=> $quotation_detail['product']
-                        ]);
-                    }
-                    QuotationDetail::create([
-                        'quotation_id' => $quotation->id,
-                        'total_amount' => $quotation_detail['total_amount'],
-                        // 'analyse_id' => $quotation_detail['analyse_id'],
-                        'product_id' => $quotation_detail['product_id']?$quotation_detail['product_id']:$product->id,
-                        'purchase_price' => $quotation_detail['purchase_price'],
-                        'description' => $quotation_detail['product'],
-                        'quantity' => $quotation_detail['quantity'],
-                        'margin' => $quotation_detail['margin'],
-                        'sell_price' => $quotation_detail['sell_price'],
-                        'unit_of_measure' => $quotation_detail['unit_of_measure'],
-                        'product_description' => $quotation_detail['descriptionss']?$quotation_detail['descriptionss']:null,
-                       
-    
-                    ]);
-                   
-      
-        
-                    }
+                } 
                 $index++;
+            }
 
     }
 
