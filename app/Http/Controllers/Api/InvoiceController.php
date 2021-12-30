@@ -243,11 +243,7 @@ class InvoiceController extends Controller
                 $invoiceDetail = InvoiceDetail::where([
                     'id' => $invoice_detail['id'],
                     // 'quotation_id' => $request->id
-                ])->first();
-                
-                // if ($invoiceDetail) {
-                   
-                    $invoiceDetail->update([
+                ])->update([
                         'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
                         'product_id' => $invoice_detail['productId']?$invoice_detail['productId']:$product->id,
                         'sell_price' => $invoice_detail['sell_price'],
