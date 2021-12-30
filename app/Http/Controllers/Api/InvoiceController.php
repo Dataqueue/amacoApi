@@ -235,7 +235,7 @@ class InvoiceController extends Controller
             'delivery_no' => null,
             'party_id' => $request->party_id
         ]);
-
+        $index = 0;
         while ($request['invoice_detail' . $index] != null) {
             $invoice_detail = (array) json_decode($request['invoice_detail' . $index], true);
             $filePath = null;
