@@ -158,6 +158,7 @@ class InvoiceController extends Controller
             //$invoice->quotation->quotationDetail,
             $invoice->invoiceDetail->map(function ($invoice_detail){
                 return [
+                    $invoice_detail['margin']=(((float)$invoice_detail->sell_price)-((float)$invoice_detail->purchase_price)/((float)$invoice_detail->purchase_price))*100,
                     $invoice_detail->quotationDetail,
                     $invoice_detail->product
                 ];
