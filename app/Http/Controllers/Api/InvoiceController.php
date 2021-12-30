@@ -285,7 +285,7 @@ class InvoiceController extends Controller
 
             
                 $i++;
-                return response($invoice_detail);
+               
                 
             }
             
