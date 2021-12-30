@@ -239,8 +239,12 @@ class InvoiceController extends Controller
         $_invoice_id = $invoice['id'];
         $invoice_details=$request['invoice_details'];
         foreach($invoice_details as $invoice_detail) {
-            
-            
+            $invoiceDetail = InvoiceDetail::where([
+                'id' => $invoice_detail['invoice_id'],
+                // 'quotation_id' => $request->id
+            ])->first();
+            if($invoiceDetail)
+            {
                 $apikey=  \Config::get('example.key');
                 // $json = json_decode(file_get_contents($path), true);
                 if($invoice_detail['product_id'])
@@ -253,14 +257,10 @@ class InvoiceController extends Controller
                         'name'=> $invoice_detail['product']
                     ]);
                 }
-                $invoiceDetail = InvoiceDetail::where([
-                    'id' => $invoice_detail['invoice_id'],
-                    // 'quotation_id' => $request->id
-                ])->first();
-               if($invoiceDetail)
-               {
+               
+              
                 $invoiceDetail->update([
-                    'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
+                'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
                 'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:$product->id,
                 'sell_price' => $invoice_detail['sell_price'],
                 'quantity' => $invoice_detail['quantity'],
