@@ -241,7 +241,7 @@ class InvoiceController extends Controller
             
                 
                 $invoiceDetail = InvoiceDetail::where([
-                    'id' => $invoice_detail['invoice_id'],
+                    'id' => $invoice_detail['id'],
                     // 'quotation_id' => $request->id
                 ])->first();
                 
