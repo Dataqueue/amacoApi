@@ -260,7 +260,7 @@ class InvoiceController extends Controller
                 //     ]);
             
                 $i++;
-                return response($temp);
+                return response($invoice_detail);
                 
             }
             
