@@ -240,7 +240,7 @@ class InvoiceController extends Controller
         $invoice_details=$request['invoice_details'];
         foreach($invoice_details as $invoice_detail) {
             
-            if ($invoiceDetail) {
+            if ($invoice_detail) {
                 $apikey=  \Config::get('example.key');
                 // $json = json_decode(file_get_contents($path), true);
                 $arDescription = $invoice_detail['id']?null:json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
@@ -250,6 +250,10 @@ class InvoiceController extends Controller
                         'name'=> $invoice_detail['product']
                     ]);
                 }
+                $invoiceDetail = InvoiceDetail::where([
+                    'id' => $invoice_detail['id'],
+                    // 'quotation_id' => $request->id
+                ])->first();
                
                 $invoiceDetail->update([
                     'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
