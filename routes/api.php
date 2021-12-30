@@ -129,6 +129,7 @@ Route::apiResource('stock', StockController::class);
 Route::post('company_edit',[CompanyController::class,'company_edit']);
 Route::post('rfq-history', [RFQController::class, 'history'])->name('rfq.history');
 Route::post('invoice-history', [InvoiceController::class, 'history'])->name('invoice.history');
+Route::post('Invoiceupdate', [InvoiceController::class, 'Invoiceupdate'])->name('invoice.Invoiceupdate');
 Route::post('quotation-history', [QuotationController::class, 'history'])->name('quotation.history');
 Route::get('categorized-products/{id}',[CategoryController::class, 'categorized_products'])->name('categorized.products');
 Route::get('quotation-po/',[QuotationController::class, 'invoice_list'])->name('invoice.list');

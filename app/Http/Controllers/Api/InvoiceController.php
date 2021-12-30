@@ -219,6 +219,95 @@ class InvoiceController extends Controller
         $invoice->update($data);
         return $invoice;
     }
+    public function Invoiceupdate(Request $request, Invoice $invoice)
+    {
+        $invoice = Invoice::where('id',$request->id)->first();
+        $invoice->update([
+            'invoice_no' => $data['invoice_no'],
+            'po_number' => $data['po_number'],
+            'issue_date' => $data['issue_date'],
+            'status' => $data['status'],
+            'quotation_id' => $data['quotation_id'],
+            'total_value' => $data['total_value'],
+            'discount_in_percentage' => $data['discount_in_percentage'],
+            'vat_in_value' => $data['vat_in_value'],
+            'grand_total' => $data['grand_total'],
+            'delivery_no' => null,
+            'party_id' => $request['party_id']
+        ]);
+
+        while ($request['invoice_detail' . $index] != null) {
+            $invoice_detail = (array) json_decode($request['invoice_detail' . $index], true);
+            $filePath = null;
+            
+            $invoiceDetail = InvoiceDetail::where([
+                'id' => $invoice_detail['id'],
+                // 'quotation_id' => $request->id
+            ])->first();
+            // if(!$quotation_detail['product_id'])
+            // {
+            //    $product=Product::create([
+            //         'name'=> $quotation_detail['description']
+            //     ]);
+            // }
+            if ($invoiceDetail) {
+                $apikey=  \Config::get('example.key');
+                // $json = json_decode(file_get_contents($path), true);
+                $arDescription = $invoice_detail['id']?null:json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
+                if(!$invoice_detail['productId'])
+                {
+                   $product=Product::create([
+                        'name'=> $invoice_detail['product']
+                    ]);
+                }
+               
+                $invoiceDetail->update([
+                    'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
+                'product_id' => $invoice_detail['productId']?$invoice_detail['productId']:$product->id,
+                'sell_price' => $invoice_detail['sell_price'],
+                'quantity' => $invoice_detail['quantity'],
+                'total_amount' => $invoice_detail['total_amount'],
+                'unit_of_measure' => $invoice_detail['unit_of_measure'],
+                'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
+                'arabic_description' => $invoice_detail['arabic_description']?$invoice_detail['arabic_description']:$arDescription->data->translations[0]->translatedText,
+                'invoice_id' => $_invoice_id,
+                'purchase_price' => $invoice_detail['purchase_price']?$invoice_detail['purchase_price']:null,
+                // 'product_name' => $invoice_detail['product']?$invoice_detail['product']:null,
+                // 'unit_of_measure' => $invoice_detail['unit_of_measure']?$invoice_detail['unit_of_measure']:null,
+                ]);
+
+
+               
+            } else {
+                if(!$invoice_detail['product_id'] )
+                {
+                   $product=Product::create([
+                        'name'=> $invoice_detail['description']
+                    ]);
+                }
+                InvoiceDetail::create([
+                    'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
+                    'product_id' => $invoice_detail['productId']?$invoice_detail['productId']:$product->id,
+                    'sell_price' => $invoice_detail['sell_price'],
+                    'quantity' => $invoice_detail['quantity'],
+                    'total_amount' => $invoice_detail['total_amount'],
+                    'unit_of_measure' => $invoice_detail['unit_of_measure'],
+                    'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
+                    'arabic_description' => $invoice_detail['arabic_description']?$invoice_detail['arabic_description']:$arDescription->data->translations[0]->translatedText,
+                    'invoice_id' => $_invoice_id,
+                    'purchase_price' => $invoice_detail['purchase_price']?$invoice_detail['purchase_price']:null,
+                    // 'product_name' => $invoice_detail['product']?$invoice_detail['product']:null,
+                    // 'unit_of_measure' => $invoice_detail['unit_of_measure']?$invoice_detail['unit_of_measure']:null,
+
+                ]);
+            }
+            $index++;
+        }
+        // $data['status'] = 'Delivered';
+        // $data['delivery_no'] = $this->getDeliveryNo();
+        // $invoice->update($data);
+        return $invoice;
+    }
 
     /**
      * Remove the specified resource from storage.
