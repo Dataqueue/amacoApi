@@ -264,7 +264,7 @@ class InvoiceController extends Controller
 
                 }
                 else{
-                    InvoiceCreate::create([
+                    InvoiceDetail::create([
                        
                             // 'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
                             'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:$product->id,
