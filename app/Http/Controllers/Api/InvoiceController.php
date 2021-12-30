@@ -223,17 +223,17 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::where('id',$request->id)->first();
         $invoice->update([
-            'invoice_no' => $data['invoice_no'],
-            'po_number' => $data['po_number'],
-            'issue_date' => $data['issue_date'],
-            'status' => $data['status'],
-            'quotation_id' => $data['quotation_id'],
-            'total_value' => $data['total_value'],
-            'discount_in_percentage' => $data['discount_in_percentage'],
-            'vat_in_value' => $data['vat_in_value'],
-            'grand_total' => $data['grand_total'],
+            'invoice_no' => $request->invoice_no,
+            'po_number' => $request->po_number,
+            'issue_date' => $request->issue_date,
+            'status' => $request->status,
+            'quotation_id' => $request->quotation_id,
+            'total_value' => $request->total_value,
+            'discount_in_percentage' => $request->discount_in_percentage,
+            'vat_in_value' => $request->vat_in_value,
+            'grand_total' => $request->grand_total,
             'delivery_no' => null,
-            'party_id' => $request['party_id']
+            'party_id' => $request->party_id
         ]);
 
         while ($request['invoice_detail' . $index] != null) {
