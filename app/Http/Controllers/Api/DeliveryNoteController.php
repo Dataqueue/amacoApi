@@ -129,6 +129,53 @@ class DeliveryNoteController extends Controller
         // return response->json(['msg'=>"successfully added"]);
         return response("Success");
     }
+    public function invoce_note(Request $request)
+    {
+        $quotation = Invoice::where('id', $request->invoice_id)->first();
+
+        $lastDeliveryNote = DeliveryNote::where([
+            'invoice_id' => $request->invoice_id,
+        ])->latest('created_at')->first();
+
+        $deliveryNo = null;
+        if($request->is_partial){
+            if($lastDeliveryNote){
+                $deliveryNo = $this->getDeliveryNo($lastDeliveryNote->delivery_number);
+            }else{
+                $deliveryNo = $this->getDeliveryNo($this->getDeliveryNo());
+            }
+        }else{
+            if (!$lastDeliveryNote) {
+                $deliveryNo = $this->getDeliveryNo();
+            }else{
+                $deliveryNo = $this->getDeliveryNo($lastDeliveryNote->delivery_number, !$request->is_partial);
+            }
+
+        }
+
+        $data = [
+            'invoice_id' => $request->invoice_id,
+            'delivery_number' => $deliveryNo ,
+            'po_number' => $quotation->po_number,
+            'delivery_date' => $request->delivery_date,
+        ];
+
+        $deliveryNote = DeliveryNote::create($data);
+
+        foreach ($request->delivery_note_details as $deliveryNoteDetail) {
+            if (isset($deliveryNoteDetail['delivering_quantity'])) {
+                $deliveryNoteDetailData = [
+                    'delivery_note_id' => $deliveryNote->id,
+                    'product_id' => $deliveryNoteDetail['product_id'],
+                    'delivered_quantity' => $deliveryNoteDetail['delivering_quantity'],
+                ];
+                $deliveryNoteDetails = DeliveryNoteDetail::create($deliveryNoteDetailData);
+            }
+        };
+
+        // return response->json(['msg'=>"successfully added"]);
+        return response("Success");
+    }
 
     /**
      * Display the specified resource.
