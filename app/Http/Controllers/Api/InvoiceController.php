@@ -292,7 +292,7 @@ class InvoiceController extends Controller
                             'unit_of_measure' => $invoice_detail['unit_of_measure'],
                             'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
                             'arabic_description' => $invoice_detail['arabic_description']?$invoice_detail['arabic_description']:$arDescription->data->translations[0]->translatedText,
-                            'invoice_id' => $invoice_detail->id,
+                            'invoice_id' => $invoiceDetail->id,
                             'purchase_price' => $invoice_detail['purchase_price']?$invoice_detail['purchase_price']:null,
                            
         
