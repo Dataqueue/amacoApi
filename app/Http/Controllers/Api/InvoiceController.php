@@ -249,14 +249,15 @@ class InvoiceController extends Controller
                 $invoiceDetail = InvoiceDetail::where('id', $invoice_detail['id'])->first();
                 if($invoiceDetail)
                 {
-                    $product_exist=Product::where('name','=',$invoice_detail['description'])->get();
-                    
-                    if(!$invoice_detail['product_id'] && $product_exist)
+                  
+                    if(!$invoice_detail['product_id'])
                     {
+                    $product_exist=Product::where('name','=',$invoice_detail['description'])->get();
+                        if(!$product_exist){
                        $product=Product::create([
                             'name'=> $invoice_detail['product']
                         ]);
-                       
+                        }  
                     }
                     $arDescription = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['description']).'&target=ar'));
                     $invoiceDetail->update([
@@ -278,12 +279,14 @@ class InvoiceController extends Controller
                 else{
                     $product_exist=Product::where(['name','=',$invoice_detail['description']])->get();
                     
-                    if(!$invoice_detail['product_id'] && $product_exist)
+                    if(!$invoice_detail['product_id'])
                     {
+                    $product_exist=Product::where('name','=',$invoice_detail['description'])->get();
+                        if(!$product_exist){
                        $product=Product::create([
                             'name'=> $invoice_detail['product']
                         ]);
-                       
+                        }  
                     }
                     $arDescription = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['description']).'&target=ar'));
                     InvoiceDetail::create([
