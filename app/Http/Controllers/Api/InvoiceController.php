@@ -257,6 +257,10 @@ class InvoiceController extends Controller
                        $product=Product::create([
                             'name'=> $invoice_detail['product']
                         ]);
+                        }
+                        else
+                        {
+                            $product=null;
                         }  
                     }
                     $arDescription = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['description']).'&target=ar'));
