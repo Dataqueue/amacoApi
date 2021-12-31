@@ -188,14 +188,14 @@ class DeliveryNoteController extends Controller
     public function show(DeliveryNote $deliveryNote)
     {
         $data = [
-            // $deliveryNote->deliveryNoteDetail->map(function ($deliveryNoteDetailItem) {
-            //     return $deliveryNoteDetailItem->showDeliveredNoteDetail($deliveryNoteDetailItem->id);
-            // }),
+            $deliveryNote->deliveryNoteDetail->map(function ($deliveryNoteDetailItem) {
+                return $deliveryNoteDetailItem->showDeliveredNoteDetail($deliveryNoteDetailItem->id);
+            }),
             $deliveryNote,
             $deliveryNote->quotation,
             $deliveryNote->invoice,
-            // $deliveryNote->quotation->contact,
-            // $deliveryNote->quotation->party,
+            $deliveryNote->quotation->contact,
+            $deliveryNote->quotation->party,
 
         ];
 
