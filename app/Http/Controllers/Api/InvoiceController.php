@@ -233,7 +233,8 @@ class InvoiceController extends Controller
             'vat_in_value' => $request->vat_in_value,
             'grand_total' => $request->grand_total,
             'delivery_no' => null,
-            'party_id' => $request->party_id
+            'party_id' => $request->party_id,
+            'contact_id' => $request->contact_id
         ]);
         $temp = json_decode($request['invoice_details'], true);
         $i = 0;
