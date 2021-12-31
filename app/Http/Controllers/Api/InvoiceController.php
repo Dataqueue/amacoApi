@@ -221,6 +221,7 @@ class InvoiceController extends Controller
     }
     public function Invoiceupdate(Request $request, Invoice $invoice)
     {
+        $apikey=  \Config::get('example.key');
         $invoice = Invoice::where('id',$request->id)->first();
         
         
