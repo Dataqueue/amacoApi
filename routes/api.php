@@ -196,7 +196,7 @@ Route::get('responseData', [AccountStatementController::class, 'responseData']);
 Route::get('accountcategories/{id}', [AccountCategoryController::class, 'accountcategories']);
 Route::put('accountEdit/{id}', [AccountCategoryController::class, 'accountEdit']);
 // Invoice delivery note
-Route::post('invoce_note', [InvoiceController::class, 'invoce_note']);
+Route::post('invoce_note', [DeliveryNoteController::class, 'invoce_note']);
 
 //purchase Return API's
 
