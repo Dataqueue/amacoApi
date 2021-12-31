@@ -299,7 +299,7 @@ class InvoiceController extends Controller
                     $arDescription = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['description']).'&target=ar'));
                     InvoiceDetail::create([
                        
-                            // 'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
+                            'quotation_detail_id' => $invoice['quotation_id']?$invoice['quotation_id']:null,
                             'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:($product?$product->id:null),
                             'sell_price' => $invoice_detail['sell_price'],
                             'quantity' => $invoice_detail['quantity'],
