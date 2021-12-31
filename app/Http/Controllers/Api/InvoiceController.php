@@ -222,6 +222,15 @@ class InvoiceController extends Controller
     public function Invoiceupdate(Request $request, Invoice $invoice)
     {
         $invoice = Invoice::where('id',$request->id)->first();
+        
+        if(!$invoice_detail['product_id'])
+        {
+           $product=Product::create([
+                'name'=> $invoice_detail['product']
+            ]);
+            $arDescription = $invoice_detail['id']?null:json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
+        }
+       
         $invoice->update([
             // 'invoice_no' => $request->invoice_no,
             'po_number' => $request->po_number,
