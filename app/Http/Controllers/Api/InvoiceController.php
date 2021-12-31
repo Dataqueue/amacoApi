@@ -252,7 +252,7 @@ class InvoiceController extends Controller
                   
                     if(!$invoice_detail['product_id'])
                     {
-                    $product_exist=Product::where('name','=',$invoice_detail['description'])->get();
+                    $product_exist=Product::where('name','=',$invoice_detail['name'])->get();
                         if(!$product_exist){
                        $product=Product::create([
                             'name'=> $invoice_detail['product']
@@ -277,11 +277,11 @@ class InvoiceController extends Controller
 
                 }
                 else{
-                    $product_exist=Product::where(['name','=',$invoice_detail['description']])->get();
+                   
                     
                     if(!$invoice_detail['product_id'])
                     {
-                    $product_exist=Product::where('name','=',$invoice_detail['description'])->get();
+                    $product_exist=Product::where('name','=',$invoice_detail['name'])->get();
                         if(!$product_exist){
                        $product=Product::create([
                             'name'=> $invoice_detail['product']
