@@ -194,7 +194,7 @@ class DeliveryNoteController extends Controller
             $deliveryNote,
             $deliveryNote->quotation,
             $deliveryNote->invoice,
-            $deliveryNote->quotation->contact,
+            // $deliveryNote->quotation->contact,
             $deliveryNote->quotation->party,
 
         ];

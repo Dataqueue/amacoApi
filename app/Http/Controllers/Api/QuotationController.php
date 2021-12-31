@@ -331,12 +331,14 @@ class QuotationController extends Controller
                     if ($request->file('file' . $index)) {
                         $filePath = $request->file('file' . $index)->move('quotation/quotation_detail/' . $quotation_id);
                     }
-                    // if(!$quotation_detail['product_id'])
-                    // {
-                    //    $product=Product::create([
-                    //         'name'=> $quotation_detail['description']
-                    //     ]);
-                    // }
+                    if(!$quotation_detail['product_id'])
+                    {
+                       $product=Product::create([
+                            'name'=> $quotation_detail['descriptionss'],
+                            'description'=> $quotation_detail['description'],
+                            'unit_of_measure'=> $quotation_detail['unit_of_measure']
+                        ]);
+                    }
                     QuotationDetail::create([
                         'quotation_id' => $quotation_id,
                         'total_amount' => $quotation_detail['total_amount'],
