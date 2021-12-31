@@ -161,7 +161,7 @@ class InvoiceController extends Controller
                     $invoice_detail['margin']=((((float)$invoice_detail->sell_price)-((float)$invoice_detail->purchase_price))/((float)
                     
                     $invoice_detail->purchase_price))*100,
-                    $invoice_detail['delivered_quantity']=$invoice_detail->quantity,
+                    $invoice_detail['delivered_quantity']=0,
                     $invoice_detail->quotationDetail,
                     $invoice_detail->product
                 ];
