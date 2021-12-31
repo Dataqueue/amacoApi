@@ -246,10 +246,7 @@ class InvoiceController extends Controller
            
            
                 
-                $invoiceDetail = InvoiceDetail::where([
-                    'invoice_id' => $invoice_detail['invoice_id']?$invoice_detail['invoice_id']:null,
-                    
-                ])->first();
+                $invoiceDetail = InvoiceDetail::where('invoice_id', $invoice_detail['invoice_id'])->first();
                 if($invoiceDetail)
                 {
                     if(!$invoice_detail['product_id'])
@@ -260,7 +257,7 @@ class InvoiceController extends Controller
                        
                     }
                     $arDescription = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['description']).'&target=ar'));
-                $invoiceDetail->update([
+                    $invoiceDetail->update([
                         // 'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
                         'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:$product->id,
                         'sell_price' => $invoice_detail['sell_price'],
