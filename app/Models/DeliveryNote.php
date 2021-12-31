@@ -20,4 +20,8 @@ class DeliveryNote extends Model
     {
         return $this->hasOne(Quotation::class,'id', 'quotation_id');
     }
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class,'id', 'invoice_id');
+    }
 }
