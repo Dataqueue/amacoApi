@@ -244,14 +244,7 @@ class InvoiceController extends Controller
         $i = 0;
         foreach ((array) $temp as $invoice_detail) {
            
-            if(!$invoice_detail['product_id'])
-        {
-           $product=Product::create([
-                'name'=> $invoice_detail['product']
-            ]);
            
-        }
-        $arDescription = $invoice_detail['id']?null:json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
                 
                 $invoiceDetail = InvoiceDetail::where([
                     'id' => $invoice_detail['quotation_detail_id']?$invoice_detail['quotation_detail_id']:null,
@@ -259,6 +252,14 @@ class InvoiceController extends Controller
                 ])->first();
                 if($invoiceDetail)
                 {
+                    if(!$invoice_detail['product_id'])
+                    {
+                       $product=Product::create([
+                            'name'=> $invoice_detail['product']
+                        ]);
+                       
+                    }
+                    $arDescription = json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
                 $invoiceDetail->update([
                         // 'quotation_detail_id' => $invoice_detail['id']?$invoice_detail['id']:null,
                         'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:$product->id,
