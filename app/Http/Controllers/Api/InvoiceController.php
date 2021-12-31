@@ -246,7 +246,7 @@ class InvoiceController extends Controller
            
            
                 
-                $invoiceDetail = InvoiceDetail::where('invoice_id', $invoice_detail['invoice_id'])->first();
+                $invoiceDetail = InvoiceDetail::where('id', $invoice_detail['id'])->first();
                 if($invoiceDetail)
                 {
                     if(!$invoice_detail['product_id'])
