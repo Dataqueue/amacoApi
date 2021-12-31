@@ -350,4 +350,5 @@ class InvoiceController extends Controller
         });
         return $invoices;
     }
+    
 }

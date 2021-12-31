@@ -58,8 +58,14 @@ class InvoiceDetailController extends Controller
      * @param  \App\Models\InvoiceDetail  $invoiceDetail
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InvoiceDetail $invoiceDetail)
+    public function destroy($id)
     {
         //
+        $invoice = InvoiceDetail::where('id', $id)->first();
+
+        $res = $invoice->delete();
+        if ($res) {
+            return (['msg' => 'invoice' . ' ' . $invoice->id . ' is successfully deleted']);
+        }
     }
 }
