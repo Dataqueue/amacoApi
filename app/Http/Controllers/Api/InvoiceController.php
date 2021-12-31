@@ -276,7 +276,7 @@ class InvoiceController extends Controller
 
                 }
                 else{
-                    $product_exist=Product::where('name','=',$invoice_detail['description'])->fist();
+                    $product_exist=Product::where(['name','=',$invoice_detail['description']])->get();
                     
                     if(!$invoice_detail['product_id'] && $product_exist)
                     {
