@@ -223,13 +223,7 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::where('id',$request->id)->first();
         
-        if(!$invoice_detail['product_id'])
-        {
-           $product=Product::create([
-                'name'=> $invoice_detail['product']
-            ]);
-            $arDescription = $invoice_detail['id']?null:json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
-        }
+        
        
         $invoice->update([
             // 'invoice_no' => $request->invoice_no,
@@ -249,7 +243,13 @@ class InvoiceController extends Controller
         $i = 0;
         foreach ((array) $temp as $invoice_detail) {
            
-            
+            if(!$invoice_detail['product_id'])
+        {
+           $product=Product::create([
+                'name'=> $invoice_detail['product']
+            ]);
+            $arDescription = $invoice_detail['id']?null:json_decode(file_get_contents('https://translation.googleapis.com/language/translate/v2?key='.$apikey.'&q='.urlencode($invoice_detail['product']).'&target=ar'));
+        }
                 
                 $invoiceDetail = InvoiceDetail::where([
                     'id' => $invoice_detail['quotation_detail_id']?$invoice_detail['quotation_detail_id']:null,
