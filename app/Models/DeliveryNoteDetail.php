@@ -47,26 +47,26 @@ class DeliveryNoteDetail extends Model
     {
         $delivery_notes_detail = DeliveryNoteDetail::where('id',$id)->first();
 
-        $totalDeliveryNoteDetails = DeliveryNoteDetail::where([
-            'delivery_note_id' => $delivery_notes_detail->delivery_note_id,
-            'product_id' => $delivery_notes_detail->product_id,
-        ])->get();
+        // $totalDeliveryNoteDetails = DeliveryNoteDetail::where([
+        //     'delivery_note_id' => $delivery_notes_detail->delivery_note_id,
+        //     'product_id' => $delivery_notes_detail->product_id,
+        // ])->get();
 
-        if($delivery_notes_detail->quotation_id)
-        {
-        $quotationDetail = QuotationDetail::where([
-            'quotation_id' => $delivery_notes_detail->deliveryNote->quotation_id,
-            'product_id' => $delivery_notes_detail->product_id,
-        ])->firstOrFail();
-        }
-        else{
+        // if($delivery_notes_detail->quotation_id)
+        // {
+        // $quotationDetail = QuotationDetail::where([
+        //     'quotation_id' => $delivery_notes_detail->deliveryNote->quotation_id,
+        //     'product_id' => $delivery_notes_detail->product_id,
+        // ])->firstOrFail();
+        // }
+        // else{
 
        
-        $invoiceDetail = InvoiceDetail::where([
-            'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
-            'product_id' => $delivery_notes_detail->product_id,
-        ])->firstOrFail();
-        }
+        // $invoiceDetail = InvoiceDetail::where([
+        //     'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
+        //     'product_id' => $delivery_notes_detail->product_id,
+        // ])->firstOrFail();
+        // }
 
         // $totalDeliveredQuantity = $this->getTotalDeliveredQuantity($totalDeliveryNoteDetails);
         // $totalDeliveredQuantity = $quotationDetail->getDeliveredQuantity($quotationDetail);
