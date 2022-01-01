@@ -30,12 +30,13 @@ class DeliveryNoteDetail extends Model
         // $totalDeliveryNoteDetail = 0;
         // if(isset($val)) {
         //     foreach ((array)$val as $item) {
-        //         $totalDeliveryNoteDetail += intval($item->delivered_quantity);
+        //         $totalDeliveryNoteDetail += intval($item['delivered_quantity']);
                
         //     }
         //     return $totalDeliveryNoteDetail;
         // }
-        return $val;
+        // return 0;
+        $val;
     }
 
     // there is no need for this
@@ -80,13 +81,13 @@ class DeliveryNoteDetail extends Model
         // }
 
         $data = [
-            // "total_quantity" => $quotationDetail->quantity, //$totalQuantity =
-            // // "total_delivered_quantity" => $totalDeliveredQuantity,
-            // "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
-            // "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
-            // "delivery_notes_detail" => $delivery_notes_detail,
-            // "product" => array($delivery_notes_detail->product),
-            "total" => $totalDeliveredQuantity,
+            "total_quantity" => $quotationDetail->quantity, //$totalQuantity =
+            // "total_delivered_quantity" => $totalDeliveredQuantity,
+            "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
+            "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
+            "delivery_notes_detail" => $delivery_notes_detail,
+            "product" => array($delivery_notes_detail->product),
+            "NEWARRY" =>  $totalDeliveredQuantity,
             // "quotation" => $delivery_notes_detail->deliveryNote->quotation,
             // "delivery_note" => $delivery_notes_detail->deliveryNote,
             // "party" => $delivery_notes_detail->deliveryNote->quotation->party,
