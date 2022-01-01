@@ -190,7 +190,7 @@ class DeliveryNoteController extends Controller
     {
         $data = [
             $deliveryNote->deliveryNoteDetail->map(function ($deliveryNoteDetailItem) {
-                return $deliveryNoteDetailItem->showDeliveredNoteDetail($deliveryNoteDetailItem->id, $deliveryNote->quotation?$deliveryNote->quotation->quotationDetail:$deliveryNote->invoice->invoiceDetail);
+                return $deliveryNoteDetailItem->showDeliveredNoteDetail($deliveryNoteDetailItem->id);
             }),
             $deliveryNote,
             $deliveryNote->quotation?$deliveryNote->quotation:null,
