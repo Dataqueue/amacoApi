@@ -586,9 +586,17 @@ class QuotationController extends Controller
             } else {
                 if(!$quotation_detail['product_id'] )
                 {
-                   $product=Product::create([
-                        'name'=> $quotation_detail['description']
-                    ]);
+                    $product_exist=Product::where('name','=',$quotation_detail['description'])->first();
+                    if(!$product_exist){
+                        $product=Product::create([
+                            'name'=> $quotation_detail['description']
+                        ]);
+                    }
+                    else
+                    {
+                        $product=null;
+                    }  
+                   
                 }
                 QuotationDetail::create([
                     'quotation_id' => $quotation->id,
