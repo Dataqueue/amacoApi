@@ -333,11 +333,19 @@ class QuotationController extends Controller
                     }
                     if(!$quotation_detail['product_id'])
                     {
-                       $product=Product::create([
-                            'name'=> $quotation_detail['descriptionss'],
-                            'description'=> $quotation_detail['description'],
-                            'unit_of_measure'=> $quotation_detail['unit_of_measure']
-                        ]);
+                        $product_exist=Product::where('name','=',$quotation_detail['descriptionss'])->first();
+                        if(!$product_exist){
+                            $product=Product::create([
+                                'name'=> $quotation_detail['descriptionss'],
+                                'description'=> $quotation_detail['description'],
+                                'unit_of_measure'=> $quotation_detail['unit_of_measure']
+                            ]);
+                        }
+                        else
+                        {
+                            $product=null;
+                        }  
+                      
                     }
                     QuotationDetail::create([
                         'quotation_id' => $quotation_id,
