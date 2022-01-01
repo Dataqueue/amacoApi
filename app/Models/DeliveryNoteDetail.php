@@ -36,7 +36,7 @@ class DeliveryNoteDetail extends Model
         //     return $totalDeliveryNoteDetail;
         // }
         // return 0;
-        $val;
+        return $val;
     }
 
     // there is no need for this
