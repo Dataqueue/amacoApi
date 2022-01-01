@@ -20,10 +20,7 @@ class DeliveryNote extends Model
     {
         return $this->hasOne(Quotation::class,'id', 'quotation_id');
     }
-    public function quotationDetail()
-    {
-        return $this->belongsTo(QuotationDetail::class);
-    }
+   
     public function invoice()
     {
         return $this->hasOne(Invoice::class,'id', 'invoice_id');
