@@ -58,7 +58,7 @@ class DeliveryNoteDetail extends Model
             'quotation_id' => $delivery_notes_detail->deliveryNote->quotation_id,
             'product_id' => $delivery_notes_detail->product_id,
         ])->firstOrFail();
-        return [$delivery_notes_detail->quotation_id?$delivery_notes_detail->quotation_id:$delivery_notes_detail->invoice_id];
+        return [$quotationDetail];
         }
         if($delivery_notes_detail->invoice_id)
         {
@@ -67,7 +67,7 @@ class DeliveryNoteDetail extends Model
             'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
             'product_id' => $delivery_notes_detail->product_id,
         ])->firstOrFail();
-        return [$delivery_notes_detail->quotation_id?$delivery_notes_detail->quotation_id:$delivery_notes_detail->invoice_id];
+        return [$quotationDetail];
         }
 
         // $totalDeliveredQuantity = $this->getTotalDeliveredQuantity($totalDeliveryNoteDetails);
