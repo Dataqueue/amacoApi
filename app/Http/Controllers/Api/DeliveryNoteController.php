@@ -192,8 +192,8 @@ class DeliveryNoteController extends Controller
                 return $deliveryNoteDetailItem->showDeliveredNoteDetail($deliveryNoteDetailItem->id);
             }),
             $deliveryNote,
-            $deliveryNote->quotation,
-            $deliveryNote->invoice,
+            $deliveryNote->quotation?$deliveryNote->quotation:null,
+            $deliveryNote->invoice?$deliveryNote->invoice:null,
             // $deliveryNote->quotation->contact,
             $deliveryNote->quotation->party,
 
