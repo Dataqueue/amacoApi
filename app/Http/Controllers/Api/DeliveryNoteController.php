@@ -127,7 +127,7 @@ class DeliveryNoteController extends Controller
                     'product_id' => $deliveryNoteDetail['product_id'],
                     'delivered_quantity' => $deliveryNoteDetail['delivering_quantity'],
                     'total_qty' => $deliveryNoteDetail['quantity'],
-                    'delivering_qty' => $deliveryNoteDetail['delivering_quantity'],
+                    'delivering_qty' => $deliveryNoteDetail['quantity']-$deliveryNoteDetail['delivering_quantity'],
                 ];
                 $deliveryNoteDetails = DeliveryNoteDetail::create($deliveryNoteDetailData);
             }
@@ -176,7 +176,7 @@ class DeliveryNoteController extends Controller
                     'product_id' => $deliveryNoteDetail['product_id'],
                     'delivered_quantity' => $deliveryNoteDetail['delivering_quantity'],
                     'total_qty' => $deliveryNoteDetail['quantity'],
-                    'delivering_qty' => $deliveryNoteDetail['delivering_quantity'],
+                    'delivering_qty' => $deliveryNoteDetail['quantity']-$deliveryNoteDetail['delivering_quantity'],
                 ];
                 $deliveryNoteDetails = DeliveryNoteDetail::create($deliveryNoteDetailData);
             }
