@@ -81,12 +81,12 @@ class DeliveryNoteDetail extends Model
         // }
 
         $data = [
-            "total_quantity" => $quotationDetail->quantity, //$totalQuantity =
-            // "total_delivered_quantity" => $totalDeliveredQuantity,
-            "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
-            "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
-            "delivery_notes_detail" => $delivery_notes_detail,
-            "product" => array($delivery_notes_detail->product),
+            // "total_quantity" => $quotationDetail->quantity, //$totalQuantity =
+            // // "total_delivered_quantity" => $totalDeliveredQuantity,
+            // "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
+            // "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
+            // "delivery_notes_detail" => $delivery_notes_detail,
+            // "product" => array($delivery_notes_detail->product),
             "NEWARRY" =>  $totalDeliveredQuantity,
             // "quotation" => $delivery_notes_detail->deliveryNote->quotation,
             // "delivery_note" => $delivery_notes_detail->deliveryNote,
