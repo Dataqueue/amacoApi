@@ -86,7 +86,7 @@ class DeliveryNoteDetailController extends Controller
         $totalDeliveredQuantity = $this->getTotalDeliveredQuantity($totalDeliveryNoteDetail);
 
         $data = [
-            "total_quantity"=>$totalQuantity = $quotationDetail->quantity,
+            "total_quantity"=>$quotationDetail->quantity,
             "total_delivered_quantity"=>$totalDeliveredQuantity,
             'balance_quantity' => $this->getBalanceQuantity($totalQuantity, $totalDeliveredQuantity),
             "delivery_notes_detail"=>$delivery_notes_detail,
