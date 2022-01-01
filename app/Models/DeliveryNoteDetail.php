@@ -99,7 +99,7 @@ class DeliveryNoteDetail extends Model
             "total_quantity" => $delivery_notes_detail->total_qty, //$totalQuantity =
             //  "total_delivered_quantity" => $totalDeliveredQuantity,
             "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
-            "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
+            "delivering_quantity" => $delivery_notes_detail->delivering_qty,
             "delivery_notes_detail" => $delivery_notes_detail,
             "product" => array($delivery_notes_detail->product),
             
