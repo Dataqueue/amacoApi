@@ -62,7 +62,7 @@ class DeliveryNoteDetail extends Model
         else{
 
        
-        $invoiceDetail = InvoiceDetail::where([
+        $quotationDetail = InvoiceDetail::where([
             'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
             'product_id' => $delivery_notes_detail->product_id,
         ])->firstOrFail();
