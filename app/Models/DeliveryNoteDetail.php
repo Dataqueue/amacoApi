@@ -48,7 +48,7 @@ class DeliveryNoteDetail extends Model
 
     public function showDeliveredNoteDetail($id)
     {
-        global $quotationDetail;
+        global $totalQty;
         $delivery_notes_detail = DeliveryNoteDetail::where('id',$id)->first();
 
         $totalDeliveryNoteDetails = DeliveryNoteDetail::where([
