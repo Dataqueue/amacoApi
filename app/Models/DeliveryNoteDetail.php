@@ -28,15 +28,16 @@ class DeliveryNoteDetail extends Model
     public function getTotalDeliveredQuantity($val)
     {
         // $totalDeliveryNoteDetail = 0;
-        // if(isset($val)) {
-        //     foreach ((array)$val as $item) {
-        //         $totalDeliveryNoteDetail += intval($item['delivered_quantity']);
+        $data[]=$val->toArray();
+        if(isset($val)) {
+            foreach ($data as $item) {
+                $totalDeliveryNoteDetail += intval($item['delivered_quantity']);
                
-        //     }
-        //     return $totalDeliveryNoteDetail;
-        // }
-        // return 0;
-        return $val->toArray();
+            }
+            return $totalDeliveryNoteDetail;
+        }
+        return 0;
+        // return $->toArray();
     }
 
     // there is no need for this
