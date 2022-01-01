@@ -103,7 +103,7 @@ class DeliveryNoteDetail extends Model
             "delivery_notes_detail" => $delivery_notes_detail,
             "product" => array($delivery_notes_detail->product),
             
-            // "quotation" => $delivery_notes_detail->deliveryNote->quotation,
+            "quotation" => $delivery_notes_detail->deliveryNote->quotation,
             // "delivery_note" => $delivery_notes_detail->deliveryNote,
             // "party" => $delivery_notes_detail->deliveryNote->quotation->party,
             // 'balance_quantity' => $this->getBalanceQuantity($totalQuantity, $totalDeliveredQuantity), //not required anymore
