@@ -71,7 +71,7 @@ class DeliveryNoteDetail extends Model
         }
 
         // $totalDeliveredQuantity = $this->getTotalDeliveredQuantity($totalDeliveryNoteDetails);
-        $totalDeliveredQuantity =$this->getTotalDeliveredQuantity($quotationDetail->$delivery_notes_detail);
+        $totalDeliveredQuantity =$this->getTotalDeliveredQuantity($delivery_notes_detail);
         // if(isset($totalDeliveredQuantity)){
         //     $totalDeliveredQuantityExceptCurrentValue = $totalDeliveredQuantity - intval($delivery_notes_detail->delivered_quantity) ;
         // }else{
