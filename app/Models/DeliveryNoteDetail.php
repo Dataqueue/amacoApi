@@ -62,14 +62,14 @@ class DeliveryNoteDetail extends Model
         else{
 
        
-        $quotationDetail = InvoiceDetail::where([
+        $invoiceDetail = InvoiceDetail::where([
             'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
             'product_id' => $delivery_notes_detail->product_id,
         ])->firstOrFail();
         }
 
         // $totalDeliveredQuantity = $this->getTotalDeliveredQuantity($totalDeliveryNoteDetails);
-        $totalDeliveredQuantity = $quotationDetail->getTotalDeliveredQuantity($quotationDetail);
+        $totalDeliveredQuantity = $quotationDetail->getDeliveredQuantity($quotationDetail);
         if(isset($totalDeliveredQuantity)){
             $totalDeliveredQuantityExceptCurrentValue = $totalDeliveredQuantity - intval($delivery_notes_detail->delivered_quantity) ;
         }else{
