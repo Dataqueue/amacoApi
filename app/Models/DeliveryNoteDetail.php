@@ -89,7 +89,7 @@ class DeliveryNoteDetail extends Model
         //     // 'balance_quantity' => $this->getBalanceQuantity($totalQuantity, $totalDeliveredQuantity), //not required anymore
         // ];
 
-        return [$quotationDetail];
+        return [$delivery_notes_detail];
     }
 }
 
