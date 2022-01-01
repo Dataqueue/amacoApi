@@ -27,15 +27,15 @@ class DeliveryNoteDetail extends Model
     // to get total delivered quantity
     public function getTotalDeliveredQuantity($val)
     {
-        $totalDeliveryNoteDetail = 0;
-        if(isset($val)) {
-            foreach ((array)$val as $item) {
-                $totalDeliveryNoteDetail += intval($item[0]->delivered_quantity);
+        // $totalDeliveryNoteDetail = 0;
+        // if(isset($val)) {
+        //     foreach ((array)$val as $item) {
+        //         $totalDeliveryNoteDetail += intval($item->delivered_quantity);
                
-            }
-            return $totalDeliveryNoteDetail;
-        }
-        return 0;
+        //     }
+        //     return $totalDeliveryNoteDetail;
+        // }
+        return $val;
     }
 
     // there is no need for this
@@ -86,6 +86,7 @@ class DeliveryNoteDetail extends Model
             "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
             "delivery_notes_detail" => $delivery_notes_detail,
             "product" => array($delivery_notes_detail->product),
+            "total" => $totalDeliveredQuantity,
             // "quotation" => $delivery_notes_detail->deliveryNote->quotation,
             // "delivery_note" => $delivery_notes_detail->deliveryNote,
             // "party" => $delivery_notes_detail->deliveryNote->quotation->party,
