@@ -52,10 +52,21 @@ class DeliveryNoteDetail extends Model
             'product_id' => $delivery_notes_detail->product_id,
         ])->get();
 
+        if($delivery_notes_detail->quotation_id)
+        {
         $quotationDetail = QuotationDetail::where([
             'quotation_id' => $delivery_notes_detail->deliveryNote->quotation_id,
             'product_id' => $delivery_notes_detail->product_id,
         ])->firstOrFail();
+        }
+        else{
+
+       
+        $quotationDetail = InvoiceDetail::where([
+            'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
+            'product_id' => $delivery_notes_detail->product_id,
+        ])->firstOrFail();
+        }
 
         // $totalDeliveredQuantity = $this->getTotalDeliveredQuantity($totalDeliveryNoteDetails);
         $totalDeliveredQuantity = $quotationDetail->getDeliveredQuantity($quotationDetail);
