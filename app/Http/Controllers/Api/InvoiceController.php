@@ -162,6 +162,7 @@ class InvoiceController extends Controller
                     
                     $invoice_detail->purchase_price))*100,
                     $invoice_detail['delivered_quantity']=$invoice_detail->getDelivered_invoice_Quantity($invoice_detail),
+                    $invoice_detail['balance'] => (int)$invoice_detail->quantity - (int)$invoice_detail->getDelivered_invoice_Quantity($invoice_detail),
                     $invoice_detail->quotationDetail,
                     $invoice_detail->product
                 ];
