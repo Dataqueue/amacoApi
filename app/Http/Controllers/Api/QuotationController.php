@@ -343,7 +343,7 @@ class QuotationController extends Controller
                         }
                         else
                         {
-                            $product=null;
+                            $product=$product_exist;
                         }  
                       
                     }
