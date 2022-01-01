@@ -72,6 +72,7 @@ class DeliveryNoteController extends Controller
             return [
                 $deliveryNote,
                 $deliveryNote->deliveryNoteDetail,
+                
             ];
         });
 
@@ -85,6 +86,7 @@ class DeliveryNoteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request)
     {
         $quotation = Quotation::where('id', $request->quotation_id)->first();
@@ -124,6 +126,7 @@ class DeliveryNoteController extends Controller
                     'delivery_note_id' => $deliveryNote->id,
                     'product_id' => $deliveryNoteDetail['product_id'],
                     'delivered_quantity' => $deliveryNoteDetail['delivering_quantity'],
+                    'total_qty' => $deliveryNoteDetail['quantity'],
                 ];
                 $deliveryNoteDetails = DeliveryNoteDetail::create($deliveryNoteDetailData);
             }
@@ -171,6 +174,7 @@ class DeliveryNoteController extends Controller
                     'delivery_note_id' => $deliveryNote->id,
                     'product_id' => $deliveryNoteDetail['product_id'],
                     'delivered_quantity' => $deliveryNoteDetail['delivering_quantity'],
+                    'total_qty' => $deliveryNoteDetail['quantity'],
                 ];
                 $deliveryNoteDetails = DeliveryNoteDetail::create($deliveryNoteDetailData);
             }
