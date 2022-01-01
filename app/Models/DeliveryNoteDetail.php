@@ -59,14 +59,14 @@ class DeliveryNoteDetail extends Model
             'product_id' => $delivery_notes_detail->product_id,
         ])->firstOrFail();
         }
-        // else{
+        else{
 
        
-        // $invoiceDetail = InvoiceDetail::where([
-        //     'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
-        //     'product_id' => $delivery_notes_detail->product_id,
-        // ])->firstOrFail();
-        // }
+        $invoiceDetail = InvoiceDetail::where([
+            'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
+            'product_id' => $delivery_notes_detail->product_id,
+        ])->firstOrFail();
+        }
 
         // $totalDeliveredQuantity = $this->getTotalDeliveredQuantity($totalDeliveryNoteDetails);
         // $totalDeliveredQuantity = $quotationDetail->getDeliveredQuantity($quotationDetail);
