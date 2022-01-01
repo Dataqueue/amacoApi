@@ -46,7 +46,7 @@ class DeliveryNoteDetail extends Model
     //     return ($totalQuantity - $totalDeliveredQuantity);
     // }
 
-    public function showDeliveredNoteDetail($id)
+    public function showDeliveredNoteDetail($id,$datas)
     {
         global $totalQty;
         $delivery_notes_detail = DeliveryNoteDetail::where('id',$id)->first();
@@ -73,7 +73,7 @@ class DeliveryNoteDetail extends Model
             'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
             'product_id' => $delivery_notes_detail->product_id,
             ])->firstOrFail();
-            $totalQty=InvoiceDetail::where('invoice_id',$delivery_notes_detail->invoice_id)->get();
+            // $totalQty=InvoiceDetail::where('invoice_id',$delivery_notes_detail->invoice_id)->get();
 
         $totalDeliveredQuantity = $quotationDetail->getDelivered_invoice_Quantity($quotationDetail);
        
@@ -96,7 +96,7 @@ class DeliveryNoteDetail extends Model
         }
 
         $data = [
-            "total_quantity" => $totalQty, //$totalQuantity =
+            // "total_quantity" => $totalQty, //$totalQuantity =
             // "total_delivered_quantity" => $totalDeliveredQuantity,
             "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
             "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
