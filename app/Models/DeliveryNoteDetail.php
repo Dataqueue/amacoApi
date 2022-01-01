@@ -75,20 +75,20 @@ class DeliveryNoteDetail extends Model
 
         // $totalDeliveredQuantity = $this->getTotalDeliveredQuantity($totalDeliveryNoteDetails);
         $totalDeliveredQuantity =$this->getTotalDeliveredQuantity($delivery_notes_detail);
-        // if(isset($totalDeliveredQuantity)){
-        //     $totalDeliveredQuantityExceptCurrentValue = $totalDeliveredQuantity - intval($delivery_notes_detail->delivered_quantity) ;
-        // }else{
-        //     $totalDeliveredQuantityExceptCurrentValue = 0;
-        // }
+        if(isset($totalDeliveredQuantity)){
+            $totalDeliveredQuantityExceptCurrentValue = $totalDeliveredQuantity - intval($delivery_notes_detail->delivered_quantity) ;
+        }else{
+            $totalDeliveredQuantityExceptCurrentValue = 0;
+        }
 
         $data = [
             // "total_quantity" => $quotationDetail->quantity, //$totalQuantity =
-            // // "total_delivered_quantity" => $totalDeliveredQuantity,
-            // "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
-            // "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
-            // "delivery_notes_detail" => $delivery_notes_detail,
-            // "product" => array($delivery_notes_detail->product),
-            "NEWARRY" =>  $totalDeliveredQuantity,
+            // "total_delivered_quantity" => $totalDeliveredQuantity,
+            "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
+            "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
+            "delivery_notes_detail" => $delivery_notes_detail,
+            "product" => array($delivery_notes_detail->product),
+            
             // "quotation" => $delivery_notes_detail->deliveryNote->quotation,
             // "delivery_note" => $delivery_notes_detail->deliveryNote,
             // "party" => $delivery_notes_detail->deliveryNote->quotation->party,
