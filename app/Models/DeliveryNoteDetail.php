@@ -62,8 +62,9 @@ class DeliveryNoteDetail extends Model
             'quotation_id' => $delivery_notes_detail->deliveryNote->quotation_id,
             'product_id' => $delivery_notes_detail->product_id,
         ])->firstOrFail();
+        $totalQty=QuotationDetail::where('quotation_id',$delivery_notes_detail->quotation_id)->get();
         // return [$quotationDetail];
-        
+        $totalDeliveredQuantity = $quotationDetail->getDeliveredQuantity($quotationDetail);;
         }
         if($delivery_notes_detail->invoice_id)
         {
@@ -71,9 +72,11 @@ class DeliveryNoteDetail extends Model
             $quotationDetail = InvoiceDetail::where([
             'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
             'product_id' => $delivery_notes_detail->product_id,
-        ])->firstOrFail();
+            ])->firstOrFail();
+            $totalQty=InvoiceDetail::where('invoice_id',$delivery_notes_detail->invoice_id)->get();
+
         $totalDeliveredQuantity = $quotationDetail->getDelivered_invoice_Quantity($quotationDetail);
-        $totalDeliveredQuantity = $quotationDetail->getDeliveredQuantity($quotationDetail);;
+       
         // return [$quotationDetail];
         }
 
@@ -93,7 +96,7 @@ class DeliveryNoteDetail extends Model
         }
 
         $data = [
-            "total_quantity" => $quotationDetail?$quotationDetail->quantity:0, //$totalQuantity =
+            "total_quantity" => $totalQty, //$totalQuantity =
             // "total_delivered_quantity" => $totalDeliveredQuantity,
             "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
             "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
