@@ -68,4 +68,21 @@ class InvoiceDetailController extends Controller
             return (['msg' => 'invoice' . ' ' . $invoice->id . ' is successfully deleted']);
         }
     }
+    public function getDelivered_invoice_Quantity(InvoiceDetail $quotation_detail)
+    {
+        $deliveryNoteDetails = DB::table('delivery_notes')
+        ->leftJoin('delivery_note_details', 'delivery_note_details.delivery_note_id','=', 'delivery_notes.id')
+        ->where('delivery_notes.invoice_id',$quotation_detail->invoice_id)
+        ->where('delivery_note_details.product_id', $quotation_detail->product_id)
+        ->get();
+
+        if($deliveryNoteDetails) {
+            $totalDeliveryNoteDetail = 0;
+            foreach ($deliveryNoteDetails as $item) {
+                $totalDeliveryNoteDetail += intval($item->delivered_quantity);
+            }
+            return $totalDeliveryNoteDetail;
+        }
+        return 0;
+    }
 }
