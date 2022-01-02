@@ -54,8 +54,9 @@ class DeliveryNoteDetail extends Model
                 'delivery_note_id' => $item['delivery_note_id'],
                 // 'product_id' => $pid,
              ])->sum('delivered_quantity');
+             return $sum;
            }
-           return $sum;
+          
     //    }
         
     }
