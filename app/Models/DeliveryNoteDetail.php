@@ -47,8 +47,8 @@ class DeliveryNoteDetail extends Model
             'delivery_note_id' => $id,
             'product_id' => $pid,
         ])->sum('delivered_quantity');
-        $latest=DeliveryNoteDetail::where(['delivery_note_id'=>$id,'product_id'=>$pid])->orderBy('created_at','desc')->get();
-        return $latest['delivered_quantity'];
+        $latest=DeliveryNoteDetail::where(['delivery_note_id'=>$id,'product_id'=>$pid])->orderBy('created_at','desc')->first('delivered_quantity');
+        return $latest;
     }
 
     public function showDeliveredNoteDetail($id,$productId)
