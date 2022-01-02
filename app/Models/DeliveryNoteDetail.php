@@ -41,12 +41,16 @@ class DeliveryNoteDetail extends Model
     }
 
     // there is no need for this
-    // public function getBalanceQuantity($totalQuantity = 0, $totalDeliveredQuantity = 0)
-    // {
-    //     return ($totalQuantity - $totalDeliveredQuantity);
-    // }
+    public function getBalanceQuantity($id, $pid)
+    {
+        $totalDeliveryNoteDetails = DeliveryNoteDetail::where([
+            'delivery_note_id' => $id,
+            'product_id' => $pid,
+        ])->sum('delivered_quantity');
+        return $totalDeliveryNoteDetails;
+    }
 
-    public function showDeliveredNoteDetail($id)
+    public function showDeliveredNoteDetail($id,$productId)
     {
         global $totalQty;
         $delivery_notes_detail = DeliveryNoteDetail::where('id',$id)->first();
@@ -55,6 +59,7 @@ class DeliveryNoteDetail extends Model
             'delivery_note_id' => $delivery_notes_detail->delivery_note_id,
             'product_id' => $delivery_notes_detail->product_id,
         ])->get();
+        $res=$this-getBalanceQuantity($id,$productId);
 
         if($delivery_notes_detail->quotation_id)
         {
@@ -74,8 +79,10 @@ class DeliveryNoteDetail extends Model
             'product_id' => $delivery_notes_detail->product_id,
             ])->firstOrFail();
             // $totalQty=InvoiceDetail::where('invoice_id',$delivery_notes_detail->invoice_id)->get();
+           
 
         $totalDeliveredQuantity = $quotationDetail->getDelivered_invoice_Quantity($quotationDetail);
+
        
         // return [$quotationDetail];
         }
@@ -97,8 +104,8 @@ class DeliveryNoteDetail extends Model
 
         $data = [
             "total_quantity" => $delivery_notes_detail->total_qty, //$totalQuantity =
-            //  "total_delivered_quantity" => $totalDeliveredQuantity,
-            "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
+            "total_delivered_quantity" => $res,
+            // "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
             "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
             "delivery_notes_detail" => $delivery_notes_detail,
             "delivered_quantity" => $delivery_notes_detail,
