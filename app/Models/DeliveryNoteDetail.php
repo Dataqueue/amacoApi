@@ -51,7 +51,7 @@ class DeliveryNoteDetail extends Model
         // return $totalDeliveryNoteDetails-(int)(isset($latest)?$latest->delivered_quantity:0);
         if($latest->isEmpty())
         {
-            return "deee".$totalDeliveryNoteDetails-(int)(0);
+            return "deee".$totalDeliveryNoteDetails;
         }
         else
         {
