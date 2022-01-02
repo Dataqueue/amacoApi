@@ -56,7 +56,7 @@ class DeliveryNoteDetail extends Model
      else
         {
                 $res=$latest->first();
-              return $latest->delivered_quantity;
+              return $res->delivered_quantity;
         }
         
     }
