@@ -45,8 +45,8 @@ class DeliveryNoteDetail extends Model
     {
         $sum=0;
        $data=DeliveryNote::where('id',$id)->get();
-       if($data->invoice_id)
-       {
+    //    if($data->invoice_id)
+    //    {
            $temparr=DeliveryNote::where('invoice_id',25)->get();
            foreach($temparr as $item)
            {
@@ -56,7 +56,7 @@ class DeliveryNoteDetail extends Model
              ])->sum('delivered_quantity');
            }
            return $sum;
-       }
+    //    }
         
     }
 
