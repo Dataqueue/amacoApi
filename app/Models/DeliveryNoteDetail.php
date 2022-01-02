@@ -56,7 +56,7 @@ class DeliveryNoteDetail extends Model
         // else
         // {
                 $res=$latest->first();
-              return $res;
+              return $id."  --" .$pid;
         // }
         
     }
