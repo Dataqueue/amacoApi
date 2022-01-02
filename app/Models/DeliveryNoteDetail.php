@@ -47,7 +47,7 @@ class DeliveryNoteDetail extends Model
        $data=DeliveryNote::where('id',$id)->get();
        if($data->invoice_id)
        {
-           $temparr=DeliveryNote::where('invoice_id',$data->invoice_id)->get();
+           $temparr=DeliveryNote::where('invoice_id',25)->get();
            foreach($temparr as $item)
            {
                $sum= $sum+DeliveryNoteDetail::where([
