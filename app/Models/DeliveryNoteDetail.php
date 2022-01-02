@@ -47,7 +47,8 @@ class DeliveryNoteDetail extends Model
             'delivery_note_id' => $id,
             'product_id' => $pid,
         ])->sum('delivered_quantity');
-        return $totalDeliveryNoteDetails;
+        $latest=showDeliveredNoteDetail::where(['delivery_note_id'=>$id,'product_id'=>$pid])->orderBy('created_at','desc')->fist();
+        return $totalDeliveryNoteDetails-$latest->delivered_quantity;
     }
 
     public function showDeliveredNoteDetail($id,$productId)
