@@ -70,7 +70,7 @@ class DeliveryNoteDetail extends Model
             'delivery_note_id' => $delivery_notes_detail->delivery_note_id,
             'product_id' => $delivery_notes_detail->product_id,
         ])->get();
-        $res=$this->getBalanceQuantity($id,$productId);
+        $res=$this->getBalanceQuantity($delivery_notes_detail->delivery_note_id,$productId);
 
         if($delivery_notes_detail->quotation_id)
         {
