@@ -58,7 +58,7 @@ class DeliveryNoteDetail extends Model
     //             $res=$latest->first();
     //           return $totalDeliveryNoteDetails-$res->delivered_quantity;
     //     }
-    return (int)$latest->total_qty-(int)$latest->delivered_quantity;
+    return (int)$totalDeliveryNoteDetails-(int)$latest->delivered_quantity;
         
     }
 
