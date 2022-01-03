@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 
 class AuthController extends Controller
@@ -25,16 +26,31 @@ class AuthController extends Controller
      */
     public function login()
     {
+        
         $credentials = request(['email', 'password']);
 
         if (!$token = Auth::attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
+        if(Auth::user()->role->name=="SA")
+        {
+            $type=1;
+        }
+        else{
+            $count = DB::table('user_divisions')->join('divisions','divisions.id','user_divisions.div_id')->where(['user_divisions.u_id'=>Auth::user()->id,'divisions.id'=>3])->count();
+            if($count>0)
+            {
+                $type=2;
+            }
+            else {
+                $type=1;
+            }
+        }
         $data = [
             "accessToken" => $token,
             "user" => Auth::user(),
             "role" => Auth::user()->role->name,
-            'division' => 8,
+            'division' => $type,
         ];
         // return $this->respondWithToken($token);
         return response()->json($data);

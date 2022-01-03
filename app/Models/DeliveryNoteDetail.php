@@ -43,21 +43,26 @@ class DeliveryNoteDetail extends Model
     // there is no need for this
     public function getBalanceQuantity($id, $pid)
     {
-       $sum=0;
-       $data=DeliveryNote::where('id',$id)->get();
-    //    if($data->invoice_id)
-    //    {
-           $temparr=DeliveryNote::where('invoice_id',25)->get();
-           foreach($temparr as $item)
-           {
-               $sum+= DeliveryNoteDetail::where([
-                'delivery_note_id' => $item['delivery_note_id'],
-                // 'product_id' => $pid,
-             ])->sum('delivered_quantity');
-             return $sum;
-           }
-          
-    //    }
+        $dnote_details=0;
+       $dnote= DeliveryNote::where('id',$id)->first();
+       
+       if($dnote['invoice_id'])
+       {
+        $dnote['invoice_id'];
+        $dnote_invoice=DeliveryNote::where('invoice_id',$dnote['invoice_id'])->get();
+        foreach($dnote_invoice as $item)
+        {
+            $dnote_details+= DeliveryNoteDetail::where([
+                'delivery_note_id' => $item->id,
+                'product_id' => $pid,
+            ])->sum('delivered_quantity');
+        }
+        $latest= DeliveryNoteDetail::where([
+            'delivery_note_id' => $item->id,
+            'product_id' => $pid,
+        ])->sum('delivered_quantity');
+        return (int)$dnote_details-(int)$latest;
+       }
         
     }
 

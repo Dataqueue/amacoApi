@@ -66,7 +66,7 @@ use App\Http\Controllers\Api\StockController;
 */
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    return [$request->user(),$request->userdivisions()];
 });
 
 // jwt auth links
