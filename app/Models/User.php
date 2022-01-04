@@ -43,6 +43,7 @@ protected $guarded = [];
     {
         return $this->belongsTo(Role::class);
     }
+   
     
     public function division()
     {
@@ -83,6 +84,10 @@ protected $guarded = [];
     public function getJWTCustomClaims()
     {
         return [];
+    }
+    public function userDivision()
+    {
+        return $this->belongsTo(userDivisions::class);
     }
 
 }

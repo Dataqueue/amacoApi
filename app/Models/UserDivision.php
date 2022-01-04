@@ -25,4 +25,8 @@ class UserDivision extends Model
     {
         return $this->hasMany('App\Models\division');
     }
+    public function div_category()
+    {
+        return $this->belongsTo(Division::class);
+    }
 }

@@ -21,5 +21,10 @@ class Division extends Model
     {
         return $this->hasMany('App\Models\Product');
     }
+    public function Divisions()
+    
+    {
+        return $this->hasMany(UserDivisions::class, 'id', "u_id");
+    }
     
 }

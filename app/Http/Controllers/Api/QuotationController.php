@@ -265,6 +265,7 @@ class QuotationController extends Controller
                 'rfq_no' => $request['rfq_no']?$request['rfq_no']:null,  // ? $request['ps_date'] : Carbon::now()
                 'transport' => $request['transport']?$request['transport']:null,  // ? $request['ps_date'] : Carbon::now()
                 'other' => $request['other']?$request['other']:null,  // ? $request['ps_date'] : Carbon::now()
+                'div_id' => $request['div_id']?$request['div_id']:null,  // ? $request['ps_date'] : Carbon::now()
                 
             ];
 
@@ -444,6 +445,7 @@ class QuotationController extends Controller
             "rfq_no" => $quotation->rfq_no,
             "transport" => $quotation->transport,
             "other" => $quotation->other,
+            "div_id" => $quotation->div_id,
 
             "quotation_details" => $quotation->quotationDetail->map(function ($quotation_detail) {
                 $filePath = $quotation_detail->file_img_url ? $quotation_detail->file_img_url : '';
@@ -863,6 +865,7 @@ class QuotationController extends Controller
                         "net_amount" => $quotation->net_amount,
                         "transaction_type" => $quotation->transaction_type,
                         'discount_in_p' => $quotation['discount_in_p'],
+                        'div_id' => $quotation->div_id,
                         'quotation_details' => $quotation->quotationDetail->map(function ($quotation_detail) {
                             $quotation_detail = QuotationDetail::where('id', '=', $quotation_detail->id)->first();
                             return [
