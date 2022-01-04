@@ -75,7 +75,7 @@ class AuthController extends Controller
                 $count = DB::table('user_divisions')->join('divisions','divisions.id','user_divisions.div_id')->where(['user_divisions.u_id'=>Auth::user()->id,'divisions.id'=>3])->count();
                 if($count==1)
                 {
-                        $type=3;
+                        $type=1;
                 }
                 else {
                     $type=1;
