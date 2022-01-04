@@ -63,15 +63,23 @@ class AuthController extends Controller
      */
     public function me()
     {
+
         if(Auth::user()->role->name=="SA")
         {
             $type=1;
         }
         else{
-            $count = DB::table('user_divisions')->join('divisions','divisions.id','user_divisions.div_id')->where(['user_divisions.u_id'=>Auth::user()->id,'divisions.id'=>3])->count();
-            if($count>0)
+            $counts = DB::table('user_divisions')->join('divisions','divisions.id','user_divisions.div_id')->where(['user_divisions.u_id'=>Auth::user()->id])->count();
+            if($counts>0)
             {
-                $type=3;
+                $count = DB::table('user_divisions')->join('divisions','divisions.id','user_divisions.div_id')->where(['user_divisions.u_id'=>Auth::user()->id,'divisions.id'=>3])->count();
+                if($count==1)
+                {
+                        $type=3;
+                }
+                else {
+                    $type=1;
+                }
             }
             else {
                 $type=1;
