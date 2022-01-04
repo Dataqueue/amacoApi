@@ -50,7 +50,7 @@ class AuthController extends Controller
             "accessToken" => $token,
             "user" => Auth::user(),
             "role" => Auth::user()->role->name,
-            // 'division' => $type,
+            'division' => $type,
         ];
         // return $this->respondWithToken($token);
         return response()->json($data);
