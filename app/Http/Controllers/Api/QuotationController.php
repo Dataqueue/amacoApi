@@ -265,7 +265,7 @@ class QuotationController extends Controller
                 'rfq_no' => $request['rfq_no']?$request['rfq_no']:null,  // ? $request['ps_date'] : Carbon::now()
                 'transport' => $request['transport']?$request['transport']:null,  // ? $request['ps_date'] : Carbon::now()
                 'other' => $request['other']?$request['other']:null,  // ? $request['ps_date'] : Carbon::now()
-                'div_id' => $request['div_id']?$request['div_id']:null,  // ? $request['ps_date'] : Carbon::now()
+                'div_id' => $request['div_id']?$request['div_id']:1,  // ? $request['ps_date'] : Carbon::now()
                 
             ];
 
