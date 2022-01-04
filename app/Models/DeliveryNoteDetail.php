@@ -44,26 +44,25 @@ class DeliveryNoteDetail extends Model
     public function getBalanceQuantity($id, $pid)
     {
         $dnote_details=0;
-    //    $dnote= DeliveryNote::where('id',$id)->first();
+       $dnote= DeliveryNote::where('id',$id)->first();
        
-    //    if($dnote['invoice_id'])
-    //    {
-    //     $dnote['invoice_id'];
-    //     $dnote_invoice=DeliveryNote::where('invoice_id',$dnote['invoice_id'])->get();
-    //     foreach($dnote_invoice as $item)
-    //     {
-    //         $dnote_details+= DeliveryNoteDetail::where([
-    //             'delivery_note_id' => $item->id,
-    //             'product_id' => $pid,
-    //         ])->sum('delivered_quantity');
-    //     }
-    //     $latest= DeliveryNoteDetail::where([
-    //         'delivery_note_id' => $item->id,
-    //         'product_id' => $pid,
-    //     ])->sum('delivered_quantity');
-    //     return (int)$dnote_details-(int)$latest;
-    //    }
-    return 0;
+       if($dnote['invoice_id'])
+       {
+        $dnote['invoice_id'];
+        $dnote_invoice=DeliveryNote::where('invoice_id',$dnote['invoice_id'])->get();
+        foreach($dnote_invoice as $item)
+        {
+            $dnote_details+= DeliveryNoteDetail::where([
+                'delivery_note_id' => $item->id,
+                'product_id' => $pid,
+            ])->sum('delivered_quantity');
+        }
+        $latest= DeliveryNoteDetail::where([
+            'delivery_note_id' => $item->id,
+            'product_id' => $pid,
+        ])->sum('delivered_quantity');
+        return (int)$dnote_details-(int)$latest;
+       }
         
     }
 
