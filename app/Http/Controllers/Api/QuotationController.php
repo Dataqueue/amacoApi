@@ -919,6 +919,7 @@ class QuotationController extends Controller
                         "net_amount" => $quotation->net_amount,
                         "transaction_type" => $quotation->transaction_type,
                         'discount_in_p' => $quotation['discount_in_p'],
+                        'div_id' => $quotation->div_id,
                         'quotation_details' => $quotation->quotationDetail->map(function ($quotation_detail) {
                             $quotation_detail = QuotationDetail::where('id', '=', $quotation_detail->id)->first();
                             // $isDelivered = $this->checkDeliveredProductQuantity($quotation_detail);
