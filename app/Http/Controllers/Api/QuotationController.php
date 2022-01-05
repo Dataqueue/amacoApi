@@ -511,7 +511,7 @@ class QuotationController extends Controller
         if ($request->transaction_type !== 'purchase') {
         $quotation->update([
             'po_number' => $request->po_number,
-            // 'status' => $request->status,
+            'div_id' => $request->div_id,
             'total_value' => $request->total_value,
             'party_id' => $request->party_id,
             'contact_id' => $request->contact_id,
