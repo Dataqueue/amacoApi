@@ -160,8 +160,7 @@ class InvoiceController extends Controller
                 return [
 
                     
-                    $invoice_detail['margin']=((((float)$invoice_detail->sell_price)-((float)$invoice_detail->purchase_price))/((float)
-                    $invoice_detail->purchase_price))*100,
+                    $invoice_detail['margin']=$invoice_detail->purchase_price?((((float)$invoice_detail->sell_price)-((float)$invoice_detail->purchase_price))/((float)$invoice_detail->purchase_price))*100:0.00,
                     $invoice_detail['delivered_quantity']=$invoice_detail->getDelivered_invoice_Quantity($invoice_detail),
                     $invoice_detail['balance'] = (int)$invoice_detail->quantity - (int)$invoice_detail->getDelivered_invoice_Quantity($invoice_detail),
                     $invoice_detail->quotationDetail,
@@ -308,9 +307,7 @@ class InvoiceController extends Controller
                             'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:($product?$product->id:null),
                             'sell_price' => $invoice_detail['sell_price'],
                             'quantity' => $invoice_detail['quantity'],
-
-                            ['margin'] => $invoice_detail['margin'],
-
+                            'margin' => $invoice_detail['margin'],
                             'total_amount' => $invoice_detail['total_amount'],
                             'unit_of_measure' => $invoice_detail['unit_of_measure'],
                             'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
