@@ -308,10 +308,9 @@ class InvoiceController extends Controller
                             'product_id' => $invoice_detail['product_id']?$invoice_detail['product_id']:($product?$product->id:null),
                             'sell_price' => $invoice_detail['sell_price'],
                             'quantity' => $invoice_detail['quantity'],
-<<<<<<< Updated upstream
-=======
-                            'margi' => $invoice_detail['margi'],
->>>>>>> Stashed changes
+
+                            ['margin'] => $invoice_detail['margin'],
+
                             'total_amount' => $invoice_detail['total_amount'],
                             'unit_of_measure' => $invoice_detail['unit_of_measure'],
                             'description' => $invoice_detail['description']?$invoice_detail['description']:$invoice_detail['product'],
