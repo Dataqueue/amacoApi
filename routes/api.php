@@ -50,6 +50,7 @@ use App\Http\Controllers\Api\PurchaseReturnController;
 use App\Http\Controllers\Api\SalesReturnController;
 use App\Http\Controllers\Api\EmployeesController;
 use App\Http\Controllers\Api\ModuleController;
+use App\Http\Controllers\Api\MobileController;
 use App\Http\Controllers\Api\PermissionDeniedController;
 use App\Http\Controllers\Api\StockController;
 
