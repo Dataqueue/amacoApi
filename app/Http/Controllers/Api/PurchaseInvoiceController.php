@@ -240,6 +240,8 @@ class PurchaseInvoiceController extends Controller
                 function ($quotation) {
                     $data = [
                         'id' => $quotation->id,
+                        'div_id' => $quotation->div_id,
+                        'user_id' => $quotation->user_id,
                         'po_number' => $quotation->po_number,
                         'created_at' => $quotation->created_at,
                         'updated_at' => $quotation->updated_at,
