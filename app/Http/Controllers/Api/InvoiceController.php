@@ -108,7 +108,9 @@ class InvoiceController extends Controller
             'vat_in_value' => $data['vat_in_value'],
             'grand_total' => $data['grand_total'],
             'delivery_no' => null,
-            'party_id' => $request['party_id']
+            'party_id' => $request['party_id'],
+            'div_id' => $request['div_id']?$request['div_id']:0,  // ? $request['ps_date'] : Carbon::now()
+            'user_id' => $request['user_id']?$request['user_id']:0,
         ]);
 
         global $_invoice_id;
@@ -121,7 +123,9 @@ class InvoiceController extends Controller
             if(!$invoice_detail['productId'])
             {
                $product=Product::create([
-                    'name'=> $invoice_detail['product']
+                    'name'=> $invoice_detail['product'],
+                    'div_id' => $request['div_id']?$request['div_id']:0,  // ? $request['ps_date'] : Carbon::now()
+                'user_id' => $request['user_id']?$request['user_id']:0,
                 ]);
             }
             $_invoice_detail = InvoiceDetail::create([
@@ -244,6 +248,8 @@ class InvoiceController extends Controller
             'grand_total' => $request->grand_total,
             'delivery_no' => null,
             'party_id' => $request->party_id,
+            'div_id' => $request->div_id?$request->div_id:0,  // ? $request->ps_date : Carbon::now()
+            'user_id' => $request->user_id?$request->user_id:0,
             // 'contact_id' => $request->contact_id
         ]);
         $temp = json_decode($request['invoice_details'], true);
@@ -295,7 +301,9 @@ class InvoiceController extends Controller
                     $product_exist=Product::where('name','=',$invoice_detail['product'])->first();
                         if(!$product_exist){
                        $product=Product::create([
-                            'name'=> $invoice_detail['product']
+                            'name'=> $invoice_detail['product'],
+                            'div_id' => $request['div_id']?$request['div_id']:0,  // ? $request['ps_date'] : Carbon::now()
+                            'user_id' => $request['user_id']?$request['user_id']:0,
                         ]);
                      }
                         else{

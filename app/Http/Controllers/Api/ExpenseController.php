@@ -160,7 +160,8 @@ return response()->json($expenses);
                 "account_category_id" => $request->account_category_id,
                 "company_name" => $request->company_name ? $request->company_name : " ",
                 "file_path" => $request->file('file_path')?$filePath:null,
-                // "div_id" => $request->div_id,
+                "div_id" => $request->div_id? $request->div_id:0,
+                "user_id" => $request->user_id? $request->user_id:0,
                 "company" => $request->company?$request->company:" ",
                 "vatno" => $request->vatno?$request->vatno:" ",
                 "inv_no" => $request->inv_no?$request->inv_no:" ",
@@ -210,6 +211,8 @@ return response()->json($expenses);
                             "expense_id" => $expense->id,
                             "narration" => $request->description,
                             'received_date' => $request->paid_date,
+                            'user_id' => $request->user_id?$request->user_id:0,
+                            'div_id' => $request->div_id?$request->div_id:0,
                         ]); 
                         
                        
@@ -379,6 +382,8 @@ return response()->json($expenses);
                         "narration" => $request->description,
                        
                         "expense_id" => $request->id,
+                        'user_id' => $request->user_id?$request->user_id:0,
+                        'div_id' => $request->div_id?$request->div_id:0,
                     ]); 
                     
                    
@@ -424,7 +429,8 @@ return response()->json($expenses);
                 "vatno" => $request->vatno?$request->vatno:" ",
                 "inv_no" => $request->inv_no?$request->inv_no:" ",
                 "utilize_div_id"=>$request->utilize_div_id?$request->utilize_div_id:" ",
-                "div_id" => $request->div_id,
+                'user_id' => $request->user_id?$request->user_id:0,
+            'div_id' => $request->div_id?$request->div_id:0,
          
             'bank_id' => $request->bank_id?$request->bank_id:null,
             "vendor_id"=>$request->vendor_id?$request->vendor_id:" ",

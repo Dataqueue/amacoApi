@@ -62,8 +62,9 @@ class InvoiceDetailController extends Controller
     {
         //
         $invoice = InvoiceDetail::where('id', $id)->first();
-
+       
         $res = $invoice->delete();
+        
         if ($res) {
             return (['msg' => 'invoice' . ' ' . $invoice->id . ' is successfully deleted']);
         }

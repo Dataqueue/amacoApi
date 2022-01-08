@@ -9,6 +9,8 @@ use App\Models\QuotationDetail;
 use App\Models\InvoiceDetail;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\PurchaseInvoiceDetail;
+use App\Models\PurchaseInvoice;
 
 class StockController extends Controller
 {
@@ -24,18 +26,18 @@ class StockController extends Controller
         $data=$category->map(function($category){
          return
          [  
-                $data=$category->product_category->map(function($category){
-                $category->product->map(function($arr){
-                $arr["purchase"] =  $this->purchase($arr->id);
-                $arr["purchaseQuantity"] =  $this->purchaseQuantity($arr->id);
-                $arr["sales"] = $this -> sale($arr->id);
-                $arr["salesQuantity"] = $this -> salesQuantity($arr->id);
-                $arr["purchaseReturn"] = $this -> purchaseReturn($arr->id);
-                $arr["purchaseReturnQuantity"] = $this -> purchaseReturnQuantity($arr->id);
-                $arr["salesReturn"] = $this -> salesReturn($arr->id);
-                $arr["salesReturnQuantity"] = $this -> salesReturnQuantity($arr->id);
-                $arr["latestPrice"] = $this -> latestPrice($arr->id);
-            });
+                    $data=$category->product_category->map(function($category){
+                    $category->product->map(function($arr){
+                    $arr["purchase"] =  $this->purchase($arr->id);
+                    $arr["purchaseQuantity"] =  $this->purchaseQuantity($arr->id);
+                    $arr["sales"] = $this -> sale($arr->id);
+                    $arr["salesQuantity"] = $this -> salesQuantity($arr->id);
+                    $arr["purchaseReturn"] = $this -> purchaseReturn($arr->id);
+                    $arr["purchaseReturnQuantity"] = $this -> purchaseReturnQuantity($arr->id);
+                    $arr["salesReturn"] = $this -> salesReturn($arr->id);
+                    $arr["salesReturnQuantity"] = $this -> salesReturnQuantity($arr->id);
+                    $arr["latestPrice"] = $this -> latestPrice($arr->id);
+                });
             })];
         });
         return $category;
@@ -43,15 +45,15 @@ class StockController extends Controller
     }
 
     public function latestPrice($id){
-        $data = QuotationDetail::where('product_id',$id)->whereNull('sell_price')->orderBy('id','DESC')->get('purchase_price');
+        $data = PurchaseInvoiceDetail::where('product_id',$id)->orderBy('id','DESC')->get('purchase_price');
         return $data;
     }
     public function purchase($id){
-        $data = QuotationDetail::where('product_id',$id)->get();
+        $data = PurchaseInvoiceDetail::where('product_id',$id)->get();
         return $data;
     }
     public function purchaseQuantity($id){
-        $data = QuotationDetail::where('product_id',$id)->sum('quantity');
+        $data = PurchaseInvoiceDetail::where('product_id',$id)->sum('quantity');
         return $data;
     }
     public function sale($id){

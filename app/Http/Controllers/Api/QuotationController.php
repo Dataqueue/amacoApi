@@ -265,8 +265,8 @@ class QuotationController extends Controller
                 'rfq_no' => $request['rfq_no']?$request['rfq_no']:null,  // ? $request['ps_date'] : Carbon::now()
                 'transport' => $request['transport']?$request['transport']:null,  // ? $request['ps_date'] : Carbon::now()
                 'other' => $request['other']?$request['other']:null,  // ? $request['ps_date'] : Carbon::now()
-                'div_id' => $request['div_id']?$request['div_id']:1,  // ? $request['ps_date'] : Carbon::now()
-                
+                'div_id' => $request['div_id']?$request['div_id']:0,  // ? $request['ps_date'] : Carbon::now()
+                'user_id' => $request['user_id']?$request['user_id']:0,
             ];
 
             if ($request->transaction_type === 'sale') {
@@ -295,7 +295,9 @@ class QuotationController extends Controller
                     if(!$quotation_detail['productId'])
                     {
                        $product=Product::create([
-                            'name'=> $quotation_detail['product']
+                            'name'=> $quotation_detail['product'],
+                            'div_id' => $request['div_id']?$request['div_id']:0,  // ? $request['ps_date'] : Carbon::now()
+                            'user_id' => $request['user_id']?$request['user_id']:0,
                         ]);
                     }
                     QuotationDetail::create([
@@ -320,6 +322,8 @@ class QuotationController extends Controller
                 notes::create([
                     'quotation_id' => $quotation_id,
                     'notes' => $div['note'], 
+                    'div_id' => $request['div_id']?$request['div_id']:0,  // ? $request['ps_date'] : Carbon::now()
+                    'user_id' => $request['user_id']?$request['user_id']:0, 
                     
         
                 ]); 
@@ -339,7 +343,9 @@ class QuotationController extends Controller
                             $product=Product::create([
                                 'name'=> $quotation_detail['descriptionss'],
                                 'description'=> $quotation_detail['description'],
-                                'unit_of_measure'=> $quotation_detail['unit_of_measure']
+                                'unit_of_measure'=> $quotation_detail['unit_of_measure'],
+                                'div_id' => $request['div_id']?$request['div_id']:0,  // ? $request['ps_date'] : Carbon::now()
+                                'user_id' => $request['user_id']?$request['user_id']:0,
                             ]);
                         }
                         else
@@ -446,6 +452,7 @@ class QuotationController extends Controller
             "transport" => $quotation->transport,
             "other" => $quotation->other,
             "div_id" => $quotation->div_id,
+            "user_id" => $quotation->user_id,
 
             "quotation_details" => $quotation->quotationDetail->map(function ($quotation_detail) {
                 $filePath = $quotation_detail->file_img_url ? $quotation_detail->file_img_url : '';
@@ -511,7 +518,14 @@ class QuotationController extends Controller
         if ($request->transaction_type !== 'purchase') {
         $quotation->update([
             'po_number' => $request->po_number,
+
+           
+
+            // 'status' => $request->status,
+
             'div_id' => $request->div_id,
+            'user_id' => $request->user_id,
+
             'total_value' => $request->total_value,
             'party_id' => $request->party_id,
             'contact_id' => $request->contact_id,
@@ -582,7 +596,8 @@ class QuotationController extends Controller
                 notes::create([
                 'quotation_id' => $quotation->id,
                 'notes' => $div['notes'], 
-
+                'div_id' => $request['div_id']?$request['div_id']:0,  // ? $request['ps_date'] : Carbon::now()
+                'user_id' => $request['user_id']?$request['user_id']:0,
                 ]); 
                 }
             } else {
@@ -591,7 +606,9 @@ class QuotationController extends Controller
                     $product_exist=Product::where('name','=',$quotation_detail['description'])->first();
                     if(!$product_exist){
                         $product=Product::create([
-                            'name'=> $quotation_detail['description']
+                            'name'=> $quotation_detail['description'],
+                            'div_id' => $request['div_id']?$request['div_id']:0,  // ? $request['ps_date'] : Carbon::now()
+                            'user_id' => $request['user_id']?$request['user_id']:0,
                         ]);
                     }
                     else
@@ -638,6 +655,8 @@ class QuotationController extends Controller
                 'transaction_type' => $request->transaction_type,
                 'discount_in_p' => $request->discount_in_p,
                 'ps_date'=>$request->ps_date,
+                'div_id' => $request->div_id?$request->div_id:0,  // ? $request['ps_date'] : Carbon::now()
+                'user_id' => $request->user_id?$request->user_id:0,
                 
                 // 'sales_order_number' => $data['sales_order_number'],
             ]);
@@ -670,7 +689,9 @@ class QuotationController extends Controller
                     if(!$quotation_detail['product_id'])
                     {
                        $product=Product::create([
-                            'name'=> $quotation_detail['product']
+                            'name'=> $quotation_detail['product'],
+                            'div_id' => $request['div_id']?$request['div_id']:0,  // ? $request['ps_date'] : Carbon::now()
+                'user_id' => $request['user_id']?$request['user_id']:0,
                         ]);
                     }
                     QuotationDetail::create([
@@ -963,6 +984,8 @@ class QuotationController extends Controller
                 function ($quotation) {
                     return [
                         'id' => $quotation->id,
+                        'div_id' => $quotation->div_id,
+                        'user_id' => $quotation->id,
                         'quotation_no' => $quotation->quotation_no,
                         'created_at' => $quotation->created_at,
                         'updated_at' => $quotation->updated_at,

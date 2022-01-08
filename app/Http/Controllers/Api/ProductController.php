@@ -30,9 +30,9 @@ class ProductController extends Controller
             'division_id' => 'required',
             'name' => 'required|max:255',
             // 'description' => 'required|max:500',
-            'unit_of_measure' => 'required',
+            // 'unit_of_measure' => 'required',
             // 'unit_price' => 'required',
-            'type' => 'required',
+            // 'type' => 'required',
             // 'hsn_code' => 'required',
             // 'initial_quantity' => 'required',
             // 'minimum_quantity' => 'required',
@@ -64,6 +64,8 @@ class ProductController extends Controller
         $product->manufacturer_id = $request->manufacturer_id;
         $product->model_no = $request->model_no;
         $product->minimum_quantity = $request->minimum_quantity;
+        $product->div_id = $request->div_id?$request->div_id:0;
+        $product->user_id = $request->user_id?$request->user_id:0;
         $product->save();
         return($product);
 //

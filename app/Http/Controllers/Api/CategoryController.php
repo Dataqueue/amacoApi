@@ -87,6 +87,8 @@ class CategoryController extends Controller
         $category->name = $request->name;
         $category->parent_id = $request->parent_id;
         $category->description = $request->description;
+        $category->div_id = $request->div_id;
+        $category->user_id = $request->user_id;
         $category->save();
 
         return response()->json($category, 200);
@@ -217,6 +219,12 @@ class CategoryController extends Controller
 
         $sub_categories = Category::where('parent_id', '=', $id)->get();
         return response()->json($sub_categories);
+    }
+
+    public function unCategorized_products()
+    {
+        $products = Product::where('category_id', '=', null)->get();
+        return response()->json($products);
     }
 
     public function search($name)

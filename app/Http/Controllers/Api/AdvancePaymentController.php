@@ -74,7 +74,8 @@ class AdvancePaymentController extends Controller
             'check_no' => $request->check_no,
             'bank_id' => $request->bank_id?$request->bank_id:null,
             'received_date' => $request->received_date,
-            
+            "user_id" => $request->user_id?$request->user_id:0,
+            "div_id" => $request->div_id?$request->div_id:0,
             
             // 'contact_id' => $request->contact_id,
         ]);
@@ -105,7 +106,8 @@ class AdvancePaymentController extends Controller
             'bank_id' => $request->bank_id?$request->bank_id:'',
             'received_by' => $request->received_by?$request->received_by:'',
             'received_date' => $request->received_date,
-            
+            "user_id" => $request->user_id?$request->user_id:0,
+        "div_id" => $request->div_id?$request->div_id:0,
             
         
             

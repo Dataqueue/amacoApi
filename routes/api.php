@@ -225,16 +225,23 @@ Route::get('getAllCat', [CategoryController::class, 'getAllCat']);
 
 //userPermission
 Route::post('add-permission', [PermissionDeniedController::class, 'store']);
-Route::get('get-modules-per/{id}', [PermissionDeniedController::class, 'index']);
-Route::get('userPermission/{id}', [PermissionDeniedController::class, 'userPermission']);
+Route::get('get-modules-per/{id}/{i}', [PermissionDeniedController::class, 'index']);Route::get('userPermission/{id}', [PermissionDeniedController::class, 'userPermission']);
 
 //Module API's
 Route::post('add-module', [ModuleController::class, 'store']);
 Route::delete('delete-modules/{id}', [ModuleController::class, 'destroy']);
 Route::get('edit-data-modules/{id}', [ModuleController::class, 'edit']);
 Route::put('update-module/{id}', [ModuleController::class, 'update']);
-Route::get('get-modules', [ModuleController::class, 'index']);
+Route::get('get-modules/{id}', [ModuleController::class, 'index']);
+Route::get('unCategorized-products',[CategoryController::class, 'unCategorized_products']);
+Route::get('check/{id}', [StockController::class, 'check']);
 
+// mobile routes 
+
+
+Route::get('getMCat', [MobileController::class, 'getMCat']);
+Route::post('expenceStore', [MobileController::class, 'storeExpence']);
+Route::get('divisionbyid/{id}', [DivisionController::class, 'getDivbyId']);
 
 
 

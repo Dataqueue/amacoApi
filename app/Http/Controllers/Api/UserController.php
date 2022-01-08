@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PaymentAccount;
 use App\Models\UserDivision;
 use App\Models\Division;
+use App\Models\Role;
 use App\Models\Investment;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -74,6 +75,37 @@ class UserController extends Controller
             'designation' => $request->designation,
             'prefix' => $request->prefix,
         ]);
+        $roll = Role::where('id',$request->role_id)->get();
+         
+        if($roll[0]->name == 'SA'){
+
+        }else{
+
+            $pDenied = [
+                        'Users',
+                        'Permission',
+                        'Modules',
+                        'Qr',
+                        'Account',
+                        'Account Dashboard',
+                        'Expenses',
+                        'Transaction',
+                        'Statements',
+                        'Vendor',
+                        'Customer',
+                        'Master',
+                        'Personal',
+                    ];
+
+            foreach ($pDenied as $key => $value) {
+                PermissionDenied::create([
+                "u_id"=> $user->id,
+                "module"=> $value,
+                "status"=> 'lock',
+                "type"=> 'Module',
+            ]);
+        }
+        }
          $division = json_decode($request['divisions'], true);
         if($user){
             $paymentaccount=PaymentAccount::create([

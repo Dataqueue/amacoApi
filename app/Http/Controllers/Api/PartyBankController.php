@@ -32,6 +32,8 @@ class PartyBankController extends Controller
             'bank_name' => $request->bank_name,
             'bank_address' => $request->bank_address,
             'party_id'=> $request->party_id,
+            'div_id' => $request->div_id?$request->div_id:1,
+            'user_id' => $request->user_id?$request->user_id:0,
         ]);
 
         return response()->json($bank);

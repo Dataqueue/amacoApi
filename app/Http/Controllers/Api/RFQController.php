@@ -88,6 +88,8 @@ class RFQController extends Controller
                 // 'requested_date' => $data['requested_date'],
                 'contact_id' => $request['contact_id'],
                 'party_id' => $request['party_id'],
+                'user_id' => $request['user_id'],
+                'div_id' => $request['div_id'],
             ]);
 
             //-------------------------------------------
@@ -194,6 +196,8 @@ class RFQController extends Controller
             'files' => $rfq->file ? $rfq->file : null,
             "party" => $rfq->party,
             "contact" => $rfq->contact,
+            'user_id' => $rfq->user_id,
+            'div_id' => $rfq->div_id,
             'rfq_details' => $rfq->rfq_details->map(function ($rfq_detail) {
                 $rfq_detail = RFQDetails::where('id', '=', $rfq_detail->id)->first();
                 $filePath =  $rfq_detail->file ?  $rfq_detail->file : '';

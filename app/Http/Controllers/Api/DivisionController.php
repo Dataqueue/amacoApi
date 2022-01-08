@@ -112,4 +112,9 @@ class DivisionController extends Controller
     });
     return response()->json($datas);
     }
+    public function getDivbyId($id){
+
+        $divs = DB::table('user_divisions')->join('divisions','divisions.id','user_divisions.div_id')->where('user_divisions.u_id',$id)->get();
+        return response()->json($divs);
+    }
 }

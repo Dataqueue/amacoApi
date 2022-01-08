@@ -14,11 +14,11 @@ class ModuleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $gdata = Module::get();
+        $gdata = Module::where('div_id',$id)->get();
         $gdata = $gdata->whereNull('parent_id');
-        $allcategories = Module::get();
+        $allcategories = Module::where('div_id',$id)->get();
         $rootcategories = $allcategories->whereNull('parent_id')->values();
         self::formatTree($rootcategories,$allcategories);
 
@@ -61,6 +61,7 @@ class ModuleController extends Controller
         $data = new Module;
         $data -> module_name = $request->input('module_name');
         $data -> type = $request->input('type');
+        $data -> div_id = $request->input('div_id');
         $request->input('parentId');
         if($request->input('parentId')){
             $par = $request->input('parentId');

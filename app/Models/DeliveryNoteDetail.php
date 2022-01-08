@@ -28,91 +28,37 @@ class DeliveryNoteDetail extends Model
     public function getTotalDeliveredQuantity($val)
     {
         $totalDeliveryNoteDetail = 0;
-        $data[]=$val->toArray();
         if(isset($val)) {
-            foreach ($data as $item) {
-                $totalDeliveryNoteDetail += intval($item['delivered_quantity']);
-               
+            foreach ($val as $item) {
+                $totalDeliveryNoteDetail += intval($item->delivered_quantity);
             }
             return $totalDeliveryNoteDetail;
         }
         return 0;
-        // return $->toArray();
     }
 
     // there is no need for this
-    public function getBalanceQuantity($id, $pid)
-    {
-        $dnote_details=0;
-       $dnote= DeliveryNote::where('id',$id)->first();
-       
-       if($dnote['invoice_id'])
-       {
-        $dnote['invoice_id'];
-        $dnote_invoice=DeliveryNote::where('invoice_id',$dnote['invoice_id'])->get();
-        foreach($dnote_invoice as $item)
-        {
-            $dnote_details+= DeliveryNoteDetail::where([
-                'delivery_note_id' => $item->id,
-                'product_id' => $pid,
-            ])->sum('delivered_quantity');
-        }
-        $latest= DeliveryNoteDetail::where([
-            'delivery_note_id' => $item->id,
-            'product_id' => $pid,
-        ])->sum('delivered_quantity');
-        return (int)$dnote_details-(int)$latest;
-       }
-    // return 0;
-        
-    }
+    // public function getBalanceQuantity($totalQuantity = 0, $totalDeliveredQuantity = 0)
+    // {
+    //     return ($totalQuantity - $totalDeliveredQuantity);
+    // }
 
-    public function showDeliveredNoteDetail($id,$productId)
+    public function showDeliveredNoteDetail($id)
     {
-        global $totalQty;
         $delivery_notes_detail = DeliveryNoteDetail::where('id',$id)->first();
 
         $totalDeliveryNoteDetails = DeliveryNoteDetail::where([
             'delivery_note_id' => $delivery_notes_detail->delivery_note_id,
             'product_id' => $delivery_notes_detail->product_id,
         ])->get();
-        $res=$this->getBalanceQuantity($delivery_notes_detail->delivery_note_id,$productId);
 
-        if($delivery_notes_detail->quotation_id)
-        {
         $quotationDetail = QuotationDetail::where([
             'quotation_id' => $delivery_notes_detail->deliveryNote->quotation_id,
             'product_id' => $delivery_notes_detail->product_id,
         ])->firstOrFail();
-        
-        // return [$quotationDetail];
-        $totalDeliveredQuantity = $quotationDetail->getDeliveredQuantity($quotationDetail);;
-        }
-        if($delivery_notes_detail->invoice_id)
-        {
-       
-            $quotationDetail = InvoiceDetail::where([
-            'invoice_id' => $delivery_notes_detail->deliveryNote->invoice_id,
-            'product_id' => $delivery_notes_detail->product_id,
-            ])->firstOrFail();
-            // $totalQty=InvoiceDetail::where('invoice_id',$delivery_notes_detail->invoice_id)->get();
-           
-
-        $totalDeliveredQuantity = $quotationDetail->getDelivered_invoice_Quantity($quotationDetail);
-
-       
-        // return [$quotationDetail];
-        }
 
         // $totalDeliveredQuantity = $this->getTotalDeliveredQuantity($totalDeliveryNoteDetails);
-        // if($delivery_notes_detail->quotation_id)
-        // {
-        // $totalDeliveredQuantity = $quotationDetail->getDeliveredQuantity($quotationDetail);;
-        // }
-        // else
-        // {
-        //     $totalDeliveredQuantity = $quotationDetail->getDelivered_invoice_Quantity($quotationDetail); 
-        // }
+        $totalDeliveredQuantity = $quotationDetail->getDeliveredQuantity($quotationDetail);
         if(isset($totalDeliveredQuantity)){
             $totalDeliveredQuantityExceptCurrentValue = $totalDeliveredQuantity - intval($delivery_notes_detail->delivered_quantity) ;
         }else{
@@ -120,14 +66,12 @@ class DeliveryNoteDetail extends Model
         }
 
         $data = [
-            "total_quantity" => $delivery_notes_detail->total_qty, //$totalQuantity =
-            "total_delivered_quantity" => $res,
-            // "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
+            "total_quantity" => $quotationDetail->quantity, //$totalQuantity =
+            // "total_delivered_quantity" => $totalDeliveredQuantity,
+            "total_delivered_quantity" => $totalDeliveredQuantityExceptCurrentValue,
             "delivering_quantity" => $delivery_notes_detail->delivered_quantity,
             "delivery_notes_detail" => $delivery_notes_detail,
-            "delivered_quantity" => $delivery_notes_detail,
             "product" => array($delivery_notes_detail->product),
-            
             // "quotation" => $delivery_notes_detail->deliveryNote->quotation,
             // "delivery_note" => $delivery_notes_detail->deliveryNote,
             // "party" => $delivery_notes_detail->deliveryNote->quotation->party,
@@ -135,8 +79,6 @@ class DeliveryNoteDetail extends Model
         ];
 
         return [$data];
-
-       
     }
 }
 

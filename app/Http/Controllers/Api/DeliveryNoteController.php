@@ -116,6 +116,8 @@ class DeliveryNoteController extends Controller
             'delivery_number' => $deliveryNo ,
             'po_number' => $quotation->po_number,
             'delivery_date' => $request->delivery_date,
+            'user_id' => $request->user_id?$request->user_id:0,
+            'div_id' => $request->div_id?$request->div_id:0,
         ];
 
         $deliveryNote = DeliveryNote::create($data);
@@ -165,6 +167,8 @@ class DeliveryNoteController extends Controller
             'delivery_number' => $deliveryNo ,
             'po_number' => $quotation->po_number,
             'delivery_date' => $request->delivery_date,
+            'user_id' => $request->user_id?$request->user_id:0,
+            'div_id' => $request->div_id?$request->div_id:0,
         ];
 
         $deliveryNote = DeliveryNote::create($data);

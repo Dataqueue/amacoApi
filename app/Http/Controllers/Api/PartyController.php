@@ -59,11 +59,9 @@ class PartyController extends Controller
             'firm_name' => $request->firm_name?ucwords(trans($request->firm_name)):'',
             'firm_name_in_ar' => $firm_name_in_ar->data->translations[0]->translatedText,
             'registration_no' => $request->registration_no,
-            // 'registration_no_in_ar'=> $request->registration_no == null ? null : GoogleTranslate::trans(
-            //     $request->registration_no,'ar'),
+         
             'vat_no' => $request->vat_no,
-            // 'vat_no_in_ar'=> $request->registration_no == null ? null :   GoogleTranslate::trans(
-            //     $request->vat_no,'ar'),
+           
             'post_box_no' => $request->post_box_no,
             'street' => $request->street?ucwords(trans($request->street)):" ",
             'street_ar' => $streetar->data->translations[0]->translatedText,
@@ -85,6 +83,8 @@ class PartyController extends Controller
             'proviance_ar' => $proviancear->data->translations[0]->translatedText,
             'zip_code_ar' => $request->zip_code_ar,
             'vat_no_in_ar' => $request->vat_no_in_ar,
+            'div_id' => $request->div_id?$request->div_id:1,
+            'user_id' => $request->user_id?$request->user_id:0,
             
         ]);
         $request->account_no &&
@@ -94,6 +94,8 @@ class PartyController extends Controller
                 'bank_name' => $request->bank_name?ucwords(trans($request->bank_name)):" ",
                 'bank_address' => $request->bank_address?ucwords(trans($request->bank_address)):" ",
                 'party_id' => $party->id,
+                'div_id' => $request->div_id?$request->div_id:1,
+                'user_id' => $request->user_id?$request->user_id:0,
             ]);
 
         $contact = Contact::create([
@@ -106,7 +108,8 @@ class PartyController extends Controller
             'landline' => $request->landline,
             'email' => $request->email,
             'address'=>$request->address?ucwords(trans($request->address)):" ",
-
+            'div_id' => $request->div_id?$request->div_id:1,
+            'user_id' => $request->user_id?$request->user_id:0,
         ]);
 
         if ($party->party_code == null) {
@@ -258,6 +261,8 @@ class PartyController extends Controller
             'proviance_ar' => $proviancear->data->translations[0]->translatedText,
             'zip_code_ar' => $request->zip_code_ar,
             'street_ar' => $streetar->data->translations[0]->translatedText,
+            'div_id' => $request->div_id?$request->div_id:1,
+            'user_id' => $request->user_id?$request->user_id:0,
         ]);
        
         if($request->division)

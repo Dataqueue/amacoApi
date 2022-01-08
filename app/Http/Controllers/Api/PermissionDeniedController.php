@@ -15,13 +15,13 @@ class PermissionDeniedController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index($id,$i)
     {
         $perData = PermissionDenied::where('u_id',$id)->get();
 
-        $gdata = Module::get();
+        $gdata = Module::where('div_id',$i)->get();
         $gdata = $gdata->whereNull('parent_id');
-        $allcategories = Module::get();
+        $allcategories = Module::where('div_id',$i)->get();
         $rootcategories = $allcategories->whereNull('parent_id')->values();
         self::formatTree($rootcategories,$allcategories);
 
