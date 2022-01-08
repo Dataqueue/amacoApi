@@ -302,7 +302,7 @@ class PartyController extends Controller
     public function vendor()
     {
         $vendors = Party::where('party_type', '=', 'Vendor')->orWhere('party_type', '=', 'both')
-            ->select('id', 'firm_name', 'contact')
+            ->select('id', 'firm_name', 'contact','div_id')
             ->get();
             // ->toArray();
             $vendors->map(function($payment){
@@ -315,7 +315,7 @@ class PartyController extends Controller
     public function customer()
     {
         $vendors = Party::where('party_type', '=', 'customer')->orWhere('party_type', '=', 'both')
-            ->select('id', 'firm_name', 'contact','opening_balance','credit_days')
+            ->select('id', 'firm_name', 'contact','opening_balance','credit_days','div_id')
             ->get();
             // $vendors = Party::where('party_type', '=', 'customer')->orWhere('party_type', '=', 'both')
             // ->select('id', 'firm_name', 'contact','opening_balance','credit_days')
