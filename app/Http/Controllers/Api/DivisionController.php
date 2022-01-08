@@ -9,6 +9,7 @@ use App\Models\Receipt;
 use App\Models\PaymentAccount;
 use App\Models\AdvancePayment;
 use Illuminate\Http\Request;
+use DB;
 
 class DivisionController extends Controller
 {
