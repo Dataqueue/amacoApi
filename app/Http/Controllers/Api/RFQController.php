@@ -42,6 +42,8 @@ class RFQController extends Controller
                 function ($rfq) {
                     return [
                         'id' => $rfq->id,
+                        'div_id' => $rfq->div_id,
+                        'user_id' => $rfq->user_id,
                         'requested_date' => $rfq->requested_date,
                         'require_date' => $rfq->require_date,
                         'party_id' => $rfq->party_id,
