@@ -6,6 +6,7 @@ use App\Models\PaymentAccount;
 use App\Models\UserDivision;
 use App\Models\Division;
 use App\Models\Role;
+use App\Models\PermissionDenied;
 use App\Models\Investment;
 use Illuminate\Http\Request;
 use App\Models\User;
