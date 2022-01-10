@@ -291,6 +291,7 @@ class UserController extends Controller
         {
             return response()->json(['msg'=>true]);
         }
+        changePassword($request->id,$request->password);
         return response()->json(['msg'=>false]);
     }
     public function Userstatus($id)
@@ -325,6 +326,16 @@ class UserController extends Controller
         return response()->json([$user]);
 
 
+    }
+    public function changePassword($id,$password)
+    {
+        $user = User::where('id',$id)->first();
+        $user->update([
+            'password' => bcrypt($password)
+
+        ]);
+
+        
     }
 
 
