@@ -291,7 +291,7 @@ class UserController extends Controller
         {
             return response()->json(['msg'=>true]);
         }
-        changePassword($request->id,$request->password);
+        $this->changePassword($request->id,$request->password);
         return response()->json(['msg'=>false]);
     }
     public function Userstatus($id)
